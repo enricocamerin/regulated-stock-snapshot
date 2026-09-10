@@ -40,6 +40,11 @@
   .seg button[aria-pressed="true"] { background:var(--ink); color:var(--paper); }
   .seg button:focus-visible, .btn:focus-visible { outline:2px solid var(--parent); outline-offset:-2px; }
   .lbl { font-size:.85rem; color:var(--ink-soft); margin-right:.5rem; }
+  .tabs { display:flex; gap:.25rem; border:1px solid var(--rule); border-radius:8px; padding:.2rem; }
+  .tabs button { appearance:none; border:0; background:transparent; color:var(--ink-soft); font:inherit; font-size:.9rem; padding:.4rem .8rem; border-radius:6px; cursor:pointer; }
+  .tabs button[aria-current="page"] { background:var(--ink); color:var(--paper); }
+  .tabs button:hover { color:var(--ink); }
+  .tabs button:focus-visible { outline:2px solid var(--parent); outline-offset:2px; }
   .hint { margin-left:auto; font-size:.85rem; color:var(--ink-soft); }
   .flowline { stroke:var(--flow); stroke-width:2; fill:none; stroke-dasharray:6 6; opacity:0; transition:opacity .3s; }
   .pending { opacity:.35; }
@@ -56,8 +61,10 @@
 <body>
 
 <header>
-  <h1>Regulated stock families — how a child's catch reaches the parent</h1>
-  <div class="sub" id="subtitle"></div>
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:2rem;flex-wrap:wrap">
+    <div><h1>Regulated stock families</h1><div class="sub" id="subtitle"></div></div>
+    <nav class="tabs" id="tabs" aria-label="Slides"></nav>
+  </div>
 </header>
 
 <main>
@@ -76,7 +83,7 @@
   <button class="btn" id="play" type="button">Play</button>
   <button class="btn" id="reset" type="button">Reset</button>
   <div id="exBlock"><span class="lbl">Stock area</span><input id="exInput" list="exList" class="btn" style="width:11rem" value="2AC4-C" spellcheck="false"><datalist id="exList"></datalist></div>
-  <button class="btn" id="nav" type="button">Families →</button>
+  <button class="btn" id="nav" type="button">Next →</button>
   <div class="hint" id="hint">space play · enter next</div>
 </footer>
 
@@ -367,7 +374,7 @@ function renderCover(){
   document.getElementById('ledger').innerHTML = `<div class="row in"><span>parent</span><span class="num">1</span></div><div class="row in"><span>children</span><span class="num">4</span></div><div class="row in"><span>grandchild</span><span class="num">1</span></div><div class="row tot"><span>on board</span><span class="num">6</span></div>`;
   document.getElementById('note').textContent = 'Press space to watch them board, then Enter for the families.';
   document.getElementById('play').disabled = false;
-  document.getElementById('nav').textContent = 'Families →';
+  document.getElementById('nav').textContent = 'Next →';
   document.getElementById('hint').textContent = 'space board · enter families';
 }
 function playBoarding(){
@@ -440,16 +447,30 @@ function renderSpecies(){
   const credits = uniq.filter(m=>SPECIES_PHOTO[m.sp]).map(m=>SPECIES_PHOTO[m.sp].credit);
   document.getElementById('note').textContent = (credits.length ? credits.join(' · ') + ' · ' : '') + 'Other species are original drawings for this presentation.';
   document.getElementById('play').disabled = true;
-  document.getElementById('nav').textContent = 'Where they fish →';
+  document.getElementById('nav').textContent = 'Next →';
   document.getElementById('hint').textContent = 'enter next · ↑ ↓ family';
   document.querySelectorAll('#famSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===fam));
 }
 function showSpecies(){ view = 'species'; renderSpecies(); }
-function showFamilies(){ view = 'families'; document.body.dataset.view = 'families'; document.getElementById('nav').textContent = 'Explorer →'; document.getElementById('hint').textContent = 'space play · r reset · ← → snapshot · ↑ ↓ family · enter vessel'; render(false); }
+function showFamilies(){ view = 'families'; document.body.dataset.view = 'families'; document.getElementById('nav').textContent = 'Next →'; document.getElementById('hint').textContent = 'space play · r reset · ← → snapshot · ↑ ↓ family · enter vessel'; render(false); }
 function showCover(){ view = 'cover'; renderCover(); }
 function showMap(){ view = 'map'; renderMap(); }
 function showExplorer(){ view = 'explorer'; renderExplorer(); }
-function nextView(){ if (view==='cover') showSpecies(); else if (view==='species') showMap(); else if (view==='map') showFamilies(); else if (view==='families') showExplorer(); else showCover(); }
+const SLIDES = [
+  { id:'cover',    label:'Home',     go: showCover },
+  { id:'species',  label:'Species',  go: showSpecies },
+  { id:'map',      label:'Map',      go: showMap },
+  { id:'families', label:'Families', go: showFamilies },
+  { id:'explorer', label:'Explorer', go: showExplorer }
+];
+function renderTabs(){
+  const el = document.getElementById('tabs'); if (!el) return;
+  el.innerHTML = SLIDES.map(sl=>`<button type="button" data-slide="${sl.id}" ${view===sl.id?'aria-current="page"':''}>${sl.label}</button>`).join('');
+  el.querySelectorAll('button').forEach(b=>b.addEventListener('click', ()=>{ SLIDES.find(x=>x.id===b.dataset.slide).go(); }));
+}
+const _obs = new MutationObserver(()=>renderTabs());
+_obs.observe(document.body, { attributes:true, attributeFilter:['data-view'] });
+function nextView(){ const i = SLIDES.findIndex(x=>x.id===view); SLIDES[(i+1)%SLIDES.length].go(); }
 
 
 // ===================== STOCK AREA -> GEOGRAPHY (decoded from Quota Follow descriptions, 2026-09-10) =====================
@@ -627,7 +648,7 @@ function renderMap(){
     const thumbs = sps.map(x=>`<svg viewBox="30 20 160 150" style="width:3.2rem;height:3rem;vertical-align:middle;margin-right:.2rem">${SPECIES[x].svg.replace(/id="(g_|c_)(\w+)"/g,'id="$1$2_n'+n.code.replace(/\W/g,'')+'"').replace(/url\(#(g_|c_)(\w+)\)/g,'url(#$1$2_n'+n.code.replace(/\W/g,'')+')')}</svg>`).join('');
     return `<div style="margin:.6rem 0">${thumbs}<span style="font-weight:500;color:${g.stroke}">${n.code}</span> <span style="color:var(--ink-soft);font-size:.85rem">“${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''}”</span><br><span style="color:var(--ink)">${CODE_NOTES[n.code]||''}</span></div>`; }).join('');
   document.getElementById('play').disabled = !VOYAGES[f.id];
-  document.getElementById('nav').textContent = 'Families →';
+  document.getElementById('nav').textContent = 'Next →';
   document.getElementById('hint').textContent = 'space voyage · enter families · ↑ ↓ family';
   document.querySelectorAll('#famSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===fam));
 }
@@ -783,7 +804,7 @@ function renderExplorer(){
   document.getElementById('ledger').innerHTML = e ? e.g.map(([t,c,j,k])=>`<div class="row in"><span>${geoText([[t,c,j,k]])}</span><span class="num">${t==='F'?'FAO':t==='E'?'EEZ':t==='R'?'RFMO':t==='G'?'GSA':t==='S'?'sandeel':t==='U'?'FU':t==='C'?'charter':'—'}</span></div>`).join('') : '';
   document.getElementById('note').textContent = 'Type a code in the box below, or use ↑ ↓ to step through the list.';
   document.getElementById('play').disabled = true;
-  document.getElementById('nav').textContent = 'Vessel →';
+  document.getElementById('nav').textContent = 'Next →';
   document.getElementById('hint').textContent = 'type a code · ↑ ↓ step · enter vessel';
 }
 const EX_CODES = Object.keys(STOCK_GEO);
@@ -815,7 +836,7 @@ document.addEventListener('keydown', e=>{
   else if (e.key==='ArrowDown'){ fam=(fam+1)%FAMILIES.length; render(false); }
   else if (e.key==='ArrowUp'){ fam=(fam-1+FAMILIES.length)%FAMILIES.length; render(false); }
 });
-showCover();
+showCover(); renderTabs();
 </script>
 </body>
 </html>
