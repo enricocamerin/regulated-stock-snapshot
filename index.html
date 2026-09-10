@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regulated stock families — how a child's catch reaches the parent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:#FBFAF7; --ink:#13324F; --ink-soft:#4E5F72; --rule:#D9D5CC;
+    --parent:#0F6E56; --parent-fill:#E1F5EE; --parent-ink:#085041;
+    --stone:#8A8781; --stone-fill:#F1EFE8; --stone-ink:#444441;
+    --area:#BA7517; --area-fill:#FAEEDA; --area-ink:#633806;
+    --flow:#C4442A; --moved:#C4442A;
+  }
+  * { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:var(--paper); color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif; font-feature-settings:"tnum" 1; }
+  body { display:grid; grid-template-rows:auto 1fr auto; min-height:100vh; }
+  header { padding:1.5rem 2.5rem 0; }
+  h1 { margin:0; font-size:1.5rem; font-weight:500; letter-spacing:-.01em; }
+  .sub { color:var(--ink-soft); font-size:1rem; }
+  main { padding:1rem 2.5rem; display:grid; grid-template-columns:minmax(0,1fr) 20rem; gap:2.5rem; align-items:start; }
+  @media (max-width:900px){ main { grid-template-columns:1fr; } }
+  .stage svg { width:100%; height:auto; display:block; }
+  .aside { font-size:1.05rem; line-height:1.55; padding-top:.5rem; }
+  .aside h2 { font-size:1.1rem; font-weight:500; margin:0 0 .5rem; }
+  .aside p { margin:0 0 .75rem; }
+  .ledger { display:flex; flex-direction:column; gap:.4rem; margin:.75rem 0 1.25rem; padding:.75rem 0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+  .ledger .row { display:flex; justify-content:space-between; gap:1rem; color:var(--ink-soft); }
+  .ledger .row.in { color:var(--ink); }
+  .ledger .row.tot { font-weight:500; color:var(--ink); padding-top:.35rem; border-top:1px solid var(--rule); }
+  .num { font-variant-numeric:tabular-nums; white-space:nowrap; }
+  footer { padding:.75rem 2.5rem 1.5rem; display:flex; gap:2.5rem; align-items:center; flex-wrap:wrap; }
+  .seg { display:inline-flex; border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+  .seg button, .btn { appearance:none; border:0; background:transparent; color:var(--ink-soft); font:inherit; font-size:.95rem; padding:.55rem 1rem; cursor:pointer; }
+  .btn { border:1px solid var(--ink); border-radius:8px; color:var(--ink); }
+  .btn:disabled { opacity:.4; cursor:default; }
+  .seg button[aria-pressed="true"] { background:var(--ink); color:var(--paper); }
+  .seg button:focus-visible, .btn:focus-visible { outline:2px solid var(--parent); outline-offset:-2px; }
+  .lbl { font-size:.85rem; color:var(--ink-soft); margin-right:.5rem; }
+  .hint { margin-left:auto; font-size:.85rem; color:var(--ink-soft); }
+  .flowline { stroke:var(--flow); stroke-width:2; fill:none; stroke-dasharray:6 6; opacity:0; transition:opacity .3s; }
+  .pending { opacity:.35; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Regulated stock families — how a child's catch reaches the parent</h1>
+  <div class="sub" id="subtitle"></div>
+</header>
+
+<main>
+  <div class="stage"><svg id="tree" viewBox="0 0 680 520" role="img" aria-labelledby="tt td"><title id="tt"></title><desc id="td"></desc></svg></div>
+  <aside class="aside">
+    <h2 id="ah"></h2>
+    <p id="ap"></p>
+    <div class="ledger" id="ledger"></div>
+    <p class="sub" id="note"></p>
+  </aside>
+</main>
+
+<footer>
+  <div><span class="lbl">Family</span><span class="seg" id="famSeg"></span></div>
+  <div><span class="lbl">Snapshot</span><span class="seg" id="snapSeg"></span></div>
+  <button class="btn" id="play" type="button">Play</button>
+  <button class="btn" id="reset" type="button">Reset</button>
+  <div class="hint">space play · r reset · ← → snapshot · ↑ ↓ family</div>
+</footer>
+
+<script>
+const SNAPS = [
+  { id:'feb', label:'12 Feb 2026', short:'12-02-2026' },
+  { id:'aug', label:'13 Aug 2026', short:'13-08-2026' }
+];
+
+const FAMILIES = [
+  {
+    id:'srx', country:'NLD', year:2025, name:'SRX / 2AC4-C',
+    intro:'Skates and rays in the North Sea. A parent with four children; one of them carries a child of its own.',
+    root:{ name:'SRX / 2AC4-C', own:{feb:0.056, aug:0.020}, children:[
+      { name:'RJC / 2AC4-C', own:{feb:385.788, aug:385.824} },
+      { name:'RJH / 04-C.',  own:{feb:144.252, aug:144.252} },
+      { name:'RJM / 2AC4-C', own:{feb:79.252,  aug:79.252} },
+      { name:'SRX / *07D2.', own:{feb:0, aug:0}, area:true, children:[ { name:'RJC / *07D2.', own:{feb:62.400, aug:71.800}, area:true } ] }
+    ]}
+  },
+  {
+    id:'lin', country:'FRA', year:2025, name:'LIN / 6X14.',
+    intro:'Ling west of Scotland and beyond. The simplest shape: one parent, one child.',
+    root:{ name:'LIN / 6X14.', own:{feb:397.731, aug:398.843}, children:[ { name:'LIN / *04-C.', own:{feb:763.001, aug:789.002}, area:true } ] }
+  }
+];
+
+const fmt = n => n.toLocaleString('en-GB',{minimumFractionDigits:3, maximumFractionDigits:3});
+let snap = 1;
+const S = () => SNAPS[snap].id;
+const own = n => n.own[S()];
+const total = n => own(n) + (n.children||[]).reduce((a,c)=>a+total(c),0);
+const ownAt = (n,i) => n.own[SNAPS[i].id];
+const totalAt = (n,i) => ownAt(n,i) + (n.children||[]).reduce((a,c)=>a+totalAt(c,i),0);
+const hasPrev = () => snap > 0;
+const dTotal = n => hasPrev() ? totalAt(n,snap) - totalAt(n,snap-1) : 0;
+const dOwn = n => hasPrev() ? ownAt(n,snap) - ownAt(n,snap-1) : 0;
+const moved = v => Math.abs(v) >= 0.0005;
+const sgn = v => (v>=0?'+':'−') + fmt(Math.abs(v));
+const prevLabel = () => hasPrev() ? SNAPS[snap-1].label.replace(/ \d{4}$/,'') : '';
+const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+const idOf = n => n.name.replace(/[^A-Za-z0-9]/g,'_');
+const C = {
+  parent:{fill:'var(--parent-fill)',stroke:'var(--parent)',ink:'var(--parent-ink)',soft:'var(--parent)'},
+  stone: {fill:'var(--stone-fill)', stroke:'var(--stone)', ink:'var(--stone-ink)', soft:'var(--stone)'},
+  area:  {fill:'var(--area-fill)',  stroke:'var(--area)',  ink:'var(--area-ink)',  soft:'var(--area)'}
+};
+
+let fam = 0, timers = [], playing = false;
+
+function layout(node, depth=0, parent=null){
+  node.depth = depth; node.parent = parent; node.kids = node.children||[];
+  node.kids.forEach(k=>layout(k, depth+1, node));
+  const leafW = 130, gap = 12;
+  if (node.kids.length===0){ node.w = leafW; node.h = 56; }
+  else { node.h = 68 + node.kids.length*20 + 20 + (depth===0?18:0);
+         node.w = Math.max(depth===0?420:300, node.kids.reduce((a,k)=>a+k.w,0) + gap*(node.kids.length-1)); }
+  node.subW = Math.max(node.w, node.kids.length ? node.kids.reduce((a,k)=>a+k.subW,0) + gap*(node.kids.length-1) : 0);
+  return node;
+}
+function place(node, x, y){
+  node.x = x + (node.subW - node.w)/2; node.y = y;
+  const gap = 12, yy = y + node.h + 48;
+  const kidsW = node.kids.reduce((a,k)=>a+k.subW,0) + gap*Math.max(0,node.kids.length-1);
+  let cx = x + (node.subW - kidsW)/2;
+  node.kids.forEach(k=>{ place(k, cx, yy); cx += k.subW + gap; });
+}
+function maxY(n){ return Math.max(n.y+n.h+(n.kids.length?0:18), ...n.kids.map(maxY)); }
+
+let ROOT = null;
+
+function render(built){
+  timers.forEach(clearTimeout); timers = []; playing = false;
+  const f = FAMILIES[fam];
+  const root = ROOT = layout(structuredClone(f.root));
+  const W = Math.max(680, root.subW + 80);
+  place(root, 40 + (W-80-root.subW)/2, 40);
+  const svg = document.getElementById('tree');
+  svg.setAttribute('viewBox', `0 0 ${W} ${maxY(root)+40}`);
+  document.getElementById('tt').textContent = `${f.country} ${f.year} ${f.name}, snapshot ${SNAPS[snap].short}`;
+  document.getElementById('td').textContent = `Parent total ${fmt(total(root))} tonnes, built from its children plus what it fished directly.`;
+
+  const parts = [];
+  const line = (x1,y1,x2,y2)=>parts.push(`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="var(--stone)" stroke-width="0.75"/>`);
+  const walk = (n) => {
+    const isRoot = n.depth===0, pal = isRoot ? C.parent : (n.area ? C.area : C.stone);
+    const cx = n.x + n.w/2, id = idOf(n);
+    const mv = built && !isRoot && moved(dTotal(n));
+    parts.push(`<rect data-node="${id}" x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="8" fill="${pal.fill}" stroke="${mv?'var(--moved)':pal.stroke}" stroke-width="${mv?2:0.75}"/>`);
+    if (n.kids.length===0){
+      parts.push(`<text x="${cx}" y="${n.y+18}" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="${pal.ink}">${n.name}</text>`);
+      parts.push(`<text class="num" x="${cx}" y="${n.y+38}" text-anchor="middle" dominant-baseline="central" font-size="12" fill="${pal.ink}">${fmt(own(n))} t</text>`);
+      if (mv) parts.push(`<text class="num" x="${cx}" y="${n.y+n.h+12}" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--moved)">${sgn(dOwn(n))} vs ${prevLabel()}</text>`);
+    } else {
+      let y = n.y + 22;
+      parts.push(`<text x="${cx}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="${pal.ink}">${n.name}${isRoot?' — parent':''}</text>`);
+      if (isRoot){ y += 18; parts.push(`<text x="${cx}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="12" fill="${pal.soft}">${f.country} ${f.year} · snapshot ${SNAPS[snap].short} · tonnes</text>`); }
+      const lx = n.x + 20, rx = n.x + n.w - (built && hasPrev() ? 78 : 20);
+      y += 24;
+      n.kids.forEach(k=>{
+        const pend = !built;
+        parts.push(`<text class="${pend?'pending':''}" data-lbl="${idOf(k)}" x="${lx}" y="${y}" dominant-baseline="central" font-size="12" fill="${pal.soft}">from ${k.name}${k.kids.length?' and below':''}</text>`);
+        parts.push(`<text class="num" data-node="${id}" data-row="${idOf(k)}" x="${rx}" y="${y}" text-anchor="end" dominant-baseline="central" font-size="12" fill="${pal.ink}">${pend?'—':fmt(total(k))}</text>`);
+        if (built && moved(dTotal(k))) parts.push(`<text class="num" x="${rx+8}" y="${y}" dominant-baseline="central" font-size="11" fill="var(--moved)">${sgn(dTotal(k))}</text>`);
+        y += 20;
+      });
+      parts.push(`<text x="${lx}" y="${y}" dominant-baseline="central" font-size="12" fill="${pal.soft}">${isRoot?'fished directly on this quota':'fished directly here'}</text>`);
+      parts.push(`<text class="num" x="${rx}" y="${y}" text-anchor="end" dominant-baseline="central" font-size="12" fill="${pal.ink}">${fmt(own(n))}</text>`);
+      if (built && moved(dOwn(n))) parts.push(`<text class="num" x="${rx+8}" y="${y}" dominant-baseline="central" font-size="11" fill="var(--moved)">${sgn(dOwn(n))}</text>`);
+      y += 20;
+      parts.push(`<line x1="${lx}" y1="${y-6}" x2="${rx}" y2="${y-6}" stroke="${pal.stroke}" stroke-width="0.75"/>`);
+      y += 8;
+      parts.push(`<text x="${lx}" y="${y}" dominant-baseline="central" font-size="14" font-weight="500" fill="${pal.ink}">Total catches</text>`);
+      parts.push(`<text class="num" data-node="${id}" data-k="total" x="${rx}" y="${y}" text-anchor="end" dominant-baseline="central" font-size="14" font-weight="500" fill="${pal.ink}">${fmt(!built ? own(n) : total(n))}</text>`);
+      if (built && moved(dTotal(n))) parts.push(`<text class="num" x="${rx+8}" y="${y}" dominant-baseline="central" font-size="12" font-weight="500" fill="var(--moved)">${sgn(dTotal(n))}</text>`);
+      const by = n.y + n.h, ky = by + 44;
+      line(cx, by, cx, by+22);
+      if (n.kids.length>1){ const xs = n.kids.map(k=>k.x+k.w/2); line(Math.min(...xs), by+22, Math.max(...xs), by+22); }
+      n.kids.forEach(k=>{ const kx = k.x+k.w/2; line(kx, by+22, kx, ky); k.path = `M ${kx} ${k.y} L ${kx} ${by+22} L ${cx} ${by+22} L ${cx} ${by}`; walk(k); });
+    }
+  };
+  walk(root);
+  svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + parts.join('') + '<g id="flows"></g>';
+
+  document.getElementById('subtitle').textContent = `${f.country} · ${f.year} · ${f.name} · snapshot ${SNAPS[snap].short}`;
+  document.getElementById('ah').textContent = built ? 'The parent, complete' : 'Before the children report';
+  const mvKids = root.kids.filter(k=>moved(dTotal(k))).map(k=>k.name);
+  document.getElementById('ap').textContent = built
+    ? `The parent now holds ${fmt(total(root))} tonnes.` + (hasPrev() ? (mvKids.length ? ` Since ${SNAPS[snap-1].label}: ${sgn(dTotal(root))} on the family, coming from ${mvKids.join(', ')}${moved(dOwn(root))?' and the parent\'s own catches':''}. Outlined boxes are the ones that moved.` : ` Nothing has moved since ${SNAPS[snap-1].label}.`) : ` This is the first snapshot; there is nothing earlier to compare with.`)
+    : `${f.intro} On its own, the parent has fished ${fmt(own(root))} tonnes. Everything else it will hold comes up from the children below.`;
+  ledger(root, built ? root.kids.length : 0);
+  document.getElementById('note').textContent = built && hasPrev()
+    ? 'Red outline and red figures: different from the previous snapshot. Everything else is unchanged.'
+    : 'A catch declared against a child is counted against the parent as well — once. The parent total is the sum of its children plus what it fished directly.';
+  document.querySelectorAll('#famSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===fam));
+  document.querySelectorAll('#snapSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===snap));
+  document.getElementById('play').disabled = built;
+}
+
+function ledger(root, arrived){
+  const rows = [`<div class="row in"><span>fished directly on the parent</span><span class="num">${fmt(own(root))}</span></div>`];
+  root.kids.forEach((k,i)=>rows.push(`<div class="row${i<arrived?' in':''}"><span>${k.name}${k.kids.length?' and below':''}</span><span class="num">${i<arrived?'+'+fmt(total(k)):'waiting'}</span></div>`));
+  const sum = own(root) + root.kids.slice(0,arrived).reduce((a,k)=>a+total(k),0);
+  rows.push(`<div class="row tot"><span>Parent total so far</span><span class="num">${fmt(sum)}</span></div>`);
+  document.getElementById('ledger').innerHTML = rows.join('');
+}
+
+function tweenTo(sel, from, to, dur){
+  const el = document.querySelector(sel); if (!el) return;
+  if (reduced()) { el.textContent = fmt(to); return; }
+  const t0 = performance.now();
+  const step = t => { const p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3); el.textContent = fmt(from+(to-from)*e); if(p<1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+
+function play(){
+  if (playing) return;
+  render(false); playing = true;
+  document.getElementById('play').disabled = true;
+  const root = ROOT, flows = document.getElementById('flows');
+  const legDur = 1700, settle = 600, pause = 700;
+  let t = 600, arrived = 0;
+  const running = new Map();
+  const dot = (child, parent, at) => {
+    const v = total(child), path = child.path, cid = idOf(child), pid = idOf(parent);
+    if (!running.has(pid)) running.set(pid, own(parent));
+    timers.push(setTimeout(()=>{
+      document.getElementById('ah').textContent = `${child.name} reports`;
+      document.getElementById('ap').textContent = `${fmt(v)} tonnes caught under ${child.name}${child.kids.length?' and its children':''} travel up and are added to ${parent.name}.`;
+      const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+      g.innerHTML = `<path class="flowline" d="${path}"/>
+        <circle r="9" fill="var(--flow)"><animateMotion dur="${legDur}ms" begin="indefinite" fill="freeze" path="${path}"/></circle>
+        <text font-size="13" font-weight="500" fill="var(--flow)" text-anchor="middle" dy="-15"><animateMotion dur="${legDur}ms" begin="indefinite" fill="freeze" path="${path}"/>${fmt(v)} t</text>`;
+      flows.appendChild(g);
+      const finish = () => {
+        g.remove();
+        const lbl = document.querySelector(`[data-lbl="${cid}"]`); if (lbl) lbl.classList.remove('pending');
+        tweenTo(`[data-node="${pid}"][data-row="${cid}"]`, 0, v, settle);
+        const r = running.get(pid); tweenTo(`[data-node="${pid}"][data-k="total"]`, r, r + v, settle); running.set(pid, r + v);
+        if (parent === root){ arrived += 1; ledger(root, arrived); }
+      };
+      g.querySelector('.flowline').style.opacity = 1;
+      if (reduced()){ finish(); return; }
+      g.querySelectorAll('animateMotion').forEach(a=>a.beginElement());
+      timers.push(setTimeout(finish, legDur));
+    }, at));
+    return at + legDur + settle + pause;
+  };
+  const build = (n) => { n.kids.forEach(k=>{ build(k); t = dot(k, n, t); }); };
+  build(root);
+  timers.push(setTimeout(()=>render(true), t));
+}
+
+function seg(id, items, get, set){
+  const el = document.getElementById(id);
+  el.innerHTML = items.map((it,i)=>`<button type="button" aria-pressed="${i===get()}">${it}</button>`).join('');
+  el.querySelectorAll('button').forEach((b,i)=>b.addEventListener('click',()=>{ set(i); render(false); }));
+}
+seg('famSeg', FAMILIES.map(f=>`${f.country} ${f.name}`), ()=>fam, i=>fam=i);
+seg('snapSeg', SNAPS.map(x=>x.label), ()=>snap, i=>snap=i);
+document.getElementById('play').addEventListener('click', play);
+document.getElementById('reset').addEventListener('click', ()=>render(false));
+document.addEventListener('keydown', e=>{
+  if (e.key===' '){ e.preventDefault(); play(); }
+  else if (e.key==='r' || e.key==='R'){ render(false); }
+  else if (e.key==='ArrowRight'){ snap=Math.min(SNAPS.length-1,snap+1); render(false); }
+  else if (e.key==='ArrowLeft'){ snap=Math.max(0,snap-1); render(false); }
+  else if (e.key==='ArrowDown'){ fam=(fam+1)%FAMILIES.length; render(false); }
+  else if (e.key==='ArrowUp'){ fam=(fam-1+FAMILIES.length)%FAMILIES.length; render(false); }
+});
+render(false);
+</script>
+</body>
+</html>
