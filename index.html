@@ -448,6 +448,11 @@ const FAMILY_AREAS = {
            {code:'*04-C.', label:'LIN / *04-C.', note:'A condition in Union waters of 4: part of the western quota may be taken in the North Sea.', tone:'area'}
          ]}
 };
+const GEN = [
+  {name:'parent',     stroke:'var(--parent)', fill:'var(--parent-fill)', ink:'var(--parent-ink)'},
+  {name:'child',      stroke:'#2E5FA3',       fill:'#E3ECF8',            ink:'#1E3F73'},
+  {name:'grandchild', stroke:'var(--area)',   fill:'var(--area-fill)',   ink:'var(--area-ink)'}
+];
 function renderMap(){
   timers.forEach(clearTimeout); timers = []; playing = false;
   document.body.dataset.view = 'map';
@@ -455,44 +460,47 @@ function renderMap(){
   const svg = document.getElementById('tree');
   svg.setAttribute('viewBox', `0 0 ${MAPW} ${MAPH}`);
   document.getElementById('tt').textContent = `Where ${f.name} fishes`;
-  const tone = {parent:['var(--parent)','var(--parent-fill)','var(--parent-ink)'], stone:['var(--stone)','var(--stone-fill)','var(--stone-ink)'], area:['var(--area)','var(--area-fill)','var(--area-ink)']};
-  // members of the family, from the tree, with their stock area code
-  const members = []; const walkM = (n, depth) => { members.push({name:n.name, code:n.name.split(' / ')[1], depth, area:n.area}); (n.children||[]).forEach(k=>walkM(k, depth+1)); };
+  const members = []; const walkM = (n, depth) => { members.push({name:n.name, code:n.name.split(' / ')[1], depth}); (n.children||[]).forEach(k=>walkM(k, depth+1)); };
   walkM(f.root, 0);
-  const codeTone = code => code===fa.parent.code ? 'parent' : ((fa.children.find(c=>c.code===code)||{}).tone || 'stone');
-  // which ICES boxes are lit, and by what
-  const lit = new Map();
   const setFor = code => (STOCK_GEO[code] ? boxesFor(code).boxes : (AREA_SETS[code]||[]));
-  setFor(fa.parent.code).forEach(a=>lit.set(a,'parent'));
-  fa.children.forEach(c=>setFor(c.code).forEach(a=>{ if (!lit.has(a) || c.tone==='area') lit.set(a,c.tone); }));
+  // box -> list of {code, depth} (one entry per stock area code, shallowest generation)
+  const users = new Map();
+  members.forEach(m => setFor(m.code).forEach(b => {
+    if (!users.has(b)) users.set(b, new Map());
+    const u = users.get(b); if (!u.has(m.code) || u.get(m.code) > m.depth) u.set(m.code, m.depth);
+  }));
   const faoOf = id => ({'2a':'27.2.a','4a':'27.4.a','4b':'27.4.b','4c':'27.4.c','3a':'27.3.a','7d':'27.7.d','7e':'27.7.e','7a':'27.7.a','6a':'27.6.a','7f':'27.7.f','7bc':'27.7.b–c','7fk':'27.7.g–k'}[id]||'');
-  const boxes = ICES.filter(([id])=>lit.has(id)).map(([id,lab,a,b,c,d])=>{ const t=lit.get(id);
-    return `<rect x="${mx(a)}" y="${my(d)}" width="${(mx(c)-mx(a)).toFixed(1)}" height="${(my(b)-my(d)).toFixed(1)}" fill="${tone[t][1]}" fill-opacity="0.95" stroke="${tone[t][0]}" stroke-width="1.5"/>`; }).join('');
-  const labels = ICES.filter(([id])=>lit.has(id)).map(([id,lab,a,b,c,d,lx,ly])=>{ const t=lit.get(id);
-    return `<text x="${mx(lx)}" y="${my(ly)-12}" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="500" fill="${tone[t][0]}">ICES ${lab}</text>
-            <text x="${mx(lx)}" y="${my(ly)+12}" text-anchor="middle" dominant-baseline="central" font-size="12" fill="${tone[t][2]}">FAO ${faoOf(id)}</text>`; }).join('');
+  const boxes = ICES.filter(([id])=>users.has(id)).map(([id,lab,a,b,c,d])=>{
+    const depth = Math.min(...users.get(id).values()), g = GEN[Math.min(depth,2)];
+    return `<rect x="${mx(a)}" y="${my(d)}" width="${(mx(c)-mx(a)).toFixed(1)}" height="${(my(b)-my(d)).toFixed(1)}" fill="${g.fill}" fill-opacity="0.95" stroke="${g.stroke}" stroke-width="1.5"/>`; }).join('');
+  const labels = ICES.filter(([id])=>users.has(id)).map(([id,lab,a,b,c,d,lx,ly])=>{
+    const u = [...users.get(id).entries()].sort((x,y)=>x[1]-y[1]);
+    const n = u.length, y0 = parseFloat(my(ly)) - (n*18)/2;
+    const lines = u.map(([code,depth],i)=>{ const g = GEN[Math.min(depth,2)];
+      return `<text x="${mx(lx)}" y="${(y0 + i*18).toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="${i===0?15:13}" font-weight="500" fill="${g.stroke}">${code} <tspan font-size="10" font-weight="400" fill="${g.ink}">${g.name}${depth<2 && u.length===1 && members.some(m=>m.code===code && m.depth>depth) ? ' + '+GEN[Math.min(depth+1,2)].name : ''}</tspan></text>`; }).join('');
+    return lines + `<text x="${mx(lx)}" y="${(y0 + n*18 + 2).toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5F6E78">FAO ${faoOf(id)} · ICES ${lab}</text>`; }).join('');
   svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + `
     <rect x="0" y="0" width="${MAPW}" height="${MAPH}" fill="#D3E1E7"/>
     ${boxes}
     <path d="${LAND_PATH}" fill="#F1EFE8" stroke="#B9AF9B" stroke-width="0.8" fill-rule="evenodd"/>
     ${labels}
-    <text x="${MAPW-10}" y="${MAPH-10}" text-anchor="end" font-size="10" fill="#7A8C96">only the areas of this family are drawn · ICES divisions schematic · coastline: Natural Earth</text>`;
-  // relationship table: member -> stock area -> FAO areas
+    <g>${GEN.map((g,i)=>`<rect x="${14+i*118}" y="${MAPH-30}" width="12" height="12" rx="2" fill="${g.fill}" stroke="${g.stroke}" stroke-width="1.5"/><text x="${32+i*118}" y="${MAPH-24}" dominant-baseline="central" font-size="11" fill="var(--ink)">${g.name}</text>`).join('')}</g>
+    <text x="${MAPW-10}" y="${MAPH-10}" text-anchor="end" font-size="10" fill="#7A8C96">only the areas of this family · ICES divisions schematic · coastline: Natural Earth</text>`;
   const geoLine = code => { const e = STOCK_GEO[code]; if (!e) return '';
     return e.g.filter(x=>x[0]==='F').map(([t,c,j])=>`${c}${j?' ('+j.split('+').map(jurLabel).join(' + ')+')':''}`).join(', '); };
   const seenCodes = new Set();
   document.getElementById('subtitle').textContent = `${f.country} · ${f.year} · ${f.name}`;
   document.getElementById('ah').textContent = 'Member → stock area → FAO areas';
-  document.getElementById('ap').textContent = 'Every member of the family fishes under a stock area code. Each code is a set of FAO areas, sometimes limited to one jurisdiction. The map draws only those areas.';
+  document.getElementById('ap').textContent = 'Each member fishes under a stock area code; each code is a set of FAO areas. Colour is the generation: parent, child, grandchild.';
   document.getElementById('ledger').innerHTML = members.map(m=>{
-    const t = codeTone(m.code), col = tone[t][0];
+    const g = GEN[Math.min(m.depth,2)];
     const first = !seenCodes.has(m.code); seenCodes.add(m.code);
     return `<div class="row in" style="display:grid;grid-template-columns:1fr auto;gap:.2rem .8rem;align-items:baseline;padding-left:${m.depth*0.8}rem">
-      <span><span style="display:inline-block;width:.7rem;height:.7rem;border-radius:2px;background:${tone[t][1]};border:1.5px solid ${col};vertical-align:-1px;margin-right:.4rem"></span>${m.name}</span>
-      <span class="num" style="color:${col};font-weight:500">${m.code}</span>
+      <span><span style="display:inline-block;width:.7rem;height:.7rem;border-radius:2px;background:${g.fill};border:1.5px solid ${g.stroke};vertical-align:-1px;margin-right:.4rem"></span>${m.name} <span style="font-size:.8rem;color:var(--ink-soft)">${g.name}</span></span>
+      <span class="num" style="color:${g.stroke};font-weight:500">${m.code}</span>
       <span style="grid-column:1/-1;font-size:.85rem;color:var(--ink-soft);padding-left:1.3rem">${first ? '→ FAO ' + geoLine(m.code) : '→ same as above'}</span>
     </div>`; }).join('');
-  document.getElementById('note').textContent = (STOCK_GEO[fa.parent.code] ? `${fa.parent.code}: “${STOCK_GEO[fa.parent.code].d}”` : '') + (fa.children.length ? ' · ' + fa.children.map(c=>STOCK_GEO[c.code] ? `${c.code}: “${STOCK_GEO[c.code].d}”` : '').filter(Boolean).join(' · ') : '');
+  document.getElementById('note').textContent = [fa.parent.code, ...fa.children.map(c=>c.code)].filter(c=>STOCK_GEO[c]).map(c=>`${c}: “${STOCK_GEO[c].d}”`).join(' · ');
   document.getElementById('play').disabled = !VOYAGES[f.id];
   document.getElementById('nav').textContent = 'Families →';
   document.getElementById('hint').textContent = 'space voyage · enter families · ↑ ↓ family';
