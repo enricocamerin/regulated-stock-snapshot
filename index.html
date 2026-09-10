@@ -24,7 +24,7 @@
   main { padding:1rem 2.5rem; display:grid; grid-template-columns:minmax(0,1fr) 20rem; gap:2.5rem; align-items:start; }
   @media (max-width:900px){ main { grid-template-columns:1fr; } }
   .stage svg { width:100%; height:auto; display:block; }
-  .aside { font-size:1.05rem; line-height:1.55; padding-top:.5rem; }
+  .aside { font-size:1.05rem; line-height:1.55; padding-top:.5rem; overflow-wrap:anywhere; }
   .aside h2 { font-size:1.1rem; font-weight:500; margin:0 0 .5rem; }
   .aside p { margin:0 0 .75rem; }
   .ledger { display:flex; flex-direction:column; gap:.4rem; margin:.75rem 0 1.25rem; padding:.75rem 0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
@@ -486,12 +486,108 @@ function renderMap(){
   document.getElementById('ap').textContent = `${fa.parent.code}: ${regText(fa.parent.code) || fa.parent.note}`;
   document.getElementById('ledger').innerHTML = [fa.parent, ...fa.children].map((a,i)=>`<div class="row in"><span>${a.code}</span><span>${i===0?'parent':'child'}</span></div>`).join('');
   document.getElementById('note').textContent = fa.children.map(c=>`${c.code}: ${regText(c.code) || c.note}`).join(' · ');
-  document.getElementById('play').disabled = true;
+  document.getElementById('play').disabled = !VOYAGES[f.id];
   document.getElementById('nav').textContent = 'Families →';
-  document.getElementById('hint').textContent = 'enter families · ↑ ↓ family';
+  document.getElementById('hint').textContent = 'space voyage · enter families · ↑ ↓ family';
   document.querySelectorAll('#famSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===fam));
 }
 
+
+
+// ===================== VOYAGE: the vessel sails through the areas =====================
+const VOYAGES = {
+  srx: { port:'IJmuiden', stops:[
+    {lon:4.6, lat:52.46, port:true},
+    {lon:3.0, lat:52.4,  area:'4c', member:'RJM / 2AC4-C',  t:79.252,  note:'species condition, no ceiling of its own'},
+    {lon:3.4, lat:55.6,  area:'4b', member:'RJC / 2AC4-C',  t:385.824, note:'species condition, no ceiling of its own'},
+    {lon:1.5, lat:59.4,  area:'4a', member:'RJH / 04-C.',   t:144.252, note:'species condition in Union waters of 4'},
+    {lon:2.6, lat:62.7,  area:'2a', member:'SRX / 2AC4-C',  t:0.020,   note:'fished directly on the parent quota'},
+    {lon:0.6, lat:50.3,  area:'7d', member:'RJC / *07D2.',  t:71.800,  note:'area condition: part of the North Sea quota taken in the Channel'},
+    {lon:4.6, lat:52.46, port:true, home:true}
+  ]},
+  lin: { port:'Boulogne', stops:[
+    {lon:1.6, lat:50.7, port:true},
+    {lon:-4.4, lat:49.4, via:true}, {lon:-6.4, lat:49.6, via:true}, {lon:-11.5, lat:52.0, via:true}, {lon:-9.5, lat:56.2, via:true},
+    {lon:-8.6, lat:57.9, area:'6a', member:'LIN / 6X14.',   t:398.843, note:'fished directly on the parent quota, west of Scotland'},
+    {lon:-4.0, lat:59.4, via:true}, {lon:0.5, lat:58.8, via:true},
+    {lon:3.2, lat:55.4,  area:'4b', member:'LIN / *04-C.',  t:789.002, note:'area condition: part of the western quota taken in the North Sea'},
+    {lon:2.6, lat:52.6, via:true}, {lon:1.2, lat:51.2, via:true},
+    {lon:1.6, lat:50.7, port:true, home:true}
+  ]}
+};
+function boatSvg(scale){
+  return `<g transform="scale(${scale})">
+    <path d="M -26 0 Q -22 14 -10 14 L 22 14 Q 34 14 38 0 L 34 -3 L -22 -3 Z" fill="#8B5E3C" stroke="#6B4429" stroke-width="1"/>
+    <rect x="-22" y="-5" width="56" height="3" fill="#A97B52"/>
+    <line x1="2" y1="-5" x2="2" y2="-46" stroke="#4A3A2A" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 4 -42 L 6 -8 L 26 -10 L 24 -38 Z" fill="#F1EFE8" stroke="#BDB7A8" stroke-width="0.8"/>
+    <polygon points="2,-46 12,-43 2,-40" fill="#C4442A"/>
+  </g>`;
+}
+function playVoyage(){
+  if (playing) return;
+  const f = FAMILIES[fam], v = VOYAGES[f.id]; if (!v) return;
+  renderMap(); playing = true;
+  document.getElementById('play').disabled = true;
+  const svg = document.getElementById('tree');
+  const g = document.createElementNS('http://www.w3.org/2000/svg','g'); g.id = 'voyage'; svg.appendChild(g);
+  const P = st => [parseFloat(mx(st.lon)), parseFloat(my(st.lat))];
+  const stops = v.stops;
+  const speed = 0.045; // px per ms
+  let total = 0, t = 400, caught = [];
+  const ledger = () => {
+    const rows = caught.map(c=>`<div class="row in"><span>${c.member} · ${c.area}</span><span class="num">${fmt(c.t)}</span></div>`);
+    rows.push(`<div class="row tot"><span>on board so far</span><span class="num">${fmt(total)}</span></div>`);
+    document.getElementById('ledger').innerHTML = rows.join('');
+  };
+  // boat at port
+  const [px0,py0] = P(stops[0]);
+  const boat = document.createElementNS('http://www.w3.org/2000/svg','g');
+  boat.innerHTML = boatSvg(0.55); boat.setAttribute('transform', `translate(${px0},${py0})`); g.appendChild(boat);
+  const trail = document.createElementNS('http://www.w3.org/2000/svg','path');
+  trail.setAttribute('d', `M ${px0} ${py0}`); trail.setAttribute('fill','none'); trail.setAttribute('stroke','var(--parent)'); trail.setAttribute('stroke-width','1.5'); trail.setAttribute('stroke-dasharray','4 4'); trail.setAttribute('opacity','0.7');
+  g.insertBefore(trail, boat);
+  document.getElementById('ah').textContent = `Leaving ${v.port}`;
+  document.getElementById('ap').textContent = `The family sails as one vessel. Each stop is a place where a member of the family landed fish, and the catch is counted against that member — and against the parent.`;
+  ledger();
+  let cur = P(stops[0]), d = `M ${cur[0]} ${cur[1]}`;
+  for (let i=1;i<stops.length;i++){
+    const st = stops[i], to = P(st), from = cur;
+    const dist = Math.hypot(to[0]-from[0], to[1]-from[1]), dur = Math.max(600, dist/speed);
+    const at = t;
+    timers.push(setTimeout(()=>{
+      if (reduced()){ boat.setAttribute('transform', `translate(${to[0]},${to[1]})`); return; }
+      const t0 = performance.now();
+      const step = now => { const p = Math.min(1,(now-t0)/dur), e = p<0.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2;
+        const x = from[0]+(to[0]-from[0])*e, y = from[1]+(to[1]-from[1])*e;
+        boat.setAttribute('transform', `translate(${x},${y})`);
+        trail.setAttribute('d', d + ` L ${x} ${y}`);
+        if (p<1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    }, at));
+    d += ` L ${to[0]} ${to[1]}`; cur = to; t += dur;
+    if (st.via) { t += 100; continue; }
+    if (st.home){
+      timers.push(setTimeout(()=>{
+        document.getElementById('ah').textContent = `Home in ${v.port}`;
+        document.getElementById('ap').textContent = `${fmt(total)} tonnes on board — the family total on ${SNAPS[snap].label}. Every stop was counted once, under the member that fished it and against the parent that holds the ceiling.`;
+        playing = false;
+      }, t)); continue;
+    }
+    // catch at this stop
+    timers.push(setTimeout(()=>{
+      total += st.t; caught.push(st); ledger();
+      const lbl = document.createElementNS('http://www.w3.org/2000/svg','g');
+      lbl.innerHTML = `<rect x="${to[0]+14}" y="${to[1]-30}" width="${Math.max(120, (st.member.length+10)*6.4)}" height="34" rx="6" fill="var(--paper)" fill-opacity="0.95" stroke="var(--parent)" stroke-width="1"/>
+        <text x="${to[0]+22}" y="${to[1]-18}" dominant-baseline="central" font-size="12" font-weight="500" fill="var(--parent-ink)">${st.member}</text>
+        <text x="${to[0]+22}" y="${to[1]-4}" dominant-baseline="central" font-size="12" fill="var(--parent)">${fmt(st.t)} t · ${st.area}</text>`;
+      g.insertBefore(lbl, boat);
+      document.getElementById('ah').textContent = `${st.member} — ${fmt(st.t)} t in ${st.area}`;
+      document.getElementById('ap').textContent = st.note;
+    }, t + 150));
+    t += 1500;
+  }
+}
 
 // ===================== EXPLORER: any stock area on the map =====================
 let exCode = '2AC4-C';
@@ -536,7 +632,7 @@ function seg(id, items, get, set){
 }
 seg('famSeg', FAMILIES.map(f=>`${f.country} ${f.name}`), ()=>fam, i=>fam=i);
 seg('snapSeg', SNAPS.map(x=>x.label), ()=>snap, i=>snap=i);
-document.getElementById('play').addEventListener('click', ()=> view==='cover' ? playBoarding() : play());
+document.getElementById('play').addEventListener('click', ()=> view==='cover' ? playBoarding() : view==='map' ? playVoyage() : play());
 document.getElementById('nav').addEventListener('click', nextView);
 document.getElementById('exList').innerHTML = EX_CODES.map(c=>`<option value="${c}">`).join('');
 document.getElementById('exInput').addEventListener('change', e=>{ const v=e.target.value.trim(); if (STOCK_GEO[v]) { exCode=v; renderExplorer(); } });
@@ -545,7 +641,7 @@ document.getElementById('reset').addEventListener('click', ()=>render(false));
 document.addEventListener('keydown', e=>{
   if (e.key==='Enter'){ e.preventDefault(); nextView(); return; }
   if (view==='cover'){ if (e.key===' '){ e.preventDefault(); playBoarding(); } return; }
-  if (view==='map'){ if (e.key==='ArrowDown'){ fam=(fam+1)%FAMILIES.length; renderMap(); } else if (e.key==='ArrowUp'){ fam=(fam-1+FAMILIES.length)%FAMILIES.length; renderMap(); } return; }
+  if (view==='map'){ if (e.key===' '){ e.preventDefault(); playVoyage(); } else if (e.key==='ArrowDown'){ fam=(fam+1)%FAMILIES.length; renderMap(); } else if (e.key==='ArrowUp'){ fam=(fam-1+FAMILIES.length)%FAMILIES.length; renderMap(); } return; }
   if (view==='explorer'){ if (document.activeElement && document.activeElement.id==='exInput') return; if (e.key==='ArrowDown') exStep(1); else if (e.key==='ArrowUp') exStep(-1); return; }
   if (e.key===' '){ e.preventDefault(); play(); }
   else if (e.key==='r' || e.key==='R'){ render(false); }
