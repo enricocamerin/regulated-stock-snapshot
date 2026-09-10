@@ -412,7 +412,7 @@ function renderSpecies(){
       ${sp ? sp.svg.replace('translate(110,95)','translate(102,88)').replace('translate(110,92)','translate(102,88)') : ''}
       <text x="${(CW-16)/2}" y="${CH-64}" text-anchor="middle" font-size="14" font-weight="500" fill="var(--ink)">${sp?sp.name:m.sp}</text>
       <text x="${(CW-16)/2}" y="${CH-48}" text-anchor="middle" font-size="11" font-style="italic" fill="var(--ink-soft)">${sp?sp.latin:''}</text>
-      <text x="${(CW-16)/2}" y="${CH-30}" text-anchor="middle" font-size="11" fill="${g.stroke}">${m.sp} · ${[...new Set(codes)].join(', ')} · ${g.name}</text>
+      <text x="${(CW-16)/2}" y="${CH-30}" text-anchor="middle" font-size="11" fill="${g.stroke}">${m.sp}</text>
     </g>`; }).join('');
   svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + cards;
   document.getElementById('subtitle').textContent = `${f.country} · ${f.year} · ${f.name}`;
