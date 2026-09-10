@@ -507,11 +507,12 @@ const CODE_NOTES = {
   '*04-C.': 'An area condition. Part of the western ling quota may be taken in Union waters of the North Sea (27.4) instead, up to a sub-limit. Outside the parent’s water, inside the parent’s quota.'
 };
 
-function fishAt(sp, x, y, scale, uid){
+function fishAt(sp, x, y, scale, uid, title){
   const d = SPECIES[sp]; if (!d) return '';
+  const tip = title ? `<title>${title}</title>` : '';
   const svgIn = d.svg.replace(/id="(g_|c_)(\w+)"/g, `id="$1$2_${uid}"`).replace(/url\(#(g_|c_)(\w+)\)/g, `url(#$1$2_${uid})`)
     .replace('translate(110,95) scale(0.62)', 'translate(0,0) scale(0.62)').replace('translate(110,92) scale(0.78)', 'translate(0,0) scale(0.78)');
-  return `<g transform="translate(${x},${y}) scale(${scale})">${svgIn}</g>`;
+  return `<g transform="translate(${x},${y}) scale(${scale})" style="cursor:help">${tip}${svgIn}</g>`;
 }
 function renderMap(){
   timers.forEach(clearTimeout); timers = []; playing = false;
@@ -532,16 +533,26 @@ function renderMap(){
   const parts=[], labels=[];
   nodes.slice().sort((a,b)=>a.depth-b.depth).forEach(n=>{ const g = GEN[Math.min(n.depth,2)], o = outlineFor(n.set); if (!o) return;
     const d = o[String(n.lvl*10)] || o['0'];
-    parts.push(`<path d="${d}" fill="${g.fill}" fill-opacity="${n.depth===0?0.9:0.8}" stroke="${g.stroke}" stroke-width="${n.depth===0?2.5:1.6}" fill-rule="evenodd"/>`);
+    parts.push(`<path d="${d}" fill="${g.fill}" fill-opacity="${n.depth===0?0.9:0.8}" stroke="${g.stroke}" stroke-width="${n.depth===0?2.5:1.6}" fill-rule="evenodd"><title>${n.code} — ${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''} · ${n.members.join(', ')}</title></path>`);
     const gens = [...n.depths].sort().map(x=>GEN[Math.min(x,2)].name).join(' + ');
     const [x0,y0,x1,y1] = o.bbox, i = n.lvl*10;
     const ly = Math.max(16, y0+i+16);
     labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${ly.toFixed(1)}" font-size="${n.depth===0?15:13}" font-weight="500" fill="${g.stroke}">${n.code} <tspan font-size="10" font-weight="400" fill="${g.ink}">${gens}${n.inside===true?' · inside the parent area':n.inside===false?' · outside the parent area':''}</tspan></text>`);
-    const sps = [...new Set(n.members.map(speciesOf))].filter(x=>SPECIES[x]);
-    const bh = y1-y0, bw = x1-x0, sc = Math.max(0.22, Math.min(0.46, bh/300, bw/(sps.length*130)));
-    const step = 110*sc + 8, rowW = sps.length*step - 8, cx = (x0+x1)/2, cy = (y0+y1)/2;
-    const fy = n.depth===0 ? (bh > 180 ? cy - bh*0.22 : cy) : (bh > 180 ? cy + bh*0.18 : cy);
-    sps.forEach((sp,k)=>{ labels.push(fishAt(sp, cx - rowW/2 + k*step + 55*sc, fy, sc, 'm'+n.code.replace(/\W/g,'')+k)); }); });
+    // water that is this code's alone: its boxes minus those of children drawn inside it
+    const insideKids = nodes.filter(k=>k.parentCode===n.code && k.inside);
+    const excl = [...n.set].filter(b=>!insideKids.some(k=>k.set.has(b)));
+    const boxesUsed = excl.length ? excl : [...n.set];
+    const rects = boxesUsed.map(id=>{ const [,,a,b,c,d] = ICES.find(x=>x[0]===id); return [+mx(a), +my(d), +mx(c), +my(b)]; });
+    const ex0 = Math.min(...rects.map(r=>r[0])), ey0 = Math.max(0, Math.min(...rects.map(r=>r[1]))), ex1 = Math.max(...rects.map(r=>r[2])), ey1 = Math.max(...rects.map(r=>r[3]));
+    const bh = ey1-ey0, bw = ex1-ex0;
+    const membersBySp = {}; n.members.forEach(m=>{ const sp = speciesOf(m); if (SPECIES[sp]) (membersBySp[sp] = membersBySp[sp]||[]).push(m); });
+    const sps = Object.keys(membersBySp);
+    const sc = Math.max(0.2, Math.min(0.46, bh/240, bw/(sps.length*130)));
+    const step = 110*sc + 8, rowW = sps.length*step - 8, cx = (ex0+ex1)/2, cy = (ey0+ey1)/2;
+    const fy = bh > 200 ? cy + (n.depth===0 ? -bh*0.15 : bh*0.12) : cy + (bh < 70 ? 6 : 0);
+    sps.forEach((sp,k)=>{ const d = SPECIES[sp]; const who = membersBySp[sp].map(m=>{ const dep = [...n.depths][0]; return m; }).join(', ');
+      const tip = `${d.name} (${d.latin}) — ${who} · ${gens}`;
+      labels.push(fishAt(sp, cx - rowW/2 + k*step + 55*sc, fy, sc, 'm'+n.code.replace(/\W/g,'')+k, tip)); }); });
   const faoOf = id => ({'2a':'27.2.a','4a':'27.4.a','4b':'27.4.b','4c':'27.4.c','3a':'27.3.a','7d':'27.7.d','7e':'27.7.e','7a':'27.7.a','6a':'27.6.a','7f':'27.7.f','7bc':'27.7.b–c','7fk':'27.7.g–k'}[id]||'');
   const allBoxes = new Set(); nodes.forEach(n=>n.set.forEach(b=>allBoxes.add(b)));
   const faoLabels = [...allBoxes].map(id=>{ const [,lab,a,b,c,d,lx,ly] = ICES.find(x=>x[0]===id); return `<text x="${mx(lx)}" y="${my(ly)}" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5F6E78" opacity="0.85">FAO ${faoOf(id)}</text>`; }).join('');
@@ -672,7 +683,7 @@ function playVoyage(){
       const lbl = document.createElementNS('http://www.w3.org/2000/svg','g');
       const sp = speciesOf(st.member), hasFish = !!SPECIES[sp];
       lbl.innerHTML = `<rect x="${to[0]+14}" y="${to[1]-34}" width="${Math.max(120, (st.member.length+10)*6.4) + (hasFish?52:0)}" height="42" rx="6" fill="var(--paper)" fill-opacity="0.95" stroke="var(--parent)" stroke-width="1"/>
-        ${hasFish ? fishAt(sp, to[0]+40, to[1]-14, sp==='LIN'?0.28:0.34, 'v'+st.area+String(st.t).replace('.','')) : ''}
+        ${hasFish ? fishAt(sp, to[0]+40, to[1]-14, sp==='LIN'?0.28:0.34, 'v'+st.area+String(st.t).replace('.',''), `${SPECIES[sp].name} (${SPECIES[sp].latin}) — ${st.member}`) : ''}
         <text x="${to[0]+22+(hasFish?52:0)}" y="${to[1]-22}" dominant-baseline="central" font-size="12" font-weight="500" fill="var(--parent-ink)">${st.member}</text>
         <text x="${to[0]+22+(hasFish?52:0)}" y="${to[1]-6}" dominant-baseline="central" font-size="12" fill="var(--parent)">${fmt(st.t)} t · ${st.area}</text>`;
       g.insertBefore(lbl, boat);
