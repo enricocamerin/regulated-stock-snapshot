@@ -455,6 +455,15 @@ const GEN = [
   {name:'child',      stroke:'#2E5FA3',       fill:'#E3ECF8',            ink:'#1E3F73'},
   {name:'grandchild', stroke:'var(--area)',   fill:'var(--area-fill)',   ink:'var(--area-ink)'}
 ];
+
+// plain-language notes for the codes in the presented families
+const CODE_NOTES = {
+  '2AC4-C': 'The parent quota. Skates and rays in Union and UK waters of the North Sea (FAO 27.4) and UK waters of the Norwegian Sea strip (27.2.a). This is the ceiling: every catch in the family is counted against it.',
+  '04-C.':  'A species condition. Blonde ray (RJH) fished in Union and UK waters of the North Sea only (27.4). Same water as the parent, one species, no ceiling of its own — its catches simply count against the parent.',
+  '*07D2.': 'An area condition. The asterisk marks a permission attached to the parent quota: part of the North Sea allowance may be taken in the eastern Channel (27.7.d) instead, up to a sub-limit. Outside the parent’s water, inside the parent’s quota.',
+  '6X14.':  'The parent quota. Ling in Union and international waters of ICES areas 6 to 14 — west of Scotland, the Irish and Celtic Seas, the Channel and on south and west. This is the ceiling for the family.',
+  '*04-C.': 'An area condition. Part of the western ling quota may be taken in Union waters of the North Sea (27.4) instead, up to a sub-limit. Outside the parent’s water, inside the parent’s quota.'
+};
 function renderMap(){
   timers.forEach(clearTimeout); timers = []; playing = false;
   document.body.dataset.view = 'map';
@@ -512,7 +521,8 @@ function renderMap(){
   document.getElementById('ah').textContent = 'The parent as a container';
   document.getElementById('ap').textContent = `${root.code} is the water the parent quota covers. A child drawn inside it fishes part of that same water under its own code; a child drawn outside fishes elsewhere — but every catch still counts against ${root.code}.`;
   document.getElementById('ledger').innerHTML = dia;
-  document.getElementById('note').textContent = nodes.map(n=>`${n.code}: “${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''}”`).join(' · ');
+  document.getElementById('note').innerHTML = nodes.map(n=>{ const g = GEN[Math.min(n.depth,2)];
+    return `<div style="margin:.6rem 0"><span style="font-weight:500;color:${g.stroke}">${n.code}</span> <span style="color:var(--ink-soft);font-size:.85rem">“${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''}”</span><br><span style="color:var(--ink)">${CODE_NOTES[n.code]||''}</span></div>`; }).join('');
   document.getElementById('play').disabled = !VOYAGES[f.id];
   document.getElementById('nav').textContent = 'Families →';
   document.getElementById('hint').textContent = 'space voyage · enter families · ↑ ↓ family';
