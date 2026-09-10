@@ -506,6 +506,13 @@ const CODE_NOTES = {
   '6X14.':  'The parent quota. Ling in Union and international waters of ICES areas 6 to 14 — west of Scotland, the Irish and Celtic Seas, the Channel and on south and west. This is the ceiling for the family.',
   '*04-C.': 'An area condition. Part of the western ling quota may be taken in Union waters of the North Sea (27.4) instead, up to a sub-limit. Outside the parent’s water, inside the parent’s quota.'
 };
+
+function fishAt(sp, x, y, scale, uid){
+  const d = SPECIES[sp]; if (!d) return '';
+  const svgIn = d.svg.replace(/id="(g_|c_)(\w+)"/g, `id="$1$2_${uid}"`).replace(/url\(#(g_|c_)(\w+)\)/g, `url(#$1$2_${uid})`)
+    .replace('translate(110,95) scale(0.62)', 'translate(0,0) scale(0.62)').replace('translate(110,92) scale(0.78)', 'translate(0,0) scale(0.78)');
+  return `<g transform="translate(${x},${y}) scale(${scale})">${svgIn}</g>`;
+}
 function renderMap(){
   timers.forEach(clearTimeout); timers = []; playing = false;
   document.body.dataset.view = 'map';
@@ -528,7 +535,13 @@ function renderMap(){
     parts.push(`<path d="${d}" fill="${g.fill}" fill-opacity="${n.depth===0?0.9:0.8}" stroke="${g.stroke}" stroke-width="${n.depth===0?2.5:1.6}" fill-rule="evenodd"/>`);
     const gens = [...n.depths].sort().map(x=>GEN[Math.min(x,2)].name).join(' + ');
     const [x0,y0,x1,y1] = o.bbox, i = n.lvl*10;
-    labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${Math.max(16, y0+i+16).toFixed(1)}" font-size="${n.depth===0?15:13}" font-weight="500" fill="${g.stroke}">${n.code} <tspan font-size="10" font-weight="400" fill="${g.ink}">${gens}${n.inside===true?' · inside the parent area':n.inside===false?' · outside the parent area':''}</tspan></text>`); });
+    const ly = Math.max(16, y0+i+16);
+    labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${ly.toFixed(1)}" font-size="${n.depth===0?15:13}" font-weight="500" fill="${g.stroke}">${n.code} <tspan font-size="10" font-weight="400" fill="${g.ink}">${gens}${n.inside===true?' · inside the parent area':n.inside===false?' · outside the parent area':''}</tspan></text>`);
+    const sps = [...new Set(n.members.map(speciesOf))].filter(x=>SPECIES[x]);
+    const bh = y1-y0, bw = x1-x0, sc = Math.max(0.22, Math.min(0.46, bh/300, bw/(sps.length*130)));
+    const step = 110*sc + 8, rowW = sps.length*step - 8, cx = (x0+x1)/2, cy = (y0+y1)/2;
+    const fy = n.depth===0 ? (bh > 180 ? cy - bh*0.22 : cy) : (bh > 180 ? cy + bh*0.18 : cy);
+    sps.forEach((sp,k)=>{ labels.push(fishAt(sp, cx - rowW/2 + k*step + 55*sc, fy, sc, 'm'+n.code.replace(/\W/g,'')+k)); }); });
   const faoOf = id => ({'2a':'27.2.a','4a':'27.4.a','4b':'27.4.b','4c':'27.4.c','3a':'27.3.a','7d':'27.7.d','7e':'27.7.e','7a':'27.7.a','6a':'27.6.a','7f':'27.7.f','7bc':'27.7.b–c','7fk':'27.7.g–k'}[id]||'');
   const allBoxes = new Set(); nodes.forEach(n=>n.set.forEach(b=>allBoxes.add(b)));
   const faoLabels = [...allBoxes].map(id=>{ const [,lab,a,b,c,d,lx,ly] = ICES.find(x=>x[0]===id); return `<text x="${mx(lx)}" y="${my(ly)}" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5F6E78" opacity="0.85">FAO ${faoOf(id)}</text>`; }).join('');
@@ -657,9 +670,11 @@ function playVoyage(){
     timers.push(setTimeout(()=>{
       total += st.t; caught.push(st); ledger();
       const lbl = document.createElementNS('http://www.w3.org/2000/svg','g');
-      lbl.innerHTML = `<rect x="${to[0]+14}" y="${to[1]-30}" width="${Math.max(120, (st.member.length+10)*6.4)}" height="34" rx="6" fill="var(--paper)" fill-opacity="0.95" stroke="var(--parent)" stroke-width="1"/>
-        <text x="${to[0]+22}" y="${to[1]-18}" dominant-baseline="central" font-size="12" font-weight="500" fill="var(--parent-ink)">${st.member}</text>
-        <text x="${to[0]+22}" y="${to[1]-4}" dominant-baseline="central" font-size="12" fill="var(--parent)">${fmt(st.t)} t · ${st.area}</text>`;
+      const sp = speciesOf(st.member), hasFish = !!SPECIES[sp];
+      lbl.innerHTML = `<rect x="${to[0]+14}" y="${to[1]-34}" width="${Math.max(120, (st.member.length+10)*6.4) + (hasFish?52:0)}" height="42" rx="6" fill="var(--paper)" fill-opacity="0.95" stroke="var(--parent)" stroke-width="1"/>
+        ${hasFish ? fishAt(sp, to[0]+40, to[1]-14, sp==='LIN'?0.28:0.34, 'v'+st.area+String(st.t).replace('.','')) : ''}
+        <text x="${to[0]+22+(hasFish?52:0)}" y="${to[1]-22}" dominant-baseline="central" font-size="12" font-weight="500" fill="var(--parent-ink)">${st.member}</text>
+        <text x="${to[0]+22+(hasFish?52:0)}" y="${to[1]-6}" dominant-baseline="central" font-size="12" fill="var(--parent)">${fmt(st.t)} t · ${st.area}</text>`;
       g.insertBefore(lbl, boat);
       document.getElementById('ah').textContent = `${st.member} — ${fmt(st.t)} t in ${st.area}`;
       document.getElementById('ap').textContent = st.note;
