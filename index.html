@@ -403,7 +403,7 @@ const mx = lon => ((lon-LON0)*MAPW/(LON1-LON0)).toFixed(1);
 const my = lat => ((LAT1-lat)*MAPH/(LAT1-LAT0)).toFixed(1);
 // schematic ICES divisions: [id, label, lon0, lat0, lon1, lat1, labelLon, labelLat]
 const ICES = [
-  ['2a','2a',      -4,   62,   13,   63.4, 2.5,  62.7],
+  ['2a','2a',      -4,   62,   13,   63.4, 2.5,  62.5],
   ['4a','4a',      -4,   57.5, 7,    62,   1.5,  59.7],
   ['4b','4b',      -3,   53.5, 9,    57.5, 3.2,  55.4],
   ['4c','4c',      -1.5, 51,   5,    53.5, 2.6,  52.4],
@@ -455,44 +455,49 @@ function renderMap(){
   const svg = document.getElementById('tree');
   svg.setAttribute('viewBox', `0 0 ${MAPW} ${MAPH}`);
   document.getElementById('tt').textContent = `Where ${f.name} fishes`;
-  document.getElementById('td').textContent = fa.parent.note;
-  const tone = {parent:['var(--parent)','var(--parent-fill)'], stone:['var(--stone)','var(--stone-fill)'], area:['var(--area)','var(--area-fill)']};
+  const tone = {parent:['var(--parent)','var(--parent-fill)','var(--parent-ink)'], stone:['var(--stone)','var(--stone-fill)','var(--stone-ink)'], area:['var(--area)','var(--area-fill)','var(--area-ink)']};
+  // members of the family, from the tree, with their stock area code
+  const members = []; const walkM = (n, depth) => { members.push({name:n.name, code:n.name.split(' / ')[1], depth, area:n.area}); (n.children||[]).forEach(k=>walkM(k, depth+1)); };
+  walkM(f.root, 0);
+  const codeTone = code => code===fa.parent.code ? 'parent' : ((fa.children.find(c=>c.code===code)||{}).tone || 'stone');
+  // which ICES boxes are lit, and by what
   const lit = new Map();
   const setFor = code => (STOCK_GEO[code] ? boxesFor(code).boxes : (AREA_SETS[code]||[]));
   setFor(fa.parent.code).forEach(a=>lit.set(a,'parent'));
   fa.children.forEach(c=>setFor(c.code).forEach(a=>{ if (!lit.has(a) || c.tone==='area') lit.set(a,c.tone); }));
-  const boxes = ICES.map(([id,lab,a,b,c,d,lx,ly])=>{
-    const t = lit.get(id);
-    const fill = t ? tone[t][1] : '#E6EEF2', stroke = t ? tone[t][0] : '#B4C9D3', op = t ? 0.95 : 0.7;
-    return `<rect x="${mx(a)}" y="${my(d)}" width="${(mx(c)-mx(a)).toFixed(1)}" height="${(my(b)-my(d)).toFixed(1)}" fill="${fill}" fill-opacity="${op}" stroke="${stroke}" stroke-width="${t?1.5:0.8}" stroke-dasharray="${t?'':'3 3'}"/>`;
-  }).join('');
-  const labels = ICES.map(([id,lab,a,b,c,d,lx,ly])=>{
-    const t = lit.get(id);
-    return `<text x="${mx(lx)}" y="${my(ly)}" text-anchor="middle" dominant-baseline="central" font-size="${t?15:12}" font-weight="${t?500:400}" fill="${t?tone[t][0]:'#7A8C96'}">${lab}</text>`;
-  }).join('');
-  const legend = [['parent', fa.parent.label], ...fa.children.map(c=>[c.tone, c.label])].map(([t,l],i)=>
-    `<rect x="18" y="${18+i*22}" width="14" height="14" rx="3" fill="${tone[t][1]}" stroke="${tone[t][0]}" stroke-width="1.5"/><text x="40" y="${25+i*22}" dominant-baseline="central" font-size="12" fill="var(--ink)">${l}</text>`).join('');
+  const faoOf = id => ({'2a':'27.2.a','4a':'27.4.a','4b':'27.4.b','4c':'27.4.c','3a':'27.3.a','7d':'27.7.d','7e':'27.7.e','7a':'27.7.a','6a':'27.6.a','7f':'27.7.f','7bc':'27.7.b–c','7fk':'27.7.g–k'}[id]||'');
+  const boxes = ICES.filter(([id])=>lit.has(id)).map(([id,lab,a,b,c,d])=>{ const t=lit.get(id);
+    return `<rect x="${mx(a)}" y="${my(d)}" width="${(mx(c)-mx(a)).toFixed(1)}" height="${(my(b)-my(d)).toFixed(1)}" fill="${tone[t][1]}" fill-opacity="0.95" stroke="${tone[t][0]}" stroke-width="1.5"/>`; }).join('');
+  const labels = ICES.filter(([id])=>lit.has(id)).map(([id,lab,a,b,c,d,lx,ly])=>{ const t=lit.get(id);
+    return `<text x="${mx(lx)}" y="${my(ly)-12}" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="500" fill="${tone[t][0]}">ICES ${lab}</text>
+            <text x="${mx(lx)}" y="${my(ly)+12}" text-anchor="middle" dominant-baseline="central" font-size="12" fill="${tone[t][2]}">FAO ${faoOf(id)}</text>`; }).join('');
   svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + `
     <rect x="0" y="0" width="${MAPW}" height="${MAPH}" fill="#D3E1E7"/>
     ${boxes}
     <path d="${LAND_PATH}" fill="#F1EFE8" stroke="#B9AF9B" stroke-width="0.8" fill-rule="evenodd"/>
     ${labels}
-    <rect x="8" y="8" width="${Math.max(...[fa.parent.label,...fa.children.map(c=>c.label)].map(l=>l.length))*6.6+48}" height="${16+22*(1+fa.children.length)}" rx="6" fill="var(--paper)" fill-opacity="0.92" stroke="var(--rule)"/>
-    ${legend}
-    <text x="${MAPW-10}" y="${MAPH-10}" text-anchor="end" font-size="10" fill="#7A8C96">ICES divisions drawn schematically · coastline: Natural Earth</text>`;
+    <text x="${MAPW-10}" y="${MAPH-10}" text-anchor="end" font-size="10" fill="#7A8C96">only the areas of this family are drawn · ICES divisions schematic · coastline: Natural Earth</text>`;
+  // relationship table: member -> stock area -> FAO areas
+  const geoLine = code => { const e = STOCK_GEO[code]; if (!e) return '';
+    return e.g.filter(x=>x[0]==='F').map(([t,c,j])=>`${c}${j?' ('+j.split('+').map(jurLabel).join(' + ')+')':''}`).join(', '); };
+  const seenCodes = new Set();
   document.getElementById('subtitle').textContent = `${f.country} · ${f.year} · ${f.name}`;
-  document.getElementById('ah').textContent = 'Where they fish';
-  const regText = code => STOCK_GEO[code] ? STOCK_GEO[code].d : '';
-  document.getElementById('ap').textContent = `${fa.parent.code}: ${regText(fa.parent.code) || fa.parent.note}`;
-  document.getElementById('ledger').innerHTML = [fa.parent, ...fa.children].map((a,i)=>`<div class="row in"><span>${a.code}</span><span>${i===0?'parent':'child'}</span></div>`).join('');
-  document.getElementById('note').textContent = fa.children.map(c=>`${c.code}: ${regText(c.code) || c.note}`).join(' · ');
+  document.getElementById('ah').textContent = 'Member → stock area → FAO areas';
+  document.getElementById('ap').textContent = 'Every member of the family fishes under a stock area code. Each code is a set of FAO areas, sometimes limited to one jurisdiction. The map draws only those areas.';
+  document.getElementById('ledger').innerHTML = members.map(m=>{
+    const t = codeTone(m.code), col = tone[t][0];
+    const first = !seenCodes.has(m.code); seenCodes.add(m.code);
+    return `<div class="row in" style="display:grid;grid-template-columns:1fr auto;gap:.2rem .8rem;align-items:baseline;padding-left:${m.depth*0.8}rem">
+      <span><span style="display:inline-block;width:.7rem;height:.7rem;border-radius:2px;background:${tone[t][1]};border:1.5px solid ${col};vertical-align:-1px;margin-right:.4rem"></span>${m.name}</span>
+      <span class="num" style="color:${col};font-weight:500">${m.code}</span>
+      <span style="grid-column:1/-1;font-size:.85rem;color:var(--ink-soft);padding-left:1.3rem">${first ? '→ FAO ' + geoLine(m.code) : '→ same as above'}</span>
+    </div>`; }).join('');
+  document.getElementById('note').textContent = (STOCK_GEO[fa.parent.code] ? `${fa.parent.code}: “${STOCK_GEO[fa.parent.code].d}”` : '') + (fa.children.length ? ' · ' + fa.children.map(c=>STOCK_GEO[c.code] ? `${c.code}: “${STOCK_GEO[c.code].d}”` : '').filter(Boolean).join(' · ') : '');
   document.getElementById('play').disabled = !VOYAGES[f.id];
   document.getElementById('nav').textContent = 'Families →';
   document.getElementById('hint').textContent = 'space voyage · enter families · ↑ ↓ family';
   document.querySelectorAll('#famSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===fam));
 }
-
-
 
 // ===================== VOYAGE: the vessel sails through the areas =====================
 const VOYAGES = {
