@@ -43,6 +43,10 @@
   .hint { margin-left:auto; font-size:.85rem; color:var(--ink-soft); }
   .flowline { stroke:var(--flow); stroke-width:2; fill:none; stroke-dasharray:6 6; opacity:0; transition:opacity .3s; }
   .pending { opacity:.35; }
+  .cover-lbl { opacity:0; transition:opacity .5s; }
+  .cover-lbl.on { opacity:1; }
+  #famSeg, #snapSeg { }
+  body[data-view="cover"] #famBlock, body[data-view="cover"] #snapBlock, body[data-view="cover"] #reset { display:none; }
 </style>
 </head>
 <body>
@@ -63,11 +67,12 @@
 </main>
 
 <footer>
-  <div><span class="lbl">Family</span><span class="seg" id="famSeg"></span></div>
-  <div><span class="lbl">Snapshot</span><span class="seg" id="snapSeg"></span></div>
+  <div id="famBlock"><span class="lbl">Family</span><span class="seg" id="famSeg"></span></div>
+  <div id="snapBlock"><span class="lbl">Snapshot</span><span class="seg" id="snapSeg"></span></div>
   <button class="btn" id="play" type="button">Play</button>
   <button class="btn" id="reset" type="button">Reset</button>
-  <div class="hint">space play · r reset · ← → snapshot · ↑ ↓ family</div>
+  <button class="btn" id="nav" type="button">Families →</button>
+  <div class="hint" id="hint">space play · enter next</div>
 </footer>
 
 <script>
@@ -260,6 +265,126 @@ function play(){
   timers.push(setTimeout(()=>render(true), t));
 }
 
+
+// ===================== COVER: the family boards the vessel =====================
+let view = 'cover';
+const CREW = [
+  { key:'parent', label:'the parent',  color:'var(--parent)',  deckX:262, cane:true },
+  { key:'c1',     label:'child',       color:'var(--stone)',   deckX:296 },
+  { key:'c2',     label:'child',       color:'var(--stone)',   deckX:330 },
+  { key:'c3',     label:'child',       color:'var(--stone)',   deckX:364 },
+  { key:'c4',     label:'child',       color:'var(--area)',    deckX:408, withKid:true },
+  { key:'g1',     label:'grandchild',  color:'var(--area)',    deckX:424, small:true, rides:'c4' }
+];
+function figure(c){
+  const col = c.color, sc = c.small ? 0.62 : 1;
+  return `<g transform="scale(${sc})">
+    <circle cx="0" cy="-29" r="5.5" fill="${col}"/>
+    <rect x="-5.5" y="-24" width="11" height="15" rx="4" fill="${col}"/>
+    <line x1="-3" y1="-9" x2="-4.5" y2="0" stroke="${col}" stroke-width="3" stroke-linecap="round"/>
+    <line x1="3" y1="-9" x2="4.5" y2="0" stroke="${col}" stroke-width="3" stroke-linecap="round"/>
+    ${c.cane ? `<line x1="7" y1="-17" x2="10" y2="0" stroke="${col}" stroke-width="2" stroke-linecap="round"/><path d="M -6 -25 q 6 6 12 0" fill="none" stroke="var(--paper)" stroke-width="1.2"/>` : ''}
+  </g>`;
+}
+function renderCover(){
+  timers.forEach(clearTimeout); timers = []; playing = false;
+  document.body.dataset.view = 'cover';
+  const svg = document.getElementById('tree');
+  svg.setAttribute('viewBox', '0 0 680 400');
+  document.getElementById('tt').textContent = 'A family boards a fishing vessel';
+  document.getElementById('td').textContent = 'An elderly parent, four children, and one grandchild walk from the quay onto an old lugger.';
+  const crew = CREW.map(c => `
+    <g id="fig-${c.key}" style="opacity:0">
+      <g transform="translate(${c.deckX},238)">${figure(c)}</g>
+      <text class="cover-lbl" x="${c.deckX + (c.small?0:0)}" y="${c.small?196:198}" text-anchor="middle" font-size="11" fill="${c.color}">${c.small?'':c.label}</text>
+    </g>`).join('');
+  const walkers = CREW.map(c => `
+    <g id="walk-${c.key}" style="opacity:0">
+      <animateMotion id="am-${c.key}" dur="2400ms" begin="indefinite" fill="freeze" path="M 34 262 L 150 262 L 222 238 L ${c.deckX} 238"/>
+      ${figure(c)}
+    </g>`).join('');
+  svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + `
+    <!-- sea -->
+    <rect x="0" y="300" width="680" height="100" fill="#D3E1E7"/>
+    <path d="M0 302 Q 40 292 80 302 T 160 302 T 240 302 T 320 302 T 400 302 T 480 302 T 560 302 T 640 302 T 720 302 V 320 H 0 Z" fill="#C3D5DD"/>
+    <path d="M0 330 Q 50 322 100 330 T 200 330 T 300 330 T 400 330 T 500 330 T 600 330 T 700 330" fill="none" stroke="#B4C9D3" stroke-width="1.5"/>
+    <path d="M0 360 Q 50 352 100 360 T 200 360 T 300 360 T 400 360 T 500 360 T 600 360 T 700 360" fill="none" stroke="#B4C9D3" stroke-width="1.5"/>
+    <!-- quay -->
+    <rect x="0" y="262" width="160" height="12" fill="#B9AF9B"/>
+    <rect x="0" y="274" width="160" height="40" fill="#A79D88"/>
+    <rect x="18" y="274" width="6" height="40" fill="#8E846F"/><rect x="70" y="274" width="6" height="40" fill="#8E846F"/><rect x="122" y="274" width="6" height="40" fill="#8E846F"/>
+    <rect x="140" y="248" width="8" height="14" fill="#6B5B45"/>
+    <!-- gangplank -->
+    <polygon points="150,262 158,262 226,240 218,238" fill="#8B6A46"/>
+    <!-- hull -->
+    <path d="M 196 238 Q 205 300 262 302 L 520 302 Q 592 300 612 248 L 596 236 Z" fill="#8B5E3C" stroke="#6B4429" stroke-width="1.5"/>
+    <path d="M 205 258 L 600 258" stroke="#6B4429" stroke-width="1"/>
+    <path d="M 214 278 L 578 278" stroke="#6B4429" stroke-width="1"/>
+    <rect x="196" y="234" width="400" height="6" fill="#A97B52"/>
+    <!-- wheelhouse -->
+    <rect x="470" y="200" width="70" height="34" rx="3" fill="#C9A171" stroke="#6B4429" stroke-width="1"/>
+    <rect x="480" y="207" width="14" height="11" fill="#D3E1E7" stroke="#6B4429" stroke-width="0.8"/>
+    <rect x="502" y="207" width="14" height="11" fill="#D3E1E7" stroke="#6B4429" stroke-width="0.8"/>
+    <!-- mast, yard, sail -->
+    <line x1="330" y1="234" x2="330" y2="72" stroke="#4A3A2A" stroke-width="4" stroke-linecap="round"/>
+    <line x1="300" y1="118" x2="410" y2="82" stroke="#4A3A2A" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 304 120 L 336 208 L 396 200 L 408 86 Z" fill="#F1EFE8" stroke="#BDB7A8" stroke-width="1"/>
+    <path d="M 316 150 L 370 146" stroke="#D9D5CC" stroke-width="1"/><path d="M 322 178 L 384 172" stroke="#D9D5CC" stroke-width="1"/>
+    <polygon points="330,72 352,78 330,84" fill="#C4442A"/>
+    <!-- deck figures (appear when they arrive) -->
+    ${crew}
+    <!-- walking figures -->
+    ${walkers}
+    <text x="24" y="40" font-size="20" font-weight="500" fill="var(--ink)">One family, one vessel</text>
+    <text x="24" y="62" font-size="13" fill="var(--ink-soft)">A parent, four children — and one of the children has a child of their own.</text>
+  `;
+  document.getElementById('subtitle').textContent = 'Before the numbers: who is in a regulated-stock family';
+  document.getElementById('ah').textContent = 'Everyone who fishes on the same quota';
+  document.getElementById('ap').textContent = 'A quota is a vessel. Whoever fishes on it — the parent stock itself, its special conditions, and any condition nested under those — is on board, and every catch they land counts against the same ceiling.';
+  document.getElementById('ledger').innerHTML = `<div class="row in"><span>parent</span><span class="num">1</span></div><div class="row in"><span>children</span><span class="num">4</span></div><div class="row in"><span>grandchild</span><span class="num">1</span></div><div class="row tot"><span>on board</span><span class="num">6</span></div>`;
+  document.getElementById('note').textContent = 'Press space to watch them board, then Enter for the families.';
+  document.getElementById('play').disabled = false;
+  document.getElementById('nav').textContent = 'Families →';
+  document.getElementById('hint').textContent = 'space board · enter families';
+}
+function playBoarding(){
+  if (playing) return; playing = true;
+  document.getElementById('play').disabled = true;
+  const walkDur = 2400, gap = 350;
+  let t = 300;
+  const go = (c, at, follower) => {
+    timers.push(setTimeout(()=>{
+      const w = document.getElementById(`walk-${c.key}`); w.style.opacity = 1;
+      const am = document.getElementById(`am-${c.key}`);
+      if (reduced()){ arrive(c); return; }
+      am.beginElement();
+      if (follower){
+        const fw = document.getElementById(`walk-${follower.key}`); fw.style.opacity = 1;
+        const fam = document.getElementById(`am-${follower.key}`); fam.beginElement();
+      }
+      timers.push(setTimeout(()=>{ arrive(c); if (follower) arrive(follower); }, walkDur));
+    }, at));
+  };
+  const arrive = (c) => {
+    const w = document.getElementById(`walk-${c.key}`); if (w) w.style.opacity = 0;
+    const f = document.getElementById(`fig-${c.key}`); if (f){ f.style.opacity = 1; f.querySelector('.cover-lbl').classList.add('on'); }
+    document.getElementById('ah').textContent = c.small ? 'the grandchild comes too' : `${c.label} boards`;
+  };
+  CREW.filter(c=>!c.rides).forEach(c=>{
+    const follower = CREW.find(x=>x.rides===c.key);
+    go(c, t, follower);
+    t += walkDur + gap;
+  });
+  timers.push(setTimeout(()=>{
+    playing = false;
+    document.getElementById('ah').textContent = 'All aboard';
+    document.getElementById('ap').textContent = 'Six on one vessel: the parent, four children, one grandchild. The next slides show the same family as a tree of quotas, and how each catch climbs from child to parent.';
+    document.getElementById('note').textContent = 'Enter for the families.';
+  }, t + 200));
+}
+function showFamilies(){ view = 'families'; document.body.dataset.view = 'families'; document.getElementById('nav').textContent = '← Vessel'; document.getElementById('hint').textContent = 'space play · r reset · ← → snapshot · ↑ ↓ family · enter vessel'; render(false); }
+function showCover(){ view = 'cover'; renderCover(); }
+
 function seg(id, items, get, set){
   const el = document.getElementById(id);
   el.innerHTML = items.map((it,i)=>`<button type="button" aria-pressed="${i===get()}">${it}</button>`).join('');
@@ -267,9 +392,12 @@ function seg(id, items, get, set){
 }
 seg('famSeg', FAMILIES.map(f=>`${f.country} ${f.name}`), ()=>fam, i=>fam=i);
 seg('snapSeg', SNAPS.map(x=>x.label), ()=>snap, i=>snap=i);
-document.getElementById('play').addEventListener('click', play);
+document.getElementById('play').addEventListener('click', ()=> view==='cover' ? playBoarding() : play());
+document.getElementById('nav').addEventListener('click', ()=> view==='cover' ? showFamilies() : showCover());
 document.getElementById('reset').addEventListener('click', ()=>render(false));
 document.addEventListener('keydown', e=>{
+  if (e.key==='Enter'){ e.preventDefault(); view==='cover' ? showFamilies() : showCover(); return; }
+  if (view==='cover'){ if (e.key===' '){ e.preventDefault(); playBoarding(); } return; }
   if (e.key===' '){ e.preventDefault(); play(); }
   else if (e.key==='r' || e.key==='R'){ render(false); }
   else if (e.key==='ArrowRight'){ snap=Math.min(SNAPS.length-1,snap+1); render(false); }
@@ -277,7 +405,7 @@ document.addEventListener('keydown', e=>{
   else if (e.key==='ArrowDown'){ fam=(fam+1)%FAMILIES.length; render(false); }
   else if (e.key==='ArrowUp'){ fam=(fam-1+FAMILIES.length)%FAMILIES.length; render(false); }
 });
-render(false);
+showCover();
 </script>
 </body>
 </html>
