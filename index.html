@@ -291,7 +291,7 @@ const SPECIES_PHOTO = {
 // ===================== COVER: the family boards the vessel =====================
 let view = 'cover';
 const CREW = [
-  { key:'parent', label:'the parent',  color:'var(--parent)',  deckX:262, cane:true },
+  { key:'parent', label:'parent',  color:'var(--parent)',  deckX:262, cane:true },
   { key:'c1',     label:'child',       color:'var(--stone)',   deckX:296 },
   { key:'c2',     label:'child',       color:'var(--stone)',   deckX:330 },
   { key:'c3',     label:'child',       color:'var(--stone)',   deckX:364 },
@@ -318,7 +318,7 @@ function renderCover(){
   const crew = CREW.map(c => `
     <g id="fig-${c.key}" style="opacity:0">
       <g transform="translate(${c.deckX},238)">${figure(c)}</g>
-      <text class="cover-lbl" x="${c.deckX + (c.small?0:0)}" y="${c.small?196:198}" text-anchor="middle" font-size="11" fill="${c.color}">${c.small?'':c.label}</text>
+      <text class="cover-lbl" x="${c.deckX}" y="${c.small?196:(CREW.indexOf(c)%2 ? 186 : 200)}" text-anchor="middle" font-size="11" fill="${c.color}">${c.small?'':c.label}</text>
     </g>`).join('');
   const walkers = CREW.map(c => `
     <g id="walk-${c.key}" style="opacity:0">
@@ -358,12 +358,15 @@ function renderCover(){
     <!-- walking figures -->
     ${walkers}
     <text x="24" y="40" font-size="20" font-weight="500" fill="var(--ink)">One family, one vessel</text>
-    <text x="24" y="62" font-size="13" fill="var(--ink-soft)">A parent, four children — and one of the children has a child of their own.</text>
-    <text x="24" y="80" font-size="12" fill="var(--ink-soft)">The vessel stands for every boat that fishes on this quota — a fleet, not a single ship.</text>
+    <text x="24" y="62" font-size="13" fill="var(--ink-soft)">A parent, four children — one of them</text>
+    <text x="24" y="79" font-size="13" fill="var(--ink-soft)">with a child of their own.</text>
+    <text x="24" y="104" font-size="12" fill="var(--ink-soft)">The vessel is not one ship. It is every boat</text>
+    <text x="24" y="120" font-size="12" fill="var(--ink-soft)">fishing under the same parent quota —</text>
+    <text x="24" y="136" font-size="12" font-weight="500" fill="var(--parent-ink)">one species code, one area code.</text>
   `;
   document.getElementById('subtitle').textContent = 'Before the numbers: who is in a regulated-stock family';
   document.getElementById('ah').textContent = 'Everyone who fishes on the same quota';
-  document.getElementById('ap').textContent = 'A quota is a vessel. Whoever fishes on it — the parent stock itself, its special conditions, and any condition nested under those — is on board, and every catch they land counts against the same ceiling.';
+  document.getElementById('ap').textContent = 'The vessel is a grouping, not a ship: all the boats that fish under one parent quota, identified by a species code and an area code. Whoever fishes under it — the parent stock itself, its special conditions, and any condition nested under those — is on board, and every catch they land counts against the same ceiling.';
   document.getElementById('ledger').innerHTML = `<div class="row in"><span>parent</span><span class="num">1</span></div><div class="row in"><span>children</span><span class="num">4</span></div><div class="row in"><span>grandchild</span><span class="num">1</span></div><div class="row tot"><span>on board</span><span class="num">6</span></div>`;
   document.getElementById('note').textContent = 'Press space to watch them board, then Enter for the families.';
   document.getElementById('play').disabled = false;
