@@ -538,21 +538,32 @@ function renderMap(){
     const [x0,y0,x1,y1] = o.bbox, i = n.lvl*10;
     const ly = Math.max(16, y0+i+16);
     labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${ly.toFixed(1)}" font-size="${n.depth===0?15:13}" font-weight="500" fill="${g.stroke}">${n.code} <tspan font-size="10" font-weight="400" fill="${g.ink}">${gens}${n.inside===true?' · inside the parent area':n.inside===false?' · outside the parent area':''}</tspan></text>`);
-    // water that is this code's alone: its boxes minus those of children drawn inside it
-    const insideKids = nodes.filter(k=>k.parentCode===n.code && k.inside);
-    const excl = [...n.set].filter(b=>!insideKids.some(k=>k.set.has(b)));
-    const boxesUsed = excl.length ? excl : [...n.set];
-    const rects = boxesUsed.map(id=>{ const [,,a,b,c,d] = ICES.find(x=>x[0]===id); return [+mx(a), +my(d), +mx(c), +my(b)]; });
+    });
+  // ---- fish placement, by MEMBER generation, not by code ----
+  const root = nodes[0];
+  const rootInsideKids = nodes.filter(k=>k.parentCode===root.code && k.inside);
+  const sharedWater = new Set(); rootInsideKids.forEach(k=>k.set.forEach(b=>sharedWater.add(b)));
+  const rootOnly = [...root.set].filter(b=>!sharedWater.has(b));
+  const groups = new Map(); // key -> {boxes, fish:[{sp, member, gen}]}
+  const addFish = (boxes, sp, member, gen) => { const key = [...boxes].sort().join('+'); if (!groups.has(key)) groups.set(key, {boxes:[...boxes], fish:[]}); const grp = groups.get(key); if (!grp.fish.some(x=>x.sp===sp)) grp.fish.push({sp, member, gen}); };
+  const walkF = (n, depth) => { const sp = speciesOf(n.name), code = n.name.split(' / ')[1];
+    if (SPECIES[sp]){
+      if (depth===0) addFish(rootOnly.length ? rootOnly : [...root.set], sp, n.name, 'parent');
+      else if (code===root.code) addFish(sharedWater.size ? sharedWater : root.set, sp, n.name, GEN[Math.min(depth,2)].name);
+      else { const nd = nodes.find(x=>x.code===code); const kids = nodes.filter(k=>k.parentCode===code && k.inside); const excl = [...nd.set].filter(b=>!kids.some(k=>k.set.has(b))); addFish(excl.length?excl:[...nd.set], sp, n.name, GEN[Math.min(depth,2)].name); }
+    }
+    (n.children||[]).forEach(k=>walkF(k, depth+1)); };
+  walkF(f.root, 0);
+  let gi = 0;
+  groups.forEach(grp=>{
+    const rects = grp.boxes.map(id=>{ const [,,a,b,c,d] = ICES.find(x=>x[0]===id); return [+mx(a), +my(d), +mx(c), +my(b)]; });
     const ex0 = Math.min(...rects.map(r=>r[0])), ey0 = Math.max(0, Math.min(...rects.map(r=>r[1]))), ex1 = Math.max(...rects.map(r=>r[2])), ey1 = Math.max(...rects.map(r=>r[3]));
-    const bh = ey1-ey0, bw = ex1-ex0;
-    const membersBySp = {}; n.members.forEach(m=>{ const sp = speciesOf(m); if (SPECIES[sp]) (membersBySp[sp] = membersBySp[sp]||[]).push(m); });
-    const sps = Object.keys(membersBySp);
-    const sc = Math.max(0.2, Math.min(0.46, bh/240, bw/(sps.length*130)));
-    const step = 110*sc + 8, rowW = sps.length*step - 8, cx = (ex0+ex1)/2, cy = (ey0+ey1)/2;
-    const fy = bh > 200 ? cy + (n.depth===0 ? -bh*0.15 : bh*0.12) : cy + (bh < 70 ? 6 : 0);
-    sps.forEach((sp,k)=>{ const d = SPECIES[sp]; const who = membersBySp[sp].map(m=>{ const dep = [...n.depths][0]; return m; }).join(', ');
-      const tip = `${d.name} (${d.latin}) — ${who} · ${gens}`;
-      labels.push(fishAt(sp, cx - rowW/2 + k*step + 55*sc, fy, sc, 'm'+n.code.replace(/\W/g,'')+k, tip)); }); });
+    const bh = ey1-ey0, bw = ex1-ex0, n = grp.fish.length;
+    const sc = Math.max(0.2, Math.min(0.46, bh/240, bw/(n*130)));
+    const step = 110*sc + 8, rowW = n*step - 8, cx = (ex0+ex1)/2, cy = (ey0+ey1)/2 + (bh < 70 ? 6 : 0);
+    grp.fish.forEach((fz,k)=>{ const d = SPECIES[fz.sp];
+      labels.push(fishAt(fz.sp, cx - rowW/2 + k*step + 55*sc, cy, sc, 'f'+(gi++), `${d.name} (${d.latin}) — ${fz.member} · ${fz.gen}`)); });
+  });
   const faoOf = id => ({'2a':'27.2.a','4a':'27.4.a','4b':'27.4.b','4c':'27.4.c','3a':'27.3.a','7d':'27.7.d','7e':'27.7.e','7a':'27.7.a','6a':'27.6.a','7f':'27.7.f','7bc':'27.7.b–c','7fk':'27.7.g–k'}[id]||'');
   const allBoxes = new Set(); nodes.forEach(n=>n.set.forEach(b=>allBoxes.add(b)));
   const faoLabels = [...allBoxes].map(id=>{ const [,lab,a,b,c,d,lx,ly] = ICES.find(x=>x[0]===id); return `<text x="${mx(lx)}" y="${my(ly)}" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5F6E78" opacity="0.85">FAO ${faoOf(id)}</text>`; }).join('');
@@ -572,7 +583,7 @@ function renderMap(){
     const kh = kids.length ? (h-44-8*(kids.length-1))/kids.length : 0;
     kids.forEach((k,i)=>{ out += box(k, x+10, y+38+i*(kh+8), w-20, kh); });
     return out; };
-  const W = 300, root = nodes[0];
+  const W = 300;
   const insideKids = kidsOf(root.code).filter(k=>k.inside), outKids = kidsOf(root.code).filter(k=>k.inside===false);
   const H1 = 46 + insideKids.reduce((a,k)=> a + 40 + kidsOf(k.code).filter(x=>x.inside).length*36, 0) + 8*Math.max(0,insideKids.length-1) + 10;
   let dia = `<svg viewBox="0 0 ${W} ${H1 + (outKids.length? 16 + outKids.reduce((a,k)=>a + 44 + kidsOf(k.code).filter(x=>x.inside).length*36 + 8, 0) : 0)}" style="width:100%;height:auto;display:block;margin:.5rem 0 1rem" font-family="inherit">`;
