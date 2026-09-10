@@ -83,7 +83,6 @@
   <button class="btn" id="play" type="button">Play</button>
   <button class="btn" id="reset" type="button">Reset</button>
   <div id="exBlock"><span class="lbl">Stock area</span><input id="exInput" list="exList" class="btn" style="width:11rem" value="2AC4-C" spellcheck="false"><datalist id="exList"></datalist></div>
-  <button class="btn" id="nav" type="button">Next →</button>
   <div class="hint" id="hint">space play · enter next</div>
 </footer>
 
@@ -97,17 +96,17 @@ const FAMILIES = [
   {
     id:'srx', country:'NLD', year:2025, name:'SRX / 2AC4-C', fleet:null,
     intro:'Skates and rays in the North Sea. A parent with four children; one of them carries a child of its own.',
-    root:{ name:'SRX / 2AC4-C', own:{feb:0.056, aug:0.020}, children:[
+    root:{ name:'SRX / 2AC4-C', quota:654.400, own:{feb:0.056, aug:0.020}, children:[
       { name:'RJC / 2AC4-C', own:{feb:385.788, aug:385.824} },
       { name:'RJH / 04-C.',  own:{feb:144.252, aug:144.252} },
       { name:'RJM / 2AC4-C', own:{feb:79.252,  aug:79.252} },
-      { name:'SRX / *07D2.', own:{feb:0, aug:0}, area:true, children:[ { name:'RJC / *07D2.', own:{feb:62.400, aug:71.800}, area:true } ] }
+      { name:'SRX / *07D2.', quota:72.400, own:{feb:0, aug:0}, area:true, children:[ { name:'RJC / *07D2.', own:{feb:62.400, aug:71.800}, area:true } ] }
     ]}
   },
   {
     id:'lin', country:'FRA', year:2025, name:'LIN / 6X14.', fleet:null,
     intro:'Ling west of Scotland and beyond. The simplest shape: one parent, one child.',
-    root:{ name:'LIN / 6X14.', own:{feb:397.731, aug:398.843}, children:[ { name:'LIN / *04-C.', own:{feb:763.001, aug:789.002}, area:true } ] }
+    root:{ name:'LIN / 6X14.', quota:3286.040, own:{feb:397.731, aug:398.843}, children:[ { name:'LIN / *04-C.', quota:1342.676, own:{feb:763.001, aug:789.002}, area:true } ] }
   }
 ];
 
@@ -140,7 +139,7 @@ function layout(node, depth=0, parent=null){
   node.kids.forEach(k=>layout(k, depth+1, node));
   const leafW = 130, gap = 12;
   if (node.kids.length===0){ node.w = leafW; node.h = 56; }
-  else { node.h = 68 + node.kids.length*20 + 20 + (depth===0?18:0);
+  else { node.h = 68 + node.kids.length*20 + 20 + (depth===0?18:0) + (node.quota?40:0);
          node.w = Math.max(depth===0?420:300, node.kids.reduce((a,k)=>a+k.w,0) + gap*(node.kids.length-1)); }
   node.subW = Math.max(node.w, node.kids.length ? node.kids.reduce((a,k)=>a+k.subW,0) + gap*(node.kids.length-1) : 0);
   return node;
@@ -200,6 +199,15 @@ function render(built){
       parts.push(`<text x="${lx}" y="${y}" dominant-baseline="central" font-size="14" font-weight="500" fill="${pal.ink}">Total catches</text>`);
       parts.push(`<text class="num" data-node="${id}" data-k="total" x="${rx}" y="${y}" text-anchor="end" dominant-baseline="central" font-size="14" font-weight="500" fill="${pal.ink}">${fmt(!built ? own(n) : total(n))}</text>`);
       if (built && moved(dTotal(n))) parts.push(`<text class="num" x="${rx+8}" y="${y}" dominant-baseline="central" font-size="12" font-weight="500" fill="var(--moved)">${sgn(dTotal(n))}</text>`);
+      if (n.quota){
+        y += 22;
+        parts.push(`<text x="${lx}" y="${y}" dominant-baseline="central" font-size="12" fill="${pal.soft}">Adapted quota</text>`);
+        parts.push(`<text class="num" x="${rx}" y="${y}" text-anchor="end" dominant-baseline="central" font-size="12" fill="${pal.ink}">${fmt(n.quota)}</text>`);
+        y += 18;
+        const up = (built ? total(n) : own(n)) / n.quota;
+        parts.push(`<text x="${lx}" y="${y}" dominant-baseline="central" font-size="12" fill="${pal.soft}">Uptake</text>`);
+        parts.push(`<text class="num" data-node="${id}" data-k="uptake" x="${rx}" y="${y}" text-anchor="end" dominant-baseline="central" font-size="13" font-weight="500" fill="${up>1?'var(--moved)':pal.ink}">${(up*100).toFixed(2)} %</text>`);
+      }
       const by = n.y + n.h, ky = by + 44;
       line(cx, by, cx, by+22);
       if (n.kids.length>1){ const xs = n.kids.map(k=>k.x+k.w/2); line(Math.min(...xs), by+22, Math.max(...xs), by+22); }
@@ -264,6 +272,7 @@ function play(){
         const lbl = document.querySelector(`[data-lbl="${cid}"]`); if (lbl) lbl.classList.remove('pending');
         tweenTo(`[data-node="${pid}"][data-row="${cid}"]`, 0, v, settle);
         const r = running.get(pid); tweenTo(`[data-node="${pid}"][data-k="total"]`, r, r + v, settle); running.set(pid, r + v);
+        const upEl = document.querySelector(`[data-node="${pid}"][data-k="uptake"]`); if (upEl && parent.quota){ const q = parent.quota, u0 = r/q, u1 = (r+v)/q, t0 = performance.now(); const st = now => { const pp = Math.min(1,(now-t0)/settle); const u = u0+(u1-u0)*pp; upEl.textContent = (u*100).toFixed(2)+' %'; upEl.setAttribute('fill', u>1?'var(--moved)':''); if (pp<1) requestAnimationFrame(st); }; requestAnimationFrame(st); }
         if (parent === root){ arrived += 1; ledger(root, arrived); }
       };
       g.querySelector('.flowline').style.opacity = 1;
@@ -365,7 +374,10 @@ function renderCover(){
     <!-- walking figures -->
     ${walkers}
     <text x="24" y="40" font-size="20" font-weight="500" fill="var(--ink)">One family, one vessel</text>
-    <text x="24" y="62" font-size="13" fill="var(--ink-soft)">A parent, four children — and one of the children has a child of their own.</text>
+    <text x="24" y="62" font-size="13" fill="var(--ink-soft)">A parent, four children — one of them with a child of their own.</text>
+    <text x="24" y="88" font-size="12" fill="var(--ink-soft)">Parent species</text><text x="130" y="88" font-size="12" font-weight="500" fill="var(--parent-ink)">SRX — skates and rays (Rajidae)</text>
+    <text x="24" y="106" font-size="12" fill="var(--ink-soft)">Parent area</text><text x="130" y="106" font-size="12" font-weight="500" fill="var(--parent-ink)">2AC4-C — Union and UK waters of 4, UK waters of 2a</text>
+    <text x="24" y="124" font-size="12" fill="var(--ink-soft)">Adapted quota</text><text x="130" y="124" font-size="12" font-weight="500" fill="var(--parent-ink)">654.400 t · NLD 2025</text>
     <text x="24" y="80" font-size="12" fill="var(--ink-soft)">The vessel stands for every boat that fishes on this quota — a fleet, not a single ship.</text>
   `;
   document.getElementById('subtitle').textContent = 'Before the numbers: who is in a regulated-stock family';
@@ -374,7 +386,6 @@ function renderCover(){
   document.getElementById('ledger').innerHTML = `<div class="row in"><span>parent</span><span class="num">1</span></div><div class="row in"><span>children</span><span class="num">4</span></div><div class="row in"><span>grandchild</span><span class="num">1</span></div><div class="row tot"><span>on board</span><span class="num">6</span></div>`;
   document.getElementById('note').textContent = 'Press space to watch them board, then Enter for the families.';
   document.getElementById('play').disabled = false;
-  document.getElementById('nav').textContent = 'Next →';
   document.getElementById('hint').textContent = 'space board · enter families';
 }
 function playBoarding(){
@@ -447,12 +458,11 @@ function renderSpecies(){
   const credits = uniq.filter(m=>SPECIES_PHOTO[m.sp]).map(m=>SPECIES_PHOTO[m.sp].credit);
   document.getElementById('note').textContent = (credits.length ? credits.join(' · ') + ' · ' : '') + 'Other species are original drawings for this presentation.';
   document.getElementById('play').disabled = true;
-  document.getElementById('nav').textContent = 'Next →';
   document.getElementById('hint').textContent = 'enter next · ↑ ↓ family';
   document.querySelectorAll('#famSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===fam));
 }
 function showSpecies(){ view = 'species'; renderSpecies(); }
-function showFamilies(){ view = 'families'; document.body.dataset.view = 'families'; document.getElementById('nav').textContent = 'Next →'; document.getElementById('hint').textContent = 'space play · r reset · ← → snapshot · ↑ ↓ family · enter vessel'; render(false); }
+function showFamilies(){ view = 'families'; document.body.dataset.view = 'families'; document.getElementById('hint').textContent = 'space play · r reset · ← → snapshot · ↑ ↓ family'; render(false); }
 function showCover(){ view = 'cover'; renderCover(); }
 function showMap(){ view = 'map'; renderMap(); }
 function showExplorer(){ view = 'explorer'; renderExplorer(); }
@@ -460,8 +470,7 @@ const SLIDES = [
   { id:'cover',    label:'Home',     go: showCover },
   { id:'species',  label:'Species',  go: showSpecies },
   { id:'map',      label:'Map',      go: showMap },
-  { id:'families', label:'Families', go: showFamilies },
-  { id:'explorer', label:'Explorer', go: showExplorer }
+  { id:'families', label:'Families', go: showFamilies }
 ];
 function renderTabs(){
   const el = document.getElementById('tabs'); if (!el) return;
@@ -648,7 +657,6 @@ function renderMap(){
     const thumbs = sps.map(x=>`<svg viewBox="30 20 160 150" style="width:3.2rem;height:3rem;vertical-align:middle;margin-right:.2rem">${SPECIES[x].svg.replace(/id="(g_|c_)(\w+)"/g,'id="$1$2_n'+n.code.replace(/\W/g,'')+'"').replace(/url\(#(g_|c_)(\w+)\)/g,'url(#$1$2_n'+n.code.replace(/\W/g,'')+')')}</svg>`).join('');
     return `<div style="margin:.6rem 0">${thumbs}<span style="font-weight:500;color:${g.stroke}">${n.code}</span> <span style="color:var(--ink-soft);font-size:.85rem">“${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''}”</span><br><span style="color:var(--ink)">${CODE_NOTES[n.code]||''}</span></div>`; }).join('');
   document.getElementById('play').disabled = !VOYAGES[f.id];
-  document.getElementById('nav').textContent = 'Next →';
   document.getElementById('hint').textContent = 'space voyage · enter families · ↑ ↓ family';
   document.querySelectorAll('#famSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===fam));
 }
@@ -804,7 +812,6 @@ function renderExplorer(){
   document.getElementById('ledger').innerHTML = e ? e.g.map(([t,c,j,k])=>`<div class="row in"><span>${geoText([[t,c,j,k]])}</span><span class="num">${t==='F'?'FAO':t==='E'?'EEZ':t==='R'?'RFMO':t==='G'?'GSA':t==='S'?'sandeel':t==='U'?'FU':t==='C'?'charter':'—'}</span></div>`).join('') : '';
   document.getElementById('note').textContent = 'Type a code in the box below, or use ↑ ↓ to step through the list.';
   document.getElementById('play').disabled = true;
-  document.getElementById('nav').textContent = 'Next →';
   document.getElementById('hint').textContent = 'type a code · ↑ ↓ step · enter vessel';
 }
 const EX_CODES = Object.keys(STOCK_GEO);
@@ -818,7 +825,6 @@ function seg(id, items, get, set){
 seg('famSeg', FAMILIES.map(f=>`${f.country} ${f.name}`), ()=>fam, i=>fam=i);
 seg('snapSeg', SNAPS.map(x=>x.label), ()=>snap, i=>snap=i);
 document.getElementById('play').addEventListener('click', ()=> view==='cover' ? playBoarding() : view==='map' ? playVoyage() : play());
-document.getElementById('nav').addEventListener('click', nextView);
 document.getElementById('exList').innerHTML = EX_CODES.map(c=>`<option value="${c}">`).join('');
 document.getElementById('exInput').addEventListener('change', e=>{ const v=e.target.value.trim(); if (STOCK_GEO[v]) { exCode=v; renderExplorer(); } });
 document.getElementById('exInput').addEventListener('keydown', e=>{ if (e.key==='Enter'){ e.preventDefault(); e.stopPropagation(); const v=e.target.value.trim().toUpperCase(); if (STOCK_GEO[v]) { exCode=v; e.target.value=v; renderExplorer(); } } e.stopPropagation(); });
