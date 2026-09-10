@@ -624,7 +624,7 @@ function renderMap(){
     const sps = [...new Set(n.members.map(speciesOf))].filter(x=>SPECIES[x]);
     const thumbs = sps.map(x=>`<svg viewBox="30 20 160 150" style="width:3.2rem;height:3rem;vertical-align:middle;margin-right:.2rem">${SPECIES[x].svg.replace(/id="(g_|c_)(\w+)"/g,'id="$1$2_n'+n.code.replace(/\W/g,'')+'"').replace(/url\(#(g_|c_)(\w+)\)/g,'url(#$1$2_n'+n.code.replace(/\W/g,'')+')')}</svg>`).join('');
     return `<div style="margin:.6rem 0">${thumbs}<span style="font-weight:500;color:${g.stroke}">${n.code}</span> <span style="color:var(--ink-soft);font-size:.85rem">“${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''}”</span><br><span style="color:var(--ink)">${CODE_NOTES[n.code]||''}</span></div>`; }).join('');
-  document.getElementById('play').disabled = !(VOYAGES[f.id] && VOYAGES[f.id].vessels);
+  document.getElementById('play').disabled = !VOYAGES[f.id];
   document.getElementById('nav').textContent = 'Families →';
   document.getElementById('hint').textContent = 'space voyage · enter families · ↑ ↓ family';
   document.querySelectorAll('#famSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===fam));
@@ -632,36 +632,23 @@ function renderMap(){
 
 // ===================== VOYAGE: the vessel sails through the areas =====================
 const VOYAGES = {
-  srx: { vessels: [
-    { name:'Vessel A — northern grounds', color:'var(--parent)', ink:'var(--parent-ink)', port:'the north (2a)', stops:[
-      {lon:3.4, lat:62.5, port:true},
-      {lon:2.6, lat:62.6,  area:'2a', member:'SRX / 2AC4-C',  t:0.020,   note:'Vessel A fishes the parent itself: skates and rays landed directly against the parent quota.'},
-      {lon:1.5, lat:59.6,  area:'4a', member:'RJH / 04-C.',   t:144.252, note:'Vessel A takes blonde ray under the species condition 04-C. No ceiling of its own; it counts against the parent.'},
-      {lon:2.4, lat:61.2, via:true},
-      {lon:3.4, lat:62.5, port:true, home:true}
-    ]},
-    { name:'Vessel B — southern grounds', color:'#2E5FA3', ink:'#1E3F73', port:'IJmuiden', stops:[
-      {lon:4.6, lat:52.46, port:true},
-      {lon:3.4, lat:55.6,  area:'4b', member:'RJC / 2AC4-C',  t:385.824, note:'Vessel B takes thornback under the parent code. It counts against the same parent as Vessel A.'},
-      {lon:3.0, lat:52.5,  area:'4c', member:'RJM / 2AC4-C',  t:79.252,  note:'Spotted ray under the parent code — same parent, same ceiling.'},
-      {lon:0.6, lat:50.3,  area:'7d', member:'RJC / *07D2.',  t:71.800,  note:'Into the Channel under the area condition *07D2., within its sub-limit. Still the same parent.'},
-      {lon:2.4, lat:51.6, via:true},
-      {lon:4.6, lat:52.46, port:true, home:true}
-    ]}
+  srx: { port:'the north (2a)', stops:[
+    {lon:3.4, lat:62.5, port:true},
+    {lon:2.6, lat:62.6,  area:'2a', member:'SRX / 2AC4-C',  t:0.020,   note:'The parent itself: skates and rays landed directly against the parent quota.'},
+    {lon:1.5, lat:59.6,  area:'4a', member:'RJH / 04-C.',   t:144.252, note:'Blonde ray, a species condition in Union waters of 4. No ceiling of its own; counts against the parent.'},
+    {lon:3.4, lat:55.6,  area:'4b', member:'RJC / 2AC4-C',  t:385.824, note:'Thornback ray, a species condition on the parent code. Counts against the parent.'},
+    {lon:3.0, lat:52.5,  area:'4c', member:'RJM / 2AC4-C',  t:79.252,  note:'Spotted ray, a species condition on the parent code. Counts against the parent.'},
+    {lon:0.6, lat:50.3,  area:'7d', member:'RJC / *07D2.',  t:71.800,  note:'Area condition: part of the North Sea quota taken in the eastern Channel, under a sub-limit. Still counts against the parent.'},
+    {lon:2.2, lat:52.0, via:true}, {lon:2.0, lat:57.5, via:true}, {lon:2.4, lat:61.0, via:true},
+    {lon:3.4, lat:62.5, port:true, home:true}
   ]},
-  lin: { vessels: [
-    { name:'Vessel A — western grounds', color:'var(--parent)', ink:'var(--parent-ink)', port:'the north-west (6a)', stops:[
-      {lon:-9.5, lat:59.5, port:true},
-      {lon:-8.6, lat:57.9, area:'6a', member:'LIN / 6X14.',   t:398.843, note:'Vessel A fishes the parent itself: ling landed directly against the western quota.'},
-      {lon:-9.5, lat:59.5, port:true, home:true}
-    ]},
-    { name:'Vessel B — North Sea', color:'#2E5FA3', ink:'#1E3F73', port:'Boulogne', stops:[
-      {lon:1.6, lat:50.7, port:true},
-      {lon:2.6, lat:52.6, via:true},
-      {lon:3.2, lat:55.4,  area:'4b', member:'LIN / *04-C.',  t:789.002, note:'Vessel B takes ling in the North Sea under the area condition *04-C., within its sub-limit — credited to the same western parent.'},
-      {lon:2.6, lat:52.6, via:true},
-      {lon:1.6, lat:50.7, port:true, home:true}
-    ]}
+  lin: { port:'the north-west (6a)', stops:[
+    {lon:-9.5, lat:59.5, port:true},
+    {lon:-8.6, lat:57.9, area:'6a', member:'LIN / 6X14.',   t:398.843, note:'The parent itself: ling landed directly against the western quota.'},
+    {lon:-4.0, lat:59.4, via:true}, {lon:0.5, lat:58.8, via:true},
+    {lon:3.2, lat:55.4,  area:'4b', member:'LIN / *04-C.',  t:789.002, note:'Area condition: part of the western quota taken in the North Sea, under a sub-limit. Counts against the parent.'},
+    {lon:0.5, lat:58.8, via:true}, {lon:-4.0, lat:59.6, via:true},
+    {lon:-9.5, lat:59.5, port:true, home:true}
   ]}
 };
 function boatSvg(scale){
@@ -681,91 +668,82 @@ function playVoyage(){
   const svg = document.getElementById('tree');
   const g = document.createElementNS('http://www.w3.org/2000/svg','g'); g.id = 'voyage'; svg.appendChild(g);
   const P = st => [parseFloat(mx(st.lon)), parseFloat(my(st.lat))];
-  const speed = 0.05, ease = p => p<0.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2;
-  const state = v.vessels.map(()=>({ total:0, caught:[], done:false }));
-  const grand = () => state.reduce((a,x)=>a+x.total,0);
+  const stops = v.stops, speed = 0.05;
+  let total = 0, t = 400, caught = [];
   const ledger = () => {
-    let html = '';
-    v.vessels.forEach((ve,i)=>{
-      html += `<div class="row" style="color:${ve.color};font-weight:500;margin-top:.4rem"><span>${ve.name}</span><span class="num">${fmt(state[i].total)}</span></div>`;
-      state[i].caught.forEach(c=>{ html += `<div class="row in" style="padding-left:.8rem"><span>${c.member} · ${c.area}</span><span class="num">${fmt(c.t)}</span></div>`; });
-    });
-    html += `<div class="row tot"><span>credited to the parent so far</span><span class="num">${fmt(grand())}</span></div>`;
-    document.getElementById('ledger').innerHTML = html;
+    const rows = caught.map(c=>`<div class="row in"><span>${c.member} · ${c.area}</span><span class="num">${fmt(c.t)}</span></div>`);
+    rows.push(`<div class="row tot"><span>on board so far</span><span class="num">${fmt(total)}</span></div>`);
+    document.getElementById('ledger').innerHTML = rows.join('');
   };
-  document.getElementById('ah').textContent = `Two vessels, one parent quota`;
-  document.getElementById('ap').textContent = `${v.vessels[0].name} works the top of the map, ${v.vessels[1].name.toLowerCase()} the bottom. They fish different members of the family at the same time, and every tonne either of them lands is credited to the same parent ceiling.`;
+  const [px0,py0] = P(stops[0]);
+  const trail = document.createElementNS('http://www.w3.org/2000/svg','path');
+  trail.setAttribute('d', `M ${px0} ${py0}`); trail.setAttribute('fill','none'); trail.setAttribute('stroke','var(--parent)'); trail.setAttribute('stroke-width','1.5'); trail.setAttribute('stroke-dasharray','4 4'); trail.setAttribute('opacity','0.7');
+  g.appendChild(trail);
+  const boat = document.createElementNS('http://www.w3.org/2000/svg','g');
+  boat.innerHTML = boatSvg(0.55) + `<rect x="-34" y="10" width="68" height="16" rx="4" fill="var(--paper)" fill-opacity="0.92" stroke="var(--parent)" stroke-width="0.8"/><text id="hold" x="0" y="18" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--parent-ink)">0.000 t</text>`;
+  boat.setAttribute('transform', `translate(${px0},${py0})`); g.appendChild(boat);
+  const holdEl = () => boat.querySelector('#hold');
+  const setHold = v => { const e = holdEl(); if (e) e.textContent = fmt(v) + ' t'; };
+  const ease = p => p<0.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2;
+  document.getElementById('ah').textContent = `Starting in ${v.port}`;
+  document.getElementById('ap').textContent = `The family sails as one vessel. It starts in the parent's own water, works its way south through the children, and comes back up when the hold is full. At every stop the catch is counted against the member that fished it — and against the parent.`;
   ledger();
-  let longest = 0;
-  v.vessels.forEach((ve, vi)=>{
-    const stops = ve.stops;
-    const [px0,py0] = P(stops[0]);
-    const trail = document.createElementNS('http://www.w3.org/2000/svg','path');
-    trail.setAttribute('d', `M ${px0} ${py0}`); trail.setAttribute('fill','none'); trail.setAttribute('stroke', ve.color); trail.setAttribute('stroke-width','1.5'); trail.setAttribute('stroke-dasharray','4 4'); trail.setAttribute('opacity','0.7');
-    g.appendChild(trail);
-    const boat = document.createElementNS('http://www.w3.org/2000/svg','g');
-    boat.innerHTML = boatSvg(0.5) + `<rect x="-36" y="10" width="72" height="16" rx="4" fill="var(--paper)" fill-opacity="0.92" stroke="${ve.color}" stroke-width="0.8"/><text class="hold" x="0" y="18" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="${ve.ink}">${String.fromCharCode(65+vi)} · 0.000 t</text>`;
-    boat.setAttribute('transform', `translate(${px0},${py0})`); g.appendChild(boat);
-    const setHold = val => { const e = boat.querySelector('.hold'); if (e) e.textContent = `${String.fromCharCode(65+vi)} · ${fmt(val)} t`; };
-    let cur = P(stops[0]), d = `M ${cur[0]} ${cur[1]}`, t = 400 + vi*600;
-    for (let i=1;i<stops.length;i++){
-      const st = stops[i], to = P(st), from = cur;
-      const dist = Math.hypot(to[0]-from[0], to[1]-from[1]), dur = Math.max(500, dist/speed);
-      const at = t, dStart = d;
+  let cur = P(stops[0]), d = `M ${cur[0]} ${cur[1]}`;
+  for (let i=1;i<stops.length;i++){
+    const st = stops[i], to = P(st), from = cur;
+    const dist = Math.hypot(to[0]-from[0], to[1]-from[1]), dur = Math.max(500, dist/speed);
+    const at = t, dStart = d;
+    timers.push(setTimeout(()=>{
+      if (reduced()){ boat.setAttribute('transform', `translate(${to[0]},${to[1]})`); trail.setAttribute('d', dStart + ` L ${to[0]} ${to[1]}`); return; }
+      const t0 = performance.now();
+      const step = now => { const p = Math.min(1,(now-t0)/dur), e = ease(p);
+        const x = from[0]+(to[0]-from[0])*e, y = from[1]+(to[1]-from[1])*e;
+        boat.setAttribute('transform', `translate(${x},${y})`); trail.setAttribute('d', dStart + ` L ${x} ${y}`);
+        if (p<1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    }, at));
+    d += ` L ${to[0]} ${to[1]}`; cur = to; t += dur;
+    if (st.via) { t += 80; continue; }
+    if (st.home){
       timers.push(setTimeout(()=>{
-        if (reduced()){ boat.setAttribute('transform', `translate(${to[0]},${to[1]})`); trail.setAttribute('d', dStart + ` L ${to[0]} ${to[1]}`); return; }
-        const t0 = performance.now();
-        const step = now => { const p = Math.min(1,(now-t0)/dur), e = ease(p);
-          const x = from[0]+(to[0]-from[0])*e, y = from[1]+(to[1]-from[1])*e;
-          boat.setAttribute('transform', `translate(${x},${y})`); trail.setAttribute('d', dStart + ` L ${x} ${y}`);
-          if (p<1) requestAnimationFrame(step); };
-        requestAnimationFrame(step);
-      }, at));
-      d += ` L ${to[0]} ${to[1]}`; cur = to; t += dur;
-      if (st.via) { t += 80; continue; }
-      if (st.home){
-        timers.push(setTimeout(()=>{ state[vi].done = true;
-          if (state.every(x=>x.done)){ playing = false;
-            document.getElementById('ah').textContent = 'Both vessels home';
-            document.getElementById('ap').textContent = `${fmt(grand())} tonnes credited to the parent — ${v.vessels.map((ve,i)=>`${fmt(state[i].total)} from ${ve.name.split(' — ')[0]}`).join(' and ')}. Two boats, one ceiling: the family total on ${SNAPS[snap].label}.`;
-          } }, t));
-        continue;
-      }
-      const sp = speciesOf(st.member), hasFish = !!SPECIES[sp];
-      timers.push(setTimeout(()=>{
-        document.getElementById('ah').textContent = `${st.member} — fishing in ${st.area}`;
-        document.getElementById('ap').textContent = st.note;
-        const lbl = document.createElementNS('http://www.w3.org/2000/svg','g');
-        const right = vi===0; // A: card to the right, B: card to the left, so they never overlap
-        const w = Math.max(110, (st.member.length+9)*6.2) + (hasFish?34:0), x0 = right ? to[0]+16 : to[0]-16-w;
-        lbl.innerHTML = `<rect x="${x0}" y="${to[1]-30}" width="${w}" height="34" rx="6" fill="var(--paper)" fill-opacity="0.95" stroke="${ve.color}" stroke-width="1"/>
-          ${hasFish ? fishAt(sp, x0+16, to[1]-13, sp==='LIN'?0.14:0.15, 'v'+vi+st.area+String(st.t).replace('.',''), `${SPECIES[sp].name} (${SPECIES[sp].latin}) — ${st.member}`, vi===0?0:1) : ''}
-          <text x="${x0+6+(hasFish?34:0)}" y="${to[1]-20}" dominant-baseline="central" font-size="11" font-weight="500" fill="${ve.ink}">${st.member}</text>
-          <text x="${x0+6+(hasFish?34:0)}" y="${to[1]-7}" dominant-baseline="central" font-size="11" fill="${ve.color}">${fmt(st.t)} t · ${st.area}</text>`;
-        g.insertBefore(lbl, boat);
-        if (hasFish && !reduced()){
-          const fz = document.createElementNS('http://www.w3.org/2000/svg','g');
-          fz.innerHTML = fishAt(sp, 0, 0, 1, 'w'+vi+st.area+String(st.t).replace('.',''), '', vi===0?0:1);
-          g.insertBefore(fz, boat);
-          const sx = to[0]-60, sy = to[1]+34, ex = to[0]-2, ey = to[1]-2, dur2 = 1300, t1 = performance.now();
-          const step2 = now => { const p = Math.min(1,(now-t1)/dur2), e = ease(p);
-            const x = sx+(ex-sx)*e, y = sy+(ey-sy)*e - Math.sin(p*Math.PI)*22, sc = 0.2*(1-e) + 0.03*e;
-            fz.setAttribute('transform', `translate(${x},${y}) scale(${sc})`); fz.setAttribute('opacity', String(1 - Math.max(0,p-0.8)*5));
-            if (p<1) requestAnimationFrame(step2); else fz.remove(); };
-          requestAnimationFrame(step2);
-        }
-      }, t + 100));
-      timers.push(setTimeout(()=>{
-        const from0 = state[vi].total; state[vi].total += st.t; state[vi].caught.push(st); ledger();
-        if (reduced()){ setHold(state[vi].total); return; }
-        const t2 = performance.now(), dur3 = 700;
-        const step3 = now => { const p = Math.min(1,(now-t2)/dur3); setHold(from0 + (state[vi].total-from0)*ease(p)); if (p<1) requestAnimationFrame(step3); };
-        requestAnimationFrame(step3);
-      }, t + 1400));
-      t += 2600;
+        document.getElementById('ah').textContent = `Back in ${v.port}`;
+        document.getElementById('ap').textContent = `${fmt(total)} tonnes in the hold — the family total on ${SNAPS[snap].label}. Every stop was counted once, under the member that fished it and against the parent that holds the ceiling.`;
+        playing = false;
+      }, t)); continue;
     }
-    longest = Math.max(longest, t);
-  });
+    // fishing at this stop: card, then the fish drawn into the hull, then the hold ticks up
+    const sp = speciesOf(st.member), hasFish = !!SPECIES[sp];
+    timers.push(setTimeout(()=>{
+      document.getElementById('ah').textContent = `${st.member} — fishing in ${st.area}`;
+      document.getElementById('ap').textContent = st.note;
+      const lbl = document.createElementNS('http://www.w3.org/2000/svg','g');
+      lbl.innerHTML = `<rect x="${to[0]+16}" y="${to[1]-30}" width="${Math.max(110, (st.member.length+9)*6.2) + (hasFish?34:0)}" height="34" rx="6" fill="var(--paper)" fill-opacity="0.95" stroke="var(--parent)" stroke-width="1"/>
+        ${hasFish ? fishAt(sp, to[0]+32, to[1]-13, sp==='LIN'?0.14:0.15, 'v'+st.area+String(st.t).replace('.',''), `${SPECIES[sp].name} (${SPECIES[sp].latin}) — ${st.member}`) : ''}
+        <text x="${to[0]+22+(hasFish?34:0)}" y="${to[1]-20}" dominant-baseline="central" font-size="11" font-weight="500" fill="var(--parent-ink)">${st.member}</text>
+        <text x="${to[0]+22+(hasFish?34:0)}" y="${to[1]-7}" dominant-baseline="central" font-size="11" fill="var(--parent)">${fmt(st.t)} t · ${st.area}</text>`;
+      g.insertBefore(lbl, boat);
+      // fish rising from the water into the hull
+      if (hasFish && !reduced()){
+        const fz = document.createElementNS('http://www.w3.org/2000/svg','g');
+        fz.innerHTML = fishAt(sp, 0, 0, 1, 'w'+st.area+String(st.t).replace('.',''), '', 1);
+        g.insertBefore(fz, boat);
+        const sx = to[0]-70, sy = to[1]+38, ex = to[0]-2, ey = to[1]-2, dur2 = 1300, t1 = performance.now();
+        const step2 = now => { const p = Math.min(1,(now-t1)/dur2), e = ease(p);
+          const x = sx+(ex-sx)*e, y = sy+(ey-sy)*e - Math.sin(p*Math.PI)*22, sc = 0.2*(1-e) + 0.03*e;
+          fz.setAttribute('transform', `translate(${x},${y}) scale(${sc})`); fz.setAttribute('opacity', String(1 - Math.max(0,p-0.8)*5));
+          if (p<1) requestAnimationFrame(step2); else fz.remove(); };
+        requestAnimationFrame(step2);
+      }
+    }, t + 100));
+    timers.push(setTimeout(()=>{
+      const from0 = total; total += st.t; caught.push(st); ledger();
+      if (reduced()){ setHold(total); return; }
+      const t2 = performance.now(), dur3 = 700;
+      const step3 = now => { const p = Math.min(1,(now-t2)/dur3); setHold(from0 + (total-from0)*ease(p)); if (p<1) requestAnimationFrame(step3); };
+      requestAnimationFrame(step3);
+    }, t + 1400));
+    t += 2600;
+  }
 }
 
 // ===================== EXPLORER: any stock area on the map =====================
