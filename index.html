@@ -97,10 +97,10 @@ const FAMILIES = [
     id:'srx', country:'NLD', year:2025, name:'SRX / 2AC4-C', fleet:null,
     intro:'Skates and rays in the North Sea. A parent with four children; one of them carries a child of its own.',
     root:{ name:'SRX / 2AC4-C', quota:654.400, own:{feb:0.056, aug:0.020}, children:[
-      { name:'RJC / 2AC4-C', own:{feb:385.788, aug:385.824} },
-      { name:'RJH / 04-C.',  own:{feb:144.252, aug:144.252} },
-      { name:'RJM / 2AC4-C', own:{feb:79.252,  aug:79.252} },
-      { name:'SRX / *07D2.', quota:72.400, own:{feb:0, aug:0}, area:true, children:[ { name:'RJC / *07D2.', own:{feb:62.400, aug:71.800}, area:true } ] }
+      { name:'RJC / 2AC4-C', quota:0, own:{feb:385.788, aug:385.824} },
+      { name:'RJH / 04-C.',  quota:0, own:{feb:144.252, aug:144.252} },
+      { name:'RJM / 2AC4-C', quota:0, own:{feb:79.252,  aug:79.252} },
+      { name:'SRX / *07D2.', quota:72.400, own:{feb:0, aug:0}, area:true, children:[ { name:'RJC / *07D2.', quota:0, own:{feb:62.400, aug:71.800}, area:true } ] }
     ]}
   },
   {
@@ -138,8 +138,8 @@ function layout(node, depth=0, parent=null){
   node.depth = depth; node.parent = parent; node.kids = node.children||[];
   node.kids.forEach(k=>layout(k, depth+1, node));
   const leafW = 130, gap = 12;
-  if (node.kids.length===0){ node.w = leafW; node.h = 56; }
-  else { node.h = 68 + node.kids.length*20 + 20 + (depth===0?18:0) + (node.quota?40:0);
+  if (node.kids.length===0){ node.w = leafW; node.h = ('quota' in node) ? 92 : 56; }
+  else { node.h = 68 + node.kids.length*20 + 20 + (depth===0?18:0) + (('quota' in node)?40:0);
          node.w = Math.max(depth===0?420:300, node.kids.reduce((a,k)=>a+k.w,0) + gap*(node.kids.length-1)); }
   node.subW = Math.max(node.w, node.kids.length ? node.kids.reduce((a,k)=>a+k.subW,0) + gap*(node.kids.length-1) : 0);
   return node;
@@ -176,6 +176,11 @@ function render(built){
     if (n.kids.length===0){
       parts.push(`<text x="${cx}" y="${n.y+18}" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="${pal.ink}">${n.name}</text>`);
       parts.push(`<text class="num" x="${cx}" y="${n.y+38}" text-anchor="middle" dominant-baseline="central" font-size="12" fill="${pal.ink}">${fmt(own(n))} t</text>`);
+      if ('quota' in n){
+        parts.push(`<line x1="${n.x+10}" y1="${n.y+50}" x2="${n.x+n.w-10}" y2="${n.y+50}" stroke="${pal.stroke}" stroke-width="0.5" opacity="0.6"/>`);
+        parts.push(`<text x="${n.x+10}" y="${n.y+62}" dominant-baseline="central" font-size="10" fill="${pal.soft}">Quota</text><text class="num" x="${n.x+n.w-10}" y="${n.y+62}" text-anchor="end" dominant-baseline="central" font-size="10" fill="${pal.ink}">${fmt(n.quota)}</text>`);
+        parts.push(`<text x="${n.x+10}" y="${n.y+78}" dominant-baseline="central" font-size="10" fill="${pal.soft}">Uptake</text><text class="num" x="${n.x+n.w-10}" y="${n.y+78}" text-anchor="end" dominant-baseline="central" font-size="11" font-weight="500" fill="${n.quota ? (own(n)/n.quota>1?'var(--moved)':pal.ink) : pal.soft}">${n.quota ? (own(n)/n.quota*100).toFixed(2)+' %' : 'N/A'}</text>`);
+      }
       if (mv) parts.push(`<text class="num" x="${cx}" y="${n.y+n.h+12}" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--moved)">${sgn(dOwn(n))} vs ${prevLabel()}</text>`);
     } else {
       let y = n.y + 22;
@@ -199,14 +204,14 @@ function render(built){
       parts.push(`<text x="${lx}" y="${y}" dominant-baseline="central" font-size="14" font-weight="500" fill="${pal.ink}">Total catches</text>`);
       parts.push(`<text class="num" data-node="${id}" data-k="total" x="${rx}" y="${y}" text-anchor="end" dominant-baseline="central" font-size="14" font-weight="500" fill="${pal.ink}">${fmt(!built ? own(n) : total(n))}</text>`);
       if (built && moved(dTotal(n))) parts.push(`<text class="num" x="${rx+8}" y="${y}" dominant-baseline="central" font-size="12" font-weight="500" fill="var(--moved)">${sgn(dTotal(n))}</text>`);
-      if (n.quota){
+      if ('quota' in n){
         y += 22;
-        parts.push(`<text x="${lx}" y="${y}" dominant-baseline="central" font-size="12" fill="${pal.soft}">Adapted quota</text>`);
+        parts.push(`<text x="${lx}" y="${y}" dominant-baseline="central" font-size="12" fill="${pal.soft}">Quota</text>`);
         parts.push(`<text class="num" x="${rx}" y="${y}" text-anchor="end" dominant-baseline="central" font-size="12" fill="${pal.ink}">${fmt(n.quota)}</text>`);
         y += 18;
-        const up = (built ? total(n) : own(n)) / n.quota;
+        const up = n.quota ? (built ? total(n) : own(n)) / n.quota : null;
         parts.push(`<text x="${lx}" y="${y}" dominant-baseline="central" font-size="12" fill="${pal.soft}">Uptake</text>`);
-        parts.push(`<text class="num" data-node="${id}" data-k="uptake" x="${rx}" y="${y}" text-anchor="end" dominant-baseline="central" font-size="13" font-weight="500" fill="${up>1?'var(--moved)':pal.ink}">${(up*100).toFixed(2)} %</text>`);
+        parts.push(`<text class="num" data-node="${id}" data-k="uptake" x="${rx}" y="${y}" text-anchor="end" dominant-baseline="central" font-size="13" font-weight="500" fill="${up===null?pal.soft:(up>1?'var(--moved)':pal.ink)}">${up===null?'N/A':(up*100).toFixed(2)+' %'}</text>`);
       }
       const by = n.y + n.h, ky = by + 44;
       line(cx, by, cx, by+22);
