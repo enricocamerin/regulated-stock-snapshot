@@ -277,8 +277,17 @@ const speciesOf = name => name.split(' / ')[0];
 // licensed photographs for the species cards (drawings stay in use on the map and voyage)
 const SPECIES_PHOTO = {
   RJC: { url:'https://commons.wikimedia.org/wiki/Special:FilePath/Raja_clavata_(Thornback_ray_or_thornback_skate),_Ecomare,_Texel,_the_Netherlands.JPG?width=800',
-         credit:'Photo: Bj.schoenmakers, Ecomare, Texel (NL) — CC0, Wikimedia Commons',
-         page:'https://commons.wikimedia.org/wiki/File:Raja_clavata_(Thornback_ray_or_thornback_skate),_Ecomare,_Texel,_the_Netherlands.JPG' }
+         credit:'Thornback ray: Bj.schoenmakers, Ecomare, Texel (NL) — CC0, Wikimedia Commons',
+         page:'https://commons.wikimedia.org/wiki/File:Raja_clavata_(Thornback_ray_or_thornback_skate),_Ecomare,_Texel,_the_Netherlands.JPG' },
+  RJH: { url:'https://commons.wikimedia.org/wiki/Special:FilePath/Blonde_ray_on_white_background.jpg?width=800',
+         credit:'Blonde ray: Wikimedia Commons (author and licence on the file page)',
+         page:'https://commons.wikimedia.org/wiki/File:Blonde_ray_on_white_background.jpg' },
+  RJM: { url:'https://commons.wikimedia.org/wiki/Special:FilePath/Raja_montagui.jpg?width=800',
+         credit:'Spotted ray: Wikimedia Commons (author and licence on the file page)',
+         page:'https://commons.wikimedia.org/wiki/File:Raja_montagui.jpg' },
+  LIN: { url:'https://commons.wikimedia.org/wiki/Special:FilePath/Molva_molva.jpg?width=800',
+         credit:'Ling: plate 90, Oceanic Ichthyology, Goode & Bean, 1896 — public domain, Wikimedia Commons',
+         page:'https://commons.wikimedia.org/wiki/File:Molva_molva.jpg' }
 };
 
 
@@ -517,9 +526,12 @@ const CODE_NOTES = {
   '*04-C.': 'An area condition. Part of the western ling quota may be taken in Union waters of the North Sea (27.4) instead, up to a sub-limit. Outside the parent’s water, inside the parent’s quota.'
 };
 
-function fishAt(sp, x, y, scale, uid, title){
+function fishAt(sp, x, y, scale, uid, title, gen){
   const d = SPECIES[sp]; if (!d) return '';
   const tip = title ? `<title>${title}</title>` : '';
+  const ph = SPECIES_PHOTO[sp];
+  if (ph){ const r = 44*scale/0.46 * 1.0, col = gen ? GEN[gen].stroke : 'var(--parent)';
+    return `<g transform="translate(${x},${y})" style="cursor:help">${tip}<clipPath id="pc_${uid}"><circle r="${r}"/></clipPath><circle r="${r+2}" fill="var(--paper)" stroke="${col}" stroke-width="1.5"/><image href="${ph.url}" x="${-r*1.3}" y="${-r*1.3}" width="${r*2.6}" height="${r*2.6}" preserveAspectRatio="xMidYMid slice" clip-path="url(#pc_${uid})"/></g>`; }
   const svgIn = d.svg.replace(/id="(g_|c_)(\w+)"/g, `id="$1$2_${uid}"`).replace(/url\(#(g_|c_)(\w+)\)/g, `url(#$1$2_${uid})`)
     .replace('translate(110,95) scale(0.62)', 'translate(0,0) scale(0.62)').replace('translate(110,92) scale(0.78)', 'translate(0,0) scale(0.78)');
   return `<g transform="translate(${x},${y}) scale(${scale})" style="cursor:help">${tip}${svgIn}</g>`;
@@ -572,7 +584,7 @@ function renderMap(){
     const sc = Math.max(0.2, Math.min(0.46, bh/240, bw/(n*130)));
     const step = 110*sc + 8, rowW = n*step - 8, cx = (ex0+ex1)/2, cy = (ey0+ey1)/2 + (bh < 70 ? 6 : 0);
     grp.fish.forEach((fz,k)=>{ const d = SPECIES[fz.sp];
-      labels.push(fishAt(fz.sp, cx - rowW/2 + k*step + 55*sc, cy, sc, 'f'+(gi++), `${d.name} (${d.latin}) — ${fz.member} · ${fz.gen}`)); });
+      labels.push(fishAt(fz.sp, cx - rowW/2 + k*step + 55*sc, cy, sc, 'f'+(gi++), `${d.name} (${d.latin}) — ${fz.member} · ${fz.gen}`, ['parent','child','grandchild'].indexOf(fz.gen))); });
   });
   const faoOf = id => ({'2a':'27.2.a','4a':'27.4.a','4b':'27.4.b','4c':'27.4.c','3a':'27.3.a','7d':'27.7.d','7e':'27.7.e','7a':'27.7.a','6a':'27.6.a','7f':'27.7.f','7bc':'27.7.b–c','7fk':'27.7.g–k'}[id]||'');
   const allBoxes = new Set(); nodes.forEach(n=>n.set.forEach(b=>allBoxes.add(b)));
@@ -608,7 +620,8 @@ function renderMap(){
   document.getElementById('ah').textContent = 'The parent as a container';
   document.getElementById('ap').textContent = `${root.code} is the water the parent quota covers. A child drawn inside it fishes part of that same water under its own code; a child drawn outside fishes elsewhere — but every catch still counts against ${root.code}.`;
   document.getElementById('ledger').innerHTML = dia;
-  document.getElementById('note').innerHTML = nodes.map(n=>{ const g = GEN[Math.min(n.depth,2)];
+  const mapCredits = [...new Set(nodes.flatMap(n=>n.members.map(speciesOf)))].filter(x=>SPECIES_PHOTO[x]).map(x=>SPECIES_PHOTO[x].credit);
+  document.getElementById('note').innerHTML = (mapCredits.length ? `<div style="font-size:.8rem;color:var(--ink-soft);margin-bottom:.5rem">${mapCredits.join(' · ')}</div>` : '') + nodes.map(n=>{ const g = GEN[Math.min(n.depth,2)];
     const sps = [...new Set(n.members.map(speciesOf))].filter(x=>SPECIES[x]);
     const thumbs = sps.map(x=>`<svg viewBox="30 20 160 150" style="width:3.2rem;height:3rem;vertical-align:middle;margin-right:.2rem">${SPECIES[x].svg.replace(/id="(g_|c_)(\w+)"/g,'id="$1$2_n'+n.code.replace(/\W/g,'')+'"').replace(/url\(#(g_|c_)(\w+)\)/g,'url(#$1$2_n'+n.code.replace(/\W/g,'')+')')}</svg>`).join('');
     return `<div style="margin:.6rem 0">${thumbs}<span style="font-weight:500;color:${g.stroke}">${n.code}</span> <span style="color:var(--ink-soft);font-size:.85rem">“${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''}”</span><br><span style="color:var(--ink)">${CODE_NOTES[n.code]||''}</span></div>`; }).join('');
