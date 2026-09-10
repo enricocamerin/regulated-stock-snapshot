@@ -23,7 +23,7 @@
   .sub { color:var(--ink-soft); font-size:1rem; }
   main { padding:1rem 2.5rem; display:grid; grid-template-columns:minmax(0,1fr) 20rem; gap:2.5rem; align-items:start; }
   @media (max-width:900px){ main { grid-template-columns:1fr; } }
-  .stage svg { width:100%; height:auto; display:block; }
+  .stage svg { width:100%; height:auto; max-height:72vh; display:block; }
   .aside { font-size:1.05rem; line-height:1.55; padding-top:.5rem; overflow-wrap:anywhere; }
   .aside h2 { font-size:1.1rem; font-weight:500; margin:0 0 .5rem; }
   .aside p { margin:0 0 .75rem; }
@@ -32,7 +32,7 @@
   .ledger .row.in { color:var(--ink); }
   .ledger .row.tot { font-weight:500; color:var(--ink); padding-top:.35rem; border-top:1px solid var(--rule); }
   .num { font-variant-numeric:tabular-nums; white-space:nowrap; }
-  footer { padding:.75rem 2.5rem 1.5rem; display:flex; gap:2.5rem; align-items:center; flex-wrap:wrap; }
+  footer { padding:.75rem 2.5rem 1rem; display:flex; gap:2.5rem; align-items:center; flex-wrap:wrap; position:sticky; bottom:0; background:var(--paper); border-top:1px solid var(--rule); z-index:2; }
   .seg { display:inline-flex; border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
   .seg button, .btn { appearance:none; border:0; background:transparent; color:var(--ink-soft); font:inherit; font-size:.95rem; padding:.55rem 1rem; cursor:pointer; }
   .btn { border:1px solid var(--ink); border-radius:8px; color:var(--ink); }
