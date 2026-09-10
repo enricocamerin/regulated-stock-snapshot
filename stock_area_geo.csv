@@ -1,0 +1,2035 @@
+stock_area_code,stock_area_description,geo_type,geo_code,jurisdiction,constraint,confidence
+*F483C,FAO 48.3 Antarctic - Management Area C: 40° W to 33° 30' W – 52° 30' S to 56° S,FAO,48.3,,,ok
+GF8-11,GSA 8-9-10-11,GSA,GSA8,,,ok
+GF8-11,GSA 8-9-10-11,GSA,GSA9,,,ok
+GF8-11,GSA 8-9-10-11,GSA,GSA10,,,ok
+GF8-11,GSA 8-9-10-11,GSA,GSA11,,,ok
+*8ABDE,"8a, 8b, 8d and 8e",FAO,27.8.a,,,ok
+*8ABDE,"8a, 8b, 8d and 8e",FAO,27.8.b,,,ok
+*8ABDE,"8a, 8b, 8d and 8e",FAO,27.8.d,,,ok
+*8ABDE,"8a, 8b, 8d and 8e",FAO,27.8.e,,,ok
+2A4AB-,"IIa) (1), IVa) (1), IVb) (1)",FAO,27.2.a,,,ok
+2A4AB-,"IIa) (1), IVa) (1), IVb) (1)",FAO,27.4.a,,,ok
+2A4AB-,"IIa) (1), IVa) (1), IVb) (1)",FAO,27.4.b,,,ok
+2A4AB-,"IIa) (1), IVa) (1), IVb) (1)",FAO,27.1,,,ok
+KIR_2012,Kiribati,EEZ,KIR,KIR,,ok
+24_AMS,United Kingdom and international waters of  2; United Kingdom and Union waters of 4 (shared quota),FAO,27.2,GBR+INT,,ok
+24_AMS,United Kingdom and international waters of  2; United Kingdom and Union waters of 4 (shared quota),FAO,27.4,GBR+EU,,ok
+02B.,2b,FAO,27.2.b,,,ok
+3A/4BC,"IIIa), IVb),c)",FAO,27.4.b,,,ok
+3A/4BC,"IIIa), IVb),c)",FAO,27.4.c,,,ok
+3A/4BC,"IIIa), IVb),c)",FAO,27.3.a,,,ok
+*4A-UK,United Kingdom waters of 4a,FAO,27.4.a,GBR,,ok
+1234-,"Union and international waters of I, II, III and IV",FAO,27.1,EU+INT,,ok
+1234-,"Union and international waters of I, II, III and IV",FAO,27.2,EU+INT,,ok
+1234-,"Union and international waters of I, II, III and IV",FAO,27.3,EU+INT,,ok
+1234-,"Union and international waters of I, II, III and IV",FAO,27.4,EU+INT,,ok
+*5-14X,special condition under 514GRN concerning RED fished in association with demersal components outside the NEAFC box defined in footnote 2,RFMO,NEAFC,,,ok
+*5-14X,special condition under 514GRN concerning RED fished in association with demersal components outside the NEAFC box defined in footnote 2,FAO,27.2,,,ok
+5B6ANB,"United Kingdom and international waters of 5b; 6b and 6aN (Reference is to the herring stock in the part of ICES zone 6a east of 7°W and north of 55°N, or west of 7°W and north of 56°N, excluding the Clyde)",FAO,27.5.b,GBR+INT,,ok
+5B6ANB,"United Kingdom and international waters of 5b; 6b and 6aN (Reference is to the herring stock in the part of ICES zone 6a east of 7°W and north of 55°N, or west of 7°W and north of 56°N, excluding the Clyde)",FAO,27.6.b,,east of 7°W | north of 55°N | west of 7°W | north of 56°N,ok
+5B6ANB,"United Kingdom and international waters of 5b; 6b and 6aN (Reference is to the herring stock in the part of ICES zone 6a east of 7°W and north of 55°N, or west of 7°W and north of 56°N, excluding the Clyde)",FAO,27.6.a,,east of 7°W | north of 55°N | west of 7°W | north of 56°N,ok
+2A34-N,"3a; United Kingdom, Union waters of 2a, 3b, 
+3c, 3d and 4; Norwegian waters 2a and 4a",FAO,27.3.a,,,ok
+2A34-N,"3a; United Kingdom, Union waters of 2a, 3b, 
+3c, 3d and 4; Norwegian waters 2a and 4a",FAO,27.2.a,GBR+EU,,ok
+2A34-N,"3a; United Kingdom, Union waters of 2a, 3b, 
+3c, 3d and 4; Norwegian waters 2a and 4a",FAO,27.3.b,GBR+EU,,ok
+2A34-N,"3a; United Kingdom, Union waters of 2a, 3b, 
+3c, 3d and 4; Norwegian waters 2a and 4a",FAO,27.3.c,GBR+EU,,ok
+2A34-N,"3a; United Kingdom, Union waters of 2a, 3b, 
+3c, 3d and 4; Norwegian waters 2a and 4a",FAO,27.3.d,GBR+EU,,ok
+2A34-N,"3a; United Kingdom, Union waters of 2a, 3b, 
+3c, 3d and 4; Norwegian waters 2a and 4a",FAO,27.4,GBR+EU,,ok
+2A34-N,"3a; United Kingdom, Union waters of 2a, 3b, 
+3c, 3d and 4; Norwegian waters 2a and 4a",FAO,27.2.a,NOR,,ok
+2A34-N,"3a; United Kingdom, Union waters of 2a, 3b, 
+3c, 3d and 4; Norwegian waters 2a and 4a",FAO,27.4.a,NOR,,ok
+*2A14,"United Kingdom and Union waters of 6, 7, 8d; Union waters of 8a, 8b and 8e; international waters of 12 and 14; and United Kingdom and international waters of 2a and 5b",FAO,27.8.d,GBR+EU,,ok
+*2A14,"United Kingdom and Union waters of 6, 7, 8d; Union waters of 8a, 8b and 8e; international waters of 12 and 14; and United Kingdom and international waters of 2a and 5b",FAO,27.6,GBR+EU,,ok
+*2A14,"United Kingdom and Union waters of 6, 7, 8d; Union waters of 8a, 8b and 8e; international waters of 12 and 14; and United Kingdom and international waters of 2a and 5b",FAO,27.7,GBR+EU,,ok
+*2A14,"United Kingdom and Union waters of 6, 7, 8d; Union waters of 8a, 8b and 8e; international waters of 12 and 14; and United Kingdom and international waters of 2a and 5b",FAO,27.8.a,EU,,ok
+*2A14,"United Kingdom and Union waters of 6, 7, 8d; Union waters of 8a, 8b and 8e; international waters of 12 and 14; and United Kingdom and international waters of 2a and 5b",FAO,27.8.b,EU,,ok
+*2A14,"United Kingdom and Union waters of 6, 7, 8d; Union waters of 8a, 8b and 8e; international waters of 12 and 14; and United Kingdom and international waters of 2a and 5b",FAO,27.8.e,EU,,ok
+*2A14,"United Kingdom and Union waters of 6, 7, 8d; Union waters of 8a, 8b and 8e; international waters of 12 and 14; and United Kingdom and international waters of 2a and 5b",FAO,27.12,INT,,ok
+*2A14,"United Kingdom and Union waters of 6, 7, 8d; Union waters of 8a, 8b and 8e; international waters of 12 and 14; and United Kingdom and international waters of 2a and 5b",FAO,27.14,INT,,ok
+*2A14,"United Kingdom and Union waters of 6, 7, 8d; Union waters of 8a, 8b and 8e; international waters of 12 and 14; and United Kingdom and international waters of 2a and 5b",FAO,27.2.a,GBR+INT,,ok
+*2A14,"United Kingdom and Union waters of 6, 7, 8d; Union waters of 8a, 8b and 8e; international waters of 12 and 14; and United Kingdom and international waters of 2a and 5b",FAO,27.5.b,GBR+INT,,ok
+*4AN.,Norwegian waters of 4a,FAO,27.4.a,NOR,,ok
+MED1_TR4,(no description - inferred from code),NONE,,,MED1_TR4,Mediterranean effort regime code - not an area
+MED,Mediterranean Sea,FAO,37,,,ok
+N3LN.,NAFO 3LN,FAO,21.3.L,NAFO,,ok
+N3LN.,NAFO 3LN,FAO,21.3.N,NAFO,,ok
+2A4A5-,"Faroe zone: IIa),IVa),V,VI",FAO,27.2.a,FRO,,ok
+2A4A5-,"Faroe zone: IIa),IVa),V,VI",FAO,27.4.a,FRO,,ok
+2A4A5-,"Faroe zone: IIa),IVa),V,VI",FAO,27.5,FRO,,ok
+2A4A5-,"Faroe zone: IIa),IVa),V,VI",FAO,27.6,FRO,,ok
+*234_4,Sandeel management area 4,SANDEEL,SAN4,,,ok
+*93411P-BC,9 and 10; Union waters of CECAF 34.1.1 (By-catch),FAO,27.9,,,ok
+*93411P-BC,9 and 10; Union waters of CECAF 34.1.1 (By-catch),FAO,27.10,,,ok
+*93411P-BC,9 and 10; Union waters of CECAF 34.1.1 (By-catch),FAO,34.1.1,EU,,ok
+MED1_TR2,(no description - inferred from code),NONE,,,MED1_TR2,Mediterranean effort regime code - not an area
+4S59N-,IV south of 59° N,FAO,27.4,,south of 59° N,ok
+MED3_TBB_TR2,(no description - inferred from code),NONE,,,MED3_TBB_TR2,Mediterranean effort regime code - not an area
+4AB-N.,Norwegian waters of IV,FAO,27.4,NOR,,ok
+7/3411,"7, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7,,,ok
+7/3411,"7, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.8,,,ok
+7/3411,"7, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.9,,,ok
+7/3411,"7, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.10,,,ok
+7/3411,"7, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,34.1.1,EU,,ok
+WI516-,West Indian Ocean 51.6 & 51.8.2 between 10°30'S & 26°30'S,FAO,51.6,,between 10°30'S & 26°30'S,ok
+WI516-,West Indian Ocean 51.6 & 51.8.2 between 10°30'S & 26°30'S,FAO,51.8.2,,between 10°30'S & 26°30'S,ok
+46AN56,"IV, VIa) North 56°30' North",FAO,27.6.a,,,ok
+46AN56,"IV, VIa) North 56°30' North",FAO,27.4,,,ok
+04.,ICES sub-area IV - North Sea,FAO,27.4,,,ok
+MED3_OTB_TR1,(no description - inferred from code),NONE,,,MED3_OTB_TR1,Mediterranean effort regime code - not an area
+03AN-C,Skagerrak (Division IIIa) - EU waters,FAO,27.3.a,EU,,ok
+89-,Union and international waters of VIII and IX,FAO,27.8,EU+INT,,ok
+89-,Union and international waters of VIII and IX,FAO,27.9,EU+INT,,ok
+3DEFS.,Estonia zone: IIId),FAO,27.3.d,EST,,ok
+N0-CA.,Canada zone: NAFO 0,FAO,21.0,CAN,,ok
+MUS_2022,Mauritius,EEZ,MUS,MUS,,ok
+*4-EU-BC,Union waters of 4,FAO,27.4,EU,,ok
+12INT-,International waters of 12,FAO,27.12,INT,,ok
+*03AN.,Skagerrak,FAO,27.3.a.20,,,ok
+2C3A4,3a and 4; United Kingdom waters of 2a,FAO,27.3.a,,,ok
+2C3A4,3a and 4; United Kingdom waters of 2a,FAO,27.4,,,ok
+2C3A4,3a and 4; United Kingdom waters of 2a,FAO,27.2.a,GBR,,ok
+1214EI_AMS,"United Kingdom and international  waters of 1, 2 and 14 (shared quota)",FAO,27.1,GBR+INT,,ok
+1214EI_AMS,"United Kingdom and international  waters of 1, 2 and 14 (shared quota)",FAO,27.2,GBR+INT,,ok
+1214EI_AMS,"United Kingdom and international  waters of 1, 2 and 14 (shared quota)",FAO,27.14,GBR+INT,,ok
+08E.,ICES division VIIIe - Bay of Biscay - West Bay,FAO,27.8.e,,,ok
+06.,ICES division VIa - Northwest coast of Scotland and North Ireland,FAO,27.6.a,,,ok
+05A-IS,Icelandic waters of Va,FAO,27.5.a,ISL,,ok
+F484.,FAO 48.4 Antarctic,FAO,48.4,,,ok
+N3PS.,Subdivision 21.3Ps (Southeastern subdivision),FAO,21.3.Ps,NAFO,,ok
+*F-41E,Division 58.4.1 east of 115° E,FAO,58.4.1,,east of 115° E,ok
+*F-41E,Division 58.4.1 east of 115° E,FAO,27.1,,east of 115° E,ok
+1/2NJM,"I, II (Norwegian EEZ and fishery zone around Jan Mayen)",FAO,27.1,NOR,,ok
+1/2NJM,"I, II (Norwegian EEZ and fishery zone around Jan Mayen)",FAO,27.2,NOR,,ok
+N01CA.,"Canada zone: NAFO 0,1",FAO,21.0,CAN,,ok
+N01CA.,"Canada zone: NAFO 0,1",FAO,21.1,CAN,,ok
+1/2INT,International waters of 1 and 2,FAO,27.1,INT,,ok
+1/2INT,International waters of 1 and 2,FAO,27.2,INT,,ok
+4N59N-,IV north of 59° N,FAO,27.4,,north of 59° N,ok
+*ICAS05N_TOT,"ICCAT Convention area, south of 5°N (EU incl shared quota)",RFMO,ICCAT,,south of 5°N,ok
+7BC.,7b and 7c,FAO,27.7.b,,,ok
+7BC.,7b and 7c,FAO,27.7.c,,,ok
+PAE,Eastern Pacific Ocean,RFMO,IATTC,,,ok
+N5W696,"NAFO 5 west of 69°00' west, 6",FAO,21.5,NAFO,,ok
+N5W696,"NAFO 5 west of 69°00' west, 6",FAO,27.6,,,ok
+*4-EU,Union waters of 4,FAO,27.4,EU,,ok
+7G-K.,"7a south of 52° 30’ N; 7g, 7h, 7j and 7k (This zone is increased by the area bounded: — to the north by latitude 52° 30' N, — to the south by latitude 52° 00' N, — to the west by the coast of Ireland, — to the east by the coast of the United Kingdom.)",FAO,27.7.a,,,ok
+7G-K.,"7a south of 52° 30’ N; 7g, 7h, 7j and 7k (This zone is increased by the area bounded: — to the north by latitude 52° 30' N, — to the south by latitude 52° 00' N, — to the west by the coast of Ireland, — to the east by the coast of the United Kingdom.)",FAO,27.7.g,GBR,,ok
+7G-K.,"7a south of 52° 30’ N; 7g, 7h, 7j and 7k (This zone is increased by the area bounded: — to the north by latitude 52° 30' N, — to the south by latitude 52° 00' N, — to the west by the coast of Ireland, — to the east by the coast of the United Kingdom.)",FAO,27.7.h,GBR,,ok
+7G-K.,"7a south of 52° 30’ N; 7g, 7h, 7j and 7k (This zone is increased by the area bounded: — to the north by latitude 52° 30' N, — to the south by latitude 52° 00' N, — to the west by the coast of Ireland, — to the east by the coast of the United Kingdom.)",FAO,27.7.j,GBR,,ok
+7G-K.,"7a south of 52° 30’ N; 7g, 7h, 7j and 7k (This zone is increased by the area bounded: — to the north by latitude 52° 30' N, — to the south by latitude 52° 00' N, — to the west by the coast of Ireland, — to the east by the coast of the United Kingdom.)",FAO,27.7.k,GBR,,ok
+*02AN-,Norwegian waters of 2a,FAO,27.2.a,NOR,,ok
+4BC7D,"United Kingdom and Union waters of  4b, 4c and 7d",FAO,27.4.b,GBR+EU,,ok
+4BC7D,"United Kingdom and Union waters of  4b, 4c and 7d",FAO,27.4.c,GBR+EU,,ok
+4BC7D,"United Kingdom and Union waters of  4b, 4c and 7d",FAO,27.7.d,GBR+EU,,ok
+CPV_2011,Cape Verde,EEZ,CPV,CPV,,ok
+N1GL14,"Greenland waters of NAFO 1F and Greenland waters of 5, 12 and 14",FAO,21.1.F,GRL,,ok
+N1GL14,"Greenland waters of NAFO 1F and Greenland waters of 5, 12 and 14",FAO,27.5,GRL,,ok
+N1GL14,"Greenland waters of NAFO 1F and Greenland waters of 5, 12 and 14",FAO,27.12,GRL,,ok
+N1GL14,"Greenland waters of NAFO 1F and Greenland waters of 5, 12 and 14",FAO,27.14,GRL,,ok
+234_5,Union waters of sandeel management area 5,SANDEEL,SAN5,EU,,ok
+N3MNO,"NAFO 3M, 3N, 3O = FAO 21.3.M + 21.3.N + 21.3.O",FAO,21.3.M,NAFO,,ok
+N3MNO,"NAFO 3M, 3N, 3O = FAO 21.3.M + 21.3.N + 21.3.O",FAO,21.3.N,NAFO,,ok
+N3MNO,"NAFO 3M, 3N, 3O = FAO 21.3.M + 21.3.N + 21.3.O",FAO,21.3.O,NAFO,,ok
+F47NAM,SEAFO Sub-Division B1 (the area is defined as having: its western boundary on the longitude 0°E; its northern boundary on the latitude 20°S; its southern boundary on the latitude 28°S and the eastern boundary outer limits of the Namibian EEZ),RFMO,SEAFO,,,ok
+F47NAM,SEAFO Sub-Division B1 (the area is defined as having: its western boundary on the longitude 0°E; its northern boundary on the latitude 20°S; its southern boundary on the latitude 28°S and the eastern boundary outer limits of the Namibian EEZ),FAO,27.1,,,ok
+03A.2,3a,FAO,27.3.a,,,ok
+9SX3411,Part of subarea 9 south (see coordinates in the regulation) and Union waters of CECAF 34.1.1,FAO,34.1.1,EU,,ok
+9SX3411,Part of subarea 9 south (see coordinates in the regulation) and Union waters of CECAF 34.1.1,FAO,27.9,EU,,ok
+1/2.,United Kingdom and international  waters of 1 and 2,FAO,27.1,GBR+INT,,ok
+1/2.,United Kingdom and international  waters of 1 and 2,FAO,27.2,GBR+INT,,ok
+08-SPN,Spain zone: VIII,FAO,27.8,ESP,,ok
+CECAF3412,(no description - inferred from code),FAO,34.1.2,EU,,ok
+7XAD34,"7b, 7c, 7e-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.e,,,ok
+7XAD34,"7b, 7c, 7e-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.f,,,ok
+7XAD34,"7b, 7c, 7e-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.g,,,ok
+7XAD34,"7b, 7c, 7e-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.h,,,ok
+7XAD34,"7b, 7c, 7e-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.j,,,ok
+7XAD34,"7b, 7c, 7e-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.k,,,ok
+7XAD34,"7b, 7c, 7e-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.b,,,ok
+7XAD34,"7b, 7c, 7e-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.c,,,ok
+7XAD34,"7b, 7c, 7e-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.8,,,ok
+7XAD34,"7b, 7c, 7e-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.9,,,ok
+7XAD34,"7b, 7c, 7e-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.10,,,ok
+7XAD34,"7b, 7c, 7e-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,34.1.1,EU,,ok
+8C3411,"8c, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.8.c,,,ok
+8C3411,"8c, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.9,,,ok
+8C3411,"8c, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.10,,,ok
+8C3411,"8c, 9 and 10; Union waters of CECAF 34.1.1",FAO,34.1.1,EU,,ok
+KEN_DIR,Direct authorisations with Kenya,EEZ,KEN,KEN,,ok
+GRL1,Greenlandic waters: within NAFO subarea 1F West of 44° 00' W and South of 60° 45' N; within NAFO subarea 1 south of 60° 45' N (Cape Desolation); within ICES division 14b East of 44° 00' W and South of 62° 30' N.,FAO,21.1.F,GRL,West of 44° 00' W | South of 60° 45' N,ok
+GRL1,Greenlandic waters: within NAFO subarea 1F West of 44° 00' W and South of 60° 45' N; within NAFO subarea 1 south of 60° 45' N (Cape Desolation); within ICES division 14b East of 44° 00' W and South of 62° 30' N.,FAO,21.1,NAFO,south of 60° 45' N,ok
+GRL1,Greenlandic waters: within NAFO subarea 1F West of 44° 00' W and South of 60° 45' N; within NAFO subarea 1 south of 60° 45' N (Cape Desolation); within ICES division 14b East of 44° 00' W and South of 62° 30' N.,FAO,27.14.b,,East of 44° 00' W | South of 62° 30' N,ok
+46AN7-,"IVa), VIa) (North 56°30' North), VIIe),f),h)",FAO,27.7.e,,,ok
+46AN7-,"IVa), VIa) (North 56°30' North), VIIe),f),h)",FAO,27.7.f,,,ok
+46AN7-,"IVa), VIa) (North 56°30' North), VIIe),f),h)",FAO,27.7.h,,,ok
+46AN7-,"IVa), VIa) (North 56°30' North), VIIe),f),h)",FAO,27.4.a,,,ok
+46AN7-,"IVa), VIa) (North 56°30' North), VIIe),f),h)",FAO,27.6.a,,,ok
+*8303F,"Atlantic Ocean, east of 45° W, and Mediterranean",FAO,37,,east of 45° W,ok
+*8303F,"Atlantic Ocean, east of 45° W, and Mediterranean",FAO,ATL,,east of 45° W,check
+46714.,"IV, VI, VII, XIV",FAO,27.4,,,ok
+46714.,"IV, VI, VII, XIV",FAO,27.6,,,ok
+46714.,"IV, VI, VII, XIV",FAO,27.7,,,ok
+46714.,"IV, VI, VII, XIV",FAO,27.14,,,ok
+XHO,NEAFC Stock - Horse mackerel,RFMO,NEAFC,,,ok
+06A/FS,"Vb), VIa)",FAO,27.5.b,,,ok
+06A/FS,"Vb), VIa)",FAO,27.6.a,,,ok
+N56.,"NAFO 5,6.",FAO,21.5,NAFO,,ok
+N56.,"NAFO 5,6.",FAO,21.6,NAFO,,ok
+5A1214,"Va) (1), XII (1), XIV (1)",FAO,27.5.a,,,ok
+5A1214,"Va) (1), XII (1), XIV (1)",FAO,27.1,,,ok
+5A1214,"Va) (1), XII (1), XIV (1)",FAO,27.12,,,ok
+5A1214,"Va) (1), XII (1), XIV (1)",FAO,27.14,,,ok
+3D-R30,"Union waters of Subdivisions 25-27, 28.2, 29 and 32",FAO,27.3.d.25,EU,,ok
+3D-R30,"Union waters of Subdivisions 25-27, 28.2, 29 and 32",FAO,27.3.d.26,EU,,ok
+3D-R30,"Union waters of Subdivisions 25-27, 28.2, 29 and 32",FAO,27.3.d.27,EU,,ok
+3D-R30,"Union waters of Subdivisions 25-27, 28.2, 29 and 32",FAO,27.3.d.28.2,EU,,ok
+3D-R30,"Union waters of Subdivisions 25-27, 28.2, 29 and 32",FAO,27.3.d.29,EU,,ok
+3D-R30,"Union waters of Subdivisions 25-27, 28.2, 29 and 32",FAO,27.3.d.32,EU,,ok
+N01.,"NAFO 0,1.",FAO,21.0,NAFO,,ok
+N01.,"NAFO 0,1.",FAO,21.1,NAFO,,ok
+*2AC4-C2,4; United Kingdom waters of 2a,FAO,27.4,,,ok
+*2AC4-C2,4; United Kingdom waters of 2a,FAO,27.2.a,GBR,,ok
+03D-RG,Zone IIId gulf of Riga,FAO,27.3.d.28.1,,,ok
+03D-RG,Zone IIId gulf of Riga,FAO,27.3.d,,,ok
+*07H,United Kingdom and Union waters of 7h,FAO,27.7.h,GBR+EU,,ok
+N01SCA,"Canada zone: NAFO 0,1 South 68° North",FAO,21.0,CAN,,ok
+N01SCA,"Canada zone: NAFO 0,1 South 68° North",FAO,21.1,CAN,,ok
+N3LNOX,NAFO 3LNO (Not including the box bounded by the following coordinates:  47°20'N 46°40'W; 47°20'N 46°30'W; 46°00'N 46°30'W; 46°00'N 46°40'W and depth more than 200m),FAO,21.3.L,NAFO,,ok
+N3LNOX,NAFO 3LNO (Not including the box bounded by the following coordinates:  47°20'N 46°40'W; 47°20'N 46°30'W; 46°00'N 46°30'W; 46°00'N 46°40'W and depth more than 200m),FAO,21.3.N,NAFO,,ok
+N3LNOX,NAFO 3LNO (Not including the box bounded by the following coordinates:  47°20'N 46°40'W; 47°20'N 46°30'W; 46°00'N 46°30'W; 46°00'N 46°40'W and depth more than 200m),FAO,21.3.O,NAFO,,ok
+GF24-27,GSA 24-25-26-27,GSA,GSA24,,,ok
+GF24-27,GSA 24-25-26-27,GSA,GSA25,,,ok
+GF24-27,GSA 24-25-26-27,GSA,GSA26,,,ok
+GF24-27,GSA 24-25-26-27,GSA,GSA27,,,ok
+8C9SPN,"Spain zone: VIIIc), IX",FAO,27.8.c,ESP,,ok
+8C9SPN,"Spain zone: VIIIc), IX",FAO,27.9,ESP,,ok
+3D27.,Union waters of Subdivision 27,FAO,27.3.d.27,EU,,ok
+*09AW3,See coordinates in the regulation,NONE,,,,no geography
+*2A3X4,"4, the part of 3a not covered by the Skagerrak and Kattegat, and United Kingdom waters of 2a",FAO,27.3.a,GBR,,ok
+*2A3X4,"4, the part of 3a not covered by the Skagerrak and Kattegat, and United Kingdom waters of 2a",FAO,27.2.a,GBR,,ok
+*2A3X4,"4, the part of 3a not covered by the Skagerrak and Kattegat, and United Kingdom waters of 2a",FAO,27.4,GBR,,ok
+*7D-EU,7d,FAO,27.7.d,,,ok
+08C.,8c,FAO,27.8.c,,,ok
+ICAE45W_AMS,"ICCAT Convention area, east of 45°W (shared quota)",RFMO,ICCAT,,east of 45°W,ok
+AN05N,"Atlantic Ocean, North of 5° N",FAO,ATL,,North of 5° N,check
+*F47NA,Division B1 (SEAFO),RFMO,SEAFO,,,ok
+*F47NA,Division B1 (SEAFO),FAO,27.1,,,ok
+CIV_2018,Ivory Coast,EEZ,CIV,CIV,,ok
+4W1E59,IVa) between 59°N & 62°N and 4°W & 1°E,FAO,27.4.a,,between 59°N & 62°N and 4°W & 1°E,ok
+N01S-C,"NAFO 0,1-SOUTH 68° NORTH (1)",FAO,21.0,NAFO,,ok
+N01S-C,"NAFO 0,1-SOUTH 68° NORTH (1)",FAO,21.1,NAFO,,ok
+N01S-C,"NAFO 0,1-SOUTH 68° NORTH (1)",FAO,27.1,,,ok
+F48.,FAO 48,FAO,48,,,ok
+03-,Union and international waters of 3,FAO,27.3,EU+INT,,ok
+03D-32,Baltic zone IIId (32),FAO,27.3.d.32,,,ok
+3D24.,Subdivision 24,FAO,27.3.d.24,,,ok
+N4V.,Division 21.4V,FAO,21.4.V,NAFO,,ok
+N01N.,"NAFO 0,1-NORTH 68° NORTH.",FAO,21.0,NAFO,,ok
+N01N.,"NAFO 0,1-NORTH 68° NORTH.",FAO,21.1,NAFO,,ok
+*RG541,created to stock quota qty exchanged in 2008 to cover negative quotas from 2007 overfishings (reg 541/2008),NONE,,,,no geography
+MUS_2014,Mauritius,EEZ,MUS,MUS,,ok
+*2A6.,"6, international waters of 2a",FAO,27.2.a,INT,,ok
+*2A6.,"6, international waters of 2a",FAO,27.6,INT,,ok
+N34.,NAFO subareas 3 and 4,FAO,21.3,NAFO,,ok
+N34.,NAFO subareas 3 and 4,FAO,21.4,NAFO,,ok
+5/14-C,V; XIV (1),FAO,27.5,,,ok
+5/14-C,V; XIV (1),FAO,27.14,,,ok
+5/14-C,V; XIV (1),FAO,27.1,,,ok
+GMB_2019,Gambia,EEZ,GMB,GMB,,ok
+*D-USA,Fishing days within chartering arrangement with USA,CHARTER,USA,,,charter
+*09AW2,See coordinates in the regulation,NONE,,,,no geography
+*FRO,Faroese waters,EEZ,FRO,FRO,,ok
+XIS,NEAFC Stock - Pelagic S.mentella in the Irminger Sea,RFMO,NEAFC,,,ok
+F5852.,FAO 58.5.2 Antarctic,FAO,58.5.2,,,ok
+SE471-,ICSEAF 4711;4712 & 475 north of 12°20' south; CECAF 3436,FAO,34.3.6,,,ok
+N3L,NAFO 3L = FAO 21.3.L,FAO,21.3.L,NAFO,,ok
+04-,"IV 1), 2)",FAO,27.4,,,ok
+04-,"IV 1), 2)",FAO,27.1,,,ok
+04-,"IV 1), 2)",FAO,27.2,,,ok
+N23KL.,"NAFO 2,3KL",FAO,21.2,NAFO,,ok
+N23KL.,"NAFO 2,3KL",FAO,21.3.K,NAFO,,ok
+N23KL.,"NAFO 2,3KL",FAO,21.3.L,NAFO,,ok
+*8ABD.,"8a, 8b and 8d",FAO,27.8.a,,,ok
+*8ABD.,"8a, 8b and 8d",FAO,27.8.b,,,ok
+*8ABD.,"8a, 8b and 8d",FAO,27.8.d,,,ok
+N4VW.,NAFO 4VW,FAO,21.4.V,NAFO,,ok
+N4VW.,NAFO 4VW,FAO,21.4.W,NAFO,,ok
+7BCXDC,"VIIb),c) (Donegal bay excepted) (1)",FAO,27.7.b,,,ok
+7BCXDC,"VIIb),c) (Donegal bay excepted) (1)",FAO,27.7.c,,,ok
+7BCXDC,"VIIb),c) (Donegal bay excepted) (1)",FAO,27.1,,,ok
+7X7A.,"VIIb),c),d),e),f),g),h),j),k)",FAO,27.7.b,,,ok
+7X7A.,"VIIb),c),d),e),f),g),h),j),k)",FAO,27.7.c,,,ok
+7X7A.,"VIIb),c),d),e),f),g),h),j),k)",FAO,27.7.d,,,ok
+7X7A.,"VIIb),c),d),e),f),g),h),j),k)",FAO,27.7.e,,,ok
+7X7A.,"VIIb),c),d),e),f),g),h),j),k)",FAO,27.7.f,,,ok
+7X7A.,"VIIb),c),d),e),f),g),h),j),k)",FAO,27.7.g,,,ok
+7X7A.,"VIIb),c),d),e),f),g),h),j),k)",FAO,27.7.h,,,ok
+3/4.,"Community waters and international waters of III, IV",FAO,27.3,EU+INT,,ok
+3/4.,"Community waters and international waters of III, IV",FAO,27.4,EU+INT,,ok
+03A-,Union waters of 3a,FAO,27.3.a,EU,,ok
+46A.,"IV, VIa)",FAO,27.6.a,,,ok
+46A.,"IV, VIa)",FAO,27.4,,,ok
+2AC47D,United Kingdom and Union waters of 4 and 7d; United Kingdom waters of 2a,FAO,27.7.d,GBR+EU,,ok
+2AC47D,United Kingdom and Union waters of 4 and 7d; United Kingdom waters of 2a,FAO,27.4,GBR+EU,,ok
+2AC47D,United Kingdom and Union waters of 4 and 7d; United Kingdom waters of 2a,FAO,27.2.a,GBR,,ok
+MOZ_2012,Mozambique,EEZ,MOZ,MOZ,,ok
+10S-,"X south36°30'N,CECAF south31°00'N & north31°00'N west17°30'W",FAO,27.10,,,ok
+N56,"NAFO 5, 6 = FAO 21.5 + 21.6",FAO,21.5,NAFO,,ok
+N56,"NAFO 5, 6 = FAO 21.5 + 21.6",FAO,21.6,NAFO,,ok
+910PRT,"IX, X (Waters under sovereignity or juridiction of third countries)",FAO,27.9,THIRD,,ok
+910PRT,"IX, X (Waters under sovereignity or juridiction of third countries)",FAO,27.10,THIRD,,ok
+07DE.,7d and 7e,FAO,27.7.d,,,ok
+07DE.,7d and 7e,FAO,27.7.e,,,ok
+*8C910,"8c, 9 and 10 and Union waters of CECAF 34.1.1",FAO,34.1.1,EU,,ok
+*8C910,"8c, 9 and 10 and Union waters of CECAF 34.1.1",FAO,27.8.c,EU,,ok
+*8C910,"8c, 9 and 10 and Union waters of CECAF 34.1.1",FAO,27.9,EU,,ok
+*8C910,"8c, 9 and 10 and Union waters of CECAF 34.1.1",FAO,27.10,EU,,ok
+6ANB-C,"VIa) (North 56°30'N), VIb) (1)",FAO,27.6.a,,,ok
+6ANB-C,"VIa) (North 56°30'N), VIb) (1)",FAO,27.6.b,,,ok
+6ANB-C,"VIa) (North 56°30'N), VIb) (1)",FAO,27.1,,,ok
+2AC4C.,"IIa) (1), IV (1)",FAO,27.2.a,,,ok
+2AC4C.,"IIa) (1), IV (1)",FAO,27.1,,,ok
+2AC4C.,"IIa) (1), IV (1)",FAO,27.4,,,ok
+CPV_2019,Cape Verde,EEZ,CPV,CPV,,ok
+06AN-C,VIa) North 56°30'N (1),FAO,27.6.a,,,ok
+06AN-C,VIa) North 56°30'N (1),FAO,27.1,,,ok
+MED2_TR1,(no description - inferred from code),NONE,,,MED2_TR1,Mediterranean effort regime code - not an area
+2AC4.,4; United Kingdom waters of 2a,FAO,27.4,,,ok
+2AC4.,4; United Kingdom waters of 2a,FAO,27.2.a,GBR,,ok
+8DE.,"VIIId),e)",FAO,27.8.d,,,ok
+8DE.,"VIIId),e)",FAO,27.8.e,,,ok
+6AS7BC,"6aS (Reference is to the herring stock in 6a south of 56° 00' N and west of 07° 00' W.), 7b, 7c",FAO,27.6.a,,south of 56° 00' N | west of 07° 00' W,ok
+6AS7BC,"6aS (Reference is to the herring stock in 6a south of 56° 00' N and west of 07° 00' W.), 7b, 7c",FAO,27.7.b,,south of 56° 00' N | west of 07° 00' W,ok
+6AS7BC,"6aS (Reference is to the herring stock in 6a south of 56° 00' N and west of 07° 00' W.), 7b, 7c",FAO,27.7.c,,south of 56° 00' N | west of 07° 00' W,ok
+*ICCATLL,ICCAT - long liners with an overall length of 20 metres and above,RFMO,ICCAT,,,ok
+MED-BC,Mediterranean Sea (By-catch),FAO,37,,,ok
+1-14CI,"Community Waters and waters not under the sovereignity or jurisdiction of thrid countries of I, II, III, IV, V, VI, VII, VIII, IX, X, XII, XIV",FAO,27.1,EU,,ok
+1-14CI,"Community Waters and waters not under the sovereignity or jurisdiction of thrid countries of I, II, III, IV, V, VI, VII, VIII, IX, X, XII, XIV",FAO,27.2,EU,,ok
+1-14CI,"Community Waters and waters not under the sovereignity or jurisdiction of thrid countries of I, II, III, IV, V, VI, VII, VIII, IX, X, XII, XIV",FAO,27.3,EU,,ok
+1-14CI,"Community Waters and waters not under the sovereignity or jurisdiction of thrid countries of I, II, III, IV, V, VI, VII, VIII, IX, X, XII, XIV",FAO,27.4,EU,,ok
+1-14CI,"Community Waters and waters not under the sovereignity or jurisdiction of thrid countries of I, II, III, IV, V, VI, VII, VIII, IX, X, XII, XIV",FAO,27.5,EU,,ok
+1-14CI,"Community Waters and waters not under the sovereignity or jurisdiction of thrid countries of I, II, III, IV, V, VI, VII, VIII, IX, X, XII, XIV",FAO,27.6,EU,,ok
+1-14CI,"Community Waters and waters not under the sovereignity or jurisdiction of thrid countries of I, II, III, IV, V, VI, VII, VIII, IX, X, XII, XIV",FAO,27.7,EU,,ok
+1-14CI,"Community Waters and waters not under the sovereignity or jurisdiction of thrid countries of I, II, III, IV, V, VI, VII, VIII, IX, X, XII, XIV",FAO,27.8,EU,,ok
+1-14CI,"Community Waters and waters not under the sovereignity or jurisdiction of thrid countries of I, II, III, IV, V, VI, VII, VIII, IX, X, XII, XIV",FAO,27.9,EU,,ok
+1-14CI,"Community Waters and waters not under the sovereignity or jurisdiction of thrid countries of I, II, III, IV, V, VI, VII, VIII, IX, X, XII, XIV",FAO,27.10,EU,,ok
+1-14CI,"Community Waters and waters not under the sovereignity or jurisdiction of thrid countries of I, II, III, IV, V, VI, VII, VIII, IX, X, XII, XIV",FAO,27.12,EU,,ok
+1-14CI,"Community Waters and waters not under the sovereignity or jurisdiction of thrid countries of I, II, III, IV, V, VI, VII, VIII, IX, X, XII, XIV",FAO,27.14,EU,,ok
+N3LMN.,NAFO 3LMN,FAO,21.3.L,NAFO,,ok
+N3LMN.,NAFO 3LMN,FAO,21.3.M,NAFO,,ok
+N3LMN.,NAFO 3LMN,FAO,21.3.N,NAFO,,ok
+12INT_TOT,International waters of 12 (EU incl shared quota),FAO,27.12,EU+INT,,ok
+3D26.,Union waters of Subdivision 26,FAO,27.3.d.26,EU,,ok
+*03A-BC,3a,FAO,27.3.a,,,ok
+25/32-,Baltic zone IIId (25 and 32),FAO,27.3.d.25,,,ok
+25/32-,Baltic zone IIId (25 and 32),FAO,27.3.d.32,,,ok
+5BE6A,6a; United Kingdom and international waters of 5b east of 12° 00' W,FAO,27.6.a,,,ok
+5BE6A,6a; United Kingdom and international waters of 5b east of 12° 00' W,FAO,27.5.b,GBR+INT,east of 12° 00' W,ok
+NPFC-EU,NPFC Convention Area,RFMO,NPFC,,,ok
+N62W44,Greenland waters of NAFO 1 and Greenland waters of XIV: North of 62° N West of 44° W,FAO,21.1,GRL,North of 62° N | West of 44° W,ok
+N62W44,Greenland waters of NAFO 1 and Greenland waters of XIV: North of 62° N West of 44° W,FAO,27.14,GRL,North of 62° N | West of 44° W,ok
+514GRN_TOT,Greenland waters of 5 and 14 (EU incl shared quota),FAO,27.5,EU+GRL,,ok
+514GRN_TOT,Greenland waters of 5 and 14 (EU incl shared quota),FAO,27.14,EU+GRL,,ok
+03D-C.,IIId) (1),FAO,27.3.d,,,ok
+03D-C.,IIId) (1),FAO,27.1,,,ok
+*2A4AN,Norwegian waters of 2a and 4a,FAO,27.2.a,NOR,,ok
+*2A4AN,Norwegian waters of 2a and 4a,FAO,27.4.a,NOR,,ok
+3A4.,"IIIa), IV",FAO,27.3.a,,,ok
+3A4.,"IIIa), IV",FAO,27.4,,,ok
+05.,ICES sub-area V - Iceland and Faroes Grounds,FAO,27.5,FRO,,ok
+*D-FRA,Fishing days within chartering arrangement with France,CHARTER,FRA,,,charter
+*AS05N_TOT,"Atlantic Ocean, South of 5° N (EU incl shared quota)",FAO,ATL,EU,South of 5° N,check
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,FAO,37,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA1,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA2,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA3,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA4,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA5,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA6,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA7,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA8,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA9,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA10,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA11,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA12,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA13,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA14,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA15,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA16,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA17,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA18,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA19,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA20,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA21,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA22,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA23,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA24,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA25,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA26,EU,,ok
+GF1-27,Union waters in the Mediterranean Sea - GSA 1-27,GSA,GSA27,EU,,ok
+4AB.,"United Kingdom, Union and Norwegian waters of  4 north of 53° 30' N",FAO,27.4,GBR+EU+NOR,north of 53° 30' N,ok
+03D-LA,Latvia zone: IIId),FAO,27.3.d,LVA,,ok
+2A4-C.,"IIa), IV (1)",FAO,27.2.a,,,ok
+2A4-C.,"IIa), IV (1)",FAO,27.4,,,ok
+2A4-C.,"IIa), IV (1)",FAO,27.1,,,ok
+GL251214,"Greenland waters of 2, 5, 12 and 14",FAO,27.2,GRL,,ok
+GL251214,"Greenland waters of 2, 5, 12 and 14",FAO,27.5,GRL,,ok
+GL251214,"Greenland waters of 2, 5, 12 and 14",FAO,27.12,GRL,,ok
+GL251214,"Greenland waters of 2, 5, 12 and 14",FAO,27.14,GRL,,ok
+XNS,"NEAFC Stock - Pelagic redfish Sub Areas I, II",RFMO,NEAFC,,,ok
+XNS,"NEAFC Stock - Pelagic redfish Sub Areas I, II",FAO,27.1,,,ok
+XNS,"NEAFC Stock - Pelagic redfish Sub Areas I, II",FAO,27.2,,,ok
+47D.,"IV, VIId)",FAO,27.7.d,,,ok
+47D.,"IV, VIId)",FAO,27.4,,,ok
+*N1F3K,"NAFO 1F, 3K",FAO,21.1.F,NAFO,,ok
+*N1F3K,"NAFO 1F, 3K",FAO,21.3.K,NAFO,,ok
+GRL_2021,Greenland Agreement from 2021,EEZ,GRL,GRL,,ok
+FLK_DIR,Direct authorisations with Falkland Islands,EEZ,FLK,FLK,,ok
+SLE_DIR,Direct authorisations with Sierra Leone,EEZ,SLE,SLE,,ok
+56712-,6 and 7; United Kingdom and international waters of 5; international waters of 12,FAO,27.6,,,ok
+56712-,6 and 7; United Kingdom and international waters of 5; international waters of 12,FAO,27.7,,,ok
+56712-,6 and 7; United Kingdom and international waters of 5; international waters of 12,FAO,27.5,GBR+INT,,ok
+56712-,6 and 7; United Kingdom and international waters of 5; international waters of 12,FAO,27.12,INT,,ok
+N2GH.,NAFO 2GH.,FAO,21.2.G,NAFO,,ok
+N2GH.,NAFO 2GH.,FAO,21.2.H,NAFO,,ok
+7DE.2,7d and 7e (second season starting this year),FAO,27.7.d,,,ok
+7DE.2,7d and 7e (second season starting this year),FAO,27.7.e,,,ok
+*08C-BC,8c (By-catch),FAO,27.8.c,,,ok
+3A/4AB,"IIIa, IVab(1)",FAO,27.3.a,,,ok
+3A/4AB,"IIIa, IVab(1)",FAO,27.1,,,ok
+F47D,SEAFO Sub-Area D,RFMO,SEAFO,,,ok
+N3O,NAFO 3O = FAO 21.3.O,FAO,21.3.O,NAFO,,ok
+07-C.,VII,FAO,27.7,,,ok
+CECAF3420,(no description - inferred from code),FAO,34.2.0,EU,,ok
+03D-LI,Lithuania zone: IIId),FAO,27.3.d,LTU,,ok
+3X12-,"III, IV, V, VI, VII, VIII, IX, X, XII   (1)  (2)",FAO,27.3,,,ok
+3X12-,"III, IV, V, VI, VII, VIII, IX, X, XII   (1)  (2)",FAO,27.4,,,ok
+3X12-,"III, IV, V, VI, VII, VIII, IX, X, XII   (1)  (2)",FAO,27.5,,,ok
+3X12-,"III, IV, V, VI, VII, VIII, IX, X, XII   (1)  (2)",FAO,27.6,,,ok
+3X12-,"III, IV, V, VI, VII, VIII, IX, X, XII   (1)  (2)",FAO,27.7,,,ok
+3X12-,"III, IV, V, VI, VII, VIII, IX, X, XII   (1)  (2)",FAO,27.8,,,ok
+3X12-,"III, IV, V, VI, VII, VIII, IX, X, XII   (1)  (2)",FAO,27.9,,,ok
+3X12-,"III, IV, V, VI, VII, VIII, IX, X, XII   (1)  (2)",FAO,27.10,,,ok
+3X12-,"III, IV, V, VI, VII, VIII, IX, X, XII   (1)  (2)",FAO,27.12,,,ok
+3X12-,"III, IV, V, VI, VII, VIII, IX, X, XII   (1)  (2)",FAO,27.1,,,ok
+3X12-,"III, IV, V, VI, VII, VIII, IX, X, XII   (1)  (2)",FAO,27.2,,,ok
+341SPN,Union waters of CECAF (Waters adjacent to the Canary Islands),FAO,34.1.2,EU,,check
+*2A3X4X,"United Kingdom and Union waters of 4, the part of 3a not covered by the Skagerrak and Kattegat, and United Kingdom waters of 2a",FAO,27.3.a,GBR+EU,,ok
+*2A3X4X,"United Kingdom and Union waters of 4, the part of 3a not covered by the Skagerrak and Kattegat, and United Kingdom waters of 2a",FAO,27.2.a,GBR+EU,,ok
+*2A3X4X,"United Kingdom and Union waters of 4, the part of 3a not covered by the Skagerrak and Kattegat, and United Kingdom waters of 2a",FAO,27.4,GBR+EU,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.2.a,GBR,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.4.a,GBR,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.a,,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.b,,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.c,,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.e,,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.f,,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.g,,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.h,,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.j,,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.k,,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.8.a,,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.8.b,,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.8.d,,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.8.e,,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.6,,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.5.b,GBR+INT,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.12,INT,,ok
+*2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.14,INT,,ok
+MED2_TR4_AA,(no description - inferred from code),NONE,,,MED2_TR4_AA,Mediterranean effort regime code - not an area
+2A3A4-,"IIa) (1), IIIa); IV (1)",FAO,27.2.a,,,ok
+2A3A4-,"IIa) (1), IIIa); IV (1)",FAO,27.3.a,,,ok
+2A3A4-,"IIa) (1), IIIa); IV (1)",FAO,27.1,,,ok
+2A3A4-,"IIa) (1), IIIa); IV (1)",FAO,27.4,,,ok
+03D-R.,Russian Federation waters,EEZ,RUS,RUS,,ok
+06A.,Northwest Coast of Scotland and North Ireland or as the West of Scotland (Division VIa),FAO,27.6.a,,,ok
+*4N-S62,Norwegian waters south of 62° N,EEZ,NOR,NOR,south of 62° N,ok
+4A-CFS,IVa) (1),FAO,27.4.a,,,ok
+4A-CFS,IVa) (1),FAO,27.1,,,ok
+4N-S62,Norwegian waters south of 62° N,EEZ,NOR,NOR,south of 62° N,ok
+2CX12-,"II(2), Vb)(1), VI, VII; VIIII(1), XII",FAO,27.5.b,,,ok
+2CX12-,"II(2), Vb)(1), VI, VII; VIIII(1), XII",FAO,27.2,,,ok
+2CX12-,"II(2), Vb)(1), VI, VII; VIIII(1), XII",FAO,27.1,,,ok
+2CX12-,"II(2), Vb)(1), VI, VII; VIIII(1), XII",FAO,27.6,,,ok
+2CX12-,"II(2), Vb)(1), VI, VII; VIIII(1), XII",FAO,27.7,,,ok
+2CX12-,"II(2), Vb)(1), VI, VII; VIIII(1), XII",FAO,27.8,,,ok
+2CX12-,"II(2), Vb)(1), VI, VII; VIIII(1), XII",FAO,27.12,,,ok
+GF19-21,GSA 19-20-21,GSA,GSA19,,,ok
+GF19-21,GSA 19-20-21,GSA,GSA20,,,ok
+GF19-21,GSA 19-20-21,GSA,GSA21,,,ok
+ATLANT-DEAD,Atlantic Ocean (dead and not commercialised landings),FAO,ATL,,,check
+57/8FS,"Vb)(1),VI,VII,XII,XIV / VIIIa),b),d),e) Spain & France only",FAO,27.8.a,,,ok
+57/8FS,"Vb)(1),VI,VII,XII,XIV / VIIIa),b),d),e) Spain & France only",FAO,27.8.b,,,ok
+57/8FS,"Vb)(1),VI,VII,XII,XIV / VIIIa),b),d),e) Spain & France only",FAO,27.8.d,,,ok
+57/8FS,"Vb)(1),VI,VII,XII,XIV / VIIIa),b),d),e) Spain & France only",FAO,27.8.e,,,ok
+57/8FS,"Vb)(1),VI,VII,XII,XIV / VIIIa),b),d),e) Spain & France only",FAO,27.5.b,,,ok
+57/8FS,"Vb)(1),VI,VII,XII,XIV / VIIIa),b),d),e) Spain & France only",FAO,27.1,,,ok
+57/8FS,"Vb)(1),VI,VII,XII,XIV / VIIIa),b),d),e) Spain & France only",FAO,27.6,,,ok
+57/8FS,"Vb)(1),VI,VII,XII,XIV / VIIIa),b),d),e) Spain & France only",FAO,27.7,,,ok
+57/8FS,"Vb)(1),VI,VII,XII,XIV / VIIIa),b),d),e) Spain & France only",FAO,27.12,,,ok
+57/8FS,"Vb)(1),VI,VII,XII,XIV / VIIIa),b),d),e) Spain & France only",FAO,27.14,,,ok
+ICAN05NXM_AMS,"ICCAT Convention area, north of 5°N, excluding Mediterranean (shared quota)",RFMO,ICCAT,,north of 5°N,ok
+*24X7C,"Union waters of 4, 6 and 7",FAO,27.4,EU,,ok
+*24X7C,"Union waters of 4, 6 and 7",FAO,27.6,EU,,ok
+*24X7C,"Union waters of 4, 6 and 7",FAO,27.7,EU,,ok
+MED1_TR3,(no description - inferred from code),NONE,,,MED1_TR3,Mediterranean effort regime code - not an area
+N3O.,NAFO 3O,FAO,21.3.O,NAFO,,ok
+N3NO.,NAFO 3NO,FAO,21.3.N,NAFO,,ok
+N3NO.,NAFO 3NO,FAO,21.3.O,NAFO,,ok
+02-N.,"Norway zone ( North of 62° N ): IIa), b)",FAO,27.2.a,NOR,North of 62° N,ok
+02-N.,"Norway zone ( North of 62° N ): IIa), b)",FAO,27.2.b,NOR,North of 62° N,ok
+GRL3,"Greenland waters of NAFO 1F and ICES XIV: the part that is to the south of 59° 00′ N and to the east of 42° 00′ W, and the part of the Greenlandic fisheries territory that is between 59° 00′ N and 62° 30′ N to the east of 44° 00′ W.",FAO,21.1.F,GRL,south of 59° 00′ N | east of 42° 00′ W | east of 44° 00′ W | between 59° 00′ N and 62° 30′ N to the east of 44° 00′ W.,ok
+GRL3,"Greenland waters of NAFO 1F and ICES XIV: the part that is to the south of 59° 00′ N and to the east of 42° 00′ W, and the part of the Greenlandic fisheries territory that is between 59° 00′ N and 62° 30′ N to the east of 44° 00′ W.",FAO,27.14,GRL,south of 59° 00′ N | east of 42° 00′ W | east of 44° 00′ W | between 59° 00′ N and 62° 30′ N to the east of 44° 00′ W.,ok
+*4N-2A,"IV Norvegian waters, II a (2)",FAO,27.2.a,,,ok
+*4N-2A,"IV Norvegian waters, II a (2)",FAO,27.4,,,ok
+*4N-2A,"IV Norvegian waters, II a (2)",FAO,27.2,,,ok
+46AN-,"IV, VIa) North 56°30' North, VIIe),f),h)",FAO,27.7.e,,,ok
+46AN-,"IV, VIa) North 56°30' North, VIIe),f),h)",FAO,27.7.f,,,ok
+46AN-,"IV, VIa) North 56°30' North, VIIe),f),h)",FAO,27.7.h,,,ok
+46AN-,"IV, VIa) North 56°30' North, VIIe),f),h)",FAO,27.6.a,,,ok
+46AN-,"IV, VIa) North 56°30' North, VIIe),f),h)",FAO,27.4,,,ok
+MED2_TR2,(no description - inferred from code),NONE,,,MED2_TR2,Mediterranean effort regime code - not an area
+7X1034,"VII, VIII, IX, X; COPACE 34.1.1(1)",FAO,27.7,,,ok
+7X1034,"VII, VIII, IX, X; COPACE 34.1.1(1)",FAO,27.8,,,ok
+7X1034,"VII, VIII, IX, X; COPACE 34.1.1(1)",FAO,27.9,,,ok
+7X1034,"VII, VIII, IX, X; COPACE 34.1.1(1)",FAO,27.10,,,ok
+7X1034,"VII, VIII, IX, X; COPACE 34.1.1(1)",FAO,34.1.1,,,ok
+7X1034,"VII, VIII, IX, X; COPACE 34.1.1(1)",FAO,27.1,,,ok
+2AC4AB,"IIa) (1), IVa),b)",FAO,27.4.a,,,ok
+2AC4AB,"IIa) (1), IVa),b)",FAO,27.4.b,,,ok
+2AC4AB,"IIa) (1), IVa),b)",FAO,27.2.a,,,ok
+2AC4AB,"IIa) (1), IVa),b)",FAO,27.1,,,ok
+*2A6-C,Union waters of 2a and 6,FAO,27.2.a,EU,,ok
+*2A6-C,Union waters of 2a and 6,FAO,27.6,EU,,ok
+MED2_LL3,(no description - inferred from code),NONE,,,MED2_LL3,Mediterranean effort regime code - not an area
+6AN67-,"VIa) (Nth 56°30'N), VIb), VIIc), VIIk) (West 12°W)",FAO,27.6.a,,,ok
+6AN67-,"VIa) (Nth 56°30'N), VIb), VIIc), VIIk) (West 12°W)",FAO,27.6.b,,,ok
+6AN67-,"VIa) (Nth 56°30'N), VIb), VIIc), VIIk) (West 12°W)",FAO,27.7.c,,,ok
+6AN67-,"VIa) (Nth 56°30'N), VIb), VIIc), VIIk) (West 12°W)",FAO,27.7.k,,,ok
+*5X14.,EC and international waters of V; international waters of XII and XIV,FAO,27.5,INT,,ok
+*5X14.,EC and international waters of V; international waters of XII and XIV,FAO,27.12,INT,,ok
+*5X14.,EC and international waters of V; international waters of XII and XIV,FAO,27.14,INT,,ok
+COK_2025,Cook Islands 2025,EEZ,COK,COK,,ok
+*NZJM1,Norwegian Economic Zone and the fishery zone around Jan Mayen,EEZ,NOR,NOR,incl. Jan Mayen zone,ok
+234_4,United Kingdom and Union waters of sandeel management area 4,SANDEEL,SAN4,GBR+EU,,ok
+*643,"Atlantic Ocean, east of 45° W, and Mediterranean",FAO,37,,east of 45° W,ok
+*643,"Atlantic Ocean, east of 45° W, and Mediterranean",FAO,ATL,,east of 45° W,check
+4EI.,EC and International Waters of IV.,FAO,27.4,INT,,ok
+06-C.,VI (1),FAO,27.6,,,ok
+06-C.,VI (1),FAO,27.1,,,ok
+*4A.,Norwegian waters of IVa (= IVa limited by parent stock to Norwegian waters),FAO,27.4.a,NOR,,ok
+MED2_TR3_AA,(no description - inferred from code),NONE,,,MED2_TR3_AA,Mediterranean effort regime code - not an area
+N01S.,"NAFO 0,1-SOUTH 68° NORTH.",FAO,21.0,NAFO,,ok
+N01S.,"NAFO 0,1-SOUTH 68° NORTH.",FAO,21.1,NAFO,,ok
+51214.,ICES XIV/XII/V(2),FAO,27.2,,,ok
+*ICAN05N,"ICCAT Convention area, north of 5°N",RFMO,ICCAT,,north of 5°N,ok
+F7120S,WCPFC Convention Area south of 20° S,RFMO,WCPFC,,south of 20° S,ok
+IATTC,IATTC Convention Area,RFMO,IATTC,,,ok
+24A7HC,"IIa), IVa), VIa) North 56°30'N, VIId),e),f),h) (1)",FAO,27.7.d,,,ok
+24A7HC,"IIa), IVa), VIa) North 56°30'N, VIId),e),f),h) (1)",FAO,27.7.e,,,ok
+24A7HC,"IIa), IVa), VIa) North 56°30'N, VIId),e),f),h) (1)",FAO,27.7.f,,,ok
+24A7HC,"IIa), IVa), VIa) North 56°30'N, VIId),e),f),h) (1)",FAO,27.7.h,,,ok
+24A7HC,"IIa), IVa), VIa) North 56°30'N, VIId),e),f),h) (1)",FAO,27.2.a,,,ok
+24A7HC,"IIa), IVa), VIa) North 56°30'N, VIId),e),f),h) (1)",FAO,27.4.a,,,ok
+24A7HC,"IIa), IVa), VIa) North 56°30'N, VIId),e),f),h) (1)",FAO,27.6.a,,,ok
+24A7HC,"IIa), IVa), VIa) North 56°30'N, VIId),e),f),h) (1)",FAO,27.1,,,ok
+234_2R,United Kingdom and Union waters of sandeel management area 2r,SANDEEL,SAN2,GBR+EU,,ok
+07.,7,FAO,27.7,,,ok
+8/14FS,"VIIIa),b),d),e) / Vb)(1),VI,VII,XII,XIV Spain & France only",FAO,27.8.a,,,ok
+8/14FS,"VIIIa),b),d),e) / Vb)(1),VI,VII,XII,XIV Spain & France only",FAO,27.8.b,,,ok
+8/14FS,"VIIIa),b),d),e) / Vb)(1),VI,VII,XII,XIV Spain & France only",FAO,27.8.d,,,ok
+8/14FS,"VIIIa),b),d),e) / Vb)(1),VI,VII,XII,XIV Spain & France only",FAO,27.8.e,,,ok
+8/14FS,"VIIIa),b),d),e) / Vb)(1),VI,VII,XII,XIV Spain & France only",FAO,27.5.b,,,ok
+8/14FS,"VIIIa),b),d),e) / Vb)(1),VI,VII,XII,XIV Spain & France only",FAO,27.1,,,ok
+8/14FS,"VIIIa),b),d),e) / Vb)(1),VI,VII,XII,XIV Spain & France only",FAO,27.6,,,ok
+8/14FS,"VIIIa),b),d),e) / Vb)(1),VI,VII,XII,XIV Spain & France only",FAO,27.7,,,ok
+8/14FS,"VIIIa),b),d),e) / Vb)(1),VI,VII,XII,XIV Spain & France only",FAO,27.12,,,ok
+8/14FS,"VIIIa),b),d),e) / Vb)(1),VI,VII,XII,XIV Spain & France only",FAO,27.14,,,ok
+2A7H-C,"IIa), VIa) North 56°30'N, VIId),e),f),h) (1)",FAO,27.7.d,,,ok
+2A7H-C,"IIa), VIa) North 56°30'N, VIId),e),f),h) (1)",FAO,27.7.e,,,ok
+2A7H-C,"IIa), VIa) North 56°30'N, VIId),e),f),h) (1)",FAO,27.7.f,,,ok
+2A7H-C,"IIa), VIa) North 56°30'N, VIId),e),f),h) (1)",FAO,27.7.h,,,ok
+2A7H-C,"IIa), VIa) North 56°30'N, VIId),e),f),h) (1)",FAO,27.2.a,,,ok
+2A7H-C,"IIa), VIa) North 56°30'N, VIId),e),f),h) (1)",FAO,27.6.a,,,ok
+2A7H-C,"IIa), VIa) North 56°30'N, VIId),e),f),h) (1)",FAO,27.1,,,ok
+09-SPN,Spain zone: IX,FAO,27.9,ESP,,ok
+*5-14P,International waters of the Redfish Conservation Area (NEAFC box: 64°45'N 28°30'W; 62°50'N 25°45'W; 61°55'N 26°45'W; 61°00N 26°30'W; 59°00'N 30°00'W; 59°00'N 34°00'W; 61°30'N 34°00'W; 62°50'N 36°00'W; 64°45'N 28°30'W),RFMO,NEAFC,,,ok
+8X8C.,VIII except VIIIc),FAO,27.8.c,,,ok
+8X8C.,VIII except VIIIc),FAO,27.8,,,ok
+CECAF3411,(no description - inferred from code),FAO,34.1.1,EU,,ok
+*234_3,Sandeel management area 3,SANDEEL,SAN3,,,ok
+3A4-C,United Kingdom and Union waters of 4; Union waters of 3a,FAO,27.4,GBR+EU,,ok
+3A4-C,United Kingdom and Union waters of 4; Union waters of 3a,FAO,27.3.a,EU,,ok
+XMA,NEAFC Stock - Mackerel,RFMO,NEAFC,,,ok
+9NX10,Part of subarea 9 north (see coordinates in the regulation) and 10,FAO,27.9,,,ok
+9NX10,Part of subarea 9 north (see coordinates in the regulation) and 10,FAO,27.10,,,ok
+N3LNO-OTH,NAFO 3LNO (Others quota),FAO,21.3.L,NAFO,,ok
+N3LNO-OTH,NAFO 3LNO (Others quota),FAO,21.3.N,NAFO,,ok
+N3LNO-OTH,NAFO 3LNO (Others quota),FAO,21.3.O,NAFO,,ok
+ICCAT-DEAD,ICCAT Convention area (dead and not commercialised landings),RFMO,ICCAT,,,ok
+234_7,"Union waters of sandeel management area 7 (Excluding waters within six nautical miles of the United Kingdom's baselines at Shetland, Fair Isle and Foula)",SANDEEL,SAN7,GBR+EU,,ok
+N3LMN,"NAFO 3L, 3M, 3N = FAO 21.3.L + 21.3.M + 21.3.N",FAO,21.3.L,NAFO,,ok
+N3LMN,"NAFO 3L, 3M, 3N = FAO 21.3.L + 21.3.M + 21.3.N",FAO,21.3.M,NAFO,,ok
+N3LMN,"NAFO 3L, 3M, 3N = FAO 21.3.L + 21.3.M + 21.3.N",FAO,21.3.N,NAFO,,ok
+F482.,South Orkney (Subarea 48.2),FAO,48.2,,,ok
+*N5630,North of 56°30' N,NONE,,,North of 56°30' N,constraint only - inherits parent area
+*C-CAN,Chartering arrangement with Canada in NAFO 3LNO,CHARTER,CAN,,,charter
+*C-CAN,Chartering arrangement with Canada in NAFO 3LNO,FAO,21.3.L,NAFO,,ok
+*C-CAN,Chartering arrangement with Canada in NAFO 3LNO,FAO,21.3.N,NAFO,,ok
+*C-CAN,Chartering arrangement with Canada in NAFO 3LNO,FAO,21.3.O,NAFO,,ok
+F881S.,FAO 88.1 South Antarctic,FAO,88.1,,,ok
+TUV_DIR,Direct authorisations with Tuvalu,EEZ,TUV,TUV,,ok
+*9U30,Functional Unit 30 of ICES Division 9a,FU,FU30,,,ok
+*9U30,Functional Unit 30 of ICES Division 9a,FAO,27.9.a,,Functional Unit 30,ok
+*2A3A4_Q1,3a; Union waters of 2a and 4 (first quarter),FAO,27.3.a,,,ok
+*2A3A4_Q1,3a; Union waters of 2a and 4 (first quarter),FAO,27.2.a,EU,,ok
+*2A3A4_Q1,3a; Union waters of 2a and 4 (first quarter),FAO,27.4,EU,,ok
+3ABC24,3a; Union waters of Subdivisions 22-24,FAO,27.3.a,,,ok
+3ABC24,3a; Union waters of Subdivisions 22-24,FAO,27.3.c.22,EU,,ok
+3ABC24,3a; Union waters of Subdivisions 22-24,FAO,27.3.b.23,EU,,ok
+3ABC24,3a; Union waters of Subdivisions 22-24,FAO,27.3.d.24,EU,,ok
+*8301,"Atlantic Ocean, east of 45° W, and Mediterranean",FAO,37,,east of 45° W,ok
+*8301,"Atlantic Ocean, east of 45° W, and Mediterranean",FAO,ATL,,east of 45° W,check
+2A34-N.,"3a; United Kingdom, Union waters of 2a, 3b, 3c; 3d and 4; Norwegian waters 2a and 4a",FAO,27.3.a,,,ok
+2A34-N.,"3a; United Kingdom, Union waters of 2a, 3b, 3c; 3d and 4; Norwegian waters 2a and 4a",FAO,27.2.a,GBR+EU,,ok
+2A34-N.,"3a; United Kingdom, Union waters of 2a, 3b, 3c; 3d and 4; Norwegian waters 2a and 4a",FAO,27.3.b,GBR+EU,,ok
+2A34-N.,"3a; United Kingdom, Union waters of 2a, 3b, 3c; 3d and 4; Norwegian waters 2a and 4a",FAO,27.3.c,GBR+EU,,ok
+2A34-N.,"3a; United Kingdom, Union waters of 2a, 3b, 3c; 3d and 4; Norwegian waters 2a and 4a",FAO,27.3.d,,,ok
+2A34-N.,"3a; United Kingdom, Union waters of 2a, 3b, 3c; 3d and 4; Norwegian waters 2a and 4a",FAO,27.4,,,ok
+2A34-N.,"3a; United Kingdom, Union waters of 2a, 3b, 3c; 3d and 4; Norwegian waters 2a and 4a",FAO,27.2.a,NOR,,ok
+2A34-N.,"3a; United Kingdom, Union waters of 2a, 3b, 3c; 3d and 4; Norwegian waters 2a and 4a",FAO,27.4.a,NOR,,ok
+1X14IN,"zone I, II, V, VI, VII, XII, XIV",FAO,27.1,,,ok
+1X14IN,"zone I, II, V, VI, VII, XII, XIV",FAO,27.2,,,ok
+1X14IN,"zone I, II, V, VI, VII, XII, XIV",FAO,27.5,,,ok
+1X14IN,"zone I, II, V, VI, VII, XII, XIV",FAO,27.6,,,ok
+1X14IN,"zone I, II, V, VI, VII, XII, XIV",FAO,27.7,,,ok
+1X14IN,"zone I, II, V, VI, VII, XII, XIV",FAO,27.12,,,ok
+1X14IN,"zone I, II, V, VI, VII, XII, XIV",FAO,27.14,,,ok
+N3LNO.,NAFO 3LNO,FAO,21.3.L,NAFO,,ok
+N3LNO.,NAFO 3LNO,FAO,21.3.N,NAFO,,ok
+N3LNO.,NAFO 3LNO,FAO,21.3.O,NAFO,,ok
+05B-F.,Faroese waters of 5b,FAO,27.5.b,FRO,,ok
+09-,Union and international waters of 9,FAO,27.9,EU+INT,,ok
+MED4_OTB3,(no description - inferred from code),NONE,,,MED4_OTB3,Mediterranean effort regime code - not an area
+*C-FRA,Chartering arrangement with Saint Pierre et Miquelon in NAFO 3LNO,CHARTER,SPM,,,charter
+*C-FRA,Chartering arrangement with Saint Pierre et Miquelon in NAFO 3LNO,FAO,21.3.L,NAFO,,ok
+*C-FRA,Chartering arrangement with Saint Pierre et Miquelon in NAFO 3LNO,FAO,21.3.N,NAFO,,ok
+*C-FRA,Chartering arrangement with Saint Pierre et Miquelon in NAFO 3LNO,FAO,21.3.O,NAFO,,ok
+*02A.,Norwegian waters of IIa (= IIa limited by parent stock to Norwegian waters),FAO,27.2.a,NOR,,ok
+*5-14,"part of the NEAFC Regulatory area within area 51214, bounded by coordinates as defined in Reg 683/2011",RFMO,NEAFC,,,ok
+*56-14,"United Kingdom waters of 6a south of 58° 30’ N; United 
+Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.6.a,GBR,,ok
+*56-14,"United Kingdom waters of 6a south of 58° 30’ N; United 
+Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.5.b,INT,,ok
+*56-14,"United Kingdom waters of 6a south of 58° 30’ N; United 
+Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.12,INT,,ok
+*56-14,"United Kingdom waters of 6a south of 58° 30’ N; United 
+Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.14,INT,,ok
+3AN4-C,"IIIa) Skagerrak, IV (1)",FAO,27.3.a,,,ok
+3AN4-C,"IIIa) Skagerrak, IV (1)",FAO,27.4,,,ok
+3AN4-C,"IIIa) Skagerrak, IV (1)",FAO,27.1,,,ok
+GRL_2024,Greenland Agreement from 2024,EEZ,GRL,GRL,,ok
+MDG_2023,Madagascar,EEZ,MDG,MDG,,ok
+467H-C,"IV, VIa) North 56°30'N, VIIe),f),h) (1)",FAO,27.7.e,,,ok
+467H-C,"IV, VIa) North 56°30'N, VIIe),f),h) (1)",FAO,27.7.f,,,ok
+467H-C,"IV, VIa) North 56°30'N, VIIe),f),h) (1)",FAO,27.7.h,,,ok
+467H-C,"IV, VIa) North 56°30'N, VIIe),f),h) (1)",FAO,27.6.a,,,ok
+467H-C,"IV, VIa) North 56°30'N, VIIe),f),h) (1)",FAO,27.4,,,ok
+467H-C,"IV, VIa) North 56°30'N, VIIe),f),h) (1)",FAO,27.1,,,ok
+GF1-7,GSA 1-2-5-6-7,GSA,GSA1,,,ok
+GF1-7,GSA 1-2-5-6-7,GSA,GSA2,,,ok
+GF1-7,GSA 1-2-5-6-7,GSA,GSA5,,,ok
+GF1-7,GSA 1-2-5-6-7,GSA,GSA6,,,ok
+GF1-7,GSA 1-2-5-6-7,GSA,GSA7,,,ok
+N01514,"Greenland zone: NAFO 0,1, ICES V, XIV",FAO,21.0,GRL,,ok
+N01514,"Greenland zone: NAFO 0,1, ICES V, XIV",FAO,21.1,GRL,,ok
+N01514,"Greenland zone: NAFO 0,1, ICES V, XIV",FAO,27.5,GRL,,ok
+N01514,"Greenland zone: NAFO 0,1, ICES V, XIV",FAO,27.14,GRL,,ok
+*AN05N-UK,"United Kingdom waters in Atlantic Ocean, North of 5° N",FAO,ATL,GBR,North of 5° N,check
+STP_2011,Sao Tome and Principe,EEZ,STP,STP,,ok
+834SPN,"VIIIc),IX,X;CECAF3411(1): under sover./juris. of Spain",FAO,27.8.c,,,ok
+834SPN,"VIIIc),IX,X;CECAF3411(1): under sover./juris. of Spain",FAO,27.9,,,ok
+834SPN,"VIIIc),IX,X;CECAF3411(1): under sover./juris. of Spain",FAO,27.10,,,ok
+834SPN,"VIIIc),IX,X;CECAF3411(1): under sover./juris. of Spain",FAO,34.1.1,,,ok
+834SPN,"VIIIc),IX,X;CECAF3411(1): under sover./juris. of Spain",FAO,27.1,,,ok
+2A3AX4,4; United Kingdom waters of 2a; the part of 3a not covered by the Skagerrak and the Kattegat,FAO,27.4,,,ok
+2A3AX4,4; United Kingdom waters of 2a; the part of 3a not covered by the Skagerrak and the Kattegat,FAO,27.2.a,GBR,,ok
+2A3AX4,4; United Kingdom waters of 2a; the part of 3a not covered by the Skagerrak and the Kattegat,FAO,27.3.a,,,ok
+*06B-C,6b,FAO,27.6.b,,,ok
+467-C.,"IV, VI, VII (1)",FAO,27.4,,,ok
+467-C.,"IV, VI, VII (1)",FAO,27.6,,,ok
+467-C.,"IV, VI, VII (1)",FAO,27.7,,,ok
+467-C.,"IV, VI, VII (1)",FAO,27.1,,,ok
+3A/BCD,IIIa; Union waters of Subdivisions 22-32,FAO,27.3.a,,,ok
+3A/BCD,IIIa; Union waters of Subdivisions 22-32,FAO,27.3.c.22,EU,,ok
+3A/BCD,IIIa; Union waters of Subdivisions 22-32,FAO,27.3.b.23,EU,,ok
+3A/BCD,IIIa; Union waters of Subdivisions 22-32,FAO,27.3.d.24,EU,,ok
+3A/BCD,IIIa; Union waters of Subdivisions 22-32,FAO,27.3.d.25,EU,,ok
+3A/BCD,IIIa; Union waters of Subdivisions 22-32,FAO,27.3.d.26,EU,,ok
+3A/BCD,IIIa; Union waters of Subdivisions 22-32,FAO,27.3.d.27,EU,,ok
+3A/BCD,IIIa; Union waters of Subdivisions 22-32,FAO,27.3.d.28,EU,,ok
+3A/BCD,IIIa; Union waters of Subdivisions 22-32,FAO,27.3.d.29,EU,,ok
+3A/BCD,IIIa; Union waters of Subdivisions 22-32,FAO,27.3.d.30,EU,,ok
+3A/BCD,IIIa; Union waters of Subdivisions 22-32,FAO,27.3.d.31,EU,,ok
+3A/BCD,IIIa; Union waters of Subdivisions 22-32,FAO,27.3.d.32,EU,,ok
+MED3_TBB_TR1,(no description - inferred from code),NONE,,,MED3_TBB_TR1,Mediterranean effort regime code - not an area
+*C-FRA-3M,Chartering arrangement with Saint Pierre et Miquelon in NAFO 3M,CHARTER,SPM,,,charter
+*C-FRA-3M,Chartering arrangement with Saint Pierre et Miquelon in NAFO 3M,FAO,21.3.M,NAFO,,ok
+STP_2014,Sao Tome and Principe,EEZ,STP,STP,,ok
+5A14-C,"Va) (1), XIV (1)",FAO,27.5.a,,,ok
+5A14-C,"Va) (1), XIV (1)",FAO,27.1,,,ok
+5A14-C,"Va) (1), XIV (1)",FAO,27.14,,,ok
+*234_6,Sandeel management area 6,SANDEEL,SAN6,,,ok
+7DE.,7d and 7e,FAO,27.7.d,,,ok
+7DE.,7d and 7e,FAO,27.7.e,,,ok
+*67AKD,"Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.a,EU,,ok
+*67AKD,"Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.b,EU,,ok
+*67AKD,"Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.c,EU,,ok
+*67AKD,"Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.e,EU,,ok
+*67AKD,"Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.f,EU,,ok
+*67AKD,"Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.g,EU,,ok
+*67AKD,"Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.h,EU,,ok
+*67AKD,"Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.j,EU,,ok
+*67AKD,"Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.k,EU,,ok
+*67AKD,"Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.6.a,EU,,ok
+*67AKD,"Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.6.b,EU,,ok
+624E44,Greenland waters of NAFO 1 and Greenland waters of XIV: Between 62° N and 64° N East of 44° W,FAO,21.1,GRL,East of 44° W | Between 62° N and 64° N East of 44° W,ok
+624E44,Greenland waters of NAFO 1 and Greenland waters of XIV: Between 62° N and 64° N East of 44° W,FAO,27.14,GRL,East of 44° W | Between 62° N and 64° N East of 44° W,ok
+*ICAN05NXM-EU,"Union waters, excluding Mediterranean",EEZ,EU,EU,,check
+3BCD-C,Union waters of Subdivisions 22-32,FAO,27.3.c.22,EU,,ok
+3BCD-C,Union waters of Subdivisions 22-32,FAO,27.3.b.23,EU,,ok
+3BCD-C,Union waters of Subdivisions 22-32,FAO,27.3.d.24,EU,,ok
+3BCD-C,Union waters of Subdivisions 22-32,FAO,27.3.d.25,EU,,ok
+3BCD-C,Union waters of Subdivisions 22-32,FAO,27.3.d.26,EU,,ok
+3BCD-C,Union waters of Subdivisions 22-32,FAO,27.3.d.27,EU,,ok
+3BCD-C,Union waters of Subdivisions 22-32,FAO,27.3.d.28,EU,,ok
+3BCD-C,Union waters of Subdivisions 22-32,FAO,27.3.d.29,EU,,ok
+3BCD-C,Union waters of Subdivisions 22-32,FAO,27.3.d.30,EU,,ok
+3BCD-C,Union waters of Subdivisions 22-32,FAO,27.3.d.31,EU,,ok
+3BCD-C,Union waters of Subdivisions 22-32,FAO,27.3.d.32,EU,,ok
+N3M,NAFO 3M = FAO 21.3.M,FAO,21.3.M,NAFO,,ok
+IOTC,IOTC Area of Competence,RFMO,IOTC,,,ok
+05B1-F,Faeroe Plateau (Subdivision Vb1- Subunit Vb1b) - Faroese waters,FAO,27.1,FRO,,ok
+5B67-C,"Union waters of 5b, 6 and 7",FAO,27.5.b,EU,,ok
+5B67-C,"Union waters of 5b, 6 and 7",FAO,27.6,EU,,ok
+5B67-C,"Union waters of 5b, 6 and 7",FAO,27.7,EU,,ok
+*5-14N,Greenland waters of NAFO 1F and Greenland waters of V and XIV within the NEAFC box,RFMO,NEAFC,,,ok
+*5-14N,Greenland waters of NAFO 1F and Greenland waters of V and XIV within the NEAFC box,FAO,21.1.F,GRL,,ok
+*5-14N,Greenland waters of NAFO 1F and Greenland waters of V and XIV within the NEAFC box,FAO,27.5,GRL,,ok
+*5-14N,Greenland waters of NAFO 1F and Greenland waters of V and XIV within the NEAFC box,FAO,27.14,GRL,,ok
+3D-R31,IIId) (1) - Sub-divisions 25-29 (except Gulf of Riga) and 32,FAO,27.3.d,,,ok
+3D-R31,IIId) (1) - Sub-divisions 25-29 (except Gulf of Riga) and 32,FAO,27.1,,,ok
+*46AN,4 and 6a north of 56° 30' N,FAO,27.6.a,,north of 56° 30' N,ok
+*46AN,4 and 6a north of 56° 30' N,FAO,27.4,,north of 56° 30' N,ok
+3B23.,Subdivision 23,FAO,27.3.b.23,,,ok
+2A3A4_Q1,3a; Union waters of 2a and 4 (first quarter),FAO,27.3.a,,,ok
+2A3A4_Q1,3a; Union waters of 2a and 4 (first quarter),FAO,27.2.a,EU,,ok
+2A3A4_Q1,3a; Union waters of 2a and 4 (first quarter),FAO,27.4,EU,,ok
+*ATLPS,Atlantic Ocean - purse seiners,FAO,ATL,,,check
+2A4.,"IIa), IV",FAO,27.2.a,,,ok
+2A4.,"IIa), IV",FAO,27.4,,,ok
+24678C,"IIa) (1), IV (1), VI, VII; VIII (1)",FAO,27.2.a,,,ok
+24678C,"IIa) (1), IV (1), VI, VII; VIII (1)",FAO,27.1,,,ok
+24678C,"IIa) (1), IV (1), VI, VII; VIII (1)",FAO,27.4,,,ok
+24678C,"IIa) (1), IV (1), VI, VII; VIII (1)",FAO,27.6,,,ok
+24678C,"IIa) (1), IV (1), VI, VII; VIII (1)",FAO,27.7,,,ok
+24678C,"IIa) (1), IV (1), VI, VII; VIII (1)",FAO,27.8,,,ok
+67-EU,Union waters of 6 and 7,FAO,27.6,EU,,ok
+67-EU,Union waters of 6 and 7,FAO,27.7,EU,,ok
+*E45W641,"ICCAT Convention area, east of 45°W",RFMO,ICCAT,,east of 45°W,ok
+ICESVII,(no description - inferred from code),FAO,27.7,,,ok
+NAM_DIR,Direct authorisations with Namibia,EEZ,NAM,NAM,,ok
+514.,"V, XIV",FAO,27.5,,,ok
+514.,"V, XIV",FAO,27.14,,,ok
+N1BA40,NAFO 1 west of 44° W within 40 miles of baselines,FAO,21.1,NAFO,west of 44° W,ok
+6B1214,"United Kingdom, Union and  international waters of 6b; international  waters of 12 and 14",FAO,27.6.b,GBR+EU+INT,,ok
+6B1214,"United Kingdom, Union and  international waters of 6b; international  waters of 12 and 14",FAO,27.12,INT,,ok
+6B1214,"United Kingdom, Union and  international waters of 6b; international  waters of 12 and 14",FAO,27.14,INT,,ok
+910-,"Zones IX, X",FAO,27.9,,,ok
+910-,"Zones IX, X",FAO,27.10,,,ok
+*641,"Atlantic Ocean, east of 45° W, and Mediterranean",FAO,37,,east of 45° W,ok
+*641,"Atlantic Ocean, east of 45° W, and Mediterranean",FAO,ATL,,east of 45° W,check
+COK_2021,Cook Islands 2021,EEZ,COK,COK,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",EEZ,GUF,GUF,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,27.1,EU,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,27.2,EU,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,27.3,EU,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,27.4,EU,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,27.5,EU,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,27.6,EU,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,27.7,EU,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,27.8,EU,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,27.9,EU,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,27.10,EU,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,27.12,EU,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,27.14,EU,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,34.1.1,EU,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,34.1.2,EU,,check
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,34.2,EU,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,27.3.a.20,EU,,ok
+3-1234,"French Guiana waters, Kattegat; Union waters of Skagerrak, I, II, III, IV, V, VI, VII, VIII, IX, X, XII and XIV; Union waters of CECAF 34.1.1, 34.1.2 and 34.2",FAO,27.3.a.21,EU,,ok
+03A-C.,Union waters of 3a,FAO,27.3.a,EU,,ok
+1X14-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.1,EU+THIRD,,ok
+1X14-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.2,EU+THIRD,,ok
+1X14-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.3,EU+THIRD,,ok
+1X14-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.4,EU+THIRD,,ok
+1X14-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.5,EU+THIRD,,ok
+1X14-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.8,EU+THIRD,,ok
+1X14-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.9,EU+THIRD,,ok
+1X14-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.10,EU+THIRD,,ok
+1X14-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.12,EU+THIRD,,ok
+1X14-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.14,EU+THIRD,,ok
+6X14-,"VI, VII, VIII, IX, X, XII, XIV 1), 2)",FAO,27.6,,,ok
+6X14-,"VI, VII, VIII, IX, X, XII, XIV 1), 2)",FAO,27.7,,,ok
+6X14-,"VI, VII, VIII, IX, X, XII, XIV 1), 2)",FAO,27.8,,,ok
+6X14-,"VI, VII, VIII, IX, X, XII, XIV 1), 2)",FAO,27.9,,,ok
+6X14-,"VI, VII, VIII, IX, X, XII, XIV 1), 2)",FAO,27.10,,,ok
+6X14-,"VI, VII, VIII, IX, X, XII, XIV 1), 2)",FAO,27.12,,,ok
+6X14-,"VI, VII, VIII, IX, X, XII, XIV 1), 2)",FAO,27.14,,,ok
+6X14-,"VI, VII, VIII, IX, X, XII, XIV 1), 2)",FAO,27.1,,,ok
+6X14-,"VI, VII, VIII, IX, X, XII, XIV 1), 2)",FAO,27.2,,,ok
+834PRT,"VIIIc),IX,X;CECAF 3411(1): under sover./juris. of Portugal",FAO,27.8.c,,,ok
+834PRT,"VIIIc),IX,X;CECAF 3411(1): under sover./juris. of Portugal",FAO,27.9,,,ok
+834PRT,"VIIIc),IX,X;CECAF 3411(1): under sover./juris. of Portugal",FAO,27.10,,,ok
+834PRT,"VIIIc),IX,X;CECAF 3411(1): under sover./juris. of Portugal",FAO,34.1.1,,,ok
+834PRT,"VIIIc),IX,X;CECAF 3411(1): under sover./juris. of Portugal",FAO,27.1,,,ok
+N3NO,"NAFO 3N, 3O = FAO 21.3.N + 21.3.O",FAO,21.3.N,NAFO,,ok
+N3NO,"NAFO 3N, 3O = FAO 21.3.N + 21.3.O",FAO,21.3.O,NAFO,,ok
+234_6,United Kingdom and Union waters of sandeel management area 6,SANDEEL,SAN6,GBR+EU,,ok
+*5-14D,EU and international waters of V; international waters of XII and XIV (within the NEAFC box: 64°45'N 28°30'W; 62°50'N 25°45'W; 61°55'N 26°45'W; 61°00N 26°30'W; 59°00'N 30°00'W; 59°00'N 34°00'W; 61°30'N 34°00'W; 62°50'N 36°00'W; 64°45'N 28°30'W),RFMO,NEAFC,,within the NEAFC box: 64°45'N 28°30'W; 62°50'N 25°45'W; 61°55'N 26°45'W; 61°00N 26°30'W; 59°00'N 30°00'W; 59°00'N 34°00'W; 61°30'N 34°00'W; 62°50'N 36°00'W; 64°45'N 28°30'W),ok
+*5-14D,EU and international waters of V; international waters of XII and XIV (within the NEAFC box: 64°45'N 28°30'W; 62°50'N 25°45'W; 61°55'N 26°45'W; 61°00N 26°30'W; 59°00'N 30°00'W; 59°00'N 34°00'W; 61°30'N 34°00'W; 62°50'N 36°00'W; 64°45'N 28°30'W),FAO,27.5,EU+INT,,ok
+*5-14D,EU and international waters of V; international waters of XII and XIV (within the NEAFC box: 64°45'N 28°30'W; 62°50'N 25°45'W; 61°55'N 26°45'W; 61°00N 26°30'W; 59°00'N 30°00'W; 59°00'N 34°00'W; 61°30'N 34°00'W; 62°50'N 36°00'W; 64°45'N 28°30'W),FAO,27.12,INT,,ok
+*5-14D,EU and international waters of V; international waters of XII and XIV (within the NEAFC box: 64°45'N 28°30'W; 62°50'N 25°45'W; 61°55'N 26°45'W; 61°00N 26°30'W; 59°00'N 30°00'W; 59°00'N 34°00'W; 61°30'N 34°00'W; 62°50'N 36°00'W; 64°45'N 28°30'W),FAO,27.14,INT,,ok
+341PRT,Union waters of CECAF (Waters adjacent to Madeira),FAO,34.1.2,EU,,check
+8ABD.,"VIIIa),b),d)",FAO,27.8.a,,,ok
+8ABD.,"VIIIa),b),d)",FAO,27.8.b,,,ok
+8ABD.,"VIIIa),b),d)",FAO,27.8.d,,,ok
+51214S,United Kingdom and international waters of 5; international waters of 12 and 14,FAO,27.5,GBR+INT,,ok
+51214S,United Kingdom and international waters of 5; international waters of 12 and 14,FAO,27.12,INT,,ok
+51214S,United Kingdom and international waters of 5; international waters of 12 and 14,FAO,27.14,INT,,ok
+MED1_LL1,(no description - inferred from code),NONE,,,MED1_LL1,Mediterranean effort regime code - not an area
+4W6W59,"Vb)(1),VIa) between 59°N & 62°N and 4°W & 6°W  DNK only",FAO,27.5.b,,between 59°N & 62°N and 4°W & 6°W  DNK only,ok
+4W6W59,"Vb)(1),VIa) between 59°N & 62°N and 4°W & 6°W  DNK only",FAO,27.6.a,,between 59°N & 62°N and 4°W & 6°W  DNK only,ok
+4W6W59,"Vb)(1),VIa) between 59°N & 62°N and 4°W & 6°W  DNK only",FAO,27.1,,between 59°N & 62°N and 4°W & 6°W  DNK only,ok
+*2AJMN,Norwegian waters north of 62° N and the fishery zone around Jan Mayen,EEZ,NOR,NOR,north of 62° N,ok
+89-SPN,"Spain zone: VIII, IX",FAO,27.8,ESP,,ok
+89-SPN,"Spain zone: VIII, IX",FAO,27.9,ESP,,ok
+GL251214_TOT,"Greenland waters of 2, 5, 12 and 14 (EU incl shared quota)",FAO,27.2,EU+GRL,,ok
+GL251214_TOT,"Greenland waters of 2, 5, 12 and 14 (EU incl shared quota)",FAO,27.5,EU+GRL,,ok
+GL251214_TOT,"Greenland waters of 2, 5, 12 and 14 (EU incl shared quota)",FAO,27.12,EU+GRL,,ok
+GL251214_TOT,"Greenland waters of 2, 5, 12 and 14 (EU incl shared quota)",FAO,27.14,EU+GRL,,ok
+F881N.,FAO 88.1 North Antarctic,FAO,88.1,,,ok
+*514GN,Greenland waters of 5 and 14,FAO,27.5,GRL,,ok
+*514GN,Greenland waters of 5 and 14,FAO,27.14,GRL,,ok
+467.,"IV, VI, VII",FAO,27.4,,,ok
+467.,"IV, VI, VII",FAO,27.6,,,ok
+467.,"IV, VI, VII",FAO,27.7,,,ok
+N65E44,Greenland waters of NAFO 1 and Greenland waters of XIV: North of 65° N East of 44° W,FAO,21.1,GRL,North of 65° N | East of 44° W,ok
+N65E44,Greenland waters of NAFO 1 and Greenland waters of XIV: North of 65° N East of 44° W,FAO,27.14,GRL,North of 65° N | East of 44° W,ok
+GRL,Greenland waters,EEZ,GRL,GRL,,ok
+N2J3KL,NAFO 2J3KL,FAO,21.2.J,NAFO,,ok
+N2J3KL,NAFO 2J3KL,FAO,21.3.K,NAFO,,ok
+N2J3KL,NAFO 2J3KL,FAO,21.3.L,NAFO,,ok
+N3PS-C,Subdivision 21.3Ps (Southeastern subdivision),FAO,21.3.Ps,NAFO,,ok
+AW45W,"Atlantic ocean, west of 45° W",FAO,ATL,,west of 45° W,check
+*04B.,4b,FAO,27.4.b,,,ok
+*C-CUL,Chartering arrangement with Cuba in NAFO 3LN,CHARTER,CUB,,,charter
+*C-CUL,Chartering arrangement with Cuba in NAFO 3LN,FAO,21.3.L,NAFO,,ok
+*C-CUL,Chartering arrangement with Cuba in NAFO 3LN,FAO,21.3.N,NAFO,,ok
+MED3_OTB,(no description - inferred from code),NONE,,,MED3_OTB,Mediterranean effort regime code - not an area
+AE45WM,"Atlantic Ocean, east of 45° W, and Mediterranean",FAO,37,,east of 45° W,ok
+AE45WM,"Atlantic Ocean, east of 45° W, and Mediterranean",FAO,ATL,,east of 45° W,check
+MED1_LL2,(no description - inferred from code),NONE,,,MED1_LL2,Mediterranean effort regime code - not an area
+2AC4IX,"IIa) (1), IV (Sprat R 2666/84)",FAO,27.2.a,,,ok
+2AC4IX,"IIa) (1), IV (Sprat R 2666/84)",FAO,27.1,,,ok
+2AC4IX,"IIa) (1), IV (Sprat R 2666/84)",FAO,27.4,,,ok
+ATLANT,Atlantic Ocean,FAO,ATL,,,check
+*15X14,"Union and international waters of I, V, VI, VII, VIII, XII and XIV",FAO,27.1,EU+INT,,ok
+*15X14,"Union and international waters of I, V, VI, VII, VIII, XII and XIV",FAO,27.5,EU+INT,,ok
+*15X14,"Union and international waters of I, V, VI, VII, VIII, XII and XIV",FAO,27.6,EU+INT,,ok
+*15X14,"Union and international waters of I, V, VI, VII, VIII, XII and XIV",FAO,27.7,EU+INT,,ok
+*15X14,"Union and international waters of I, V, VI, VII, VIII, XII and XIV",FAO,27.8,EU+INT,,ok
+*15X14,"Union and international waters of I, V, VI, VII, VIII, XII and XIV",FAO,27.12,EU+INT,,ok
+*15X14,"Union and international waters of I, V, VI, VII, VIII, XII and XIV",FAO,27.14,EU+INT,,ok
+MDG_2014,Madagascar,EEZ,MDG,MDG,,ok
+CAN_DIR,Direct authorisations with Canada,EEZ,CAN,CAN,,ok
+06-,Union and international waters of VI,FAO,27.6,EU+INT,,ok
+*8ABDE-BC,"8a, 8b, 8d and 8e",FAO,27.8.a,,,ok
+*8ABDE-BC,"8a, 8b, 8d and 8e",FAO,27.8.b,,,ok
+*8ABDE-BC,"8a, 8b, 8d and 8e",FAO,27.8.d,,,ok
+*8ABDE-BC,"8a, 8b, 8d and 8e",FAO,27.8.e,,,ok
+GAB_2013,Gabon,EEZ,GAB,GAB,,ok
+24-C.,United Kingdom and Union waters of 4;  United Kingdom waters of 2a,FAO,27.4,GBR+EU,,ok
+24-C.,United Kingdom and Union waters of 4;  United Kingdom waters of 2a,FAO,27.2.a,GBR,,ok
+*C-FRA2,(no description - inferred from code),CHARTER,FRA,,,charter
+MED1_TR2_AA,(no description - inferred from code),NONE,,,MED1_TR2_AA,Mediterranean effort regime code - not an area
+5B67.,"ICES Vb, VI and VII",FAO,27.5.b,,,ok
+5B67.,"ICES Vb, VI and VII",FAO,27.6,,,ok
+5B67.,"ICES Vb, VI and VII",FAO,27.7,,,ok
+N1-C.,NAFO 1 (1),FAO,21.1,NAFO,,ok
+N1-C.,NAFO 1 (1),FAO,27.1,,,ok
+7GK-C.,"VIIg),h),j),k) (1)",FAO,27.7.g,,,ok
+7GK-C.,"VIIg),h),j),k) (1)",FAO,27.7.h,,,ok
+7GK-C.,"VIIg),h),j),k) (1)",FAO,27.7.j,,,ok
+7GK-C.,"VIIg),h),j),k) (1)",FAO,27.7.k,,,ok
+7GK-C.,"VIIg),h),j),k) (1)",FAO,27.1,,,ok
+04CBW.,IVc) Blackwater stock,FAO,27.4.c,,,ok
+*3A4AB,"IIIa), IVa),b)(1)",FAO,27.4.a,,,ok
+*3A4AB,"IIIa), IVa),b)(1)",FAO,27.4.b,,,ok
+*3A4AB,"IIIa), IVa),b)(1)",FAO,27.3.a,,,ok
+*3A4AB,"IIIa), IVa),b)(1)",FAO,27.1,,,ok
+8ABDE.,"8a, 8b, 8d and 8e",FAO,27.8.a,,,ok
+8ABDE.,"8a, 8b, 8d and 8e",FAO,27.8.b,,,ok
+8ABDE.,"8a, 8b, 8d and 8e",FAO,27.8.d,,,ok
+8ABDE.,"8a, 8b, 8d and 8e",FAO,27.8.e,,,ok
+*3AX4-EU,Union waters of 4 and of the part of 3a not covered by the Skagerrak and the Kattegat,FAO,27.3.a,EU,,ok
+*3AX4-EU,Union waters of 4 and of the part of 3a not covered by the Skagerrak and the Kattegat,FAO,27.4,EU,,ok
+MED3_OTB_TR2,(no description - inferred from code),NONE,,,MED3_OTB_TR2,Mediterranean effort regime code - not an area
+GNB_2019,Guinea-Bissau,EEZ,GNB,GNB,,ok
+F34111,CECAF area 34.1.11,FAO,34.1.11,,,ok
+03D-E.,Estonia zone: IIId),FAO,27.3.d,EST,,ok
+SPR-A,SPRFMO Convention Area within the research block A (see coordinates in the regulation),RFMO,SPRFMO,,,ok
+GNB_2014,Guinea-Bissau,EEZ,GNB,GNB,,ok
+N23.,"NAFO 2,3.",FAO,21.2,NAFO,,ok
+N23.,"NAFO 2,3.",FAO,21.3,NAFO,,ok
+*N3M.,NAFO 3M (Vessels may also fish this stock in Division 3L in the box bounded by the following coordinates: 47°20'N 46°40'W; 47°20'N 46°30'W; 46°00'N 46°30'W; 46°00'N 46°40'W),FAO,21.3.M,NAFO,,ok
+*N3M.,NAFO 3M (Vessels may also fish this stock in Division 3L in the box bounded by the following coordinates: 47°20'N 46°40'W; 47°20'N 46°30'W; 46°00'N 46°30'W; 46°00'N 46°40'W),FAO,27.3,,,ok
+N1GRN.,Greenland waters of NAFO 1,FAO,21.1,GRL,,ok
+N01GRN,"Greenland zone: NAFO 0,1",FAO,21.0,GRL,,ok
+N01GRN,"Greenland zone: NAFO 0,1",FAO,21.1,GRL,,ok
+12INT_AMS,International waters of 12 (shared quota),FAO,27.12,INT,,ok
+N23,"NAFO 2, 3 = FAO 21.2 + 21.3",FAO,21.2,NAFO,,ok
+N23,"NAFO 2, 3 = FAO 21.2 + 21.3",FAO,21.3,NAFO,,ok
+MAR_2014,Morocco Agreement from 2014 to 2018,EEZ,MAR,MAR,,ok
+934PRT,"IX,X;CECAF 3411(1): under sover./juris. of Portugal",FAO,27.9,,,ok
+934PRT,"IX,X;CECAF 3411(1): under sover./juris. of Portugal",FAO,27.10,,,ok
+934PRT,"IX,X;CECAF 3411(1): under sover./juris. of Portugal",FAO,34.1.1,,,ok
+934PRT,"IX,X;CECAF 3411(1): under sover./juris. of Portugal",FAO,27.1,,,ok
+F5841E,FAO 58.4.1 east of 115 E,FAO,58.4.1,,east of 115 E,ok
+567EI.,6 and 7; United Kingdom and international waters of 5,FAO,27.6,,,ok
+567EI.,6 and 7; United Kingdom and international waters of 5,FAO,27.7,,,ok
+567EI.,6 and 7; United Kingdom and international waters of 5,FAO,27.5,GBR+INT,,ok
+GF1718,Union and International waters of GFCM-GSAs 17 and 18,GSA,GSA17,EU+INT,,ok
+GF1718,Union and International waters of GFCM-GSAs 17 and 18,GSA,GSA18,EU+INT,,ok
+N4TVN.,"NAFO 4T,Vn",FAO,21.4.T,NAFO,,ok
+*9U267,Functional Units 26 and 27 of ICES Division 9a,FU,FU26,,,ok
+*9U267,Functional Units 26 and 27 of ICES Division 9a,FU,FU27,,,ok
+*9U267,Functional Units 26 and 27 of ICES Division 9a,FAO,27.9.a,,Functional Units 26 and 27,ok
+*C-USA,Chartering arrangement with USA,CHARTER,USA,,,charter
+07-,Union and international waters of VII,FAO,27.7,EU+INT,,ok
+N34_TOT,NAFO subareas 3 and 4 (EU incl shared quota),FAO,21.3,EU,,ok
+N34_TOT,NAFO subareas 3 and 4 (EU incl shared quota),FAO,21.4,EU,,ok
+*46AB7-EU,"Union waters of IV, VIa North of 56° 30 N, VIb and VII West of 12° W",FAO,27.6.a,EU,North of 56° 30 N | West of 12° W,ok
+*46AB7-EU,"Union waters of IV, VIa North of 56° 30 N, VIb and VII West of 12° W",FAO,27.6.b,EU,North of 56° 30 N | West of 12° W,ok
+*46AB7-EU,"Union waters of IV, VIa North of 56° 30 N, VIb and VII West of 12° W",FAO,27.4,EU,North of 56° 30 N | West of 12° W,ok
+*46AB7-EU,"Union waters of IV, VIa North of 56° 30 N, VIb and VII West of 12° W",FAO,27.7,EU,North of 56° 30 N | West of 12° W,ok
+567-,"Union and international waters of V, VI and VII",FAO,27.5,EU+INT,,ok
+567-,"Union and international waters of V, VI and VII",FAO,27.6,EU+INT,,ok
+567-,"Union and international waters of V, VI and VII",FAO,27.7,EU+INT,,ok
+ICAW45W,"ICCAT Convention area, west of 45°W",RFMO,ICCAT,,west of 45°W,ok
+*24N59,United Kingdom waters of  2a and 4a north of 59° N,FAO,27.2.a,GBR,north of 59° N,ok
+*24N59,United Kingdom waters of  2a and 4a north of 59° N,FAO,27.4.a,GBR,north of 59° N,ok
+8-C.,Union waters of 8,FAO,27.8,EU,,ok
+F574WR,Williams Ridge (area bounded by the following coordinates: 52°50'S 80°00'E; 55°00'S 80°00'E; 55°00'S 85°00'E; 52°50'S 85°00'E),BOX,Williams Ridge,,coordinates in regulation,manual
+34-C,Union waters of III and IV,FAO,27.3,EU,,ok
+34-C,Union waters of III and IV,FAO,27.4,EU,,ok
+7EF.,7e and 7f,FAO,27.7.e,,,ok
+7EF.,7e and 7f,FAO,27.7.f,,,ok
+GRL_2016,Greenland Agreement from 2016,EEZ,GRL,GRL,,ok
+234_1,Union waters of sandeel management area 1,SANDEEL,SAN1,EU,,ok
+234_3R,United Kingdom and Union waters of sandeel management area 3r,SANDEEL,SAN3,GBR+EU,,ok
+22/32-,Baltic zone IIIc (22) and IIId (32),FAO,27.3.c.22,,,ok
+22/32-,Baltic zone IIIc (22) and IIId (32),FAO,27.3.d.32,,,ok
+*E45W8301,"ICCAT Convention area, east of 45°W",RFMO,ICCAT,,east of 45°W,ok
+N5ZW6.,"NAFO 5Zw,6",FAO,21.5.Zw,NAFO,,ok
+N5ZW6.,"NAFO 5Zw,6",FAO,21.6,NAFO,,ok
+*04A-C,Union waters of 4a (= 4a limited by parent stock to Union waters),FAO,27.4.a,EU,,ok
+234_7R,"United Kingdom and Union waters of sandeel management area 7r (Excluding waters within six nautical miles of the United Kingdom's baselines at Shetland, Fair Isle and Foula).",SANDEEL,SAN7,GBR+EU,,ok
+MUS_2017,Mauritius,EEZ,MUS,MUS,,ok
+234_1R,United Kingdom and Union waters of sandeel management area 1r,SANDEEL,SAN1,GBR+EU,,ok
+*51214,SC catches taken under quota RED/514GRN in NEAFC area,RFMO,NEAFC,,,ok
+N23K.,"NAFO 2,3K.",FAO,21.2,NAFO,,ok
+N23K.,"NAFO 2,3K.",FAO,21.3.K,NAFO,,ok
+2A5B-F,"II , V b north of 62° N (Faroes waters)",FAO,27.5.b,FRO,north of 62° N,ok
+2A5B-F,"II , V b north of 62° N (Faroes waters)",FAO,27.2,FRO,north of 62° N,ok
+07AMA.,VIIa) Man stock,FAO,27.7.a,,,ok
+N4VWX.,NAFO 4VWX,FAO,21.4.V,NAFO,,ok
+N4VWX.,NAFO 4VWX,FAO,21.4.W,NAFO,,ok
+N4VWX.,NAFO 4VWX,FAO,21.4.X,NAFO,,ok
+1/2B_AMS,1 and 2b (this refers to Svalbard waters and to the international waters of ICES subarea 1 and division 2b) (shared quota),FAO,27.2.b,INT,,ok
+1/2B_AMS,1 and 2b (this refers to Svalbard waters and to the international waters of ICES subarea 1 and division 2b) (shared quota),FAO,27.1,INT,,ok
+AGO_DIR,Direct authorisations with Angola,EEZ,AGO,AGO,,ok
+514-C.,"V (1), XIV (1)",FAO,27.5,,,ok
+514-C.,"V (1), XIV (1)",FAO,27.1,,,ok
+514-C.,"V (1), XIV (1)",FAO,27.14,,,ok
+BSA,,NODESC,,,,manual
+678.,"VI, VII, VIII",FAO,27.6,,,ok
+678.,"VI, VII, VIII",FAO,27.7,,,ok
+678.,"VI, VII, VIII",FAO,27.8,,,ok
+4ABC7D,"IV a), IV b), IV c), VII d)",FAO,27.4.a,,,ok
+4ABC7D,"IV a), IV b), IV c), VII d)",FAO,27.4.b,,,ok
+4ABC7D,"IV a), IV b), IV c), VII d)",FAO,27.4.c,,,ok
+4ABC7D,"IV a), IV b), IV c), VII d)",FAO,27.7.d,,,ok
+1012-,Union and international waters of X and XII,FAO,27.10,EU+INT,,ok
+1012-,Union and international waters of X and XII,FAO,27.12,EU+INT,,ok
+3BCD.,"IIIb),c),d)",FAO,27.3.b,,,ok
+3BCD.,"IIIb),c),d)",FAO,27.3.c,,,ok
+3BCD.,"IIIb),c),d)",FAO,27.3.d,,,ok
+PRT-X.,Portuguese waters beyond 12 naut.m. from the baselines exc. zones listed Annex I,FAO,27.1,,,ok
+1N2AB.,Norwegian waters of 1 and 2,FAO,27.1,NOR,,ok
+1N2AB.,Norwegian waters of 1 and 2,FAO,27.2,NOR,,ok
+S64E44,South of 64° N East of 44° W,NONE,,,South of 64° N | East of 44° W,constraint only - inherits parent area
+*5-14.,Greenland waters of V and XIV,FAO,27.5,GRL,,ok
+*5-14.,Greenland waters of V and XIV,FAO,27.14,GRL,,ok
+12-,XII  (Community waters and waters not under the sovereignty or jurisdiction of third countries),FAO,27.12,EU+THIRD,,ok
+1CX14C,"Community waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.1,EU,,ok
+1CX14C,"Community waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.2,EU,,ok
+1CX14C,"Community waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.3,EU,,ok
+1CX14C,"Community waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.4,EU,,ok
+1CX14C,"Community waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.5,EU,,ok
+1CX14C,"Community waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.8,EU,,ok
+1CX14C,"Community waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.9,EU,,ok
+1CX14C,"Community waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.10,EU,,ok
+1CX14C,"Community waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.12,EU,,ok
+1CX14C,"Community waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.14,EU,,ok
+3A4-N.,"Norway zone: IIIa), IV",FAO,27.3.a,NOR,,ok
+3A4-N.,"Norway zone: IIIa), IV",FAO,27.4,NOR,,ok
+514GRN_AMS,Greenland waters of 5 and 14 (shared quota),FAO,27.5,GRL,,ok
+514GRN_AMS,Greenland waters of 5 and 14 (shared quota),FAO,27.14,GRL,,ok
+8X14-,"Union and international waters of 8, 9, 10, 12 and 14",FAO,27.8,EU+INT,,ok
+8X14-,"Union and international waters of 8, 9, 10, 12 and 14",FAO,27.9,EU+INT,,ok
+8X14-,"Union and international waters of 8, 9, 10, 12 and 14",FAO,27.10,EU+INT,,ok
+8X14-,"Union and international waters of 8, 9, 10, 12 and 14",FAO,27.12,EU+INT,,ok
+8X14-,"Union and international waters of 8, 9, 10, 12 and 14",FAO,27.14,EU+INT,,ok
+*05B-F,Faroese waters of Vb,FAO,27.5.b,FRO,,ok
+5BC67/,"Spain, flat rate quantities: Vb)(1), VI, VII",FAO,27.5.b,,,ok
+5BC67/,"Spain, flat rate quantities: Vb)(1), VI, VII",FAO,27.1,,,ok
+5BC67/,"Spain, flat rate quantities: Vb)(1), VI, VII",FAO,27.6,,,ok
+5BC67/,"Spain, flat rate quantities: Vb)(1), VI, VII",FAO,27.7,,,ok
+LBR_2016,Liberia,EEZ,LBR,LBR,,ok
+678-,"6, 7 and 8",FAO,27.6,,,ok
+678-,"6, 7 and 8",FAO,27.7,,,ok
+678-,"6, 7 and 8",FAO,27.8,,,ok
+8C9PRT,"Portugal zone: VIIc), IX",FAO,27.7.c,PRT,,ok
+8C9PRT,"Portugal zone: VIIc), IX",FAO,27.9,PRT,,ok
+*F483.,Division 48.3,FAO,48.3,,,ok
+*6AN58,"United Kingdom, Union and international waters of 6a north of 58°30’N ",FAO,27.6.a,GBR+EU+INT,,ok
+3BCD-T,"IIIb),c),d) (2)",FAO,27.3.b,,,ok
+3BCD-T,"IIIb),c),d) (2)",FAO,27.3.c,,,ok
+3BCD-T,"IIIb),c),d) (2)",FAO,27.3.d,,,ok
+3BCD-T,"IIIb),c),d) (2)",FAO,27.2,,,ok
+XCI,"NEAFC Stock - Capelin (Sub Areas 2a, 5, 14)",RFMO,NEAFC,,,ok
+XCI,"NEAFC Stock - Capelin (Sub Areas 2a, 5, 14)",FAO,27.2.a,,,ok
+XCI,"NEAFC Stock - Capelin (Sub Areas 2a, 5, 14)",FAO,27.5,,,ok
+XCI,"NEAFC Stock - Capelin (Sub Areas 2a, 5, 14)",FAO,27.14,,,ok
+8-C.SEN,Union waters of 8,FAO,27.8,EU,,ok
+67-,Community waters and waters not under the sovereignty or jurisdiction of third countries VI and VII,FAO,27.6,EU+THIRD,,ok
+67-,Community waters and waters not under the sovereignty or jurisdiction of third countries VI and VII,FAO,27.7,EU+THIRD,,ok
+09NX,"Part of subarea 9 north of 36°10'00""N",FAO,27.9,,"north of 36°10'00""N",ok
+93411P,9 and 10; Union waters of CECAF 34.1.1,FAO,27.9,,,ok
+93411P,9 and 10; Union waters of CECAF 34.1.1,FAO,27.10,,,ok
+93411P,9 and 10; Union waters of CECAF 34.1.1,FAO,34.1.1,EU,,ok
+N3LM,"NAFO 3L, 3M = FAO 21.3.L + 21.3.M",FAO,21.3.L,NAFO,,ok
+N3LM,"NAFO 3L, 3M = FAO 21.3.L + 21.3.M",FAO,21.3.M,NAFO,,ok
+GRLW44,West of 44° W,NONE,,,West of 44° W,constraint only - inherits parent area
+SPR-AB,SPRFMO Convention Area within the research blocks A and B (see coordinates in the regulation),RFMO,SPRFMO,,,ok
+*2AC4.,United Kingdom and Union waters of 2a and 4  ,FAO,27.2.a,GBR+EU,,ok
+*2AC4.,United Kingdom and Union waters of 2a and 4  ,FAO,27.4,GBR+EU,,ok
+F47X,"SEAFO, excluding Sub-Division B1",RFMO,SEAFO,,,ok
+F47X,"SEAFO, excluding Sub-Division B1",FAO,27.1,,,ok
+*F4814,Divisions 48.1 to 48.4,FAO,48.1,,,ok
+*F4814,Divisions 48.1 to 48.4,FAO,48.4,,,ok
+*234_7,Sandeel management area 7,SANDEEL,SAN7,,,ok
+N1G14P,Greenland waters of the Redfish Conservation area in 14 (within the NEAFC box: 64°45'N 28°30'W; 62°50'N 25°45'W; 61°55'N 26°45'W; 61°00N 26°30'W; 59°00'N 30°00'W; 59°00'N 34°00'W; 61°30'N 34°00'W; 62°50'N 36°00'W; 64°45'N 28°30'W),RFMO,NEAFC,,within the NEAFC box: 64°45'N 28°30'W; 62°50'N 25°45'W; 61°55'N 26°45'W; 61°00N 26°30'W; 59°00'N 30°00'W; 59°00'N 34°00'W; 61°30'N 34°00'W; 62°50'N 36°00'W; 64°45'N 28°30'W),ok
+N1G14P,Greenland waters of the Redfish Conservation area in 14 (within the NEAFC box: 64°45'N 28°30'W; 62°50'N 25°45'W; 61°55'N 26°45'W; 61°00N 26°30'W; 59°00'N 30°00'W; 59°00'N 34°00'W; 61°30'N 34°00'W; 62°50'N 36°00'W; 64°45'N 28°30'W),FAO,27.14,GRL,,ok
+*C-FRA-3LMNO,Chartering arrangement with Saint Pierre et Miquelon in NAFO 3LMNO,CHARTER,SPM,,,charter
+*C-FRA-3LMNO,Chartering arrangement with Saint Pierre et Miquelon in NAFO 3LMNO,FAO,21.3.L,NAFO,,ok
+*C-FRA-3LMNO,Chartering arrangement with Saint Pierre et Miquelon in NAFO 3LMNO,FAO,21.3.M,NAFO,,ok
+*C-FRA-3LMNO,Chartering arrangement with Saint Pierre et Miquelon in NAFO 3LMNO,FAO,21.3.N,NAFO,,ok
+*C-FRA-3LMNO,Chartering arrangement with Saint Pierre et Miquelon in NAFO 3LMNO,FAO,21.3.O,NAFO,,ok
+MRT_2015,Mauritania,EEZ,MRT,MRT,,ok
+GNB_2024,Guinea-Bissau,EEZ,GNB,GNB,,ok
+04A-C.,ICES division IVa - Northern North Sea - EU waters,FAO,27.4.a,EU,,ok
+*03A.,3a,FAO,27.3.a,,,ok
+*514N1,"V, XIV and NAFO 1",FAO,21.1,NAFO,,ok
+*514N1,"V, XIV and NAFO 1",FAO,27.5,,,ok
+*514N1,"V, XIV and NAFO 1",FAO,27.14,,,ok
+F47-D,"SEAFO, excluding Sub-Area D",RFMO,SEAFO,,,ok
+*E45W643,"ICCAT Convention area, east of 45°W",RFMO,ICCAT,,east of 45°W,ok
+MED2_TR3,(no description - inferred from code),NONE,,,MED2_TR3,Mediterranean effort regime code - not an area
+2AC47DE,United Kingdom and Union waters of 4 and 7de; United Kingdom waters of 2a,FAO,27.7.d,GBR+EU,,ok
+2AC47DE,United Kingdom and Union waters of 4 and 7de; United Kingdom waters of 2a,FAO,27.7.e,GBR+EU,,ok
+2AC47DE,United Kingdom and Union waters of 4 and 7de; United Kingdom waters of 2a,FAO,27.4,GBR+EU,,ok
+2AC47DE,United Kingdom and Union waters of 4 and 7de; United Kingdom waters of 2a,FAO,27.2.a,GBR,,ok
+N5Z.,Division 21.5Z,FAO,21.5.Z,NAFO,,ok
+10-,Union and international waters of 10,FAO,27.10,EU+INT,,ok
+1245A-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of I, II,  IV and Va",FAO,27.5.a,EU+THIRD,,ok
+1245A-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of I, II,  IV and Va",FAO,27.1,EU+THIRD,,ok
+1245A-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of I, II,  IV and Va",FAO,27.2,EU+THIRD,,ok
+1245A-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of I, II,  IV and Va",FAO,27.4,EU+THIRD,,ok
+COG_DIR,Direct authorisations with Congo,EEZ,COG,COG,,ok
+N3LNO,"NAFO 3L, 3N, 3O = FAO 21.3.L + 21.3.N + 21.3.O",FAO,21.3.L,NAFO,,ok
+N3LNO,"NAFO 3L, 3N, 3O = FAO 21.3.L + 21.3.N + 21.3.O",FAO,21.3.N,NAFO,,ok
+N3LNO,"NAFO 3L, 3N, 3O = FAO 21.3.L + 21.3.N + 21.3.O",FAO,21.3.O,NAFO,,ok
+N3LMNO,NAFO 3LMNO,FAO,21.3.L,NAFO,,ok
+N3LMNO,NAFO 3LMNO,FAO,21.3.M,NAFO,,ok
+N3LMNO,NAFO 3LMNO,FAO,21.3.N,NAFO,,ok
+N3LMNO,NAFO 3LMNO,FAO,21.3.O,NAFO,,ok
+*5B-14,"Vb (CE Waters), VI, VII, XII, XIV",FAO,27.5.b,,,ok
+*5B-14,"Vb (CE Waters), VI, VII, XII, XIV",FAO,27.6,,,ok
+*5B-14,"Vb (CE Waters), VI, VII, XII, XIV",FAO,27.7,,,ok
+*5B-14,"Vb (CE Waters), VI, VII, XII, XIV",FAO,27.12,,,ok
+*5B-14,"Vb (CE Waters), VI, VII, XII, XIV",FAO,27.14,,,ok
+3X14-,"United Kingdom, Union and international waters of 3, 4, 5, 6, 7, 8, 9, 10, 12 and 14",FAO,27.3,GBR+EU+INT,,ok
+3X14-,"United Kingdom, Union and international waters of 3, 4, 5, 6, 7, 8, 9, 10, 12 and 14",FAO,27.4,GBR+EU+INT,,ok
+3X14-,"United Kingdom, Union and international waters of 3, 4, 5, 6, 7, 8, 9, 10, 12 and 14",FAO,27.5,GBR+EU+INT,,ok
+3X14-,"United Kingdom, Union and international waters of 3, 4, 5, 6, 7, 8, 9, 10, 12 and 14",FAO,27.6,GBR+EU+INT,,ok
+3X14-,"United Kingdom, Union and international waters of 3, 4, 5, 6, 7, 8, 9, 10, 12 and 14",FAO,27.7,GBR+EU+INT,,ok
+3X14-,"United Kingdom, Union and international waters of 3, 4, 5, 6, 7, 8, 9, 10, 12 and 14",FAO,27.8,GBR+EU+INT,,ok
+3X14-,"United Kingdom, Union and international waters of 3, 4, 5, 6, 7, 8, 9, 10, 12 and 14",FAO,27.9,GBR+EU+INT,,ok
+3X14-,"United Kingdom, Union and international waters of 3, 4, 5, 6, 7, 8, 9, 10, 12 and 14",FAO,27.10,GBR+EU+INT,,ok
+3X14-,"United Kingdom, Union and international waters of 3, 4, 5, 6, 7, 8, 9, 10, 12 and 14",FAO,27.12,GBR+EU+INT,,ok
+3X14-,"United Kingdom, Union and international waters of 3, 4, 5, 6, 7, 8, 9, 10, 12 and 14",FAO,27.14,GBR+EU+INT,,ok
+*25B-F,"2,  5b north of 62° N (Faroese waters)",FAO,27.5.b,FRO,north of 62° N,ok
+*25B-F,"2,  5b north of 62° N (Faroese waters)",FAO,27.2,FRO,north of 62° N,ok
+3BC+24,Subdivisions 22-24,FAO,27.3.c.22,,,ok
+3BC+24,Subdivisions 22-24,FAO,27.3.b.23,,,ok
+3BC+24,Subdivisions 22-24,FAO,27.3.d.24,,,ok
+N01-C.,"NAFO 0,1 (1)",FAO,21.0,NAFO,,ok
+N01-C.,"NAFO 0,1 (1)",FAO,21.1,NAFO,,ok
+N01-C.,"NAFO 0,1 (1)",FAO,27.1,,,ok
+*9/3411-BC,9 and 10; Union waters of CECAF 34.1.1 (By-catch),FAO,27.9,,,ok
+*9/3411-BC,9 and 10; Union waters of CECAF 34.1.1 (By-catch),FAO,27.10,,,ok
+*9/3411-BC,9 and 10; Union waters of CECAF 34.1.1 (By-catch),FAO,34.1.1,EU,,ok
+AE045W,"Atlantic ocean, east of longitude 45° W",FAO,ATL,,,check
+N2J3K,"NAFO 2J, 3K = FAO 21.2.J + 21.3.K",FAO,21.2.J,NAFO,,ok
+N2J3K,"NAFO 2J, 3K = FAO 21.2.J + 21.3.K",FAO,21.3.K,NAFO,,ok
+*03A-C,Union waters of 3a,FAO,27.3.a,EU,,ok
+*3AN-,IIIa - Norwegian waters,FAO,27.3.a,NOR,,ok
+3A4-C.,"IIIa), IV (1).",FAO,27.3.a,,,ok
+3A4-C.,"IIIa), IV (1).",FAO,27.4,,,ok
+3A4-C.,"IIIa), IV (1).",FAO,27.1,,,ok
+*4BC,United Kingdom and Union waters of 4b and 4c,FAO,27.4.b,GBR+EU,,ok
+*4BC,United Kingdom and Union waters of 4b and 4c,FAO,27.4.c,GBR+EU,,ok
+AVARCH,"Atlantic Ocean, east of 45° W, and Mediterranean: exclusively for artisanal vessels from specific archipelagos in Greece (Ionian Islands), Spain (Canary Islands) and Portugal (Azores and Madeira)",FAO,37,,east of 45° W,ok
+AVARCH,"Atlantic Ocean, east of 45° W, and Mediterranean: exclusively for artisanal vessels from specific archipelagos in Greece (Ionian Islands), Spain (Canary Islands) and Portugal (Azores and Madeira)",FAO,ATL,,east of 45° W,check
+F481.,Peninsular (Subarea 48.1),FAO,48.1,,,ok
+05EI.,United Kingdom and international  waters of 5,FAO,27.5,GBR+INT,,ok
+24A7-C,"II, IVa), VIa) North 56°30'N, VIb), VII West 12°W (1)",FAO,27.4.a,,,ok
+24A7-C,"II, IVa), VIa) North 56°30'N, VIb), VII West 12°W (1)",FAO,27.6.a,,,ok
+24A7-C,"II, IVa), VIa) North 56°30'N, VIb), VII West 12°W (1)",FAO,27.6.b,,,ok
+24A7-C,"II, IVa), VIa) North 56°30'N, VIb), VII West 12°W (1)",FAO,27.2,,,ok
+24A7-C,"II, IVa), VIa) North 56°30'N, VIb), VII West 12°W (1)",FAO,27.7,,,ok
+24A7-C,"II, IVa), VIa) North 56°30'N, VIb), VII West 12°W (1)",FAO,27.1,,,ok
+03A-BC,3a,FAO,27.3.a,,,ok
+*N1GRN,Greenland waters of NAFO 1,FAO,21.1,GRL,,ok
+56-,"Zones V, VI",FAO,27.5,,,ok
+56-,"Zones V, VI",FAO,27.6,,,ok
+*C-CUM,Chartering arrangement with Cuba in NAFO 3M,CHARTER,CUB,,,charter
+*C-CUM,Chartering arrangement with Cuba in NAFO 3M,FAO,21.3.M,NAFO,,ok
+*8CX34,"II, IVa, VIa, North of 56° 30 N, VIb, VII West of 12° West",FAO,27.4.a,,North of 56° 30 N,ok
+*8CX34,"II, IVa, VIa, North of 56° 30 N, VIb, VII West of 12° West",FAO,27.6.a,,North of 56° 30 N,ok
+*8CX34,"II, IVa, VIa, North of 56° 30 N, VIb, VII West of 12° West",FAO,27.6.b,,North of 56° 30 N,ok
+*8CX34,"II, IVa, VIa, North of 56° 30 N, VIb, VII West of 12° West",FAO,27.2,,North of 56° 30 N,ok
+*8CX34,"II, IVa, VIa, North of 56° 30 N, VIb, VII West of 12° West",FAO,27.7,,North of 56° 30 N,ok
+F41-81,All areas of distribution,NONE,,,,no geography
+4AB-C.,"IVa),b) (1)",FAO,27.4.a,,,ok
+4AB-C.,"IVa),b) (1)",FAO,27.4.b,,,ok
+4AB-C.,"IVa),b) (1)",FAO,27.1,,,ok
+46712-,"IV (1), VI, VII; XII (1), XIV (1)",FAO,27.4,,,ok
+46712-,"IV (1), VI, VII; XII (1), XIV (1)",FAO,27.1,,,ok
+46712-,"IV (1), VI, VII; XII (1), XIV (1)",FAO,27.6,,,ok
+46712-,"IV (1), VI, VII; XII (1), XIV (1)",FAO,27.7,,,ok
+46712-,"IV (1), VI, VII; XII (1), XIV (1)",FAO,27.12,,,ok
+46712-,"IV (1), VI, VII; XII (1), XIV (1)",FAO,27.14,,,ok
+MED2_LL1,(no description - inferred from code),NONE,,,MED2_LL1,Mediterranean effort regime code - not an area
+2AC6-,"IIa) (1), III (1), IV; Vb) (1), VI",FAO,27.2.a,,,ok
+2AC6-,"IIa) (1), III (1), IV; Vb) (1), VI",FAO,27.1,,,ok
+2AC6-,"IIa) (1), III (1), IV; Vb) (1), VI",FAO,27.3,,,ok
+2AC6-,"IIa) (1), III (1), IV; Vb) (1), VI",FAO,27.4,,,ok
+2AC6-,"IIa) (1), III (1), IV; Vb) (1), VI",FAO,27.5.b,,,ok
+2AC6-,"IIa) (1), III (1), IV; Vb) (1), VI",FAO,27.6,,,ok
+*F483B,FAO 48.3 Antarctic - Management Area B: 43° 30' W to 40° W – 52° 30' S to 56° S,FAO,48.3,,,ok
+*6AB.,6a north of 56° 30' N and 6b,FAO,27.6.a,,north of 56° 30' N,ok
+*6AB.,6a north of 56° 30' N and 6b,FAO,27.6.b,,north of 56° 30' N,ok
+MED1_LL3,(no description - inferred from code),NONE,,,MED1_LL3,Mediterranean effort regime code - not an area
+GIN_DIR,Direct authorisations with Guinea,EEZ,GIN,GIN,,ok
+514N1G,Greenland waters of V and XIV and of NAFO 1,FAO,21.1,GRL,,ok
+514N1G,Greenland waters of V and XIV and of NAFO 1,FAO,27.5,GRL,,ok
+514N1G,Greenland waters of V and XIV and of NAFO 1,FAO,27.14,GRL,,ok
+1/2-N.,"Norway zone : I,II",FAO,27.1,NOR,,ok
+1/2-N.,"Norway zone : I,II",FAO,27.2,NOR,,ok
+SEN_2014,Senegal,EEZ,SEN,SEN,,ok
+3D25.,Union waters of Subdivision 25,FAO,27.3.d.25,EU,,ok
+04B.,Union waters of IVb (Norwegian part excluded by additional Special Condition),FAO,27.4.b,EU+NOR,,ok
+ICAS05N,"ICCAT Convention area, south of 5°N",RFMO,ICCAT,,south of 5°N,ok
+3D32.,Union waters of Subdivision 32,FAO,27.3.d.32,EU,,ok
+46AN-EU,Union waters of 4 and 6a north of 56° 30' N,FAO,27.6.a,EU,north of 56° 30' N,ok
+46AN-EU,Union waters of 4 and 6a north of 56° 30' N,FAO,27.4,EU,north of 56° 30' N,ok
+06ACL.,"6 Clyde (Clyde stock: reference is to the herring stock in the maritime area situated to the north-east of a line drawn between the Mull of Kintyre (55°17.9'N, 05°47.8'W), a point at position (55°04'N, 05°23'W) and Corsewall Point (55°00.5'N, 05°09.4'W))",FAO,47.8,,"between the Mull of Kintyre (55°17.9'N, 05°47.8'W",ok
+06ACL.,"6 Clyde (Clyde stock: reference is to the herring stock in the maritime area situated to the north-east of a line drawn between the Mull of Kintyre (55°17.9'N, 05°47.8'W), a point at position (55°04'N, 05°23'W) and Corsewall Point (55°00.5'N, 05°09.4'W))",FAO,27.6,,"between the Mull of Kintyre (55°17.9'N, 05°47.8'W",ok
+COM_2013,Comoros,EEZ,COM,COM,,ok
+MED-SR,Mediterranean Sea (Sport and recreational fisheries),FAO,37,,,ok
+04-C.,United Kingdom and Union waters of 4,FAO,27.4,GBR+EU,,ok
+F3742C,Union waters in the Black Sea - GSA 29,FAO,37.4,EU,,ok
+F3742C,Union waters in the Black Sea - GSA 29,GSA,GSA29,EU,,ok
+2A47-C,"EC waters of IIa), IV, Vb), VI, VII",FAO,27.2.a,EU,,ok
+2A47-C,"EC waters of IIa), IV, Vb), VI, VII",FAO,27.5.b,EU,,ok
+2A47-C,"EC waters of IIa), IV, Vb), VI, VII",FAO,27.4,EU,,ok
+2A47-C,"EC waters of IIa), IV, Vb), VI, VII",FAO,27.6,EU,,ok
+2A47-C,"EC waters of IIa), IV, Vb), VI, VII",FAO,27.7,EU,,ok
+7GK.,"VIIg),h),j),k)",FAO,27.7.g,,,ok
+7GK.,"VIIg),h),j),k)",FAO,27.7.h,,,ok
+7GK.,"VIIg),h),j),k)",FAO,27.7.j,,,ok
+7GK.,"VIIg),h),j),k)",FAO,27.7.k,,,ok
+*3BCDC,Union waters of Subdivisions 22-32,FAO,27.3.c.22,EU,,ok
+*3BCDC,Union waters of Subdivisions 22-32,FAO,27.3.b.23,EU,,ok
+*3BCDC,Union waters of Subdivisions 22-32,FAO,27.3.d.24,EU,,ok
+*3BCDC,Union waters of Subdivisions 22-32,FAO,27.3.d.25,EU,,ok
+*3BCDC,Union waters of Subdivisions 22-32,FAO,27.3.d.26,EU,,ok
+*3BCDC,Union waters of Subdivisions 22-32,FAO,27.3.d.27,EU,,ok
+*3BCDC,Union waters of Subdivisions 22-32,FAO,27.3.d.28,EU,,ok
+*3BCDC,Union waters of Subdivisions 22-32,FAO,27.3.d.29,EU,,ok
+*3BCDC,Union waters of Subdivisions 22-32,FAO,27.3.d.30,EU,,ok
+*3BCDC,Union waters of Subdivisions 22-32,FAO,27.3.d.31,EU,,ok
+*3BCDC,Union waters of Subdivisions 22-32,FAO,27.3.d.32,EU,,ok
+124-,"Union and international waters of I, II and IV",FAO,27.1,EU+INT,,ok
+124-,"Union and international waters of I, II and IV",FAO,27.2,EU+INT,,ok
+124-,"Union and international waters of I, II and IV",FAO,27.4,EU+INT,,ok
+1CX14-,"I, II, Vb) (1), VI, VII, XII, XIV",FAO,27.5.b,,,ok
+1CX14-,"I, II, Vb) (1), VI, VII, XII, XIV",FAO,27.1,,,ok
+1CX14-,"I, II, Vb) (1), VI, VII, XII, XIV",FAO,27.2,,,ok
+1CX14-,"I, II, Vb) (1), VI, VII, XII, XIV",FAO,27.6,,,ok
+1CX14-,"I, II, Vb) (1), VI, VII, XII, XIV",FAO,27.7,,,ok
+1CX14-,"I, II, Vb) (1), VI, VII, XII, XIV",FAO,27.12,,,ok
+1CX14-,"I, II, Vb) (1), VI, VII, XII, XIV",FAO,27.14,,,ok
+STP_2019,Sao Tome and Principe,EEZ,STP,STP,,ok
+7X7A34,"7b-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.b,,,ok
+7X7A34,"7b-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.c,,,ok
+7X7A34,"7b-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.d,,,ok
+7X7A34,"7b-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.e,,,ok
+7X7A34,"7b-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.f,,,ok
+7X7A34,"7b-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.g,,,ok
+7X7A34,"7b-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.h,,,ok
+7X7A34,"7b-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.j,,,ok
+7X7A34,"7b-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.7.k,,,ok
+7X7A34,"7b-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.8,,,ok
+7X7A34,"7b-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.9,,,ok
+7X7A34,"7b-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.10,,,ok
+7X7A34,"7b-k, 8, 9 and 10; Union waters of CECAF 34.1.1",FAO,34.1.1,EU,,ok
+*07D.,7d,FAO,27.7.d,,,ok
+AE45WM_AMS,"Atlantic Ocean, east of 45° W, and Mediterranean (shared quota)",FAO,37,,east of 45° W,ok
+AE45WM_AMS,"Atlantic Ocean, east of 45° W, and Mediterranean (shared quota)",FAO,ATL,,east of 45° W,check
+3DEEFS,Estonia zone: IIId),FAO,27.3.d,EST,,ok
+14.,ICES sub-area XIV - East Greenland,FAO,27.14,GRL,,ok
+CPV_2015,Cape Verde,EEZ,CPV,CPV,,ok
+02A-N.,Norway zone ( North of 62° N ): IIa),FAO,27.2.a,NOR,North of 62° N,ok
+N1.,Subarea 21.1,FAO,21.1,NAFO,,ok
+NPFC-PS,Purse seiners in NPFC Convention Area,RFMO,NPFC,,,ok
+*ICAS05N,"ICCAT Convention area, south of 5°N",RFMO,ICCAT,,south of 5°N,ok
+ICCAT,ICCAT Convention area,RFMO,ICCAT,,,ok
+COK_2016,Cook Islands 2016,EEZ,COK,COK,,ok
+*C-CUB,Chartering arrangement with Cuba in NAFO 3M,CHARTER,CUB,,,charter
+*C-CUB,Chartering arrangement with Cuba in NAFO 3M,FAO,21.3.M,NAFO,,ok
+*02A4AN-,Norwegian waters of 2a and 4a,FAO,27.2.a,NOR,,ok
+*02A4AN-,Norwegian waters of 2a and 4a,FAO,27.4.a,NOR,,ok
+N1N68N,NAFO 1-NORTH OF 68° NORTH.,FAO,21.1,NAFO,,ok
+ICESV-VI,(no description - inferred from code),FAO,27.5,,,ok
+ICESV-VI,(no description - inferred from code),FAO,27.6,,,ok
+*NZJM,Norwegian Economic Zone and the fishery zone around Jan Mayen,EEZ,NOR,NOR,incl. Jan Mayen zone,ok
+56789-,"Union and international waters of 5, 6, 7, 8 and 9",FAO,27.5,EU+INT,,ok
+56789-,"Union and international waters of 5, 6, 7, 8 and 9",FAO,27.6,EU+INT,,ok
+56789-,"Union and international waters of 5, 6, 7, 8 and 9",FAO,27.7,EU+INT,,ok
+56789-,"Union and international waters of 5, 6, 7, 8 and 9",FAO,27.8,EU+INT,,ok
+56789-,"Union and international waters of 5, 6, 7, 8 and 9",FAO,27.9,EU+INT,,ok
+MED2_TR1_AA,(no description - inferred from code),NONE,,,MED2_TR1_AA,Mediterranean effort regime code - not an area
+MED4_OTB4,(no description - inferred from code),NONE,,,MED4_OTB4,Mediterranean effort regime code - not an area
+*AS05N,"Atlantic Ocean, South of 5° N",FAO,ATL,,South of 5° N,check
+05-,"V 1), 2)",FAO,27.5,,,ok
+05-,"V 1), 2)",FAO,27.1,,,ok
+05-,"V 1), 2)",FAO,27.2,,,ok
+N2GHCA,Canada zone: NAFO 2GH,FAO,21.2.G,CAN,,ok
+N2GHCA,Canada zone: NAFO 2GH,FAO,21.2.H,CAN,,ok
+8910-,"Union and international waters of 8, 9 and 10",FAO,27.8,EU+INT,,ok
+8910-,"Union and international waters of 8, 9 and 10",FAO,27.9,EU+INT,,ok
+8910-,"Union and international waters of 8, 9 and 10",FAO,27.10,EU+INT,,ok
+*2AX14,"United Kingdom and international waters of 2a, 5b, 6, 7, 8d, 8e, 12 and 14",FAO,27.2.a,GBR+INT,,ok
+*2AX14,"United Kingdom and international waters of 2a, 5b, 6, 7, 8d, 8e, 12 and 14",FAO,27.5.b,GBR+INT,,ok
+*2AX14,"United Kingdom and international waters of 2a, 5b, 6, 7, 8d, 8e, 12 and 14",FAO,27.8.d,GBR+INT,,ok
+*2AX14,"United Kingdom and international waters of 2a, 5b, 6, 7, 8d, 8e, 12 and 14",FAO,27.8.e,GBR+INT,,ok
+*2AX14,"United Kingdom and international waters of 2a, 5b, 6, 7, 8d, 8e, 12 and 14",FAO,27.6,GBR+INT,,ok
+*2AX14,"United Kingdom and international waters of 2a, 5b, 6, 7, 8d, 8e, 12 and 14",FAO,27.7,GBR+INT,,ok
+*2AX14,"United Kingdom and international waters of 2a, 5b, 6, 7, 8d, 8e, 12 and 14",FAO,27.12,GBR+INT,,ok
+*2AX14,"United Kingdom and international waters of 2a, 5b, 6, 7, 8d, 8e, 12 and 14",FAO,27.14,GBR+INT,,ok
+*04C.,4c,FAO,27.4.c,,,ok
+*8910-,"Union and international waters of 8, 9 and 10",FAO,27.8,EU+INT,,ok
+*8910-,"Union and international waters of 8, 9 and 10",FAO,27.9,EU+INT,,ok
+*8910-,"Union and international waters of 8, 9 and 10",FAO,27.10,EU+INT,,ok
+TKL_DIR,Direct authorisations with Tokelau,EEZ,TKL,TKL,,ok
+N3LNO-DIR,NAFO 3LNO (Directed fisheries),FAO,21.3.L,NAFO,,ok
+N3LNO-DIR,NAFO 3LNO (Directed fisheries),FAO,21.3.N,NAFO,,ok
+N3LNO-DIR,NAFO 3LNO (Directed fisheries),FAO,21.3.O,NAFO,,ok
+2CX6.,"IIa (non-EC waters), VI",FAO,27.2.a,EU,,ok
+2CX6.,"IIa (non-EC waters), VI",FAO,27.6,EU,,ok
+N3P.,Division 21.3P,FAO,21.3.P,NAFO,,ok
+51214D,International waters of the Redfish Conservation Area in areas 12 and 14 (within the NEAFC box: 64°45'N 28°30'W; 62°50'N 25°45'W; 61°55'N 26°45'W; 61°00N 26°30'W; 59°00'N 30°00'W; 59°00'N 34°00'W; 61°30'N 34°00'W; 62°50'N 36°00'W; 64°45'N 28°30'W),RFMO,NEAFC,,within the NEAFC box: 64°45'N 28°30'W; 62°50'N 25°45'W; 61°55'N 26°45'W; 61°00N 26°30'W; 59°00'N 30°00'W; 59°00'N 34°00'W; 61°30'N 34°00'W; 62°50'N 36°00'W; 64°45'N 28°30'W),ok
+51214D,International waters of the Redfish Conservation Area in areas 12 and 14 (within the NEAFC box: 64°45'N 28°30'W; 62°50'N 25°45'W; 61°55'N 26°45'W; 61°00N 26°30'W; 59°00'N 30°00'W; 59°00'N 34°00'W; 61°30'N 34°00'W; 62°50'N 36°00'W; 64°45'N 28°30'W),FAO,27.12,INT,,ok
+51214D,International waters of the Redfish Conservation Area in areas 12 and 14 (within the NEAFC box: 64°45'N 28°30'W; 62°50'N 25°45'W; 61°55'N 26°45'W; 61°00N 26°30'W; 59°00'N 30°00'W; 59°00'N 34°00'W; 61°30'N 34°00'W; 62°50'N 36°00'W; 64°45'N 28°30'W),FAO,27.14,INT,,ok
+*3A4BC,"United Kingdom  and Union waters  of 3a, 4b and 4c",FAO,27.3.a,GBR+EU,,ok
+*3A4BC,"United Kingdom  and Union waters  of 3a, 4b and 4c",FAO,27.4.b,GBR+EU,,ok
+*3A4BC,"United Kingdom  and Union waters  of 3a, 4b and 4c",FAO,27.4.c,GBR+EU,,ok
+1/2NEZ,"I, II (Norwegian EEZ)",FAO,27.1,NOR,,ok
+1/2NEZ,"I, II (Norwegian EEZ)",FAO,27.2,NOR,,ok
+*AX7H,"2a, 6a north of 56° 30' N, 4a, 7d, 7e, 7f and 7h",FAO,27.2.a,,north of 56° 30' N,ok
+*AX7H,"2a, 6a north of 56° 30' N, 4a, 7d, 7e, 7f and 7h",FAO,27.6.a,,north of 56° 30' N,ok
+*AX7H,"2a, 6a north of 56° 30' N, 4a, 7d, 7e, 7f and 7h",FAO,27.4.a,,north of 56° 30' N,ok
+*AX7H,"2a, 6a north of 56° 30' N, 4a, 7d, 7e, 7f and 7h",FAO,27.7.d,,north of 56° 30' N,ok
+*AX7H,"2a, 6a north of 56° 30' N, 4a, 7d, 7e, 7f and 7h",FAO,27.7.e,,north of 56° 30' N,ok
+*AX7H,"2a, 6a north of 56° 30' N, 4a, 7d, 7e, 7f and 7h",FAO,27.7.f,,north of 56° 30' N,ok
+*AX7H,"2a, 6a north of 56° 30' N, 4a, 7d, 7e, 7f and 7h",FAO,27.7.h,,north of 56° 30' N,ok
+645E44,Greenland waters of NAFO 1 and Greenland waters of XIV: Between 64° N and 65° N East of 44° W,FAO,21.1,GRL,East of 44° W | Between 64° N and 65° N East of 44° W,ok
+645E44,Greenland waters of NAFO 1 and Greenland waters of XIV: Between 64° N and 65° N East of 44° W,FAO,27.14,GRL,East of 44° W | Between 64° N and 65° N East of 44° W,ok
+4CXB7D,"4c, 7d (Except Blackwater stock in the maritime region of the Thames estuary delimited by a rhumb line running due south from Landguard Point (51° 56' N, 1° 19.1' E) to latitude 51° 33' N and hence due west to a point on the coast of the UK)",FAO,27.4.c,,,ok
+4CXB7D,"4c, 7d (Except Blackwater stock in the maritime region of the Thames estuary delimited by a rhumb line running due south from Landguard Point (51° 56' N, 1° 19.1' E) to latitude 51° 33' N and hence due west to a point on the coast of the UK)",FAO,27.7.d,,,ok
+5B67_AMS,6 and 7; United Kingdom and international waters of 5b (shared quota),FAO,27.6,,,ok
+5B67_AMS,6 and 7; United Kingdom and international waters of 5b (shared quota),FAO,27.7,,,ok
+5B67_AMS,6 and 7; United Kingdom and international waters of 5b (shared quota),FAO,27.5.b,GBR+INT,,ok
+9-C.,Union waters of 9,FAO,27.9,EU,,ok
+*04-C.,United Kingdom and Union waters of 4,FAO,27.4,GBR+EU,,ok
+24-,United Kingdom and international waters of  2; United Kingdom and Union waters of 4,FAO,27.2,GBR+INT,,ok
+24-,United Kingdom and international waters of  2; United Kingdom and Union waters of 4,FAO,27.4,GBR+EU,,ok
+S62E44,Greenland waters of NAFO 1 and Greenland waters of XIV: South of 62° N East of 44° W,FAO,21.1,GRL,South of 62° N | East of 44° W,ok
+S62E44,Greenland waters of NAFO 1 and Greenland waters of XIV: South of 62° N East of 44° W,FAO,27.14,GRL,South of 62° N | East of 44° W,ok
+24.,"II, IV",FAO,27.2,,,ok
+24.,"II, IV",FAO,27.4,,,ok
+*57-14,6 and 7; United Kingdom and international waters of 5b; international waters of 12 and 14,FAO,27.6,,,ok
+*57-14,6 and 7; United Kingdom and international waters of 5b; international waters of 12 and 14,FAO,27.7,,,ok
+*57-14,6 and 7; United Kingdom and international waters of 5b; international waters of 12 and 14,FAO,27.5.b,GBR+INT,,ok
+*57-14,6 and 7; United Kingdom and international waters of 5b; international waters of 12 and 14,FAO,27.12,INT,,ok
+*57-14,6 and 7; United Kingdom and international waters of 5b; international waters of 12 and 14,FAO,27.14,INT,,ok
+5BC67.,"Vb) (1), VI, VII",FAO,27.5.b,,,ok
+5BC67.,"Vb) (1), VI, VII",FAO,27.1,,,ok
+5BC67.,"Vb) (1), VI, VII",FAO,27.6,,,ok
+5BC67.,"Vb) (1), VI, VII",FAO,27.7,,,ok
+N1F3K.,"NAFO Subarea 2, Divisions 1F and 3K",FAO,21.2,NAFO,,ok
+N1F3K.,"NAFO Subarea 2, Divisions 1F and 3K",FAO,21.1.F,NAFO,,ok
+N1F3K.,"NAFO Subarea 2, Divisions 1F and 3K",FAO,21.3.K,NAFO,,ok
+GF1-3,Union waters in the Alboran Sea - GSA 1-3,GSA,GSA1,EU,,ok
+GF1-3,Union waters in the Alboran Sea - GSA 1-3,GSA,GSA2,EU,,ok
+GF1-3,Union waters in the Alboran Sea - GSA 1-3,GSA,GSA3,EU,,ok
+4C7D.,"IVc), VIId)",FAO,27.4.c,,,ok
+4C7D.,"IVc), VIId)",FAO,27.7.d,,,ok
+N1G-S68,Greenland waters of NAFO 1 (to be fished south of 68° N),FAO,21.1,GRL,south of 68° N,ok
+N5E69.,NAFO 5 east of 69°00' west,FAO,21.5,NAFO,,ok
+04-C_AMS,United Kingdom and Union waters of 4 (shared quota),FAO,27.4,GBR+EU,,ok
+*2A4-C,Union waters of 2a and 4,FAO,27.2.a,EU,,ok
+*2A4-C,Union waters of 2a and 4,FAO,27.4,EU,,ok
+67AKXD,"United Kingdom and Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.a,GBR+EU,,ok
+67AKXD,"United Kingdom and Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.b,GBR+EU,,ok
+67AKXD,"United Kingdom and Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.c,GBR+EU,,ok
+67AKXD,"United Kingdom and Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.e,GBR+EU,,ok
+67AKXD,"United Kingdom and Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.f,GBR+EU,,ok
+67AKXD,"United Kingdom and Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.g,GBR+EU,,ok
+67AKXD,"United Kingdom and Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.h,GBR+EU,,ok
+67AKXD,"United Kingdom and Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.j,GBR+EU,,ok
+67AKXD,"United Kingdom and Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.7.k,GBR+EU,,ok
+67AKXD,"United Kingdom and Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.6.a,GBR+EU,,ok
+67AKXD,"United Kingdom and Union waters of 6a, 6b, 7a-c and 7e-k",FAO,27.6.b,GBR+EU,,ok
+3BCDFS,"IIIb,c,d east 15°east.",FAO,27.3.b,,,ok
+3BCDFS,"IIIb,c,d east 15°east.",FAO,27.3.c,,,ok
+3BCDFS,"IIIb,c,d east 15°east.",FAO,27.3.d,,,ok
+3CD-C.,"IIIc),d) (1)",FAO,27.3.c,,,ok
+3CD-C.,"IIIc),d) (1)",FAO,27.3.d,,,ok
+3CD-C.,"IIIc),d) (1)",FAO,27.1,,,ok
+N1G14D,"Greenland waters of NAFO 1F and ICES 5 and 14, North and West of a line defined by the coordinates 59°15'N,54°26'W; (...)",FAO,21.1.F,GRL,,ok
+N1G14D,"Greenland waters of NAFO 1F and ICES 5 and 14, North and West of a line defined by the coordinates 59°15'N,54°26'W; (...)",FAO,27.5,GRL,,ok
+N1G14D,"Greenland waters of NAFO 1F and ICES 5 and 14, North and West of a line defined by the coordinates 59°15'N,54°26'W; (...)",FAO,27.14,GRL,,ok
+2A6.,"IIa (2), VI",FAO,27.2.a,,,ok
+2A6.,"IIa (2), VI",FAO,27.2,,,ok
+2A6.,"IIa (2), VI",FAO,27.6,,,ok
+7FG.,7f and 7g,FAO,27.7.f,,,ok
+7FG.,7f and 7g,FAO,27.7.g,,,ok
+*4BN.,Norwegian waters of IVb,FAO,27.4.b,NOR,,ok
+2CX14-,"6, 7, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 2a, 12 and 14",FAO,27.8.a,,,ok
+2CX14-,"6, 7, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 2a, 12 and 14",FAO,27.8.b,,,ok
+2CX14-,"6, 7, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 2a, 12 and 14",FAO,27.8.d,,,ok
+2CX14-,"6, 7, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 2a, 12 and 14",FAO,27.8.e,,,ok
+2CX14-,"6, 7, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 2a, 12 and 14",FAO,27.6,,,ok
+2CX14-,"6, 7, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 2a, 12 and 14",FAO,27.7,,,ok
+2CX14-,"6, 7, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 2a, 12 and 14",FAO,27.5.b,GBR+INT,,ok
+2CX14-,"6, 7, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 2a, 12 and 14",FAO,27.2.a,INT,,ok
+2CX14-,"6, 7, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 2a, 12 and 14",FAO,27.12,INT,,ok
+2CX14-,"6, 7, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 2a, 12 and 14",FAO,27.14,INT,,ok
+*07E.,United Kingdom and Union waters of 7e,FAO,27.7.e,GBR+EU,,ok
+07JB-C,VIIj) Bantry Bay only,FAO,27.7.j,,,ok
+*4B-EU,Union waters of 4b,FAO,27.4.b,EU,,ok
+N3L.,NAFO 3L,FAO,21.3.L,NAFO,,ok
+XDS,NEAFC Stock - Deep Sea Fisheries,RFMO,NEAFC,,,ok
+*C-CUB2,(no description - inferred from code),CHARTER,CUB,,,charter
+9/3411,9 and 10; Union waters of CECAF 34.1.1,FAO,27.9,,,ok
+9/3411,9 and 10; Union waters of CECAF 34.1.1,FAO,27.10,,,ok
+9/3411,9 and 10; Union waters of CECAF 34.1.1,FAO,34.1.1,EU,,ok
+MED2_LL4,(no description - inferred from code),NONE,,,MED2_LL4,Mediterranean effort regime code - not an area
+*3A4-C,Union waters of 4; 3a,FAO,27.4,EU,,ok
+*3A4-C,Union waters of 4; 3a,FAO,27.3.a,,,ok
+*2AC4C,United Kingdom and Union waters of 4;  United Kingdom waters of 2a ,FAO,27.4,GBR+EU,,ok
+*2AC4C,United Kingdom and Union waters of 4;  United Kingdom waters of 2a ,FAO,27.2.a,GBR,,ok
+N5Y.,Division 21.5Y,FAO,21.5.Y,NAFO,,ok
+ALX3PS,Entire Community zone except NAFO 3 Ps.,FAO,21.3,EU,,ok
+15X14,"6, 7 and 8; United Kingdom and  international waters of 5; international  waters of 1, 12 and 14",FAO,27.6,,,ok
+15X14,"6, 7 and 8; United Kingdom and  international waters of 5; international  waters of 1, 12 and 14",FAO,27.7,,,ok
+15X14,"6, 7 and 8; United Kingdom and  international waters of 5; international  waters of 1, 12 and 14",FAO,27.8,,,ok
+15X14,"6, 7 and 8; United Kingdom and  international waters of 5; international  waters of 1, 12 and 14",FAO,27.5,GBR+INT,,ok
+15X14,"6, 7 and 8; United Kingdom and  international waters of 5; international  waters of 1, 12 and 14",FAO,27.1,INT,,ok
+15X14,"6, 7 and 8; United Kingdom and  international waters of 5; international  waters of 1, 12 and 14",FAO,27.12,INT,,ok
+15X14,"6, 7 and 8; United Kingdom and  international waters of 5; international  waters of 1, 12 and 14",FAO,27.14,INT,,ok
+1N2AB-,"Norway zone ( North of 62° N ): I, IIa),b)",FAO,27.2.a,NOR,North of 62° N,ok
+1N2AB-,"Norway zone ( North of 62° N ): I, IIa),b)",FAO,27.2.b,NOR,North of 62° N,ok
+1N2AB-,"Norway zone ( North of 62° N ): I, IIa),b)",FAO,27.1,NOR,North of 62° N,ok
+TZA_DIR,Direct authorisations with Tanzania,EEZ,TZA,TZA,,ok
+*4BC7D,"United Kingdom and Union waters of  4b, 4c and 7d",FAO,27.4.b,GBR+EU,,ok
+*4BC7D,"United Kingdom and Union waters of  4b, 4c and 7d",FAO,27.4.c,GBR+EU,,ok
+*4BC7D,"United Kingdom and Union waters of  4b, 4c and 7d",FAO,27.7.d,GBR+EU,,ok
+934SPN,"IX,X;CECAF 3411(1): under sover./juris of Spain",FAO,27.9,,,ok
+934SPN,"IX,X;CECAF 3411(1): under sover./juris of Spain",FAO,27.10,,,ok
+934SPN,"IX,X;CECAF 3411(1): under sover./juris of Spain",FAO,34.1.1,,,ok
+934SPN,"IX,X;CECAF 3411(1): under sover./juris of Spain",FAO,27.1,,,ok
+56712_AMS,6 and 7; United Kingdom and international waters of 5; international waters of 12 (shared quota),FAO,27.6,,,ok
+56712_AMS,6 and 7; United Kingdom and international waters of 5; international waters of 12 (shared quota),FAO,27.7,,,ok
+56712_AMS,6 and 7; United Kingdom and international waters of 5; international waters of 12 (shared quota),FAO,27.5,GBR+INT,,ok
+56712_AMS,6 and 7; United Kingdom and international waters of 5; international waters of 12 (shared quota),FAO,27.12,INT,,ok
+XHA,NEAFC Stock - Haddock,RFMO,NEAFC,,,ok
+2AC43A7D,United Kingdom and Union waters of 4 and 7d; United Kingdom waters of 2a; Union waters of 3a,FAO,27.7.d,GBR+EU,,ok
+2AC43A7D,United Kingdom and Union waters of 4 and 7d; United Kingdom waters of 2a; Union waters of 3a,FAO,27.4,GBR+EU,,ok
+2AC43A7D,United Kingdom and Union waters of 4 and 7d; United Kingdom waters of 2a; Union waters of 3a,FAO,27.2.a,GBR,,ok
+2AC43A7D,United Kingdom and Union waters of 4 and 7d; United Kingdom waters of 2a; Union waters of 3a,FAO,27.3.a,EU,,ok
+1214N1G,Greenland waters in 12 and 14 and in NAFO division 1F,FAO,21.1.F,GRL,,ok
+1214N1G,Greenland waters in 12 and 14 and in NAFO division 1F,FAO,27.12,GRL,,ok
+1214N1G,Greenland waters in 12 and 14 and in NAFO division 1F,FAO,27.14,GRL,,ok
+*03A.2,3a,FAO,27.3.a,,,ok
+08.,8,FAO,27.8,,,ok
+03A.,3a,FAO,27.3.a,,,ok
+STP_2025,Sao Tome and Principe,EEZ,STP,STP,,ok
+567.,6 and 7; United Kingdom and international waters of 5,FAO,27.6,,,ok
+567.,6 and 7; United Kingdom and international waters of 5,FAO,27.7,,,ok
+567.,6 and 7; United Kingdom and international waters of 5,FAO,27.5,GBR+INT,,ok
+2AC4-C,United Kingdom and Union waters of 4; United Kingdom waters of 2a,FAO,27.4,GBR+EU,,ok
+2AC4-C,United Kingdom and Union waters of 4; United Kingdom waters of 2a,FAO,27.2.a,GBR,,ok
+2X12,Fictitious parent stock for MAC/2A34. + MAC/*FRO and MAC/2CX14-,NONE,,,,no geography
+02A.,ICES division IIa - Norwegian Sea,FAO,27.2.a,NOR,,ok
+09-PRT,Portugal zone: IX,FAO,27.9,PRT,,ok
+*N01GN,Special Condition on Greenland waters of NAFO 0 and 1,FAO,21.0,GRL,,ok
+*N01GN,Special Condition on Greenland waters of NAFO 0 and 1,FAO,21.1,GRL,,ok
+*04-EU,Union waters of 4,FAO,27.4,EU,,ok
+04-NFS,Norway zone: IV,FAO,27.4,NOR,,ok
+*2AC4-C,4; United Kingdom waters of 2a,FAO,27.4,,,ok
+*2AC4-C,4; United Kingdom waters of 2a,FAO,27.2.a,GBR,,ok
+*09.,9,FAO,27.9,,,ok
+SPM_DIR,Direct authorisations with Saint Pierre et Miquelon,EEZ,SPM,SPM,,ok
+*2A3A4X,"United Kingdom and Union waters of 4; United Kingdom waters of 2a; Union 
+waters of 3a (Excluding waters within six nautical miles of the united Kingdom baselines at Shetland, Fair Isle and Foula)",FAO,27.4,GBR+EU,,ok
+*2A3A4X,"United Kingdom and Union waters of 4; United Kingdom waters of 2a; Union 
+waters of 3a (Excluding waters within six nautical miles of the united Kingdom baselines at Shetland, Fair Isle and Foula)",FAO,27.2.a,GBR,,ok
+*2A3A4X,"United Kingdom and Union waters of 4; United Kingdom waters of 2a; Union 
+waters of 3a (Excluding waters within six nautical miles of the united Kingdom baselines at Shetland, Fair Isle and Foula)",FAO,27.3.a,GBR+EU,,ok
+*04A.,4a,FAO,27.4.a,,,ok
+89-C.,Union waters of 8 and 9,FAO,27.8,EU,,ok
+89-C.,Union waters of 8 and 9,FAO,27.9,EU,,ok
+SPR-RB,SPRFMO Convention Area within the research block (see coordinates in the regulation),RFMO,SPRFMO,,,ok
+S62W44,Greenland waters of NAFO 1 and Greenland waters of XIV: South of 62° N West of 44° W,FAO,21.1,GRL,South of 62° N | West of 44° W,ok
+S62W44,Greenland waters of NAFO 1 and Greenland waters of XIV: South of 62° N West of 44° W,FAO,27.14,GRL,South of 62° N | West of 44° W,ok
+*234_2,Sandeel management area 2,SANDEEL,SAN2,,,ok
+6X14.,"6, 7, 8, 9 and 10; international waters of  12 and 14",FAO,27.6,,,ok
+6X14.,"6, 7, 8, 9 and 10; international waters of  12 and 14",FAO,27.7,,,ok
+6X14.,"6, 7, 8, 9 and 10; international waters of  12 and 14",FAO,27.8,,,ok
+6X14.,"6, 7, 8, 9 and 10; international waters of  12 and 14",FAO,27.9,,,ok
+6X14.,"6, 7, 8, 9 and 10; international waters of  12 and 14",FAO,27.10,,,ok
+6X14.,"6, 7, 8, 9 and 10; international waters of  12 and 14",FAO,27.12,INT,,ok
+6X14.,"6, 7, 8, 9 and 10; international waters of  12 and 14",FAO,27.14,INT,,ok
+5/678-,"Vb) (1), VI, VII, VIII a), b), d)  Portugal only",FAO,27.8.a,,,ok
+5/678-,"Vb) (1), VI, VII, VIII a), b), d)  Portugal only",FAO,27.8.b,,,ok
+5/678-,"Vb) (1), VI, VII, VIII a), b), d)  Portugal only",FAO,27.8.d,,,ok
+5/678-,"Vb) (1), VI, VII, VIII a), b), d)  Portugal only",FAO,27.5.b,,,ok
+5/678-,"Vb) (1), VI, VII, VIII a), b), d)  Portugal only",FAO,27.1,,,ok
+5/678-,"Vb) (1), VI, VII, VIII a), b), d)  Portugal only",FAO,27.6,,,ok
+5/678-,"Vb) (1), VI, VII, VIII a), b), d)  Portugal only",FAO,27.7,,,ok
+67.,"VI, VII",FAO,27.6,,,ok
+67.,"VI, VII",FAO,27.7,,,ok
+XXX,NEAFC Stock - catches not from the stock that is subject to NEAFC management mesures,NONE,,,,no geography
+3D31.,Union waters of Subdivision 31,FAO,27.3.d.31,EU,,ok
+03AS_REM,Kattegat - remote  electronic monitoring,FAO,27.3.a.21,,,ok
+*NZJM2,Norwegian Economic Zone and the fishery zone around Jan Mayen,EEZ,NOR,NOR,incl. Jan Mayen zone,ok
+03D-P.,Polish waters,EEZ,POL,POL,,ok
+N4WX.,NAFO 4WX.,FAO,21.4.W,NAFO,,ok
+N4WX.,NAFO 4WX.,FAO,21.4.X,NAFO,,ok
+MED1_TR3_AA,(no description - inferred from code),NONE,,,MED1_TR3_AA,Mediterranean effort regime code - not an area
+37.,"III,VII (Mediterranean Sea)",FAO,37,,,ok
+37.,"III,VII (Mediterranean Sea)",FAO,27.3,,,ok
+37.,"III,VII (Mediterranean Sea)",FAO,27.7,,,ok
+*8X14-,"Union and international waters of 8, 9, 10, 12 and 14",FAO,27.8,EU+INT,,ok
+*8X14-,"Union and international waters of 8, 9, 10, 12 and 14",FAO,27.9,EU+INT,,ok
+*8X14-,"Union and international waters of 8, 9, 10, 12 and 14",FAO,27.10,EU+INT,,ok
+*8X14-,"Union and international waters of 8, 9, 10, 12 and 14",FAO,27.12,EU+INT,,ok
+*8X14-,"Union and international waters of 8, 9, 10, 12 and 14",FAO,27.14,EU+INT,,ok
+2A6-C.,"IIa), VI (1)",FAO,27.2.a,,,ok
+2A6-C.,"IIa), VI (1)",FAO,27.6,,,ok
+2A6-C.,"IIa), VI (1)",FAO,27.1,,,ok
+N3M.,NAFO 3M,FAO,21.3.M,NAFO,,ok
+*F-41W,Division 58.4.1 west of 115° E,FAO,58.4.1,,west of 115° E,ok
+*F-41W,Division 58.4.1 west of 115° E,FAO,27.1,,west of 115° E,ok
+22/24-,Baltic zone IIIc (22) et IIId (24),FAO,27.3.c.22,,,ok
+22/24-,Baltic zone IIIc (22) et IIId (24),FAO,27.3.d.24,,,ok
+MDG_2012,Madagascar,EEZ,MDG,MDG,,ok
+03AN.,Skagerrak,FAO,27.3.a.20,,,ok
+561214,VI; EC waters of Vb; EC and international waters of XII and XIV,FAO,27.6,,,ok
+561214,VI; EC waters of Vb; EC and international waters of XII and XIV,FAO,27.5.b,EU,,ok
+561214,VI; EC waters of Vb; EC and international waters of XII and XIV,FAO,27.12,INT,,ok
+561214,VI; EC waters of Vb; EC and international waters of XII and XIV,FAO,27.14,INT,,ok
+3-12,"EU and international waters of III, IV, V, VI, VII, VIII, IX, X and XII",FAO,27.3,EU+INT,,ok
+3-12,"EU and international waters of III, IV, V, VI, VII, VIII, IX, X and XII",FAO,27.4,EU+INT,,ok
+3-12,"EU and international waters of III, IV, V, VI, VII, VIII, IX, X and XII",FAO,27.5,EU+INT,,ok
+3-12,"EU and international waters of III, IV, V, VI, VII, VIII, IX, X and XII",FAO,27.6,EU+INT,,ok
+3-12,"EU and international waters of III, IV, V, VI, VII, VIII, IX, X and XII",FAO,27.7,EU+INT,,ok
+3-12,"EU and international waters of III, IV, V, VI, VII, VIII, IX, X and XII",FAO,27.8,EU+INT,,ok
+3-12,"EU and international waters of III, IV, V, VI, VII, VIII, IX, X and XII",FAO,27.9,EU+INT,,ok
+3-12,"EU and international waters of III, IV, V, VI, VII, VIII, IX, X and XII",FAO,27.10,EU+INT,,ok
+3-12,"EU and international waters of III, IV, V, VI, VII, VIII, IX, X and XII",FAO,27.12,EU+INT,,ok
+03.,"ICES sub-area III - Skagerrak, Kattegat, Sound, Belt and Baltic Sea",FAO,27.3,,,ok
+03.,"ICES sub-area III - Skagerrak, Kattegat, Sound, Belt and Baltic Sea",FAO,27.3.a.20,,,ok
+03.,"ICES sub-area III - Skagerrak, Kattegat, Sound, Belt and Baltic Sea",FAO,27.3.a.21,,,ok
+EF_XSV,,NODESC,,,,manual
+06B.,ICES division VIb - Rockall,FAO,27.6.b,,,ok
+MED4_OTB1,(no description - inferred from code),NONE,,,MED4_OTB1,Mediterranean effort regime code - not an area
+04-N.,Norwegian waters of 4,FAO,27.4,NOR,,ok
+9WX10,Part of subarea 9 west (see coordinates in the regulation) and 10,FAO,27.9,,,ok
+9WX10,Part of subarea 9 west (see coordinates in the regulation) and 10,FAO,27.10,,,ok
+*5BC6A,"Vb) (1), VIa).",FAO,27.5.b,,,ok
+*5BC6A,"Vb) (1), VIa).",FAO,27.6.a,,,ok
+*5BC6A,"Vb) (1), VIa).",FAO,27.1,,,ok
+F517DC,Del Cano Area (see coordinates in the regulation),BOX,Del Cano Area,,coordinates in regulation,manual
+N1W44W,NAFO 1 west of 44°00' west,FAO,21.1,NAFO,,ok
+46A7-,"IV, VIa), VIIe),f),h)",FAO,27.7.e,,,ok
+46A7-,"IV, VIa), VIIe),f),h)",FAO,27.7.f,,,ok
+46A7-,"IV, VIa), VIIe),f),h)",FAO,27.7.h,,,ok
+46A7-,"IV, VIa), VIIe),f),h)",FAO,27.6.a,,,ok
+46A7-,"IV, VIa), VIIe),f),h)",FAO,27.4,,,ok
+SPRFMO,SPRFMO Convention Area,RFMO,SPRFMO,,,ok
+N5ZE.,Subdivision 21.5Ze - Eastern subdivision,FAO,21.5.Ze,NAFO,,ok
+7GKXBC,"VIIg),h),j),k) (1) Bantry Bay excepted",FAO,27.7.g,,,ok
+7GKXBC,"VIIg),h),j),k) (1) Bantry Bay excepted",FAO,27.7.h,,,ok
+7GKXBC,"VIIg),h),j),k) (1) Bantry Bay excepted",FAO,27.7.j,,,ok
+7GKXBC,"VIIg),h),j),k) (1) Bantry Bay excepted",FAO,27.7.k,,,ok
+7GKXBC,"VIIg),h),j),k) (1) Bantry Bay excepted",FAO,27.1,,,ok
+NPFC-TR,Trawlers in NPFC Convention Area,RFMO,NPFC,,,ok
+XWH,NEAFC Stock - Blue Whiting,RFMO,NEAFC,,,ok
+14-C.,XIV (1),FAO,27.14,,,ok
+14-C.,XIV (1),FAO,27.1,,,ok
+3DX32.,Union waters of Subdivisions 25-32,FAO,27.3.d.25,EU,,ok
+3DX32.,Union waters of Subdivisions 25-32,FAO,27.3.d.26,EU,,ok
+3DX32.,Union waters of Subdivisions 25-32,FAO,27.3.d.27,EU,,ok
+3DX32.,Union waters of Subdivisions 25-32,FAO,27.3.d.28,EU,,ok
+3DX32.,Union waters of Subdivisions 25-32,FAO,27.3.d.29,EU,,ok
+3DX32.,Union waters of Subdivisions 25-32,FAO,27.3.d.30,EU,,ok
+3DX32.,Union waters of Subdivisions 25-32,FAO,27.3.d.31,EU,,ok
+3DX32.,Union waters of Subdivisions 25-32,FAO,27.3.d.32,EU,,ok
+XOS,NEAFC Stock - Other species,RFMO,NEAFC,,,ok
+*2AN-,Norwegian waters of 2a,FAO,27.2.a,NOR,,ok
+5B6A-C,VIa; EU and international waters of Vb east of 12 00 W,FAO,27.6.a,,,ok
+5B6A-C,VIa; EU and international waters of Vb east of 12 00 W,FAO,27.5.b,EU+INT,east of 12 00 W,ok
+8C9-SP,"Spain zone: VIIIc), IX",FAO,27.8.c,ESP,,ok
+8C9-SP,"Spain zone: VIIIc), IX",FAO,27.9,ESP,,ok
+03AS.,Kattegat,FAO,27.3.a.21,,,ok
+8CDE34,"8c, 8d, 8e, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.8.c,,,ok
+8CDE34,"8c, 8d, 8e, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.8.d,,,ok
+8CDE34,"8c, 8d, 8e, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.8.e,,,ok
+8CDE34,"8c, 8d, 8e, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.9,,,ok
+8CDE34,"8c, 8d, 8e, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.10,,,ok
+8CDE34,"8c, 8d, 8e, 9 and 10; Union waters of CECAF 34.1.1",FAO,34.1.1,EU,,ok
+5B678.,"Vb (1), VI, VII; VIII (1)",FAO,27.5.b,,,ok
+5B678.,"Vb (1), VI, VII; VIII (1)",FAO,27.1,,,ok
+5B678.,"Vb (1), VI, VII; VIII (1)",FAO,27.6,,,ok
+5B678.,"Vb (1), VI, VII; VIII (1)",FAO,27.7,,,ok
+5B678.,"Vb (1), VI, VII; VIII (1)",FAO,27.8,,,ok
+*567-,"Union and international waters of V, VI and VII",FAO,27.5,EU+INT,,ok
+*567-,"Union and international waters of V, VI and VII",FAO,27.6,EU+INT,,ok
+*567-,"Union and international waters of V, VI and VII",FAO,27.7,EU+INT,,ok
+*F482.,Division 48.2,FAO,48.2,,,ok
+CIV_2013,Ivory Coast,EEZ,CIV,CIV,,ok
+3A4NFS,"Norway zone: IIIa), IV",FAO,27.3.a,NOR,,ok
+3A4NFS,"Norway zone: IIIa), IV",FAO,27.4,NOR,,ok
+*2AC4-C1,4; United Kingdom waters of 2a,FAO,27.4,,,ok
+*2AC4-C1,4; United Kingdom waters of 2a,FAO,27.2.a,GBR,,ok
+N5.,Subarea 21.5,FAO,21.5,NAFO,,ok
+578/14,"Vb(1), VI, VII, VIIIa),b),d),e), XII, XIV",FAO,27.8.a,,,ok
+578/14,"Vb(1), VI, VII, VIIIa),b),d),e), XII, XIV",FAO,27.8.b,,,ok
+578/14,"Vb(1), VI, VII, VIIIa),b),d),e), XII, XIV",FAO,27.8.d,,,ok
+578/14,"Vb(1), VI, VII, VIIIa),b),d),e), XII, XIV",FAO,27.8.e,,,ok
+578/14,"Vb(1), VI, VII, VIIIa),b),d),e), XII, XIV",FAO,27.1,,,ok
+578/14,"Vb(1), VI, VII, VIIIa),b),d),e), XII, XIV",FAO,27.6,,,ok
+578/14,"Vb(1), VI, VII, VIIIa),b),d),e), XII, XIV",FAO,27.7,,,ok
+578/14,"Vb(1), VI, VII, VIIIa),b),d),e), XII, XIV",FAO,27.12,,,ok
+578/14,"Vb(1), VI, VII, VIIIa),b),d),e), XII, XIV",FAO,27.14,,,ok
+ICAN05N,"ICCAT Convention area, north of 5°N",RFMO,ICCAT,,north of 5°N,ok
+MED3_TBB,(no description - inferred from code),NONE,,,MED3_TBB,Mediterranean effort regime code - not an area
+1/2B.,1 and 2b (this refers to Svalbard waters and to the international waters of ICES subarea 1 and division 2b),FAO,27.2.b,INT,,ok
+1/2B.,1 and 2b (this refers to Svalbard waters and to the international waters of ICES subarea 1 and division 2b),FAO,27.1,INT,,ok
+N2/3CA,"Canada zone: NAFO 2J,3KL",FAO,21.2.J,CAN,,ok
+N2/3CA,"Canada zone: NAFO 2J,3KL",FAO,21.3.K,CAN,,ok
+N2/3CA,"Canada zone: NAFO 2J,3KL",FAO,21.3.L,CAN,,ok
+MED1_TR1,(no description - inferred from code),NONE,,,MED1_TR1,Mediterranean effort regime code - not an area
+2X12-F,"Faroese Waters (IIa, IVa, Va, Vb, VIa)",FAO,27.2.a,FRO,,ok
+2X12-F,"Faroese Waters (IIa, IVa, Va, Vb, VIa)",FAO,27.4.a,FRO,,ok
+2X12-F,"Faroese Waters (IIa, IVa, Va, Vb, VIa)",FAO,27.5.a,FRO,,ok
+2X12-F,"Faroese Waters (IIa, IVa, Va, Vb, VIa)",FAO,27.5.b,FRO,,ok
+2X12-F,"Faroese Waters (IIa, IVa, Va, Vb, VIa)",FAO,27.6.a,FRO,,ok
+*4AB-C,United Kingdom and Union waters of 4a and 4b,FAO,27.4.a,GBR+EU,,ok
+*4AB-C,United Kingdom and Union waters of 4a and 4b,FAO,27.4.b,GBR+EU,,ok
+*GL251214,"Greenland waters of 2, 5, 12 and 14",FAO,27.2,GRL,,ok
+*GL251214,"Greenland waters of 2, 5, 12 and 14",FAO,27.5,GRL,,ok
+*GL251214,"Greenland waters of 2, 5, 12 and 14",FAO,27.12,GRL,,ok
+*GL251214,"Greenland waters of 2, 5, 12 and 14",FAO,27.14,GRL,,ok
+MED2_TR2_AA,(no description - inferred from code),NONE,,,MED2_TR2_AA,Mediterranean effort regime code - not an area
+CPV_2024,Cape Verde,EEZ,CPV,CPV,,ok
+3D29.,Union waters of Subdivision 29,FAO,27.3.d.29,EU,,ok
+F483.,FAO 48.3 Antarctic,FAO,48.3,,,ok
+4678.,"IV,VI,VII,VIII",FAO,27.4,,,ok
+4678.,"IV,VI,VII,VIII",FAO,27.6,,,ok
+4678.,"IV,VI,VII,VIII",FAO,27.7,,,ok
+4678.,"IV,VI,VII,VIII",FAO,27.8,,,ok
+F484N.,FAO 48.4 Antarctic North (within the area bounded by latitudes 55°30'S and 57°20'S and by longitudes 25°30'W and 29°30'W),FAO,48.4,,,ok
+*5B67-,6 and 7; United Kingdom and international waters of 5b,FAO,27.6,,,ok
+*5B67-,6 and 7; United Kingdom and international waters of 5b,FAO,27.7,,,ok
+*5B67-,6 and 7; United Kingdom and international waters of 5b,FAO,27.5.b,GBR+INT,,ok
+*2A.,IIa,FAO,27.2.a,,,ok
+ICESX,(no description - inferred from code),FAO,27.10,,,ok
+GF12-16,GSA 12-13-14-15-16,GSA,GSA12,,,ok
+GF12-16,GSA 12-13-14-15-16,GSA,GSA13,,,ok
+GF12-16,GSA 12-13-14-15-16,GSA,GSA14,,,ok
+GF12-16,GSA 12-13-14-15-16,GSA,GSA15,,,ok
+GF12-16,GSA 12-13-14-15-16,GSA,GSA16,,,ok
+07A/MM,"7a (This zone is reduced by the area bounded: — to the north by latitude 52° 30' N, — to the south by latitude 52° 00' N, — to the west by the coast of Ireland, — to the east by the coast of the United Kingdom.)",FAO,27.7.a,GBR,,ok
+5B67-,6 and 7; United Kingdom and international waters of 5b,FAO,27.6,,,ok
+5B67-,6 and 7; United Kingdom and international waters of 5b,FAO,27.7,,,ok
+5B67-,6 and 7; United Kingdom and international waters of 5b,FAO,27.5.b,GBR+INT,,ok
+SPR-AE,SPRFMO Convention Area within the research blocks A-E,RFMO,SPRFMO,,,ok
+*ICAS05N_AMS,"ICCAT Convention area, south of 5°N (shared quota)",RFMO,ICCAT,,south of 5°N,ok
+MED3_OTB_TR3,(no description - inferred from code),NONE,,,MED3_OTB_TR3,Mediterranean effort regime code - not an area
+*07U16,Functional Unit 16 of ICES Subarea 7,FU,FU16,,,ok
+*07U16,Functional Unit 16 of ICES Subarea 7,FAO,27.7,,Functional Unit 16,ok
+6AN7-,"VIa) (North 56°30' North), VIIe),f),h)",FAO,27.7.e,,,ok
+6AN7-,"VIa) (North 56°30' North), VIIe),f),h)",FAO,27.7.f,,,ok
+6AN7-,"VIa) (North 56°30' North), VIIe),f),h)",FAO,27.7.h,,,ok
+6AN7-,"VIa) (North 56°30' North), VIIe),f),h)",FAO,27.6.a,,,ok
+*FRO2,Faroese waters,EEZ,FRO,FRO,,ok
+MED1_LL4,(no description - inferred from code),NONE,,,MED1_LL4,Mediterranean effort regime code - not an area
+1CX14,"Union and international waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.1,EU+INT,,ok
+1CX14,"Union and international waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.2,EU+INT,,ok
+1CX14,"Union and international waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.3,EU+INT,,ok
+1CX14,"Union and international waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.4,EU+INT,,ok
+1CX14,"Union and international waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.5,EU+INT,,ok
+1CX14,"Union and international waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.8,EU+INT,,ok
+1CX14,"Union and international waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.9,EU+INT,,ok
+1CX14,"Union and international waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.10,EU+INT,,ok
+1CX14,"Union and international waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.12,EU+INT,,ok
+1CX14,"Union and international waters of I, II, III, IV, V, VIII, IX, X, XII and XIV",FAO,27.14,EU+INT,,ok
+*2A4AC,United Kingdom waters of 2a or 4a,FAO,27.2.a,GBR,,ok
+*2A4AC,United Kingdom waters of 2a or 4a,FAO,27.4.a,GBR,,ok
+2AC43A7DE,United Kingdom and Union waters of 4 and 7de; United Kingdom waters of 2a; Union waters of 3a,FAO,27.7.d,GBR+EU,,ok
+2AC43A7DE,United Kingdom and Union waters of 4 and 7de; United Kingdom waters of 2a; Union waters of 3a,FAO,27.7.e,GBR+EU,,ok
+2AC43A7DE,United Kingdom and Union waters of 4 and 7de; United Kingdom waters of 2a; Union waters of 3a,FAO,27.4,GBR+EU,,ok
+2AC43A7DE,United Kingdom and Union waters of 4 and 7de; United Kingdom waters of 2a; Union waters of 3a,FAO,27.2.a,GBR,,ok
+2AC43A7DE,United Kingdom and Union waters of 4 and 7de; United Kingdom waters of 2a; Union waters of 3a,FAO,27.3.a,EU,,ok
+3EI.,EC and International Waters of III.,FAO,27.3,INT,,ok
+*09AW,See coordinates in the regulation,NONE,,,,no geography
+*2A34X,"United Kingdom and Union waters of 2a, 3 and 4 ",FAO,27.2.a,GBR+EU,,ok
+*2A34X,"United Kingdom and Union waters of 2a, 3 and 4 ",FAO,27.3,GBR+EU,,ok
+*2A34X,"United Kingdom and Union waters of 2a, 3 and 4 ",FAO,27.4,GBR+EU,,ok
+ATF_DIR,Direct authorisations with French Southern and Antarctic Lands,EEZ,ATF,ATF,,ok
+03-C.,III (1),FAO,27.3,,,ok
+03-C.,III (1),FAO,27.1,,,ok
+N23KL,"NAFO 2, 3K, 3L = FAO 21.2 + 21.3.K + 21.3.L",FAO,21.2,NAFO,,ok
+N23KL,"NAFO 2, 3K, 3L = FAO 21.2 + 21.3.K + 21.3.L",FAO,21.3.K,NAFO,,ok
+N23KL,"NAFO 2, 3K, 3L = FAO 21.2 + 21.3.K + 21.3.L",FAO,21.3.L,NAFO,,ok
+*6X14.,6 and 7; United Kingdom and international waters of 5b,FAO,27.6,,,ok
+*6X14.,6 and 7; United Kingdom and international waters of 5b,FAO,27.7,,,ok
+*6X14.,6 and 7; United Kingdom and international waters of 5b,FAO,27.5.b,GBR+INT,,ok
+MAR_2019,Morocco Agreement from 2019,EEZ,MAR,MAR,,ok
+5-14GL,"Greenland waters of 5, 12 and 14",FAO,27.5,GRL,,ok
+5-14GL,"Greenland waters of 5, 12 and 14",FAO,27.12,GRL,,ok
+5-14GL,"Greenland waters of 5, 12 and 14",FAO,27.14,GRL,,ok
+9-C.SEN,Union waters of 9,FAO,27.9,EU,,ok
+*AN05N,"Atlantic Ocean, North of 5° N",FAO,ATL,,North of 5° N,check
+46AN-C,"IV, VIa) North 56°30'N (1)",FAO,27.6.a,,,ok
+46AN-C,"IV, VIa) North 56°30'N (1)",FAO,27.4,,,ok
+46AN-C,"IV, VIa) North 56°30'N (1)",FAO,27.1,,,ok
+4678-C,"IV, VI, VII; VIII (1)",FAO,27.4,,,ok
+4678-C,"IV, VI, VII; VIII (1)",FAO,27.6,,,ok
+4678-C,"IV, VI, VII; VIII (1)",FAO,27.7,,,ok
+4678-C,"IV, VI, VII; VIII (1)",FAO,27.8,,,ok
+4678-C,"IV, VI, VII; VIII (1)",FAO,27.1,,,ok
+8C9.,"VIIIc), IX",FAO,27.8.c,,,ok
+8C9.,"VIIIc), IX",FAO,27.9,,,ok
+1214EI,"United Kingdom and international  waters of 1, 2 and 14",FAO,27.1,GBR+INT,,ok
+1214EI,"United Kingdom and international  waters of 1, 2 and 14",FAO,27.2,GBR+INT,,ok
+1214EI,"United Kingdom and international  waters of 1, 2 and 14",FAO,27.14,GBR+INT,,ok
+ICESVIII,(no description - inferred from code),FAO,27.8,,,ok
+1/2FRO,"I, II (Faroese waters)",FAO,27.1,FRO,,ok
+1/2FRO,"I, II (Faroese waters)",FAO,27.2,FRO,,ok
+*F483A,FAO 48.3 Antarctic - Management Area A: 48° W to 43° 30' W – 52° 30' S to 56° S,FAO,48.3,,,ok
+AN05N_AMS,"Atlantic Ocean, North of 5° N (shared quota)",FAO,ATL,,North of 5° N,check
+*07A.,VIIa),FAO,27.7.a,,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.2.a,GBR,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.4.a,GBR,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.a,,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.b,,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.c,,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.e,,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.f,,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.g,,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.h,,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.j,,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.7.k,,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.8.a,,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.8.b,,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.8.d,,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.8.e,,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.6,,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.5.b,GBR+INT,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.12,INT,,ok
+2A-14,"United Kingdom waters of 2a and 4a; 6, 7a-c, 7e-k, 8a, 8b, 8d and 8e; United Kingdom and international waters of 5b; international waters of 12 and 14",FAO,27.14,INT,,ok
+N64E44,North of 64° N East of 44° W,NONE,,,North of 64° N | East of 44° W,constraint only - inherits parent area
+*08B.,8b,FAO,27.8.b,,,ok
+AS05N,"Atlantic Ocean, South of 5° N",FAO,ATL,,South of 5° N,check
+234_2,Union waters of sandeel management area 2,SANDEEL,SAN2,EU,,ok
+*6AN56,6a north of 56° 30′ N,FAO,27.6.a,,north of 56° 30′ N,ok
+SYC_2020,Seychelles,EEZ,SYC,SYC,,ok
+*7DE.,7d and 7e,FAO,27.7.d,,,ok
+*7DE.,7d and 7e,FAO,27.7.e,,,ok
+3BCD-F,Union waters of Subdivisions 22-31,FAO,27.3.c.22,EU,,ok
+3BCD-F,Union waters of Subdivisions 22-31,FAO,27.3.b.23,EU,,ok
+3BCD-F,Union waters of Subdivisions 22-31,FAO,27.3.d.24,EU,,ok
+3BCD-F,Union waters of Subdivisions 22-31,FAO,27.3.d.25,EU,,ok
+3BCD-F,Union waters of Subdivisions 22-31,FAO,27.3.d.26,EU,,ok
+3BCD-F,Union waters of Subdivisions 22-31,FAO,27.3.d.27,EU,,ok
+3BCD-F,Union waters of Subdivisions 22-31,FAO,27.3.d.28,EU,,ok
+3BCD-F,Union waters of Subdivisions 22-31,FAO,27.3.d.29,EU,,ok
+3BCD-F,Union waters of Subdivisions 22-31,FAO,27.3.d.30,EU,,ok
+3BCD-F,Union waters of Subdivisions 22-31,FAO,27.3.d.31,EU,,ok
+ICAN05NXM,"ICCAT Convention area, north of 5°N, excluding Mediterranean",RFMO,ICCAT,,north of 5°N,ok
+MED2_LL2,(no description - inferred from code),NONE,,,MED2_LL2,Mediterranean effort regime code - not an area
+GL251214_AMS,"Greenland waters of 2, 5, 12 and 14 (shared quota)",FAO,27.2,GRL,,ok
+GL251214_AMS,"Greenland waters of 2, 5, 12 and 14 (shared quota)",FAO,27.5,GRL,,ok
+GL251214_AMS,"Greenland waters of 2, 5, 12 and 14 (shared quota)",FAO,27.12,GRL,,ok
+GL251214_AMS,"Greenland waters of 2, 5, 12 and 14 (shared quota)",FAO,27.14,GRL,,ok
+78-C.,VII; VIII (1),FAO,27.7,,,ok
+78-C.,VII; VIII (1),FAO,27.8,,,ok
+78-C.,VII; VIII (1),FAO,27.1,,,ok
+8/3411,"8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.8,,,ok
+8/3411,"8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.9,,,ok
+8/3411,"8, 9 and 10; Union waters of CECAF 34.1.1",FAO,27.10,,,ok
+8/3411,"8, 9 and 10; Union waters of CECAF 34.1.1",FAO,34.1.1,EU,,ok
+567EI_AMS,6 and 7; United Kingdom and international waters of 5 (shared quota),FAO,27.6,,,ok
+567EI_AMS,6 and 7; United Kingdom and international waters of 5 (shared quota),FAO,27.7,,,ok
+567EI_AMS,6 and 7; United Kingdom and international waters of 5 (shared quota),FAO,27.5,GBR+INT,,ok
+XCS,NEAFC Stock - Capelin (Sub Areas 1-2),RFMO,NEAFC,,,ok
+XCS,NEAFC Stock - Capelin (Sub Areas 1-2),FAO,27.1,,,ok
+XCS,NEAFC Stock - Capelin (Sub Areas 1-2),FAO,27.2,,,ok
+30/31.,Subdivisions 30-31,FAO,27.3.d.30,,,ok
+30/31.,Subdivisions 30-31,FAO,27.3.d.31,,,ok
+7X7A8C,VII except VIIa); VIII (1),FAO,27.7.a,,,ok
+7X7A8C,VII except VIIa); VIII (1),FAO,27.7,,,ok
+7X7A8C,VII except VIIa); VIII (1),FAO,27.8,,,ok
+7X7A8C,VII except VIIa); VIII (1),FAO,27.1,,,ok
+*5B-F.,Faroese waters of zone Vb (Special Conditions area),FAO,27.5.b,FRO,,ok
+*F-42E,Division 58.4.2 east of 55° E,FAO,58.4.2,,east of 55° E,ok
+N4X.,Division 21.4X,FAO,21.4.X,NAFO,,ok
+WCPFC,WCPFC Convention Area,RFMO,WCPFC,,,ok
+7X7A-C,"7b, 7c, 7d, 7e, 7f, 7g, 7h, 7j and 7k",FAO,27.7.b,,,ok
+7X7A-C,"7b, 7c, 7d, 7e, 7f, 7g, 7h, 7j and 7k",FAO,27.7.c,,,ok
+7X7A-C,"7b, 7c, 7d, 7e, 7f, 7g, 7h, 7j and 7k",FAO,27.7.d,,,ok
+7X7A-C,"7b, 7c, 7d, 7e, 7f, 7g, 7h, 7j and 7k",FAO,27.7.e,,,ok
+7X7A-C,"7b, 7c, 7d, 7e, 7f, 7g, 7h, 7j and 7k",FAO,27.7.f,,,ok
+7X7A-C,"7b, 7c, 7d, 7e, 7f, 7g, 7h, 7j and 7k",FAO,27.7.g,,,ok
+7X7A-C,"7b, 7c, 7d, 7e, 7f, 7g, 7h, 7j and 7k",FAO,27.7.h,,,ok
+7X7A-C,"7b, 7c, 7d, 7e, 7f, 7g, 7h, 7j and 7k",FAO,27.7.j,,,ok
+7X7A-C,"7b, 7c, 7d, 7e, 7f, 7g, 7h, 7j and 7k",FAO,27.7.k,,,ok
+2A4AXF,Faroese waters,EEZ,FRO,FRO,,ok
+2A34-,"IIa)(1) ,IIIa); IIIb),c),d) (1), IV",FAO,27.2.a,,,ok
+2A34-,"IIa)(1) ,IIIa); IIIb),c),d) (1), IV",FAO,27.3.a,,,ok
+2A34-,"IIa)(1) ,IIIa); IIIb),c),d) (1), IV",FAO,27.1,,,ok
+2A34-,"IIa)(1) ,IIIa); IIIb),c),d) (1), IV",FAO,27.3.b,,,ok
+2A34-,"IIa)(1) ,IIIa); IIIb),c),d) (1), IV",FAO,27.3.c,,,ok
+2A34-,"IIa)(1) ,IIIa); IIIb),c),d) (1), IV",FAO,27.3.d,,,ok
+2A34-,"IIa)(1) ,IIIa); IIIb),c),d) (1), IV",FAO,27.4,,,ok
+*04-C-BC,bycatch in Union waters of 4 ,FAO,27.4,EU,,ok
+N5Z6.,"NAFO 5Z,6.",FAO,21.5.Z,NAFO,,ok
+N5Z6.,"NAFO 5Z,6.",FAO,21.6,NAFO,,ok
+2AC4A.,"IIa) (1), IVa)",FAO,27.2.a,,,ok
+2AC4A.,"IIa) (1), IVa)",FAO,27.4.a,,,ok
+2AC4A.,"IIa) (1), IVa)",FAO,27.1,,,ok
+2A4A-N,Norwegian waters of 2a and 4a,FAO,27.2.a,NOR,,ok
+2A4A-N,Norwegian waters of 2a and 4a,FAO,27.4.a,NOR,,ok
+*04N-,Norwegian waters of 4,FAO,27.4,NOR,,ok
+3/4-,"III, IV, 1), 2)",FAO,27.3,,,ok
+3/4-,"III, IV, 1), 2)",FAO,27.4,,,ok
+3/4-,"III, IV, 1), 2)",FAO,27.1,,,ok
+3/4-,"III, IV, 1), 2)",FAO,27.2,,,ok
+*234_1,Sandeel management area 1,SANDEEL,SAN1,,,ok
+GAB_2021,Gabon (SFPA 2021-2026),EEZ,GAB,GAB,,ok
+08-C.,VIII (1),FAO,27.8,,,ok
+08-C.,VIII (1),FAO,27.1,,,ok
+*5614N,"6 and Union and international waters of 5b, 12 and 14, north of 56° 30' N",FAO,27.5.b,EU+INT,north of 56° 30' N,ok
+*5614N,"6 and Union and international waters of 5b, 12 and 14, north of 56° 30' N",FAO,27.6,EU+INT,north of 56° 30' N,ok
+*5614N,"6 and Union and international waters of 5b, 12 and 14, north of 56° 30' N",FAO,27.12,EU+INT,north of 56° 30' N,ok
+*5614N,"6 and Union and international waters of 5b, 12 and 14, north of 56° 30' N",FAO,27.14,EU+INT,north of 56° 30' N,ok
+08D.,ICES division VIIId - Bay of Biscay - Offshore,FAO,27.8.d,,,ok
+2A46AN,"Union waters of 2a, 4 and 6a north of 56° 30' N",FAO,27.2.a,EU,north of 56° 30' N,ok
+2A46AN,"Union waters of 2a, 4 and 6a north of 56° 30' N",FAO,27.6.a,EU,north of 56° 30' N,ok
+2A46AN,"Union waters of 2a, 4 and 6a north of 56° 30' N",FAO,27.4,EU,north of 56° 30' N,ok
+04A.,Union waters of IVa (Norwegian part excluded by additional Special Condition),FAO,27.4.a,EU+NOR,,ok
+8AB.,8a and 8b,FAO,27.8.a,,,ok
+8AB.,8a and 8b,FAO,27.8.b,,,ok
+GRL4,"Greenland waters of NAFO 1F and ICES XIV: the part that is between 60° 45′ N and 59° 00′ N to the west of 44° 00′ W, and the part of the Greenlandic fisheries territory that is to the south of 59° 00′ N and to the west of 42° 00′ W.’",FAO,21.1.F,GRL,"west of 44° 00′ W | south of 59° 00′ N | west of 42° 00′ W | between 60° 45′ N and 59° 00′ N to the west of 44° 00′ W, and the part of the Greenlandic fisheries territory that is to the south of 59° 0",ok
+GRL4,"Greenland waters of NAFO 1F and ICES XIV: the part that is between 60° 45′ N and 59° 00′ N to the west of 44° 00′ W, and the part of the Greenlandic fisheries territory that is to the south of 59° 00′ N and to the west of 42° 00′ W.’",FAO,27.14,GRL,"west of 44° 00′ W | south of 59° 00′ N | west of 42° 00′ W | between 60° 45′ N and 59° 00′ N to the west of 44° 00′ W, and the part of the Greenlandic fisheries territory that is to the south of 59° 0",ok
+*FRO1,Faroese waters,EEZ,FRO,FRO,,ok
+678_AMS,"6, 7 and 8  (shared quota)",FAO,27.6,,,ok
+678_AMS,"6, 7 and 8  (shared quota)",FAO,27.7,,,ok
+678_AMS,"6, 7 and 8  (shared quota)",FAO,27.8,,,ok
+ICAE45W,"ICCAT Convention area, east of 45°W",RFMO,ICCAT,,east of 45°W,ok
+07A.,7a,FAO,27.7.a,,,ok
+*F481.,Division 48.1,FAO,48.1,,,ok
+07D.,7d,FAO,27.7.d,,,ok
+6A7H-C,"VIa) North 56°30'N, VIIe),f),h) (1)",FAO,27.7.e,,,ok
+6A7H-C,"VIa) North 56°30'N, VIIe),f),h) (1)",FAO,27.7.f,,,ok
+6A7H-C,"VIa) North 56°30'N, VIIe),f),h) (1)",FAO,27.7.h,,,ok
+6A7H-C,"VIa) North 56°30'N, VIIe),f),h) (1)",FAO,27.6.a,,,ok
+6A7H-C,"VIa) North 56°30'N, VIIe),f),h) (1)",FAO,27.1,,,ok
+N34_AMS,NAFO subareas 3 and 4 (shared quota),FAO,21.3,NAFO,,ok
+N34_AMS,NAFO subareas 3 and 4 (shared quota),FAO,21.4,NAFO,,ok
+6AB.,"VIa), VIb)",FAO,27.6.a,,,ok
+6AB.,"VIa), VIb)",FAO,27.6.b,,,ok
+2A47DX,"4, 7d and United Kingdom waters of 2a",FAO,27.7.d,GBR,,ok
+2A47DX,"4, 7d and United Kingdom waters of 2a",FAO,27.2.a,GBR,,ok
+2A47DX,"4, 7d and United Kingdom waters of 2a",FAO,27.4,GBR,,ok
+*6BAN.,6a north of 56° 30' N and 6b,FAO,27.6.a,,north of 56° 30' N,ok
+*6BAN.,6a north of 56° 30' N and 6b,FAO,27.6.b,,north of 56° 30' N,ok
+*234_5,Sandeel management area 5,SANDEEL,SAN5,,,ok
+MRT_2012,Mauritania,EEZ,MRT,MRT,,ok
+6A/7-C,"VIa) North 56°30'N, VIb), VII West 12°W (1)",FAO,27.6.a,,,ok
+6A/7-C,"VIa) North 56°30'N, VIb), VII West 12°W (1)",FAO,27.6.b,,,ok
+6A/7-C,"VIa) North 56°30'N, VIb), VII West 12°W (1)",FAO,27.7,,,ok
+6A/7-C,"VIa) North 56°30'N, VIb), VII West 12°W (1)",FAO,27.1,,,ok
+08B.,ICES division VIIIb - Bay of Biscay - Central,FAO,27.8.b,,,ok
+09S-3411,"Part of subarea 9 south of 36°10'00""N and 9S Union waters of CECAF 34.1.1",FAO,34.1.1,EU,"south of 36°10'00""N and 9S",ok
+09S-3411,"Part of subarea 9 south of 36°10'00""N and 9S Union waters of CECAF 34.1.1",FAO,27.9,EU,"south of 36°10'00""N and 9S",ok
+5BC6A.,6a; United Kingdom and international  waters of 5b,FAO,27.6.a,,,ok
+5BC6A.,6a; United Kingdom and international  waters of 5b,FAO,27.5.b,GBR+INT,,ok
+3D28.2,Union waters of Subdivision 28.2,FAO,27.3.d.28.2,EU,,ok
+*8302,"Atlantic Ocean, east of 45° W, and Mediterranean",FAO,37,,east of 45° W,ok
+*8302,"Atlantic Ocean, east of 45° W, and Mediterranean",FAO,ATL,,east of 45° W,check
+234_3,Union waters of sandeel management area 3,SANDEEL,SAN3,EU,,ok
+*ICAN05NXM-UK,United Kingdom waters,EEZ,GBR,GBR,,ok
+245-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of II, IV and V",FAO,27.2,EU+THIRD,,ok
+245-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of II, IV and V",FAO,27.4,EU+THIRD,,ok
+245-,"Community waters and waters not under the sovereignty or jurisdiction of third countries of II, IV and V",FAO,27.5,EU+THIRD,,ok
+F5841W,FAO 58.4.1 west of 115 E,FAO,58.4.1,,west of 115 E,ok
+*ATLLL,Atlantic Ocean - long liners with an overall length of 20 metres and above,FAO,ATL,,,check
+4678AB,"IV, VI, VII, VIIIa),b) (1)",FAO,27.8.a,,,ok
+4678AB,"IV, VI, VII, VIIIa),b) (1)",FAO,27.8.b,,,ok
+4678AB,"IV, VI, VII, VIIIa),b) (1)",FAO,27.4,,,ok
+4678AB,"IV, VI, VII, VIIIa),b) (1)",FAO,27.6,,,ok
+4678AB,"IV, VI, VII, VIIIa),b) (1)",FAO,27.7,,,ok
+4678AB,"IV, VI, VII, VIIIa),b) (1)",FAO,27.1,,,ok
+*12INT,International waters of I and II,FAO,27.1,INT,,ok
+*12INT,International waters of I and II,FAO,27.2,INT,,ok
+XHE,NEAFC Stock - Norwegian spring spawing herring,RFMO,NEAFC,,,ok
+06AN56,VIa) North 56°30' North,FAO,27.6.a,,,ok
+2AC4FS,"IIa) (1), IV (1)",FAO,27.2.a,,,ok
+2AC4FS,"IIa) (1), IV (1)",FAO,27.1,,,ok
+2AC4FS,"IIa) (1), IV (1)",FAO,27.4,,,ok
+*03A_TOT,3a,FAO,27.3.a,,,ok
+GHA_DIR,Direct authorisations with Ghana,EEZ,GHA,GHA,,ok
+*08C2,8c,FAO,27.8.c,,,ok
+2A34.,"3a; United Kingdom and Union waters of  2a, 3b, 3c, 3d and 4",FAO,27.3.a,,,ok
+2A34.,"3a; United Kingdom and Union waters of  2a, 3b, 3c, 3d and 4",FAO,27.2.a,GBR+EU,,ok
+2A34.,"3a; United Kingdom and Union waters of  2a, 3b, 3c, 3d and 4",FAO,27.3.b,GBR+EU,,ok
+2A34.,"3a; United Kingdom and Union waters of  2a, 3b, 3c, 3d and 4",FAO,27.3.c,GBR+EU,,ok
+2A34.,"3a; United Kingdom and Union waters of  2a, 3b, 3c, 3d and 4",FAO,27.3.d,GBR+EU,,ok
+2A34.,"3a; United Kingdom and Union waters of  2a, 3b, 3c, 3d and 4",FAO,27.4,GBR+EU,,ok
+X34PRT,10; Union waters of CECAF (Waters adjacent to the Azores),FAO,27.10,,,ok
+X34PRT,10; Union waters of CECAF (Waters adjacent to the Azores),FAO,34.1.2,EU,,check
+SYC_2026,Seychelles,EEZ,SYC,SYC,,ok
+*3D32,Union waters of Subdivision 32,FAO,27.3.d.32,EU,,ok
+N3LX.,NAFO Zone 3L for baltic countries,FAO,21.3.L,NAFO,,ok
+6AN6B.,"VIa) (North 56°30' N), VIb)",FAO,27.6.a,,,ok
+6AN6B.,"VIa) (North 56°30' N), VIb)",FAO,27.6.b,,,ok
+ICESIX,(no description - inferred from code),FAO,27.9,,,ok
+KIR_2023,(no description - inferred from code),EEZ,KIR,KIR,protocol 2023,ok
+514GRN,Greenland waters of 5 and 14,FAO,27.5,GRL,,ok
+514GRN,Greenland waters of 5 and 14,FAO,27.14,GRL,,ok
+*04-N.,Norwegian waters of 4,FAO,27.4,NOR,,ok
+MRT_2021,Mauritania,EEZ,MRT,MRT,,ok
+*89-,Union and international waters of VIII and IX,FAO,27.8,EU+INT,,ok
+*89-,Union and international waters of VIII and IX,FAO,27.9,EU+INT,,ok
+3D30.,Union waters of Subdivision 30,FAO,27.3.d.30,EU,,ok
+8CU31,"8c, functional unit 31",FU,FU31,,,ok
+8CU31,"8c, functional unit 31",FAO,27.8.c,,functional unit 31,ok
+SEAFO,SEAFO,RFMO,SEAFO,,,ok
+F5842.,FAO 58.4.2 Antarctic,FAO,58.4.2,,,ok
+09.,9,FAO,27.9,,,ok
+F5841.,FAO 58.4.1 Antarctic,FAO,58.4.1,,,ok
+56-14,6; United Kingdom and international waters of 5b; international waters of 12 and 14,FAO,27.6,,,ok
+56-14,6; United Kingdom and international waters of 5b; international waters of 12 and 14,FAO,27.5.b,GBR+INT,,ok
+56-14,6; United Kingdom and international waters of 5b; international waters of 12 and 14,FAO,27.12,INT,,ok
+56-14,6; United Kingdom and international waters of 5b; international waters of 12 and 14,FAO,27.14,INT,,ok
+N1F.,Division 21.1F,FAO,21.1.F,NAFO,,ok
+N34CA.,"Canada zone: NAFO 3,4",FAO,21.3,CAN,,ok
+N34CA.,"Canada zone: NAFO 3,4",FAO,21.4,CAN,,ok
+SYC_2013,Seychelles,EEZ,SYC,SYC,,ok
+MU3,IIId)- Manag. Unit 3 (approxim. Sub-divisions 30 and 31 of IBSFC),FAO,27.3.d,,,ok
+MU3,IIId)- Manag. Unit 3 (approxim. Sub-divisions 30 and 31 of IBSFC),FAO,27.3,,,ok
+F484S.,FAO 48.4 Antarctic South (within the area bounded by latitudes 57°20'S and 60°00'S and by longitudes 24°30'W and 29°00'W),FAO,48.4,,,ok
+SPR-B,SPRFMO Convention Area within the research block B (see coordinates in the regulation),RFMO,SPRFMO,,,ok
+07E.,7e,FAO,27.7.e,,,ok
+1X14,"United Kingdom, Union and international waters of 1, 2, 3, 4, 5, 6, 7, 8a, 8b, 8d, 8e, 12 and 14",FAO,27.8.a,GBR+EU+INT,,ok
+1X14,"United Kingdom, Union and international waters of 1, 2, 3, 4, 5, 6, 7, 8a, 8b, 8d, 8e, 12 and 14",FAO,27.8.b,GBR+EU+INT,,ok
+1X14,"United Kingdom, Union and international waters of 1, 2, 3, 4, 5, 6, 7, 8a, 8b, 8d, 8e, 12 and 14",FAO,27.8.d,GBR+EU+INT,,ok
+1X14,"United Kingdom, Union and international waters of 1, 2, 3, 4, 5, 6, 7, 8a, 8b, 8d, 8e, 12 and 14",FAO,27.8.e,GBR+EU+INT,,ok
+1X14,"United Kingdom, Union and international waters of 1, 2, 3, 4, 5, 6, 7, 8a, 8b, 8d, 8e, 12 and 14",FAO,27.1,GBR+EU+INT,,ok
+1X14,"United Kingdom, Union and international waters of 1, 2, 3, 4, 5, 6, 7, 8a, 8b, 8d, 8e, 12 and 14",FAO,27.2,GBR+EU+INT,,ok
+1X14,"United Kingdom, Union and international waters of 1, 2, 3, 4, 5, 6, 7, 8a, 8b, 8d, 8e, 12 and 14",FAO,27.3,GBR+EU+INT,,ok
+1X14,"United Kingdom, Union and international waters of 1, 2, 3, 4, 5, 6, 7, 8a, 8b, 8d, 8e, 12 and 14",FAO,27.4,GBR+EU+INT,,ok
+1X14,"United Kingdom, Union and international waters of 1, 2, 3, 4, 5, 6, 7, 8a, 8b, 8d, 8e, 12 and 14",FAO,27.5,GBR+EU+INT,,ok
+1X14,"United Kingdom, Union and international waters of 1, 2, 3, 4, 5, 6, 7, 8a, 8b, 8d, 8e, 12 and 14",FAO,27.6,GBR+EU+INT,,ok
+1X14,"United Kingdom, Union and international waters of 1, 2, 3, 4, 5, 6, 7, 8a, 8b, 8d, 8e, 12 and 14",FAO,27.7,GBR+EU+INT,,ok
+1X14,"United Kingdom, Union and international waters of 1, 2, 3, 4, 5, 6, 7, 8a, 8b, 8d, 8e, 12 and 14",FAO,27.12,GBR+EU+INT,,ok
+1X14,"United Kingdom, Union and international waters of 1, 2, 3, 4, 5, 6, 7, 8a, 8b, 8d, 8e, 12 and 14",FAO,27.14,GBR+EU+INT,,ok
+FGU.,French Guiana waters,EEZ,GUF,GUF,,ok
+*AS05N_AMS,"Atlantic Ocean, South of 5° N (shared quota)",FAO,ATL,,South of 5° N,check
+07AMO.,VIIa) Mourne stock,FAO,27.7.a,,,ok
+07F.,ICES division VIIf - Bristol Channel,FAO,27.7.f,,,ok
+CIV_2025,Ivory Coast,EEZ,CIV,CIV,,ok
+03D.RG,Subdivision 28.1,FAO,27.3.d.28.1,,,ok
+*F484.,Division 48.4,FAO,48.4,,,ok
+08A.,ICES division VIIIa - Bay of Biscay - North,FAO,27.8.a,,,ok
+24A567,"United Kingdom and Union waters of 2, 4a, 5, 6 north of 56° 30' N and 7 west of 12° W",FAO,27.4.a,GBR+EU,north of 56° 30' N | west of 12° W,ok
+24A567,"United Kingdom and Union waters of 2, 4a, 5, 6 north of 56° 30' N and 7 west of 12° W",FAO,27.2,GBR+EU,north of 56° 30' N | west of 12° W,ok
+24A567,"United Kingdom and Union waters of 2, 4a, 5, 6 north of 56° 30' N and 7 west of 12° W",FAO,27.5,GBR+EU,north of 56° 30' N | west of 12° W,ok
+24A567,"United Kingdom and Union waters of 2, 4a, 5, 6 north of 56° 30' N and 7 west of 12° W",FAO,27.6,GBR+EU,north of 56° 30' N | west of 12° W,ok
+24A567,"United Kingdom and Union waters of 2, 4a, 5, 6 north of 56° 30' N and 7 west of 12° W",FAO,27.7,GBR+EU,north of 56° 30' N | west of 12° W,ok
+04C.,ICES division IVc - Southern North Sea,FAO,27.4.c,,,ok
+MED2_TR4,(no description - inferred from code),NONE,,,MED2_TR4,Mediterranean effort regime code - not an area
+3DLAFS,Latvia zone: IIId),FAO,27.3.d,LVA,,ok
+N4VSW.,"NAFO 4Vs,W",FAO,21.4.Vs,NAFO,,ok
+DIR_AUT,Direct Authorisations,NONE,,,,no geography
+AE45W,"Atlantic ocean, east of 45° W",FAO,ATL,,east of 45° W,check
+3D28.,Union waters of Subdivision 28,FAO,27.3.d.28,EU,,ok
+3C22.,Subdivision 22,FAO,27.3.c.22,,,ok
+MED3_TBB_TR3,(no description - inferred from code),NONE,,,MED3_TBB_TR3,Mediterranean effort regime code - not an area
+*4A-EN,Union waters of 2a; Union and Norwegian waters of 4a,FAO,27.2.a,EU,,ok
+*4A-EN,Union waters of 2a; Union and Norwegian waters of 4a,FAO,27.4.a,EU+NOR,,ok
+*N6530,North of 56°30′ N,NONE,,,North of 56°30′ N,constraint only - inherits parent area
+2A34-C,"IIa) (1), IIIa),b),c),d) (1), IV (1)",FAO,27.3.a,,,ok
+2A34-C,"IIa) (1), IIIa),b),c),d) (1), IV (1)",FAO,27.3.b,,,ok
+2A34-C,"IIa) (1), IIIa),b),c),d) (1), IV (1)",FAO,27.3.c,,,ok
+2A34-C,"IIa) (1), IIIa),b),c),d) (1), IV (1)",FAO,27.3.d,,,ok
+2A34-C,"IIa) (1), IIIa),b),c),d) (1), IV (1)",FAO,27.2.a,,,ok
+2A34-C,"IIa) (1), IIIa),b),c),d) (1), IV (1)",FAO,27.1,,,ok
+2A34-C,"IIa) (1), IIIa),b),c),d) (1), IV (1)",FAO,27.4,,,ok
+N1F3KX,"NAFO sub-area 2, Division 1F and 3K",FAO,21.2,NAFO,,ok
+N1F3KX,"NAFO sub-area 2, Division 1F and 3K",FAO,21.1.F,NAFO,,ok
+N1F3KX,"NAFO sub-area 2, Division 1F and 3K",FAO,21.3.K,NAFO,,ok
+06AD-C,"VIa) (Include Donegal Bay, exclude Clyde)",FAO,27.6.a,,,ok
+1/2_AMS,United Kingdom and international  waters of 1 and 2 (shared quota),FAO,27.1,GBR+INT,,ok
+1/2_AMS,United Kingdom and international  waters of 1 and 2 (shared quota),FAO,27.2,GBR+INT,,ok
+2A-C46,6; United Kingdom and Union waters of 4; United Kingdom waters of 2a; United Kingdom and international waters of 5b,FAO,27.6,,,ok
+2A-C46,6; United Kingdom and Union waters of 4; United Kingdom waters of 2a; United Kingdom and international waters of 5b,FAO,27.4,GBR+EU,,ok
+2A-C46,6; United Kingdom and Union waters of 4; United Kingdom waters of 2a; United Kingdom and international waters of 5b,FAO,27.2.a,GBR,,ok
+2A-C46,6; United Kingdom and Union waters of 4; United Kingdom waters of 2a; United Kingdom and international waters of 5b,FAO,27.5.b,GBR+INT,,ok
+03DSFS,"Sweden zone: IIId) ""White zone""",FAO,27.3.d,SWE,,ok
+7HJK.,"7h, 7j and 7k",FAO,27.7.h,,,ok
+7HJK.,"7h, 7j and 7k",FAO,27.7.j,,,ok
+7HJK.,"7h, 7j and 7k",FAO,27.7.k,,,ok
+*2A3A4,3a; United Kingdom and Union waters of 4; United Kingdom waters of 2a,FAO,27.3.a,,,ok
+*2A3A4,3a; United Kingdom and Union waters of 4; United Kingdom waters of 2a,FAO,27.4,GBR+EU,,ok
+*2A3A4,3a; United Kingdom and Union waters of 4; United Kingdom waters of 2a,FAO,27.2.a,GBR,,ok
+SEN_2019,Senegal,EEZ,SEN,SEN,,ok
+GRL2,Greenlandic waters within ICES division 14b North of 62° 30' N.,FAO,27.14.b,GRL,North of 62° 30' N,ok
+2A3A4.,3a; United Kingdom and Union waters of 4; United Kingdom waters of 2a,FAO,27.3.a,,,ok
+2A3A4.,3a; United Kingdom and Union waters of 4; United Kingdom waters of 2a,FAO,27.4,GBR+EU,,ok
+2A3A4.,3a; United Kingdom and Union waters of 4; United Kingdom waters of 2a,FAO,27.2.a,GBR,,ok
+5W6-14,6b; United Kingdom and international waters of 5b west of 12° 00' W and of 12 and 14,FAO,27.6.b,,,ok
+5W6-14,6b; United Kingdom and international waters of 5b west of 12° 00' W and of 12 and 14,FAO,27.5.b,GBR+INT,west of 12° 00' W,ok
+5W6-14,6b; United Kingdom and international waters of 5b west of 12° 00' W and of 12 and 14,FAO,27.12,GBR+INT,west of 12° 00' W,ok
+5W6-14,6b; United Kingdom and international waters of 5b west of 12° 00' W and of 12 and 14,FAO,27.14,GBR+INT,west of 12° 00' W,ok
+*E45W8303F,"ICCAT Convention area, east of 45°W",RFMO,ICCAT,,east of 45°W,ok
+MED1_TR1_AA,(no description - inferred from code),NONE,,,MED1_TR1_AA,Mediterranean effort regime code - not an area
+24-N.,Norwegian waters of 2 and 4,FAO,27.2,NOR,,ok
+24-N.,Norwegian waters of 2 and 4,FAO,27.4,NOR,,ok
+1/214-,"I, II, XIV, 1), 2)",FAO,27.1,,,ok
+1/214-,"I, II, XIV, 1), 2)",FAO,27.2,,,ok
+1/214-,"I, II, XIV, 1), 2)",FAO,27.14,,,ok
+C3412-,Union and international waters of CECAF 34.1.2,FAO,34.1.2,EU+INT,,check
+*7XAD,"United Kingdom, Union and international waters of 7b, 7c, 7e, 7f, 7g, 7h,  7j and 7k",FAO,27.7.b,GBR+EU+INT,,ok
+*7XAD,"United Kingdom, Union and international waters of 7b, 7c, 7e, 7f, 7g, 7h,  7j and 7k",FAO,27.7.c,GBR+EU+INT,,ok
+*7XAD,"United Kingdom, Union and international waters of 7b, 7c, 7e, 7f, 7g, 7h,  7j and 7k",FAO,27.7.e,GBR+EU+INT,,ok
+*7XAD,"United Kingdom, Union and international waters of 7b, 7c, 7e, 7f, 7g, 7h,  7j and 7k",FAO,27.7.f,GBR+EU+INT,,ok
+*7XAD,"United Kingdom, Union and international waters of 7b, 7c, 7e, 7f, 7g, 7h,  7j and 7k",FAO,27.7.g,GBR+EU+INT,,ok
+*7XAD,"United Kingdom, Union and international waters of 7b, 7c, 7e, 7f, 7g, 7h,  7j and 7k",FAO,27.7.h,GBR+EU+INT,,ok
+*7XAD,"United Kingdom, Union and international waters of 7b, 7c, 7e, 7f, 7g, 7h,  7j and 7k",FAO,27.7.j,GBR+EU+INT,,ok
+*7XAD,"United Kingdom, Union and international waters of 7b, 7c, 7e, 7f, 7g, 7h,  7j and 7k",FAO,27.7.k,GBR+EU+INT,,ok
+5BC6.,6; United Kingdom and international  waters of 5b,FAO,27.6,,,ok
+5BC6.,6; United Kingdom and international  waters of 5b,FAO,27.5.b,GBR+INT,,ok
+135X14,"IIIa; EC and International Waters of I,  V, VI, VII, VIII, XII and XIV.",FAO,27.3.a,,,ok
+135X14,"IIIa; EC and International Waters of I,  V, VI, VII, VIII, XII and XIV.",FAO,27.1,INT,,ok
+135X14,"IIIa; EC and International Waters of I,  V, VI, VII, VIII, XII and XIV.",FAO,27.5,INT,,ok
+135X14,"IIIa; EC and International Waters of I,  V, VI, VII, VIII, XII and XIV.",FAO,27.6,INT,,ok
+135X14,"IIIa; EC and International Waters of I,  V, VI, VII, VIII, XII and XIV.",FAO,27.7,INT,,ok
+135X14,"IIIa; EC and International Waters of I,  V, VI, VII, VIII, XII and XIV.",FAO,27.8,INT,,ok
+135X14,"IIIa; EC and International Waters of I,  V, VI, VII, VIII, XII and XIV.",FAO,27.12,INT,,ok
+135X14,"IIIa; EC and International Waters of I,  V, VI, VII, VIII, XII and XIV.",FAO,27.14,INT,,ok
+*ICCATPS,ICCAT - purse seiners,RFMO,ICCAT,,,ok
+F3711,GFCM area 37.1.1,FAO,37.1.1,,,ok
+*F-42W,Division 58.4.2 west of 55° E,FAO,58.4.2,,west of 55° E,ok
+*07D2.,7d,FAO,27.7.d,,,ok
+*04B-C,Union waters of 4b,FAO,27.4.b,EU,,ok
+*4-UK,United Kingdom waters of 4,FAO,27.4,GBR,,ok
+8CU25,"8c, functional unit 25",FU,FU25,,,ok
+8CU25,"8c, functional unit 25",FAO,27.8.c,,functional unit 25,ok
+GL51442,"Greenland waters of 5 and 14, north-east of 42° W",FAO,27.5,GRL,north-east of 42° W,ok
+GL51442,"Greenland waters of 5 and 14, north-east of 42° W",FAO,27.14,GRL,north-east of 42° W,ok
+571214,6 and 7; United Kingdom and international waters of 5b; international waters of 12 and 14,FAO,27.6,,,ok
+571214,6 and 7; United Kingdom and international waters of 5b; international waters of 12 and 14,FAO,27.7,,,ok
+571214,6 and 7; United Kingdom and international waters of 5b; international waters of 12 and 14,FAO,27.5.b,GBR+INT,,ok
+571214,6 and 7; United Kingdom and international waters of 5b; international waters of 12 and 14,FAO,27.12,INT,,ok
+571214,6 and 7; United Kingdom and international waters of 5b; international waters of 12 and 14,FAO,27.14,INT,,ok
+MED1_TR4_AA,(no description - inferred from code),NONE,,,MED1_TR4_AA,Mediterranean effort regime code - not an area
+*678-,"Union and international waters of VI, VII and VIII",FAO,27.6,EU+INT,,ok
+*678-,"Union and international waters of VI, VII and VIII",FAO,27.7,EU+INT,,ok
+*678-,"Union and international waters of VI, VII and VIII",FAO,27.8,EU+INT,,ok
+*08C.,8c,FAO,27.8.c,,,ok
+*E45W8302,"ICCAT Convention area, east of 45°W",RFMO,ICCAT,,east of 45°W,ok
+F517S2,"SIOFA subarea 2 (area bounded between 40°E and 49°E longitude, 36°S and the adjacent exclusive economic zones to the north)",RFMO,SIOFA,,"between 40°E and 49°E longitude, 36°S and the adjacent exclusive economic zones to the north",ok
+F517S2,"SIOFA subarea 2 (area bounded between 40°E and 49°E longitude, 36°S and the adjacent exclusive economic zones to the north)",FAO,27.2,,"between 40°E and 49°E longitude, 36°S and the adjacent exclusive economic zones to the north",ok
+N3MNO.,NAFO 3MNO,FAO,21.3.M,NAFO,,ok
+N3MNO.,NAFO 3MNO,FAO,21.3.N,NAFO,,ok
+N3MNO.,NAFO 3MNO,FAO,21.3.O,NAFO,,ok
+3DLIFS,Lithuania zone: IIId),FAO,27.3.d,LTU,,ok
+234_5R,United Kingdom and Union waters of sandeel management area 5r,SANDEEL,SAN5,GBR+EU,,ok
+03D-S.,ICES division IIId - Sweden zone,FAO,27.3.d,SWE,,ok
+5BCX14,"Vb (EC waters), VI, VII, XII, XIV",FAO,27.5.b,EU,,ok
+5BCX14,"Vb (EC waters), VI, VII, XII, XIV",FAO,27.6,EU,,ok
+5BCX14,"Vb (EC waters), VI, VII, XII, XIV",FAO,27.7,EU,,ok
+5BCX14,"Vb (EC waters), VI, VII, XII, XIV",FAO,27.12,EU,,ok
+5BCX14,"Vb (EC waters), VI, VII, XII, XIV",FAO,27.14,EU,,ok
+MED4_OTB2,(no description - inferred from code),NONE,,,MED4_OTB2,Mediterranean effort regime code - not an area
+*05-F.,Faroese waters,EEZ,FRO,FRO,,ok
+1/2-,"Union, Faroese, Norwegian and international waters of 1 and 2",FAO,27.1,EU+NOR+FRO+INT,,ok
+1/2-,"Union, Faroese, Norwegian and international waters of 1 and 2",FAO,27.2,EU+NOR+FRO+INT,,ok
