@@ -88,7 +88,7 @@ const SNAPS = [
 
 const FAMILIES = [
   {
-    id:'srx', country:'NLD', year:2025, name:'SRX / 2AC4-C',
+    id:'srx', country:'NLD', year:2025, name:'SRX / 2AC4-C', fleet:null,
     intro:'Skates and rays in the North Sea. A parent with four children; one of them carries a child of its own.',
     root:{ name:'SRX / 2AC4-C', own:{feb:0.056, aug:0.020}, children:[
       { name:'RJC / 2AC4-C', own:{feb:385.788, aug:385.824} },
@@ -98,12 +98,13 @@ const FAMILIES = [
     ]}
   },
   {
-    id:'lin', country:'FRA', year:2025, name:'LIN / 6X14.',
+    id:'lin', country:'FRA', year:2025, name:'LIN / 6X14.', fleet:null,
     intro:'Ling west of Scotland and beyond. The simplest shape: one parent, one child.',
     root:{ name:'LIN / 6X14.', own:{feb:397.731, aug:398.843}, children:[ { name:'LIN / *04-C.', own:{feb:763.001, aug:789.002}, area:true } ] }
   }
 ];
 
+const fleetText = f => f.fleet ? `${f.fleet} vessels` : 'several vessels';
 const fmt = n => n.toLocaleString('en-GB',{minimumFractionDigits:3, maximumFractionDigits:3});
 let snap = 1;
 const S = () => SNAPS[snap].id;
@@ -358,6 +359,7 @@ function renderCover(){
     ${walkers}
     <text x="24" y="40" font-size="20" font-weight="500" fill="var(--ink)">One family, one vessel</text>
     <text x="24" y="62" font-size="13" fill="var(--ink-soft)">A parent, four children — and one of the children has a child of their own.</text>
+    <text x="24" y="80" font-size="12" fill="var(--ink-soft)">The vessel stands for every boat that fishes on this quota — a fleet, not a single ship.</text>
   `;
   document.getElementById('subtitle').textContent = 'Before the numbers: who is in a regulated-stock family';
   document.getElementById('ah').textContent = 'Everyone who fishes on the same quota';
@@ -679,6 +681,10 @@ function playVoyage(){
   const trail = document.createElementNS('http://www.w3.org/2000/svg','path');
   trail.setAttribute('d', `M ${px0} ${py0}`); trail.setAttribute('fill','none'); trail.setAttribute('stroke','var(--parent)'); trail.setAttribute('stroke-width','1.5'); trail.setAttribute('stroke-dasharray','4 4'); trail.setAttribute('opacity','0.7');
   g.appendChild(trail);
+  const fleet = document.createElementNS('http://www.w3.org/2000/svg','g');
+  fleet.innerHTML = [[-52,8],[-28,14],[26,12],[52,6]].map(([dx,dy])=>`<g transform="translate(${px0+dx},${py0+dy})" opacity="0.35">${boatSvg(0.38)}</g>`).join('')
+    + `<text x="${px0}" y="${py0+44}" text-anchor="middle" font-size="10" fill="var(--ink-soft)">one vessel stands for ${fleetText(f)}</text>`;
+  g.appendChild(fleet);
   const boat = document.createElementNS('http://www.w3.org/2000/svg','g');
   boat.innerHTML = boatSvg(0.55) + `<rect x="-34" y="10" width="68" height="16" rx="4" fill="var(--paper)" fill-opacity="0.92" stroke="var(--parent)" stroke-width="0.8"/><text id="hold" x="0" y="18" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--parent-ink)">0.000 t</text>`;
   boat.setAttribute('transform', `translate(${px0},${py0})`); g.appendChild(boat);
@@ -686,7 +692,7 @@ function playVoyage(){
   const setHold = v => { const e = holdEl(); if (e) e.textContent = fmt(v) + ' t'; };
   const ease = p => p<0.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2;
   document.getElementById('ah').textContent = `Starting in ${v.port}`;
-  document.getElementById('ap').textContent = `The family sails as one vessel. It starts in the parent's own water, works its way south through the children, and comes back up when the hold is full. At every stop the catch is counted against the member that fished it — and against the parent.`;
+  document.getElementById('ap').textContent = `One boat on the map stands for ${fleetText(f)}: every vessel that landed against this family is counted the same way. It starts in the parent's own water, works south through the children, and comes back up when the hold is full. At every stop the catch is counted against the member that fished it — and against the parent.`;
   ledger();
   let cur = P(stops[0]), d = `M ${cur[0]} ${cur[1]}`;
   for (let i=1;i<stops.length;i++){
@@ -707,7 +713,7 @@ function playVoyage(){
     if (st.home){
       timers.push(setTimeout(()=>{
         document.getElementById('ah').textContent = `Back in ${v.port}`;
-        document.getElementById('ap').textContent = `${fmt(total)} tonnes in the hold — the family total on ${SNAPS[snap].label}. Every stop was counted once, under the member that fished it and against the parent that holds the ceiling.`;
+        document.getElementById('ap').textContent = `${fmt(total)} tonnes — the family total on ${SNAPS[snap].label}, landed by ${fleetText(f)}, not one. Whichever boat catches it and wherever in the family's water, the same ceiling comes down: every stop was counted once, under the member that fished it and against the parent.`;
         playing = false;
       }, t)); continue;
     }
