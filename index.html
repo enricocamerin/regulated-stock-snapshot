@@ -319,41 +319,37 @@ function renderCover(){
   const svg = document.getElementById('tree');
   svg.setAttribute('viewBox', '0 0 680 400');
   document.getElementById('tt').textContent = 'One parent quota, several vessels';
-  document.getElementById('td').textContent = 'A parent quota moored at the quay; three vessels leave it to fish three species in three waters, all counted against the parent.';
-  const parentBoat = `<g transform="translate(60,100) scale(0.55)">
-    <path d="M 196 238 Q 205 300 262 302 L 520 302 Q 592 300 612 248 L 596 236 Z" fill="#8B5E3C" stroke="#6B4429" stroke-width="1.5"/>
-    <path d="M 205 258 L 600 258" stroke="#6B4429" stroke-width="1"/><path d="M 214 278 L 578 278" stroke="#6B4429" stroke-width="1"/>
-    <rect x="196" y="234" width="400" height="6" fill="#A97B52"/>
-    <rect x="470" y="200" width="70" height="34" rx="3" fill="#C9A171" stroke="#6B4429" stroke-width="1"/>
-    <rect x="480" y="207" width="14" height="11" fill="#D3E1E7" stroke="#6B4429" stroke-width="0.8"/><rect x="502" y="207" width="14" height="11" fill="#D3E1E7" stroke="#6B4429" stroke-width="0.8"/>
-    <line x1="330" y1="234" x2="330" y2="72" stroke="#4A3A2A" stroke-width="4" stroke-linecap="round"/>
-    <line x1="300" y1="118" x2="410" y2="82" stroke="#4A3A2A" stroke-width="3" stroke-linecap="round"/>
-    <path d="M 304 120 L 336 208 L 396 200 L 408 86 Z" fill="#F1EFE8" stroke="#BDB7A8" stroke-width="1"/>
-    <polygon points="330,72 352,78 330,84" fill="#C4442A"/>
-  </g>`;
-  const lanes = COVER_FLEET.map(v=>`<line x1="380" y1="${v.lane+14}" x2="640" y2="${v.lane+14}" stroke="#B4C9D3" stroke-width="1" stroke-dasharray="3 4"/>
-    <text x="646" y="${v.lane+4}" font-size="11" fill="var(--ink-soft)">${v.area}</text>`).join('');
-  const boats = COVER_FLEET.map((v,i)=>`<g id="cv-${v.key}" transform="translate(300,${v.lane})" opacity="0">${boatSvg(0.42)}</g>`).join('');
+  document.getElementById('td').textContent = 'A net encloses the group: three vessels fishing three species in three waters, all counted against the same parent quota.';
+  const NX=60, NY=180, NW=580, NH=200;
+  const corks = Array.from({length:19},(_,i)=>`<circle cx="${NX+12+i*31}" cy="${NY}" r="4.5" fill="#D98B3A" stroke="#8A5320" stroke-width="1"/>`).join('');
+  const lanes = COVER_FLEET.map(v=>`<line x1="${NX+40}" y1="${v.lane+14}" x2="${NX+NW-40}" y2="${v.lane+14}" stroke="#9FB7C3" stroke-width="1" stroke-dasharray="3 4"/>
+    <text x="${NX+NW-14}" y="${v.lane+4}" text-anchor="end" font-size="11" font-weight="500" fill="var(--ink-soft)">${v.area}</text>`).join('');
+  const boats = COVER_FLEET.map(v=>`<g id="cv-${v.key}" transform="translate(${NX+60},${v.lane})">${boatSvg(0.42)}</g>`).join('');
   svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + `
-    <rect x="0" y="240" width="680" height="160" fill="#D3E1E7"/>
-    <path d="M0 242 Q 40 232 80 242 T 160 242 T 240 242 T 320 242 T 400 242 T 480 242 T 560 242 T 640 242 T 720 242 V 258 H 0 Z" fill="#C3D5DD"/>
-    <rect x="0" y="222" width="150" height="12" fill="#B9AF9B"/><rect x="0" y="234" width="150" height="40" fill="#A79D88"/>
-    <rect x="18" y="234" width="6" height="40" fill="#8E846F"/><rect x="70" y="234" width="6" height="40" fill="#8E846F"/><rect x="122" y="234" width="6" height="40" fill="#8E846F"/>
-    ${parentBoat}
-    <g id="cv-plate"><rect x="150" y="272" width="200" height="18" rx="4" fill="var(--paper)" fill-opacity="0.95" stroke="var(--parent)" stroke-width="1"/>
-      <text id="cv-total" x="250" y="281" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="var(--parent-ink)">SRX / 2AC4-C · 0.000 t</text></g>
+    <defs><pattern id="mesh" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <path d="M0 7 H14 M7 0 V14" stroke="#6B5B45" stroke-width="0.7" opacity="0.45"/></pattern></defs>
+    <rect x="0" y="150" width="680" height="250" fill="#D3E1E7"/>
+    <path d="M0 152 Q 40 142 80 152 T 160 152 T 240 152 T 320 152 T 400 152 T 480 152 T 560 152 T 640 152 T 720 152 V 168 H 0 Z" fill="#C3D5DD"/>
+    <!-- the net: mesh fill, rope border, corks along the head-rope -->
+    <rect x="${NX}" y="${NY}" width="${NW}" height="${NH}" rx="26" fill="url(#mesh)"/>
+    <rect x="${NX}" y="${NY}" width="${NW}" height="${NH}" rx="26" fill="none" stroke="#6B5B45" stroke-width="3"/>
+    <rect x="${NX+3}" y="${NY+3}" width="${NW-6}" height="${NH-6}" rx="24" fill="none" stroke="#A88B5E" stroke-width="1" stroke-dasharray="2 3"/>
+    ${corks}
     ${lanes}${boats}
+    <!-- the float carrying the parent quota -->
+    <g id="cv-plate"><rect x="${NX+16}" y="${NY-40}" width="236" height="26" rx="6" fill="var(--paper)" stroke="var(--parent)" stroke-width="1.5"/>
+      <line x1="${NX+40}" y1="${NY-14}" x2="${NX+40}" y2="${NY}" stroke="var(--parent)" stroke-width="1.5"/>
+      <text id="cv-total" x="${NX+134}" y="${NY-27}" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="var(--parent-ink)">SRX / 2AC4-C · 0.000 t</text></g>
     <g id="cv-flows"></g>
     <text x="24" y="40" font-size="20" font-weight="500" fill="var(--ink)">One parent quota, several vessels</text>
-    <text x="24" y="62" font-size="13" fill="var(--ink-soft)">The vessel at the quay is not one ship.</text>
-    <text x="24" y="79" font-size="13" fill="var(--ink-soft)">It is every boat fishing under the same</text>
-    <text x="24" y="96" font-size="13" fill="var(--ink-soft)">parent quota — one species code, one area code.</text>
-    <text x="24" y="120" font-size="12" font-weight="500" fill="var(--parent-ink)">SRX / 2AC4-C · NLD 2025</text>
+    <text x="24" y="62" font-size="13" fill="var(--ink-soft)">The net is the parent quota. Every boat inside it fishes under the same</text>
+    <text x="24" y="79" font-size="13" fill="var(--ink-soft)">species code and area code — different boats, species and waters, one ceiling.</text>
+    <text x="24" y="103" font-size="12" font-weight="500" fill="var(--parent-ink)">SRX / 2AC4-C · NLD 2025</text>
   `;
-  document.getElementById('subtitle').textContent = 'Before the numbers: what the vessel stands for';
-  document.getElementById('ah').textContent = 'A grouping, not a ship';
-  document.getElementById('ap').textContent = 'All the boats that fish under one parent quota — identified by a species code and an area code — form one group. Different boats, different species, different waters; the same ceiling comes down for all of them.';
-  document.getElementById('ledger').innerHTML = COVER_FLEET.map(v=>`<div class="row"><span>${v.member} · ${v.area}</span><span class="num">waiting</span></div>`).join('') + `<div class="row tot"><span>credited to the parent</span><span class="num">0.000</span></div>`;
+  document.getElementById('subtitle').textContent = 'Before the numbers: what the net stands for';
+  document.getElementById('ah').textContent = 'The net is the grouping';
+  document.getElementById('ap').textContent = 'A parent quota is not a ship — it is the net that holds all the boats fishing under one species code and one area code. Different boats, different species, different waters; whatever they land goes on the same float.';
+  document.getElementById('ledger').innerHTML = COVER_FLEET.map(v=>`<div class="row"><span>${v.member} · ${v.area}</span><span class="num">waiting</span></div>`).join('') + `<div class="row tot"><span>on the parent float</span><span class="num">0.000</span></div>`;
   document.getElementById('note').textContent = 'Press space to send the vessels out, then Enter for the species.';
   document.getElementById('play').disabled = false;
   document.getElementById('nav').textContent = 'Species →';
@@ -371,11 +367,10 @@ function playBoarding(){
   const setTotal = v => { const e = document.getElementById('cv-total'); if (e) e.textContent = `SRX / 2AC4-C · ${fmt(v)} t`; };
   let t = 300;
   COVER_FLEET.forEach((v,i)=>{
-    const boat = document.getElementById(`cv-${v.key}`), x0 = 300, x1 = 540 + i*20, dur = 2200;
+    const boat = document.getElementById(`cv-${v.key}`), x0 = 120, x1 = 520 + i*18, dur = 2400;
     timers.push(setTimeout(()=>{
       document.getElementById('ah').textContent = `A vessel leaves for ${v.area}`;
       document.getElementById('ap').textContent = `${v.member}: ${v.label}. A different boat and a different water, but the catch is counted against the same parent quota.`;
-      boat.setAttribute('opacity','1');
       if (reduced()){ boat.setAttribute('transform', `translate(${x1},${v.lane})`); return; }
       const t0 = performance.now();
       const step = now => { const p = Math.min(1,(now-t0)/dur), e = ease(p);
@@ -393,9 +388,9 @@ function playBoarding(){
       if (!reduced()) requestAnimationFrame(step2);
       const card = document.createElementNS('http://www.w3.org/2000/svg','g');
       card.innerHTML = `<rect x="${x1-70}" y="${v.lane-44}" width="140" height="30" rx="5" fill="var(--paper)" fill-opacity="0.95" stroke="${v.color}" stroke-width="1"/>
-        ${fishAt(v.sp, x1-56, v.lane-29, 0.13, 'cc'+v.key, `${SPECIES[v.sp].name} — ${v.member}`, 1)}
-        <text x="${x1-38}" y="${v.lane-36}" dominant-baseline="central" font-size="10" font-weight="500" fill="${v.color}">${v.member}</text>
-        <text x="${x1-38}" y="${v.lane-24}" dominant-baseline="central" font-size="10" fill="var(--ink-soft)">${fmt(v.t)} t · ${v.area}</text>`;
+        ${fishAt(v.sp, x1-136, v.lane-1, 0.13, 'cc'+v.key, `${SPECIES[v.sp].name} — ${v.member}`, 1)}
+        <text x="${x1-118}" y="${v.lane-8}" dominant-baseline="central" font-size="10" font-weight="500" fill="${v.color}">${v.member}</text>
+        <text x="${x1-118}" y="${v.lane+4}" dominant-baseline="central" font-size="10" fill="var(--ink-soft)">${fmt(v.t)} t · ${v.area}</text>`;
       flows.appendChild(card);
     }, t + dur + 100));
     timers.push(setTimeout(()=>{
@@ -403,7 +398,7 @@ function playBoarding(){
       const pulse = document.createElementNS('http://www.w3.org/2000/svg','g');
       pulse.innerHTML = `<circle r="5" fill="${v.color}"/><text dy="-9" text-anchor="middle" font-size="10" font-weight="500" fill="${v.color}">+${fmt(v.t)} t</text>`;
       flows.appendChild(pulse);
-      const from = [x1, v.lane], to = [250, 281], dur3 = 1300, t2 = performance.now();
+      const from = [x1, v.lane], to = [194, 153], dur3 = 1300, t2 = performance.now();
       const step3 = now => { const p = Math.min(1,(now-t2)/dur3), e = ease(p);
         pulse.setAttribute('transform', `translate(${from[0]+(to[0]-from[0])*e},${from[1]+(to[1]-from[1])*e - Math.sin(p*Math.PI)*30})`);
         if (p<1) requestAnimationFrame(step3); else { pulse.remove(); const f0 = total; total += v.t; done.push(v.key); ledger();
@@ -414,8 +409,8 @@ function playBoarding(){
   });
   timers.push(setTimeout(()=>{
     playing = false;
-    document.getElementById('ah').textContent = 'Three vessels, one parent';
-    document.getElementById('ap').textContent = `${fmt(total)} tonnes credited to SRX / 2AC4-C from three boats fishing three species in three waters. That is what "the vessel" means in the slides that follow: the whole group under one parent quota, not a single ship. The parent's own 0.020 t and the spotted ray complete the family total of 681.148 t.`;
+    document.getElementById('ah').textContent = 'Three vessels, one net';
+    document.getElementById('ap').textContent = `${fmt(total)} tonnes on the parent float from three boats fishing three species in three waters. The net is what the slides that follow call the family: everything inside it is counted against SRX / 2AC4-C. The parent's own 0.020 t and the spotted ray complete the family total of 681.148 t.`;
     document.getElementById('note').textContent = 'Enter for the species.';
   }, t + 3200 + 1500));
 }
