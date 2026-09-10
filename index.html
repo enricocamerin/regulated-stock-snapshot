@@ -480,14 +480,14 @@ function renderMap(){
     labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${Math.max(16, y0+i+16).toFixed(1)}" font-size="${n.depth===0?15:13}" font-weight="500" fill="${g.stroke}">${n.code} <tspan font-size="10" font-weight="400" fill="${g.ink}">${gens}${n.inside===true?' · inside the parent area':n.inside===false?' · outside the parent area':''}</tspan></text>`); });
   const faoOf = id => ({'2a':'27.2.a','4a':'27.4.a','4b':'27.4.b','4c':'27.4.c','3a':'27.3.a','7d':'27.7.d','7e':'27.7.e','7a':'27.7.a','6a':'27.6.a','7f':'27.7.f','7bc':'27.7.b–c','7fk':'27.7.g–k'}[id]||'');
   const allBoxes = new Set(); nodes.forEach(n=>n.set.forEach(b=>allBoxes.add(b)));
-  const faoLabels = [...allBoxes].map(id=>{ const [,lab,a,b,c,d,lx,ly] = ICES.find(x=>x[0]===id); return `<text x="${mx(lx)}" y="${my(ly)}" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5F6E78" opacity="0.85">${lab} · FAO ${faoOf(id)}</text>`; }).join('');
+  const faoLabels = [...allBoxes].map(id=>{ const [,lab,a,b,c,d,lx,ly] = ICES.find(x=>x[0]===id); return `<text x="${mx(lx)}" y="${my(ly)}" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5F6E78" opacity="0.85">FAO ${faoOf(id)}</text>`; }).join('');
   svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + `
     <rect x="0" y="0" width="${MAPW}" height="${MAPH}" fill="#D3E1E7"/>
     ${parts.join('')}
     <path d="${LAND_PATH}" fill="#F1EFE8" stroke="#B9AF9B" stroke-width="0.8" fill-rule="evenodd"/>
     ${faoLabels}${labels.join('')}
     <g>${GEN.map((g,i)=>`<rect x="${14+i*118}" y="${MAPH-30}" width="12" height="12" rx="2" fill="${g.fill}" stroke="${g.stroke}" stroke-width="1.5"/><text x="${32+i*118}" y="${MAPH-24}" dominant-baseline="central" font-size="11" fill="var(--ink)">${g.name}</text>`).join('')}</g>
-    <text x="${MAPW-10}" y="${MAPH-10}" text-anchor="end" font-size="10" fill="#7A8C96">a shape drawn inside another fishes part of the same water · ICES divisions schematic · coastline: Natural Earth</text>`;
+    <text x="${MAPW-10}" y="${MAPH-10}" text-anchor="end" font-size="10" fill="#7A8C96">a shape drawn inside another fishes part of the same water · FAO divisions drawn schematically · coastline: Natural Earth</text>`;
   // nesting diagram
   const kidsOf = code => nodes.filter(n=>n.parentCode===code && n.depth>0);
   const box = (n, x, y, w, h) => { const g = GEN[Math.min(n.depth,2)]; const kids = kidsOf(n.code).filter(k=>k.inside);
