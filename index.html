@@ -549,7 +549,7 @@ function renderMap(){
   const walkF = (n, depth) => { const sp = speciesOf(n.name), code = n.name.split(' / ')[1];
     if (SPECIES[sp]){
       if (depth===0) addFish(rootOnly.length ? rootOnly : [...root.set], sp, n.name, 'parent');
-      else if (code===root.code) addFish(sharedWater.size ? sharedWater : root.set, sp, n.name, GEN[Math.min(depth,2)].name);
+      else if (code===root.code) addFish(rootOnly.length ? rootOnly : [...root.set], sp, n.name, GEN[Math.min(depth,2)].name);
       else { const nd = nodes.find(x=>x.code===code); const kids = nodes.filter(k=>k.parentCode===code && k.inside); const excl = [...nd.set].filter(b=>!kids.some(k=>k.set.has(b))); addFish(excl.length?excl:[...nd.set], sp, n.name, GEN[Math.min(depth,2)].name); }
     }
     (n.children||[]).forEach(k=>walkF(k, depth+1)); };
