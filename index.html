@@ -110,6 +110,7 @@ const FAMILIES = [
   }
 ];
 
+const total_snap = n => own(n) + (n.children||[]).reduce((a,c)=>a+total_snap(c),0);
 const fleetText = f => f.fleet ? `${f.fleet} vessels` : 'several vessels';
 const fmt = n => n.toLocaleString('en-GB',{minimumFractionDigits:3, maximumFractionDigits:3});
 let snap = 1;
@@ -691,16 +692,14 @@ function renderMap(){
     outKids.forEach(k=>{ const kk = kidsOf(k.code).filter(x=>x.inside); const h = 40 + kk.length*36; dia += box(k, 14, yo, W-28, h); yo += h + 8; }); }
   dia += '</svg>';
   document.getElementById('subtitle').textContent = `${f.country} · ${f.year} · ${f.name}`;
-  document.getElementById('ah').textContent = 'Codes';
+  document.getElementById('ah').textContent = '';
   document.getElementById('ap').textContent = '';
   document.getElementById('ledger').innerHTML = nodes.map(n=>{ const star = n.code.startsWith('*'); const g = GEN[Math.min(n.depth,2)];
     const col = star ? '#8A6A00' : g.stroke;
     const sps = [...new Set(n.members.map(speciesOf))];
     const spTxt = sps.map(x => SPECIES[x] ? `${x} — ${SPECIES[x].name} (${SPECIES[x].latin})` : x).join('; ');
-    return `<div class="row in" style="display:grid;grid-template-columns:7.5rem 1fr;gap:.2rem .6rem;align-items:baseline;padding:.35rem 0;${star?'background:#FFF6C7;border-radius:6px;padding:.35rem .5rem;':''}">
-      <div style="font-size:.8rem;color:var(--ink-soft)">${n.depth===0?'parent':'special condition'}</div>
-      <div><span style="font-weight:500;color:${col}">${n.code}</span> <span style="font-size:.95rem">— ${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''}</span></div>
-      <div></div><div style="font-size:.9rem;color:var(--ink-soft)">${spTxt}</div>
+    return `<div class="row in" style="display:block;padding:.35rem 0;${star?'background:#FFF6C7;border-radius:6px;padding:.35rem .5rem;':''}">
+      <span style="font-weight:500;color:${col}">${n.code}</span> <span style="font-size:.95rem">— ${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''}</span>
     </div>`; }).join('');
   document.getElementById('note').textContent = '';
   document.getElementById('play').disabled = !VOYAGES[f.id];
@@ -748,11 +747,20 @@ function playVoyage(){
   const findOwn = name => { let r = null; const w = n => { if (n.name===name) r = own(n); (n.children||[]).forEach(w); }; w(f.root); return r; };
   const stops = v.stops, speed = 0.05, ease = p => p<0.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2;
   let total = 0, t = 400, caught = [];
+  const quotaOf = code => { let qn=null; const w=x=>{ if(x.name.split(' / ')[1]===code && ('quota' in x) && !qn) qn=x; (x.children||[]).forEach(w); }; w(f.root); return qn; };
   const ledger = () => {
-    const rows = caught.map(c=>`<div class="row in"><span>${c.member} · ${c.area}</span><span class="num">${fmt(c.t)}</span></div>`);
-    rows.push(`<div class="row tot"><span>on board so far</span><span class="num">${fmt(total)}</span></div>`);
-    document.getElementById('ledger').innerHTML = rows.join('');
+    const cell = (t,extra='') => `<span class="num" style="text-align:right;${extra}">${t}</span>`;
+    let html = `<div class="row" style="display:grid;grid-template-columns:1fr 4.5rem 4.5rem 4rem;gap:.4rem;font-size:.8rem;color:var(--ink-soft)"><span>code</span>${cell('catch')}${cell('adapted')}${cell('uptake')}</div>`;
+    caught.forEach(c=>{ const code = c.member.split(' / ')[1], qn = quotaOf(code), q = qn && qn.quota ? qn.quota : 0, star = code.startsWith('*');
+      const up = q ? total_(qn)/q : null;
+      html += `<div class="row in" style="display:grid;grid-template-columns:1fr 4.5rem 4.5rem 4rem;gap:.4rem;align-items:baseline;${star?'background:#FFF6C7;border-radius:6px;padding:.2rem .3rem;':''}">
+        <span><span style="font-weight:500">${c.member}</span><br><span style="font-size:.8rem;color:var(--ink-soft)">${STOCK_GEO[code]?STOCK_GEO[code].d:''}</span></span>
+        ${cell(fmt(c.t))}${cell(q?fmt(q):'—')}${cell(up===null?'N/A':(up*100).toFixed(2)+' %', up!==null&&up>1?'color:var(--moved);font-weight:500':'')}</div>`; });
+    const rq = f.root.quota || 0;
+    html += `<div class="row tot" style="display:grid;grid-template-columns:1fr 4.5rem 4.5rem 4rem;gap:.4rem"><span>${f.root.name}<br><span style="font-size:.8rem;font-weight:400;color:var(--ink-soft)">${STOCK_GEO[f.root.name.split(' / ')[1]]?.d||''}</span></span>${cell(fmt(total))}${cell(rq?fmt(rq):'—')}${cell(rq?(total/rq*100).toFixed(2)+' %':'N/A', rq&&total/rq>1?'color:var(--moved)':'')}</div>`;
+    document.getElementById('ledger').innerHTML = html;
   };
+  const total_ = n => total_snap(n);
   const [px0,py0] = P(stops[0]);
   const trail = document.createElementNS('http://www.w3.org/2000/svg','path');
   trail.setAttribute('d', `M ${px0} ${py0}`); trail.setAttribute('fill','none'); trail.setAttribute('stroke','var(--parent)'); trail.setAttribute('stroke-width','1.5'); trail.setAttribute('stroke-dasharray','4 4'); trail.setAttribute('opacity','0.7');
@@ -765,8 +773,8 @@ function playVoyage(){
   boat.innerHTML = boatSvg(0.55) + `<rect x="-34" y="10" width="68" height="16" rx="4" fill="var(--paper)" fill-opacity="0.92" stroke="var(--parent)" stroke-width="0.8"/><text id="hold" x="0" y="18" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--parent-ink)">0.000 t</text>`;
   boat.setAttribute('transform', `translate(${px0},${py0})`); g.appendChild(boat);
   const setHold = val => { const e = boat.querySelector('#hold'); if (e) e.textContent = fmt(val) + ' t'; };
-  document.getElementById('ah').textContent = `Starting in ${v.port}`;
-  document.getElementById('ap').textContent = `One boat on the map stands for ${fleetText(f)}. It fishes the parent's own water first, then stops once in the North Sea — where several species come up in the same haul — then the Channel, and home. Every catch is counted against the member that fished it and against the parent.`;
+  document.getElementById('ah').textContent = '';
+  document.getElementById('ap').textContent = '';
   ledger();
   let cur = P(stops[0]), d = `M ${cur[0]} ${cur[1]}`;
   for (let i=1;i<stops.length;i++){
@@ -786,8 +794,8 @@ function playVoyage(){
     if (st.via) { t += 80; continue; }
     if (st.home){
       timers.push(setTimeout(()=>{
-        document.getElementById('ah').textContent = `Back in ${v.port}`;
-        document.getElementById('ap').textContent = `${fmt(total)} tonnes — the family total on ${SNAPS[snap].label}, landed by ${fleetText(f)}, not one. Whichever boat catches it, and whatever comes up in the net, the same ceiling comes down.`;
+        document.getElementById('ah').textContent = '';
+        document.getElementById('ap').textContent = '';
         playing = false;
       }, t)); continue;
     }
@@ -796,8 +804,8 @@ function playVoyage(){
       const tonnes = c.t ?? findOwn(c.member), sp = speciesOf(c.member), hasFish = !!SPECIES[sp];
       const cardY = to[1] - 30 - ci*40;
       timers.push(setTimeout(()=>{
-        document.getElementById('ah').textContent = `${c.member} — ${st.area}${st.catches.length>1?` · haul ${ci+1} of ${st.catches.length}`:''}`;
-        document.getElementById('ap').textContent = c.note;
+        document.getElementById('ah').textContent = '';
+        document.getElementById('ap').textContent = '';
         const lbl = document.createElementNS('http://www.w3.org/2000/svg','g');
         const code = c.member.split(' / ')[1], star = code.startsWith('*');
         let qn = null; const wq = x => { if (x.name.split(' / ')[1]===code && ('quota' in x) && !qn) qn = x; (x.children||[]).forEach(wq); }; wq(f.root);
