@@ -89,30 +89,31 @@
 <script>
 const SNAPS = [
   { id:'feb', label:'12 Feb 2026', short:'12-02-2026' },
-  { id:'aug', label:'13 Aug 2026', short:'13-08-2026' }
+  { id:'aug', label:'13 Aug 2026', short:'13-08-2026' },
+  { id:'sep', label:'11 Sep 2026', short:'11-09-2026' }
 ];
 
 const FAMILIES = [
   {
     id:'srx', country:'NLD', year:2025, name:'SRX / 2AC4-C', fleet:null,
     intro:'Skates and rays in the North Sea. A parent with four children; one of them carries a child of its own.',
-    root:{ name:'SRX / 2AC4-C', quota:654.400, own:{feb:0.056, aug:0.020}, children:[
-      { name:'RJC / 2AC4-C', quota:0, own:{feb:385.788, aug:385.824} },
-      { name:'RJH / 04-C.',  quota:0, own:{feb:144.252, aug:144.252} },
-      { name:'RJM / 2AC4-C', quota:0, own:{feb:79.252,  aug:79.252} },
-      { name:'SRX / *07D2.', quota:72.400, own:{feb:0, aug:0}, area:true, children:[ { name:'RJC / *07D2.', quota:0, own:{feb:62.400, aug:71.800}, area:true } ] }
+    root:{ name:'SRX / 2AC4-C', quota:654.400, own:{feb:0.056, aug:0.020, sep:0.020}, children:[
+      { name:'RJC / 2AC4-C', quota:0, own:{feb:385.788, aug:385.824, sep:356.805} },
+      { name:'RJH / 04-C.',  quota:0, own:{feb:144.252, aug:144.252, sep:140.738} },
+      { name:'RJM / 2AC4-C', quota:0, own:{feb:79.252,  aug:79.252, sep:78.569} },
+      { name:'SRX / *07D2.', quota:72.400, own:{feb:0, aug:0, sep:0}, area:true, children:[ { name:'RJC / *07D2.', quota:0, own:{feb:62.400, aug:71.800, sep:71.800}, area:true } ] }
     ]}
   },
   {
     id:'lin', country:'FRA', year:2025, name:'LIN / 6X14.', fleet:null,
     intro:'Ling west of Scotland and beyond. The simplest shape: one parent, one child.',
-    root:{ name:'LIN / 6X14.', quota:3286.040, own:{feb:397.731, aug:398.843}, children:[ { name:'LIN / *04-C.', quota:1342.676, own:{feb:763.001, aug:789.002}, area:true } ] }
+    root:{ name:'LIN / 6X14.', quota:3286.040, own:{feb:397.731, aug:398.843, sep:398.843}, children:[ { name:'LIN / *04-C.', quota:1342.676, own:{feb:763.001, aug:789.002, sep:789.002}, area:true } ] }
   }
 ];
 
 const fleetText = f => f.fleet ? `${f.fleet} vessels` : 'several vessels';
 const fmt = n => n.toLocaleString('en-GB',{minimumFractionDigits:3, maximumFractionDigits:3});
-let snap = 1;
+let snap = 2;
 const S = () => SNAPS[snap].id;
 const own = n => n.own[S()];
 const total = n => own(n) + (n.children||[]).reduce((a,c)=>a+total(c),0);
@@ -363,26 +364,41 @@ function renderCover(){
     <rect x="140" y="248" width="8" height="14" fill="#6B5B45"/>
     <!-- gangplank -->
     <polygon points="150,262 158,262 226,240 218,238" fill="#8B6A46"/>
-    <!-- hull -->
-    <path d="M 196 238 Q 205 300 262 302 L 520 302 Q 592 300 612 248 L 596 236 Z" fill="#8B5E3C" stroke="#6B4429" stroke-width="1.5"/>
-    <path d="M 205 258 L 600 258" stroke="#6B4429" stroke-width="1"/>
-    <path d="M 214 278 L 578 278" stroke="#6B4429" stroke-width="1"/>
-    <rect x="196" y="234" width="400" height="6" fill="#A97B52"/>
+    <!-- hull: planked, raised stern, bowsprit -->
+    <path d="M 186 236 Q 192 292 250 302 L 540 302 Q 600 300 616 252 L 626 232 L 600 228 L 596 236 Z" fill="#8B5E3C" stroke="#6B4429" stroke-width="1.5"/>
+    <path d="M 196 250 L 606 250 M 202 264 L 604 264 M 210 278 L 590 278 M 224 291 L 566 291" stroke="#6B4429" stroke-width="0.9" opacity="0.8"/>
+    <path d="M 240 236 L 236 302 M 300 236 L 298 302 M 360 236 L 360 302 M 420 236 L 420 302 M 480 236 L 480 302 M 540 236 L 540 302" stroke="#6B4429" stroke-width="0.6" opacity="0.5"/>
+    <path d="M 596 228 L 660 214" stroke="#4A3A2A" stroke-width="3" stroke-linecap="round"/>
+    <rect x="196" y="232" width="404" height="6" fill="#A97B52"/>
+    <path d="M 196 232 L 600 232" stroke="#6B4429" stroke-width="1"/>
+    <!-- rudder + tiller -->
+    <path d="M 190 262 L 178 266 L 176 296 L 190 300 Z" fill="#6B4429"/>
+    <!-- poop deck at the stern -->
+    <path d="M 196 232 L 196 220 L 250 220 L 250 232 Z" fill="#A97B52" stroke="#6B4429" stroke-width="1"/>
+    <path d="M 200 220 L 200 210 M 212 220 L 212 210 M 224 220 L 224 210 M 236 220 L 236 210 M 248 220 L 248 210 M 196 210 L 250 210" stroke="#6B4429" stroke-width="1"/>
     <!-- wheelhouse -->
     <rect x="470" y="200" width="70" height="34" rx="3" fill="#C9A171" stroke="#6B4429" stroke-width="1"/>
     <rect x="480" y="207" width="14" height="11" fill="#D3E1E7" stroke="#6B4429" stroke-width="0.8"/>
     <rect x="502" y="207" width="14" height="11" fill="#D3E1E7" stroke="#6B4429" stroke-width="0.8"/>
-    <!-- mast, yard, sail -->
+    <!-- foremast with lugsail -->
     <line x1="330" y1="234" x2="330" y2="72" stroke="#4A3A2A" stroke-width="4" stroke-linecap="round"/>
     <line x1="300" y1="118" x2="410" y2="82" stroke="#4A3A2A" stroke-width="3" stroke-linecap="round"/>
     <path d="M 304 120 L 336 208 L 396 200 L 408 86 Z" fill="#F1EFE8" stroke="#BDB7A8" stroke-width="1"/>
-    <path d="M 316 150 L 370 146" stroke="#D9D5CC" stroke-width="1"/><path d="M 322 178 L 384 172" stroke="#D9D5CC" stroke-width="1"/>
+    <path d="M 316 150 L 370 146 M 322 178 L 384 172" stroke="#D9D5CC" stroke-width="1"/>
     <polygon points="330,72 352,78 330,84" fill="#C4442A"/>
+    <!-- mizzen mast with smaller sail -->
+    <line x1="440" y1="234" x2="440" y2="120" stroke="#4A3A2A" stroke-width="3" stroke-linecap="round"/>
+    <line x1="418" y1="150" x2="492" y2="126" stroke="#4A3A2A" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 421 152 L 444 210 L 484 204 L 490 128 Z" fill="#F1EFE8" stroke="#BDB7A8" stroke-width="1"/>
+    <!-- shrouds and stays -->
+    <path d="M 330 84 L 268 232 M 330 84 L 392 232 M 330 84 L 660 214 M 440 126 L 400 232 M 440 126 L 480 232 M 440 126 L 330 100" stroke="#3E3226" stroke-width="0.7" opacity="0.7"/>
+    <path d="M 282 200 L 378 200 M 290 180 L 370 180 M 298 160 L 362 160" stroke="#3E3226" stroke-width="0.5" opacity="0.5"/>
+    <!-- anchor at the bow -->
+    <path d="M 610 248 L 610 268 M 602 256 L 618 256 M 602 268 Q 610 276 618 268" stroke="#3E3226" stroke-width="1.5" fill="none"/>
     <!-- deck figures (appear when they arrive) -->
     ${crew}
     <!-- walking figures -->
     ${walkers}
-    <text x="24" y="36" font-size="20" font-weight="500" fill="var(--ink)">Regulated Stock</text>
     <text x="24" y="60" font-size="12" fill="var(--ink-soft)">Parent Area Code</text><text x="130" y="60" font-size="12" font-weight="500" fill="var(--parent-ink)">= 2AC4-C</text>
     <text x="24" y="74" font-size="10" fill="var(--ink-soft)">Union and UK waters of 4, UK waters of 2a</text>
     <text x="24" y="94" font-size="12" fill="var(--ink-soft)">Parent Species Code</text><text x="130" y="94" font-size="12" font-weight="500" fill="var(--parent-ink)">= SRX</text>
@@ -677,19 +693,19 @@ function renderMap(){
 const VOYAGES = {
   srx: { port:'the north (2a)', stops:[
     {lon:3.4, lat:62.5, port:true},
-    {lon:2.6, lat:62.6,  area:'2a', member:'SRX / 2AC4-C',  t:0.020,   note:'The parent itself: skates and rays landed directly against the parent quota.'},
-    {lon:1.5, lat:59.6,  area:'4a', member:'RJH / 04-C.',   t:144.252, note:'Blonde ray, a species condition in Union waters of 4. No ceiling of its own; counts against the parent.'},
-    {lon:3.4, lat:55.6,  area:'4b', member:'RJC / 2AC4-C',  t:385.824, note:'Thornback ray, a species condition on the parent code. Counts against the parent.'},
-    {lon:3.0, lat:52.5,  area:'4c', member:'RJM / 2AC4-C',  t:79.252,  note:'Spotted ray, a species condition on the parent code. Counts against the parent.'},
-    {lon:0.6, lat:50.3,  area:'7d', member:'RJC / *07D2.',  t:71.800,  note:'Area condition: part of the North Sea quota taken in the eastern Channel, under a sub-limit. Still counts against the parent.'},
+    {lon:2.6, lat:62.6,  area:'2a', member:'SRX / 2AC4-C',  t:null,   note:'The parent itself: skates and rays landed directly against the parent quota.'},
+    {lon:1.5, lat:59.6,  area:'4a', member:'RJH / 04-C.',   t:null, note:'Blonde ray, a species condition in Union waters of 4. No ceiling of its own; counts against the parent.'},
+    {lon:3.4, lat:55.6,  area:'4b', member:'RJC / 2AC4-C',  t:null, note:'Thornback ray, a species condition on the parent code. Counts against the parent.'},
+    {lon:3.0, lat:52.5,  area:'4c', member:'RJM / 2AC4-C',  t:null,  note:'Spotted ray, a species condition on the parent code. Counts against the parent.'},
+    {lon:0.6, lat:50.3,  area:'7d', member:'RJC / *07D2.',  t:null,  note:'Area condition: part of the North Sea quota taken in the eastern Channel, under a sub-limit. Still counts against the parent.'},
     {lon:2.2, lat:52.0, via:true}, {lon:2.0, lat:57.5, via:true}, {lon:2.4, lat:61.0, via:true},
     {lon:3.4, lat:62.5, port:true, home:true}
   ]},
   lin: { port:'the north-west (6a)', stops:[
     {lon:-9.5, lat:59.5, port:true},
-    {lon:-8.6, lat:57.9, area:'6a', member:'LIN / 6X14.',   t:398.843, note:'The parent itself: ling landed directly against the western quota.'},
+    {lon:-8.6, lat:57.9, area:'6a', member:'LIN / 6X14.',   t:null, note:'The parent itself: ling landed directly against the western quota.'},
     {lon:-4.0, lat:59.4, via:true}, {lon:0.5, lat:58.8, via:true},
-    {lon:3.2, lat:55.4,  area:'4b', member:'LIN / *04-C.',  t:789.002, note:'Area condition: part of the western quota taken in the North Sea, under a sub-limit. Counts against the parent.'},
+    {lon:3.2, lat:55.4,  area:'4b', member:'LIN / *04-C.',  t:null, note:'Area condition: part of the western quota taken in the North Sea, under a sub-limit. Counts against the parent.'},
     {lon:0.5, lat:58.8, via:true}, {lon:-4.0, lat:59.6, via:true},
     {lon:-9.5, lat:59.5, port:true, home:true}
   ]}
@@ -711,7 +727,8 @@ function playVoyage(){
   const svg = document.getElementById('tree');
   const g = document.createElementNS('http://www.w3.org/2000/svg','g'); g.id = 'voyage'; svg.appendChild(g);
   const P = st => [parseFloat(mx(st.lon)), parseFloat(my(st.lat))];
-  const stops = v.stops, speed = 0.05;
+  const findOwn = name => { let r = null; const w = n => { if (n.name===name) r = own(n); (n.children||[]).forEach(w); }; w(f.root); return r; };
+  const stops = v.stops.map(st => st.member ? Object.assign({}, st, { t: st.t ?? findOwn(st.member) }) : st), speed = 0.05;
   let total = 0, t = 400, caught = [];
   const ledger = () => {
     const rows = caught.map(c=>`<div class="row in"><span>${c.member} · ${c.area}</span><span class="num">${fmt(c.t)}</span></div>`);
