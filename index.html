@@ -612,7 +612,7 @@ function renderMap(){
   // inset level = how many ancestors share this water
   nodes.forEach(n=>{ let lvl=0, p = nodes.find(x=>x.code===n.parentCode); while (p){ if (subset(n.set, p.set)) lvl++; p = nodes.find(x=>x.code===p.parentCode); } n.lvl = Math.min(lvl,2); });
   const parts=[], labels=[];
-  nodes.slice().sort((a,b)=>a.depth-b.depth).forEach(n=>{ const g0 = GEN[Math.min(n.depth,2)], o = outlineFor(n.set); if (!o) return;
+  nodes.slice().sort((a,b)=>a.depth-b.depth).forEach(n=>{ if (n.depth>0) return; const g0 = GEN[Math.min(n.depth,2)], o = outlineFor(n.set); if (!o) return;
     const star = n.code.startsWith('*');
     const g = star ? {fill:'#FFF1A6', stroke:'#C99A06', ink:'#6B5200', name:g0.name} : g0;
     const d = o[String(n.lvl*10)] || o['0'];
@@ -663,7 +663,7 @@ function renderMap(){
     ${parts.join('')}
     <path d="${LAND_PATH}" fill="#F1EFE8" stroke="#B9AF9B" stroke-width="0.8" fill-rule="evenodd"/>
     ${faoLabels}${labels.join('')}
-    <g>${[[GEN[0],'parent'],[GEN[1],'special condition'],[{fill:'#FFF1A6',stroke:'#C99A06'},'special condition with asterisk']].map(([g,l],i)=>`<rect x="${14+i*150}" y="${MAPH-30}" width="12" height="12" rx="2" fill="${g.fill}" stroke="${g.stroke}" stroke-width="1.5"/><text x="${32+i*150}" y="${MAPH-24}" dominant-baseline="central" font-size="11" fill="var(--ink)">${l}</text>`).join('')}</g>
+    <g><rect x="14" y="${MAPH-30}" width="12" height="12" rx="2" fill="${GEN[0].fill}" stroke="${GEN[0].stroke}" stroke-width="1.5"/><text x="32" y="${MAPH-24}" dominant-baseline="central" font-size="11" fill="var(--ink)">parent area · special conditions appear as the vessel fishes them</text></g>
     <text x="${MAPW-10}" y="${MAPH-10}" text-anchor="end" font-size="10" fill="#7A8C96">a shape drawn inside another fishes part of the same water · FAO divisions drawn schematically · coastline: Natural Earth</text>`;
   // nesting diagram
   const kidsOf = code => nodes.filter(n=>n.parentCode===code && n.depth>0);
@@ -692,10 +692,10 @@ function renderMap(){
     const col = star ? '#8A6A00' : g.stroke;
     const sps = [...new Set(n.members.map(speciesOf))];
     const spTxt = sps.map(x => SPECIES[x] ? `${x} — ${SPECIES[x].name} (${SPECIES[x].latin})` : x).join('; ');
-    return `<div class="row in" style="display:block;padding:.35rem 0;${star?'background:#FFF6C7;border-radius:6px;padding:.35rem .5rem;':''}">
-      <div><span style="font-weight:500;color:${col}">${n.code}</span> <span style="font-size:.8rem;color:var(--ink-soft)">${n.depth===0?'parent':'special condition'}</span></div>
-      <div style="font-size:.95rem">${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''}</div>
-      <div style="font-size:.9rem;color:var(--ink-soft)">${spTxt}</div>
+    return `<div class="row in" style="display:grid;grid-template-columns:7.5rem 1fr;gap:.2rem .6rem;align-items:baseline;padding:.35rem 0;${star?'background:#FFF6C7;border-radius:6px;padding:.35rem .5rem;':''}">
+      <div style="font-size:.8rem;color:var(--ink-soft)">${n.depth===0?'parent':'special condition'}</div>
+      <div><span style="font-weight:500;color:${col}">${n.code}</span> <span style="font-size:.95rem">— ${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''}</span></div>
+      <div></div><div style="font-size:.9rem;color:var(--ink-soft)">${spTxt}</div>
     </div>`; }).join('');
   document.getElementById('note').textContent = '';
   document.getElementById('play').disabled = !VOYAGES[f.id];
@@ -797,11 +797,11 @@ function playVoyage(){
         const code = c.member.split(' / ')[1], star = code.startsWith('*');
         let qn = null; const wq = x => { if (x.name.split(' / ')[1]===code && ('quota' in x) && !qn) qn = x; (x.children||[]).forEach(wq); }; wq(f.root);
         const qline = star && qn && qn.quota ? `quota ${fmt(qn.quota)} t · uptake ${(total(qn)/qn.quota*100).toFixed(2)} %` : '';
-        const w = Math.max(110, (c.member.length+9)*6.2, qline.length*5.6+12) + (hasFish?34:0), h = qline ? 48 : 34;
+        const w = Math.max(150, (c.member.length+9)*6.2, qline.length*5.6+12) + (hasFish?34:0), h = qline ? 48 : 34;
         lbl.innerHTML = `<rect x="${to[0]+16}" y="${cardY-4}" width="${w}" height="${h}" rx="6" fill="${star?'#FFF6C7':'var(--paper)'}" fill-opacity="0.96" stroke="${star?'#C99A06':'var(--parent)'}" stroke-width="1"/>
           ${hasFish ? fishAt(sp, to[0]+32, cardY+13, sp==='LIN'?0.14:0.15, 'v'+st.area+ci, `${SPECIES[sp].name} (${SPECIES[sp].latin}) — ${c.member}`) : ''}
           <text x="${to[0]+22+(hasFish?34:0)}" y="${cardY+6}" dominant-baseline="central" font-size="11" font-weight="500" fill="${star?'#6B5200':'var(--parent-ink)'}">${c.member}</text>
-          <text x="${to[0]+22+(hasFish?34:0)}" y="${cardY+19}" dominant-baseline="central" font-size="11" fill="${star?'#8A6A00':'var(--parent)'}">${fmt(tonnes)} t · ${st.area}</text>
+          <text x="${to[0]+22+(hasFish?34:0)}" y="${cardY+19}" dominant-baseline="central" font-size="11" fill="${star?'#8A6A00':'var(--parent)'}">${fmt(tonnes)} t · ${st.area}${code===f.root.name.split(' / ')[1] && c.member===f.root.name ? ' · parent' : ' · special condition'}</text>
           ${qline ? `<text x="${to[0]+22+(hasFish?34:0)}" y="${cardY+33}" dominant-baseline="central" font-size="10" font-weight="500" fill="#6B5200">${qline}</text>` : ''}`;
         g.insertBefore(lbl, boat);
         if (hasFish && !reduced()){
