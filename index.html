@@ -626,13 +626,7 @@ function renderMap(){
       labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${(ly+20).toFixed(1)}" font-size="13" fill="${g.ink}">Parent Species = <tspan font-size="16" font-weight="500" fill="${g.stroke}">${sp}</tspan></text>`);
     } else {
       const star = n.code.startsWith('*'), col = star ? '#8A6A00' : g.stroke, ink = star ? '#6B5200' : g.ink;
-      labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${ly.toFixed(1)}" font-size="13" font-weight="500" fill="${col}">${n.code} <tspan font-size="10" font-weight="400" fill="${ink}">special condition${star?' (asterisk)':''}</tspan></text>`);
-      if (star){
-        // the quota-holding node for this code, from the family tree
-        let qn = null; const wq = x => { if (x.name.split(' / ')[1]===n.code && ('quota' in x) && !qn) qn = x; (x.children||[]).forEach(wq); }; wq(f.root);
-        if (qn && qn.quota){ const up = total(qn)/qn.quota;
-          labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${(ly+16).toFixed(1)}" font-size="11" fill="${ink}">Adapted quota <tspan font-weight="500">${fmt(qn.quota)} t</tspan> · uptake <tspan font-weight="500" fill="${up>1?'var(--moved)':ink}">${(up*100).toFixed(2)} %</tspan> · caught ${fmt(total(qn))} t</text>`); }
-      }
+      labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${ly.toFixed(1)}" font-size="13" font-weight="500" fill="${col}">${n.code}${star?` <tspan font-size="10" font-weight="400" fill="${ink}">special condition (asterisk)</tspan>`:''}</text>`);
     }
     });
   // ---- fish placement, by MEMBER generation, not by code ----
@@ -702,8 +696,6 @@ function renderMap(){
       <div><span style="font-weight:500;color:${col}">${n.code}</span> <span style="font-size:.8rem;color:var(--ink-soft)">${n.depth===0?'parent':'special condition'}</span></div>
       <div style="font-size:.95rem">${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''}</div>
       <div style="font-size:.9rem;color:var(--ink-soft)">${spTxt}</div>
-      ${(()=>{ if(!star) return ''; let qn=null; const wq=x=>{ if(x.name.split(' / ')[1]===n.code && ('quota' in x) && !qn) qn=x; (x.children||[]).forEach(wq); }; wq(f.root);
-         return qn && qn.quota ? `<div style="font-size:.9rem;margin-top:.2rem">Adapted quota <span class="num" style="font-weight:500">${fmt(qn.quota)} t</span> · uptake <span class="num" style="font-weight:500">${(total(qn)/qn.quota*100).toFixed(2)} %</span></div>` : ''; })()}
     </div>`; }).join('');
   document.getElementById('note').textContent = '';
   document.getElementById('play').disabled = !VOYAGES[f.id];
@@ -802,11 +794,15 @@ function playVoyage(){
         document.getElementById('ah').textContent = `${c.member} — ${st.area}${st.catches.length>1?` · haul ${ci+1} of ${st.catches.length}`:''}`;
         document.getElementById('ap').textContent = c.note;
         const lbl = document.createElementNS('http://www.w3.org/2000/svg','g');
-        const w = Math.max(110, (c.member.length+9)*6.2) + (hasFish?34:0);
-        lbl.innerHTML = `<rect x="${to[0]+16}" y="${cardY-4}" width="${w}" height="34" rx="6" fill="var(--paper)" fill-opacity="0.95" stroke="var(--parent)" stroke-width="1"/>
+        const code = c.member.split(' / ')[1], star = code.startsWith('*');
+        let qn = null; const wq = x => { if (x.name.split(' / ')[1]===code && ('quota' in x) && !qn) qn = x; (x.children||[]).forEach(wq); }; wq(f.root);
+        const qline = star && qn && qn.quota ? `quota ${fmt(qn.quota)} t · uptake ${(total(qn)/qn.quota*100).toFixed(2)} %` : '';
+        const w = Math.max(110, (c.member.length+9)*6.2, qline.length*5.6+12) + (hasFish?34:0), h = qline ? 48 : 34;
+        lbl.innerHTML = `<rect x="${to[0]+16}" y="${cardY-4}" width="${w}" height="${h}" rx="6" fill="${star?'#FFF6C7':'var(--paper)'}" fill-opacity="0.96" stroke="${star?'#C99A06':'var(--parent)'}" stroke-width="1"/>
           ${hasFish ? fishAt(sp, to[0]+32, cardY+13, sp==='LIN'?0.14:0.15, 'v'+st.area+ci, `${SPECIES[sp].name} (${SPECIES[sp].latin}) — ${c.member}`) : ''}
-          <text x="${to[0]+22+(hasFish?34:0)}" y="${cardY+6}" dominant-baseline="central" font-size="11" font-weight="500" fill="var(--parent-ink)">${c.member}</text>
-          <text x="${to[0]+22+(hasFish?34:0)}" y="${cardY+19}" dominant-baseline="central" font-size="11" fill="var(--parent)">${fmt(tonnes)} t · ${st.area}</text>`;
+          <text x="${to[0]+22+(hasFish?34:0)}" y="${cardY+6}" dominant-baseline="central" font-size="11" font-weight="500" fill="${star?'#6B5200':'var(--parent-ink)'}">${c.member}</text>
+          <text x="${to[0]+22+(hasFish?34:0)}" y="${cardY+19}" dominant-baseline="central" font-size="11" fill="${star?'#8A6A00':'var(--parent)'}">${fmt(tonnes)} t · ${st.area}</text>
+          ${qline ? `<text x="${to[0]+22+(hasFish?34:0)}" y="${cardY+33}" dominant-baseline="central" font-size="10" font-weight="500" fill="#6B5200">${qline}</text>` : ''}`;
         g.insertBefore(lbl, boat);
         if (hasFish && !reduced()){
           const fz = document.createElementNS('http://www.w3.org/2000/svg','g');
