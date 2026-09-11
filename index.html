@@ -89,31 +89,30 @@
 <script>
 const SNAPS = [
   { id:'feb', label:'12 Feb 2026', short:'12-02-2026' },
-  { id:'aug', label:'13 Aug 2026', short:'13-08-2026' },
-  { id:'sep', label:'11 Sep 2026', short:'11-09-2026' }
+  { id:'aug', label:'13 Aug 2026', short:'13-08-2026' }
 ];
 
 const FAMILIES = [
   {
     id:'srx', country:'NLD', year:2025, name:'SRX / 2AC4-C', fleet:null,
     intro:'Skates and rays in the North Sea. A parent with four children; one of them carries a child of its own.',
-    root:{ name:'SRX / 2AC4-C', quota:654.400, own:{feb:0.056, aug:0.020, sep:0.020}, children:[
-      { name:'RJC / 2AC4-C', quota:0, own:{feb:385.788, aug:385.824, sep:356.805} },
-      { name:'RJH / 04-C.',  quota:0, own:{feb:144.252, aug:144.252, sep:140.738} },
-      { name:'RJM / 2AC4-C', quota:0, own:{feb:79.252,  aug:79.252, sep:78.569} },
-      { name:'SRX / *07D2.', quota:72.400, own:{feb:0, aug:0, sep:0}, area:true, children:[ { name:'RJC / *07D2.', quota:0, own:{feb:62.400, aug:71.800, sep:71.800}, area:true } ] }
+    root:{ name:'SRX / 2AC4-C', quota:654.400, own:{feb:0.056, aug:0.020}, children:[
+      { name:'RJC / 2AC4-C', quota:0, own:{feb:385.788, aug:356.805} },
+      { name:'RJH / 04-C.',  quota:0, own:{feb:144.252, aug:140.738} },
+      { name:'RJM / 2AC4-C', quota:0, own:{feb:79.252,  aug:78.569} },
+      { name:'SRX / *07D2.', quota:72.400, own:{feb:0, aug:0}, area:true, children:[ { name:'RJC / *07D2.', quota:0, own:{feb:62.400, aug:71.800}, area:true } ] }
     ]}
   },
   {
     id:'lin', country:'FRA', year:2025, name:'LIN / 6X14.', fleet:null,
     intro:'Ling west of Scotland and beyond. The simplest shape: one parent, one child.',
-    root:{ name:'LIN / 6X14.', quota:3286.040, own:{feb:397.731, aug:398.843, sep:398.843}, children:[ { name:'LIN / *04-C.', quota:1342.676, own:{feb:763.001, aug:789.002, sep:789.002}, area:true } ] }
+    root:{ name:'LIN / 6X14.', quota:3286.040, own:{feb:397.731, aug:398.843}, children:[ { name:'LIN / *04-C.', quota:1342.676, own:{feb:763.001, aug:789.002}, area:true } ] }
   }
 ];
 
 const fleetText = f => f.fleet ? `${f.fleet} vessels` : 'several vessels';
 const fmt = n => n.toLocaleString('en-GB',{minimumFractionDigits:3, maximumFractionDigits:3});
-let snap = 2;
+let snap = 1;
 const S = () => SNAPS[snap].id;
 const own = n => n.own[S()];
 const total = n => own(n) + (n.children||[]).reduce((a,c)=>a+total(c),0);
