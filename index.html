@@ -519,7 +519,7 @@ const mx = lon => ((lon-LON0)*MAPW/(LON1-LON0)).toFixed(1);
 const my = lat => ((LAT1-lat)*MAPH/(LAT1-LAT0)).toFixed(1);
 // schematic ICES divisions: [id, label, lon0, lat0, lon1, lat1, labelLon, labelLat]
 const ICES = [
-  ['2a','2a',      -4,   62,   13,   63.4, 2.5,  62.5],
+  ['2a','2a',      -4,   62,   13,   63.4, 10.6, 62.5],
   ['4a','4a',      -4,   57.5, 7,    62,   1.5,  59.7],
   ['4b','4b',      -3,   53.5, 9,    57.5, 3.2,  55.4],
   ['4c','4c',      -1.5, 51,   5,    53.5, 2.6,  52.4],
@@ -618,7 +618,13 @@ function renderMap(){
     const gens = [...n.depths].sort().map(x=>GEN[Math.min(x,2)].name).join(' + ');
     const [x0,y0,x1,y1] = o.bbox, i = n.lvl*10;
     const ly = Math.max(n.depth===0?28:16, y0+i+(n.depth===0?28:16));
-    labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${ly.toFixed(1)}" font-size="${n.depth===0?26:13}" font-weight="500" fill="${g.stroke}">${n.code} <tspan font-size="${n.depth===0?12:10}" font-weight="400" fill="${g.ink}">${n.depth===0?'Parent Area · Parent Species':'special condition'}</tspan></text>`);
+    if (n.depth===0){
+      const sp = f.root.name.split(' / ')[0];
+      labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${ly.toFixed(1)}" font-size="13" fill="${g.ink}">Parent Stock Area = <tspan font-size="24" font-weight="500" fill="${g.stroke}">${n.code}</tspan></text>`);
+      labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${(ly+20).toFixed(1)}" font-size="13" fill="${g.ink}">Parent Species = <tspan font-size="16" font-weight="500" fill="${g.stroke}">${sp}</tspan></text>`);
+    } else {
+      labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${ly.toFixed(1)}" font-size="13" font-weight="500" fill="${g.stroke}">${n.code} <tspan font-size="10" font-weight="400" fill="${g.ink}">special condition</tspan></text>`);
+    }
     });
   // ---- fish placement, by MEMBER generation, not by code ----
   const root = nodes[0];
