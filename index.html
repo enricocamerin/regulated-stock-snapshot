@@ -797,6 +797,20 @@ function playVoyage(){
         const code = c.member.split(' / ')[1], star = code.startsWith('*');
         let qn = null; const wq = x => { if (x.name.split(' / ')[1]===code && ('quota' in x) && !qn) qn = x; (x.children||[]).forEach(wq); }; wq(f.root);
         const qline = star && qn && qn.quota ? `quota ${fmt(qn.quota)} t · uptake ${(total(qn)/qn.quota*100).toFixed(2)} %` : '';
+        // the condition's area appears as the vessel arrives: yellow for an asterisk code, blue otherwise
+        if (code !== f.root.name.split(' / ')[1] && !g.querySelector(`[data-area="${code}"]`)){
+          const ob = outlineFor(new Set(STOCK_GEO[code] ? boxesFor(code).boxes : (AREA_SETS[code]||[])));
+          if (ob){
+            const area = document.createElementNS('http://www.w3.org/2000/svg','g'); area.setAttribute('data-area', code); area.setAttribute('opacity','0');
+            const [ax0, ay0] = ob.bbox;
+            area.innerHTML = `<path d="${ob['10']||ob['0']}" fill="${star?'#FFF1A6':'#E3ECF8'}" fill-opacity="0.85" stroke="${star?'#C99A06':'#2E5FA3'}" stroke-width="1.6" fill-rule="evenodd"/>
+              <text x="${(ax0+20).toFixed(1)}" y="${Math.max(16, ay0+26).toFixed(1)}" font-size="13" font-weight="500" fill="${star?'#8A6A00':'#2E5FA3'}">${code} <tspan font-size="10" font-weight="400" fill="${star?'#6B5200':'#1E3F73'}">special condition</tspan></text>
+              ${qline ? `<text x="${(ax0+20).toFixed(1)}" y="${Math.max(32, ay0+42).toFixed(1)}" font-size="11" font-weight="500" fill="#6B5200">${qline}</text>` : ''}`;
+            g.insertBefore(area, trail);
+            const tA = performance.now(); const fade = now => { const p = Math.min(1,(now-tA)/600); area.setAttribute('opacity', String(p)); if (p<1) requestAnimationFrame(fade); };
+            if (reduced()) area.setAttribute('opacity','1'); else requestAnimationFrame(fade);
+          }
+        }
         const w = Math.max(150, (c.member.length+9)*6.2, qline.length*5.6+12) + (hasFish?34:0), h = qline ? 48 : 34;
         lbl.innerHTML = `<rect x="${to[0]+16}" y="${cardY-4}" width="${w}" height="${h}" rx="6" fill="${star?'#FFF6C7':'var(--paper)'}" fill-opacity="0.96" stroke="${star?'#C99A06':'var(--parent)'}" stroke-width="1"/>
           ${hasFish ? fishAt(sp, to[0]+32, cardY+13, sp==='LIN'?0.14:0.15, 'v'+st.area+ci, `${SPECIES[sp].name} (${SPECIES[sp].latin}) — ${c.member}`) : ''}
