@@ -618,7 +618,7 @@ function renderMap(){
     const gens = [...n.depths].sort().map(x=>GEN[Math.min(x,2)].name).join(' + ');
     const [x0,y0,x1,y1] = o.bbox, i = n.lvl*10;
     const ly = Math.max(n.depth===0?28:16, y0+i+(n.depth===0?28:16));
-    labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${ly.toFixed(1)}" font-size="${n.depth===0?26:13}" font-weight="500" fill="${g.stroke}">${n.code} <tspan font-size="${n.depth===0?12:10}" font-weight="400" fill="${g.ink}">${n.depth===0?'parent quota':gens}${n.inside===true?' · inside the parent area':n.inside===false?' · outside the parent area':''}</tspan></text>`);
+    labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${ly.toFixed(1)}" font-size="${n.depth===0?26:13}" font-weight="500" fill="${g.stroke}">${n.code} <tspan font-size="${n.depth===0?12:10}" font-weight="400" fill="${g.ink}">${n.depth===0?'Parent Area · Parent Species':'special condition'}</tspan></text>`);
     });
   // ---- fish placement, by MEMBER generation, not by code ----
   const root = nodes[0];
@@ -654,7 +654,7 @@ function renderMap(){
     ${parts.join('')}
     <path d="${LAND_PATH}" fill="#F1EFE8" stroke="#B9AF9B" stroke-width="0.8" fill-rule="evenodd"/>
     ${faoLabels}${labels.join('')}
-    <g>${GEN.map((g,i)=>`<rect x="${14+i*118}" y="${MAPH-30}" width="12" height="12" rx="2" fill="${g.fill}" stroke="${g.stroke}" stroke-width="1.5"/><text x="${32+i*118}" y="${MAPH-24}" dominant-baseline="central" font-size="11" fill="var(--ink)">${g.name}</text>`).join('')}</g>
+    <g>${[[GEN[0],'parent'],[GEN[1],'special condition']].map(([g,l],i)=>`<rect x="${14+i*140}" y="${MAPH-30}" width="12" height="12" rx="2" fill="${g.fill}" stroke="${g.stroke}" stroke-width="1.5"/><text x="${32+i*140}" y="${MAPH-24}" dominant-baseline="central" font-size="11" fill="var(--ink)">${l}</text>`).join('')}</g>
     <text x="${MAPW-10}" y="${MAPH-10}" text-anchor="end" font-size="10" fill="#7A8C96">a shape drawn inside another fishes part of the same water · FAO divisions drawn schematically · coastline: Natural Earth</text>`;
   // nesting diagram
   const kidsOf = code => nodes.filter(n=>n.parentCode===code && n.depth>0);
@@ -700,16 +700,14 @@ const VOYAGES = {
       {member:'RJC / 2AC4-C', note:'Same haul, same spot: thornback, a species condition on the parent code.'},
       {member:'RJM / 2AC4-C', note:'And spotted ray in the same net. Three species, one fishing operation, one parent quota.'} ]},
     {lon:0.6, lat:50.3, area:'7d', catches:[ {member:'RJC / *07D2.', note:'Then the Channel: thornback under the area condition *07D2., within its sub-limit. Still the same parent.'} ]},
-    {lon:2.2, lat:52.0, via:true}, {lon:2.0, lat:57.5, via:true}, {lon:2.4, lat:61.0, via:true},
-    {lon:3.4, lat:62.5, port:true, home:true}
+    {lon:3.4, lat:62.5, port:true, home:true, fast:true}
   ]},
   lin: { port:'the north-west (6a)', stops:[
     {lon:-9.5, lat:59.5, port:true},
     {lon:-8.6, lat:57.9, area:'6a', catches:[ {member:'LIN / 6X14.', note:'The parent itself: ling landed directly against the western quota.'} ]},
     {lon:-4.0, lat:59.4, via:true}, {lon:0.5, lat:58.8, via:true},
     {lon:3.2, lat:55.4, area:'4b', catches:[ {member:'LIN / *04-C.', note:'Area condition: part of the western quota taken in the North Sea, under a sub-limit. Counts against the parent.'} ]},
-    {lon:0.5, lat:58.8, via:true}, {lon:-4.0, lat:59.6, via:true},
-    {lon:-9.5, lat:59.5, port:true, home:true}
+    {lon:-9.5, lat:59.5, port:true, home:true, fast:true}
   ]}
 };
 function boatSvg(scale){
@@ -755,7 +753,7 @@ function playVoyage(){
   let cur = P(stops[0]), d = `M ${cur[0]} ${cur[1]}`;
   for (let i=1;i<stops.length;i++){
     const st = stops[i], to = P(st), from = cur;
-    const dist = Math.hypot(to[0]-from[0], to[1]-from[1]), dur = Math.max(500, dist/speed);
+    const dist = Math.hypot(to[0]-from[0], to[1]-from[1]), dur = st.fast ? Math.max(400, dist/(speed*4)) : Math.max(500, dist/speed);
     const at = t, dStart = d;
     timers.push(setTimeout(()=>{
       if (reduced()){ boat.setAttribute('transform', `translate(${to[0]},${to[1]})`); trail.setAttribute('d', dStart + ` L ${to[0]} ${to[1]}`); return; }
