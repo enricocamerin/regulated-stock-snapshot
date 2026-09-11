@@ -627,6 +627,12 @@ function renderMap(){
     } else {
       const star = n.code.startsWith('*'), col = star ? '#8A6A00' : g.stroke, ink = star ? '#6B5200' : g.ink;
       labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${ly.toFixed(1)}" font-size="13" font-weight="500" fill="${col}">${n.code} <tspan font-size="10" font-weight="400" fill="${ink}">special condition${star?' (asterisk)':''}</tspan></text>`);
+      if (star){
+        // the quota-holding node for this code, from the family tree
+        let qn = null; const wq = x => { if (x.name.split(' / ')[1]===n.code && ('quota' in x) && !qn) qn = x; (x.children||[]).forEach(wq); }; wq(f.root);
+        if (qn && qn.quota){ const up = total(qn)/qn.quota;
+          labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${(ly+16).toFixed(1)}" font-size="11" fill="${ink}">Adapted quota <tspan font-weight="500">${fmt(qn.quota)} t</tspan> · uptake <tspan font-weight="500" fill="${up>1?'var(--moved)':ink}">${(up*100).toFixed(2)} %</tspan> · caught ${fmt(total(qn))} t</text>`); }
+      }
     }
     });
   // ---- fish placement, by MEMBER generation, not by code ----
@@ -696,6 +702,8 @@ function renderMap(){
       <div><span style="font-weight:500;color:${col}">${n.code}</span> <span style="font-size:.8rem;color:var(--ink-soft)">${n.depth===0?'parent':'special condition'}</span></div>
       <div style="font-size:.95rem">${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''}</div>
       <div style="font-size:.9rem;color:var(--ink-soft)">${spTxt}</div>
+      ${(()=>{ if(!star) return ''; let qn=null; const wq=x=>{ if(x.name.split(' / ')[1]===n.code && ('quota' in x) && !qn) qn=x; (x.children||[]).forEach(wq); }; wq(f.root);
+         return qn && qn.quota ? `<div style="font-size:.9rem;margin-top:.2rem">Adapted quota <span class="num" style="font-weight:500">${fmt(qn.quota)} t</span> · uptake <span class="num" style="font-weight:500">${(total(qn)/qn.quota*100).toFixed(2)} %</span></div>` : ''; })()}
     </div>`; }).join('');
   document.getElementById('note').textContent = '';
   document.getElementById('play').disabled = !VOYAGES[f.id];
