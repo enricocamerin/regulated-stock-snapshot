@@ -612,7 +612,7 @@ function renderMap(){
   // inset level = how many ancestors share this water
   nodes.forEach(n=>{ let lvl=0, p = nodes.find(x=>x.code===n.parentCode); while (p){ if (subset(n.set, p.set)) lvl++; p = nodes.find(x=>x.code===p.parentCode); } n.lvl = Math.min(lvl,2); });
   const parts=[], labels=[];
-  nodes.slice().sort((a,b)=>a.depth-b.depth).forEach(n=>{ if (n.depth>0) return; const g0 = GEN[Math.min(n.depth,2)], o = outlineFor(n.set); if (!o) return;
+  nodes.slice().sort((a,b)=>a.depth-b.depth).forEach(n=>{ const g0 = GEN[Math.min(n.depth,2)], o = outlineFor(n.set); if (!o) return;
     const star = n.code.startsWith('*');
     const g = star ? {fill:'#FFF1A6', stroke:'#C99A06', ink:'#6B5200', name:g0.name} : g0;
     const d = o[String(n.lvl*10)] || o['0'];
@@ -627,6 +627,11 @@ function renderMap(){
     } else {
       const star = n.code.startsWith('*'), col = star ? '#8A6A00' : g.stroke, ink = star ? '#6B5200' : g.ink;
       labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${ly.toFixed(1)}" font-size="13" font-weight="500" fill="${col}">${n.code}${star?` <tspan font-size="10" font-weight="400" fill="${ink}">special condition (asterisk)</tspan>`:''}</text>`);
+      if (star){
+        let qn = null; const wq = x => { if (x.name.split(' / ')[1]===n.code && ('quota' in x) && !qn) qn = x; (x.children||[]).forEach(wq); }; wq(f.root);
+        if (qn && qn.quota){ const up = total(qn)/qn.quota;
+          labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${(ly+16).toFixed(1)}" font-size="11" fill="${ink}">Adapted quota <tspan font-weight="500">${fmt(qn.quota)} t</tspan> · uptake <tspan font-weight="500" fill="${up>1?'var(--moved)':ink}">${(up*100).toFixed(2)} %</tspan></text>`); }
+      }
     }
     });
   // ---- fish placement, by MEMBER generation, not by code ----
@@ -663,7 +668,7 @@ function renderMap(){
     ${parts.join('')}
     <path d="${LAND_PATH}" fill="#F1EFE8" stroke="#B9AF9B" stroke-width="0.8" fill-rule="evenodd"/>
     ${faoLabels}${labels.join('')}
-    <g><rect x="14" y="${MAPH-30}" width="12" height="12" rx="2" fill="${GEN[0].fill}" stroke="${GEN[0].stroke}" stroke-width="1.5"/><text x="32" y="${MAPH-24}" dominant-baseline="central" font-size="11" fill="var(--ink)">parent area · special conditions appear as the vessel fishes them</text></g>
+    <g>${[[GEN[0],'parent'],[GEN[1],'special condition'],[{fill:'#FFF1A6',stroke:'#C99A06'},'special condition with asterisk']].map(([g,l],i)=>`<rect x="${14+i*150}" y="${MAPH-30}" width="12" height="12" rx="2" fill="${g.fill}" stroke="${g.stroke}" stroke-width="1.5"/><text x="${32+i*150}" y="${MAPH-24}" dominant-baseline="central" font-size="11" fill="var(--ink)">${l}</text>`).join('')}</g>
     <text x="${MAPW-10}" y="${MAPH-10}" text-anchor="end" font-size="10" fill="#7A8C96">a shape drawn inside another fishes part of the same water · FAO divisions drawn schematically · coastline: Natural Earth</text>`;
   // nesting diagram
   const kidsOf = code => nodes.filter(n=>n.parentCode===code && n.depth>0);
@@ -798,7 +803,7 @@ function playVoyage(){
         let qn = null; const wq = x => { if (x.name.split(' / ')[1]===code && ('quota' in x) && !qn) qn = x; (x.children||[]).forEach(wq); }; wq(f.root);
         const qline = star && qn && qn.quota ? `quota ${fmt(qn.quota)} t · uptake ${(total(qn)/qn.quota*100).toFixed(2)} %` : '';
         // the condition's area appears as the vessel arrives: yellow for an asterisk code, blue otherwise
-        if (code !== f.root.name.split(' / ')[1] && !g.querySelector(`[data-area="${code}"]`)){
+        if (false){
           const ob = outlineFor(new Set(STOCK_GEO[code] ? boxesFor(code).boxes : (AREA_SETS[code]||[])));
           if (ob){
             const area = document.createElementNS('http://www.w3.org/2000/svg','g'); area.setAttribute('data-area', code); area.setAttribute('opacity','0');
