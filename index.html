@@ -312,11 +312,11 @@ const SPECIES_PHOTO = {
 // ===================== COVER: the family boards the vessel =====================
 let view = 'cover';
 const CREW = [
-  { key:'parent', label:'the parent',  color:'var(--parent)',  deckX:262, cane:true },
+  { key:'parent', label:'parent',  color:'var(--parent)',  deckX:262, cane:true, quota:654.400 },
   { key:'c1',     label:'child',       color:'var(--stone)',   deckX:296 },
   { key:'c2',     label:'child',       color:'var(--stone)',   deckX:330 },
   { key:'c3',     label:'child',       color:'var(--stone)',   deckX:364 },
-  { key:'c4',     label:'child',       color:'var(--area)',    deckX:408, withKid:true },
+  { key:'c4',     label:'child',       color:'var(--area)',    deckX:408, withKid:true, quota:72.400 },
   { key:'g1',     label:'grandchild',  color:'var(--area)',    deckX:424, small:true, rides:'c4' }
 ];
 function figure(c){
@@ -339,7 +339,11 @@ function renderCover(){
   const crew = CREW.map(c => `
     <g id="fig-${c.key}" style="opacity:0">
       <g transform="translate(${c.deckX},238)">${figure(c)}</g>
-      <text class="cover-lbl" x="${c.deckX + (c.small?0:0)}" y="${c.small?196:198}" text-anchor="middle" font-size="11" fill="${c.color}">${c.small?'':c.label}</text>
+      <text class="cover-lbl" x="${c.deckX}" y="${c.small?196:(CREW.indexOf(c)%2 ? 186 : 200)}" text-anchor="middle" font-size="11" fill="${c.color}">${c.small?'':c.label}</text>
+      ${c.quota ? `<g class="cover-lbl cloud"><path d="M ${c.deckX-34} 168 q -10 0 -10 -10 q 0 -12 12 -12 q 4 -14 20 -12 q 8 -12 24 -6 q 14 -4 18 8 q 12 2 10 14 q 0 12 -12 12 Z" fill="var(--paper)" stroke="${c.color}" stroke-width="1.2"/>
+        <path d="M ${c.deckX-6} 168 l 6 8 l 4 -8" fill="var(--paper)" stroke="${c.color}" stroke-width="1.2"/>
+        <text x="${c.deckX-2}" y="${c.key==='parent'?150:150}" text-anchor="middle" font-size="9" fill="${c.color}">quota</text>
+        <text x="${c.deckX-2}" y="${c.key==='parent'?162:162}" text-anchor="middle" font-size="11" font-weight="500" fill="${c.color}">${fmt(c.quota)} t</text></g>` : ''}
     </g>`).join('');
   const walkers = CREW.map(c => `
     <g id="walk-${c.key}" style="opacity:0">
@@ -378,14 +382,17 @@ function renderCover(){
     ${crew}
     <!-- walking figures -->
     ${walkers}
-    <text x="24" y="40" font-size="20" font-weight="500" fill="var(--ink)">One family, one vessel</text>
-    <text x="24" y="62" font-size="13" fill="var(--ink-soft)">A parent, four children — one of them with a child of their own.</text>
-    <text x="24" y="88" font-size="12" fill="var(--ink-soft)">Parent species</text><text x="130" y="88" font-size="12" font-weight="500" fill="var(--parent-ink)">SRX — skates and rays (Rajidae)</text>
-    <text x="24" y="106" font-size="12" fill="var(--ink-soft)">Parent area</text><text x="130" y="106" font-size="12" font-weight="500" fill="var(--parent-ink)">2AC4-C — Union and UK waters of 4, UK waters of 2a</text>
-    <text x="24" y="124" font-size="12" fill="var(--ink-soft)">Adapted quota</text><text x="130" y="124" font-size="12" font-weight="500" fill="var(--parent-ink)">654.400 t · NLD 2025</text>
-    <text x="24" y="80" font-size="12" fill="var(--ink-soft)">The vessel stands for every boat that fishes on this quota — a fleet, not a single ship.</text>
+    <text x="24" y="36" font-size="20" font-weight="500" fill="var(--ink)">Regulated Stock</text>
+    <text x="24" y="60" font-size="12" fill="var(--ink-soft)">Parent Area Code</text><text x="130" y="60" font-size="12" font-weight="500" fill="var(--parent-ink)">= 2AC4-C</text>
+    <text x="24" y="74" font-size="10" fill="var(--ink-soft)">Union and UK waters of 4, UK waters of 2a</text>
+    <text x="24" y="94" font-size="12" fill="var(--ink-soft)">Parent Species Code</text><text x="130" y="94" font-size="12" font-weight="500" fill="var(--parent-ink)">= SRX</text>
+    <text x="24" y="108" font-size="10" fill="var(--ink-soft)">Skates and rays (Rajidae)</text>
+    <text x="24" y="128" font-size="12" fill="var(--ink-soft)">Member State</text><text x="130" y="128" font-size="12" font-weight="500" fill="var(--parent-ink)">= NLD</text>
+    <text x="24" y="142" font-size="10" fill="var(--ink-soft)">Netherlands</text>
+    <text x="24" y="162" font-size="12" fill="var(--ink-soft)">Year</text><text x="130" y="162" font-size="12" font-weight="500" fill="var(--parent-ink)">= 2025</text>
+    <text x="24" y="176" font-size="10" fill="var(--ink-soft)">quota year of the family shown</text>
   `;
-  document.getElementById('subtitle').textContent = 'Before the numbers: who is in a regulated-stock family';
+  document.getElementById('subtitle').textContent = 'NLD · 2025 · SRX / 2AC4-C';
   document.getElementById('ah').textContent = 'Everyone who fishes on the same quota';
   document.getElementById('ap').textContent = 'A quota is a vessel. Whoever fishes on it — the parent stock itself, its special conditions, and any condition nested under those — is on board, and every catch they land counts against the same ceiling.';
   document.getElementById('ledger').innerHTML = `<div class="row in"><span>parent</span><span class="num">1</span></div><div class="row in"><span>children</span><span class="num">4</span></div><div class="row in"><span>grandchild</span><span class="num">1</span></div><div class="row tot"><span>on board</span><span class="num">6</span></div>`;
@@ -413,7 +420,7 @@ function playBoarding(){
   };
   const arrive = (c) => {
     const w = document.getElementById(`walk-${c.key}`); if (w) w.style.opacity = 0;
-    const f = document.getElementById(`fig-${c.key}`); if (f){ f.style.opacity = 1; f.querySelector('.cover-lbl').classList.add('on'); }
+    const f = document.getElementById(`fig-${c.key}`); if (f){ f.style.opacity = 1; f.querySelectorAll('.cover-lbl').forEach(x=>x.classList.add('on')); }
     document.getElementById('ah').textContent = c.small ? 'the grandchild comes too' : `${c.label} boards`;
   };
   CREW.filter(c=>!c.rides).forEach(c=>{
