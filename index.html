@@ -524,7 +524,7 @@ const ICES = [
   ['4b','4b',      -3,   53.5, 9,    57.5, 3.2,  55.4],
   ['4c','4c',      -1.5, 51,   5,    53.5, 2.6,  52.4],
   ['3a','3a',       7,   55.5, 13,   58.5, 10.4, 57.9],
-  ['7d','7d',      -2,   49.5, 2.5,  51,   0.3,  50.2],
+  ['7d','7d',      -2,   49.5, 2.5,  51,   1.3,  49.75],
   ['7e','7e',      -7,   48,   -2,   50.5, -4.4, 49.4],
   ['7f','7f',      -6,   50.5, -2,   51.8, -4.3, 51.1],
   ['7a','7a',      -6,   52,   -2.5, 55.5, -4.6, 53.9],
@@ -626,7 +626,7 @@ function renderMap(){
       labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${(ly+20).toFixed(1)}" font-size="13" fill="${g.ink}">Parent Species = <tspan font-size="16" font-weight="500" fill="${g.stroke}">${sp}</tspan></text>`);
     } else {
       const star = n.code.startsWith('*'), col = star ? '#8A6A00' : g.stroke, ink = star ? '#6B5200' : g.ink;
-      labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${ly.toFixed(1)}" font-size="13" font-weight="500" fill="${col}">${n.code}${star?` <tspan font-size="10" font-weight="400" fill="${ink}">special condition (asterisk)</tspan>`:''}</text>`);
+      labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${ly.toFixed(1)}" font-size="13" font-weight="500" fill="${col}">${n.code}</text>`);
       if (star){
         let qn = null; const wq = x => { if (x.name.split(' / ')[1]===n.code && ('quota' in x) && !qn) qn = x; (x.children||[]).forEach(wq); }; wq(f.root);
         if (qn && qn.quota){ const up = total(qn)/qn.quota;
@@ -668,7 +668,7 @@ function renderMap(){
     ${parts.join('')}
     <path d="${LAND_PATH}" fill="#F1EFE8" stroke="#B9AF9B" stroke-width="0.8" fill-rule="evenodd"/>
     ${faoLabels}${labels.join('')}
-    <g>${[[GEN[0],'parent'],[GEN[1],'special condition'],[{fill:'#FFF1A6',stroke:'#C99A06'},'special condition with asterisk']].map(([g,l],i)=>`<rect x="${14+i*150}" y="${MAPH-30}" width="12" height="12" rx="2" fill="${g.fill}" stroke="${g.stroke}" stroke-width="1.5"/><text x="${32+i*150}" y="${MAPH-24}" dominant-baseline="central" font-size="11" fill="var(--ink)">${l}</text>`).join('')}</g>
+    <g><rect x="14" y="${MAPH-30}" width="12" height="12" rx="2" fill="${GEN[0].fill}" stroke="${GEN[0].stroke}" stroke-width="1.5"/><text x="32" y="${MAPH-24}" dominant-baseline="central" font-size="11" fill="var(--ink)">parent</text><rect x="94" y="${MAPH-30}" width="12" height="12" rx="2" fill="#FFF1A6" stroke="#C99A06" stroke-width="1.5"/><text x="112" y="${MAPH-24}" dominant-baseline="central" font-size="11" fill="var(--ink)">asterisk code</text></g>
     <text x="${MAPW-10}" y="${MAPH-10}" text-anchor="end" font-size="10" fill="#7A8C96">a shape drawn inside another fishes part of the same water · FAO divisions drawn schematically · coastline: Natural Earth</text>`;
   // nesting diagram
   const kidsOf = code => nodes.filter(n=>n.parentCode===code && n.depth>0);
@@ -820,7 +820,7 @@ function playVoyage(){
         lbl.innerHTML = `<rect x="${to[0]+16}" y="${cardY-4}" width="${w}" height="${h}" rx="6" fill="${star?'#FFF6C7':'var(--paper)'}" fill-opacity="0.96" stroke="${star?'#C99A06':'var(--parent)'}" stroke-width="1"/>
           ${hasFish ? fishAt(sp, to[0]+32, cardY+13, sp==='LIN'?0.14:0.15, 'v'+st.area+ci, `${SPECIES[sp].name} (${SPECIES[sp].latin}) — ${c.member}`) : ''}
           <text x="${to[0]+22+(hasFish?34:0)}" y="${cardY+6}" dominant-baseline="central" font-size="11" font-weight="500" fill="${star?'#6B5200':'var(--parent-ink)'}">${c.member}</text>
-          <text x="${to[0]+22+(hasFish?34:0)}" y="${cardY+19}" dominant-baseline="central" font-size="11" fill="${star?'#8A6A00':'var(--parent)'}">${fmt(tonnes)} t · ${st.area}${code===f.root.name.split(' / ')[1] && c.member===f.root.name ? ' · parent' : ' · special condition'}</text>
+          <text x="${to[0]+22+(hasFish?34:0)}" y="${cardY+19}" dominant-baseline="central" font-size="11" fill="${star?'#8A6A00':'var(--parent)'}">${fmt(tonnes)} t · ${st.area}</text>
           ${qline ? `<text x="${to[0]+22+(hasFish?34:0)}" y="${cardY+33}" dominant-baseline="central" font-size="10" font-weight="500" fill="#6B5200">${qline}</text>` : ''}`;
         g.insertBefore(lbl, boat);
         if (hasFish && !reduced()){
