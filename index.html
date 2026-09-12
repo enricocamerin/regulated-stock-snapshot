@@ -760,9 +760,9 @@ function playVoyage(){
     const yellow = 'background:#FFF6C7;border-radius:6px;padding:.15rem .3rem;';
     // the quota a haul is measured against: the member's own line if it has one,
     // otherwise the line carrying the same code (RJC / *07D2. -> SRX / *07D2.)
-    const quotaOf = member => { let qn = nodeOf(member); if (qn && qn.quota) return qn;
+    const quotaOf = member => { if (member === f.root.name) return null; let qn = nodeOf(member); if (qn && qn.quota) return qn;
       const code = member.split(' / ')[1]; qn = null;
-      const wq = x => { if (!qn && x.name.split(' / ')[1]===code && ('quota' in x) && x.quota) qn = x; (x.children||[]).forEach(wq); };
+      const wq = x => { if (!qn && x !== f.root && x.name.split(' / ')[1]===code && ('quota' in x) && x.quota) qn = x; (x.children||[]).forEach(wq); };
       wq(f.root); return qn; };
     let html = R(hdr('haul'), hdr('catch'), hdr('cumulative'));
     caught.forEach(c=>{ const code = c.member.split(' / ')[1], star = code.startsWith('*');
@@ -823,7 +823,7 @@ function playVoyage(){
         const lbl = document.createElementNS('http://www.w3.org/2000/svg','g');
         const code = c.member.split(' / ')[1], star = code.startsWith('*');
         let qn = null; const wq = x => { if (x.name.split(' / ')[1]===code && ('quota' in x) && !qn) qn = x; (x.children||[]).forEach(wq); }; wq(f.root);
-        const qline = star && qn && qn.quota ? `quota ${fmt(qn.quota)} t · uptake ${(total(qn)/qn.quota*100).toFixed(2)} %` : '';
+        const qline = star && qn && qn.quota ? `quota ${fmt(qn.quota)} t · uptake ${(total_snap(qn)/qn.quota*100).toFixed(2)} %` : '';   // total_snap: the local counter shadows total()
         // the condition's area appears as the vessel arrives: yellow for an asterisk code, blue otherwise
         if (false){
           const ob = outlineFor(new Set(STOCK_GEO[code] ? boxesFor(code).boxes : (AREA_SETS[code]||[])));
