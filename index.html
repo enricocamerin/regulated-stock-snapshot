@@ -755,15 +755,24 @@ function playVoyage(){
   const ledger = () => {
     const G = 'display:grid;grid-template-columns:1fr 4.6rem 4.6rem;gap:.3rem .5rem;align-items:baseline';
     const R = (a,b,c,extra='') => `<div class="row" style="${G};${extra}"><span>${a}</span><span class="num" style="text-align:right">${b}</span><span class="num" style="text-align:right">${c}</span></div>`;
-    let html = R('<span style="font-size:.8rem;color:var(--ink-soft)">haul</span>','<span style="font-size:.8rem;color:var(--ink-soft)">catch</span>','<span style="font-size:.8rem;color:var(--ink-soft)">cumulative</span>');
-    let cum = 0;
-    caught.forEach(c=>{ cum += c.t; const code = c.member.split(' / ')[1], star = code.startsWith('*');
-      html += R(`<span style="font-weight:500">${c.member}</span> <span style="font-size:.8rem;color:var(--ink-soft)">${c.area}</span>`, fmt(c.t), fmt(cum), star?'background:#FFF6C7;border-radius:6px;padding:.15rem .3rem;':'');
-      const qn = nodeOf(c.member); if (qn && qn.quota){ const up = total_snap(qn)/qn.quota;
-        html += R(`<span style="font-size:.8rem;color:var(--ink-soft);padding-left:.6rem">own quota ${fmt(qn.quota)} t</span>`, '', `<span style="font-size:.8rem;${up>1?'color:var(--moved);':''}">${(up*100).toFixed(2)} %</span>`); } });
+    const hdr = x => `<span style="font-size:.8rem;color:var(--ink-soft)">${x}</span>`;
+    const sub = x => `<span style="font-size:.8rem;color:var(--ink-soft);padding-left:.6rem">${x}</span>`;
+    const yellow = 'background:#FFF6C7;border-radius:6px;padding:.15rem .3rem;';
+    // the quota a haul is measured against: the member's own line if it has one,
+    // otherwise the line carrying the same code (RJC / *07D2. -> SRX / *07D2.)
+    const quotaOf = member => { let qn = nodeOf(member); if (qn && qn.quota) return qn;
+      const code = member.split(' / ')[1]; qn = null;
+      const wq = x => { if (!qn && x.name.split(' / ')[1]===code && ('quota' in x) && x.quota) qn = x; (x.children||[]).forEach(wq); };
+      wq(f.root); return qn; };
+    let html = R(hdr('haul'), hdr('catch'), hdr('cumulative'));
+    caught.forEach(c=>{ const code = c.member.split(' / ')[1], star = code.startsWith('*');
+      html += R(`<span style="font-weight:500">${c.member}</span> <span style="font-size:.8rem;color:var(--ink-soft)">${c.area}</span>`, fmt(c.t), '', star?yellow:'');
+      const qn = quotaOf(c.member); if (qn){ const up = total_snap(qn)/qn.quota;
+        html += R(sub(`adapted quota ${fmt(qn.quota)} t`), '', `<span style="font-size:.8rem;${up>1?'color:var(--moved);':''}">uptake ${(up*100).toFixed(2)} %</span>`, star?yellow:''); } });
+    // the parent: cumulative once, on its first row; adapted quota and uptake under it
     const rq = f.root.quota || 0;
-    html += `<div class="row tot" style="${G};margin-top:.4rem"><span>${f.root.name} total</span><span class="num" style="text-align:right">${fmt(total)}</span><span></span></div>`;
-    if (rq) html += R(`<span style="font-size:.85rem;color:var(--ink-soft)">adapted quota ${fmt(rq)} t · uptake</span>`, '', `<span style="font-weight:500;${total/rq>1?'color:var(--moved);':''}">${(total/rq*100).toFixed(2)} %</span>`);
+    html += `<div class="row tot" style="${G};margin-top:.4rem"><span>${f.root.name}</span><span></span><span class="num" style="text-align:right">${fmt(total)}</span></div>`;
+    if (rq) html += R(sub(`adapted quota ${fmt(rq)} t`), '', `<span style="font-weight:500;${total/rq>1?'color:var(--moved);':''}">uptake ${(total/rq*100).toFixed(2)} %</span>`);
     document.getElementById('ledger').innerHTML = html;
   };
   const [px0,py0] = P(stops[0]);
