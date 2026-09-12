@@ -756,7 +756,8 @@ function playVoyage(){
     const G = 'display:grid;grid-template-columns:1fr 4.6rem 4.6rem;gap:.3rem .5rem;align-items:baseline';
     const R = (a,b,c,extra='') => `<div class="row" style="${G};${extra}"><span>${a}</span><span class="num" style="text-align:right">${b}</span><span class="num" style="text-align:right">${c}</span></div>`;
     const hdr = x => `<span style="font-size:.8rem;color:var(--ink-soft)">${x}</span>`;
-    const sub = x => `<span style="font-size:.8rem;color:var(--ink-soft);padding-left:.6rem">${x}</span>`;
+    // one-line quota row under a haul or under the parent, spanning the three columns
+    const Q = (x,extra='') => `<div class="row" style="${G};${extra}"><span class="num" style="grid-column:1/4;font-size:.8rem;color:var(--ink-soft);padding-left:.6rem;white-space:nowrap">${x}</span></div>`;
     const yellow = 'background:#FFF6C7;border-radius:6px;padding:.15rem .3rem;';
     // the quota a haul is measured against: the member's own line if it has one,
     // otherwise the line carrying the same code (RJC / *07D2. -> SRX / *07D2.)
@@ -768,11 +769,11 @@ function playVoyage(){
     caught.forEach(c=>{ const code = c.member.split(' / ')[1], star = code.startsWith('*');
       html += R(`<span style="font-weight:500">${c.member}</span> <span style="font-size:.8rem;color:var(--ink-soft)">${c.area}</span>`, fmt(c.t), '', star?yellow:'');
       const qn = quotaOf(c.member); if (qn){ const up = total_snap(qn)/qn.quota;
-        html += R(sub(`adapted quota ${fmt(qn.quota)} t`), '', `<span style="font-size:.8rem;${up>1?'color:var(--moved);':''}">uptake ${(up*100).toFixed(2)} %</span>`, star?yellow:''); } });
+        html += Q(`adapted quota ${fmt(qn.quota)} t · uptake <span style="font-weight:500;${up>1?'color:var(--moved);':''}">${(up*100).toFixed(2)} %</span>`, star?yellow:''); } });
     // the parent: cumulative once, on its first row; adapted quota and uptake under it
     const rq = f.root.quota || 0;
     html += `<div class="row tot" style="${G};margin-top:.4rem"><span>${f.root.name}</span><span></span><span class="num" style="text-align:right">${fmt(total)}</span></div>`;
-    if (rq) html += R(sub(`adapted quota ${fmt(rq)} t`), '', `<span style="font-weight:500;${total/rq>1?'color:var(--moved);':''}">uptake ${(total/rq*100).toFixed(2)} %</span>`);
+    if (rq) html += Q(`adapted quota ${fmt(rq)} t · uptake <span style="font-weight:500;${total/rq>1?'color:var(--moved);':''}">${(total/rq*100).toFixed(2)} %</span>`);
     document.getElementById('ledger').innerHTML = html;
   };
   const [px0,py0] = P(stops[0]);
