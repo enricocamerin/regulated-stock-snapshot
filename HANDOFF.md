@@ -3,6 +3,15 @@
 > Read this first in every new chat: `https://raw.githubusercontent.com/enricocamerin/regulated-stock-snapshot/main/HANDOFF.md`
 > Update it at the end of every session. Last update: 2026-09-12.
 
+## How to load the code in a new chat
+`index.html` is now ~74 KB and fetches whole. The big data blocks live in `data/` and are only needed if that data changes:
+- `index.html` — all the logic (slides, map, voyage, trees, menu)
+- `data/stock_geo.js` — `STOCK_GEO`, 865 decoded codes (regenerate from `reference/decode.py`, do not hand-edit)
+- `data/outlines.js` — `OUTLINES`, merged division shapes with insets (regenerated with shapely if the ICES boxes change)
+- `data/land.js` — `LAND_PATH`, Natural Earth coastline
+- `data/species.js` — `SPECIES`, the original fish drawings
+Fetch `index.html` first; fetch a data file only when editing that data.
+
 ## Repos and sites
 | what | where | notes |
 |---|---|---|
