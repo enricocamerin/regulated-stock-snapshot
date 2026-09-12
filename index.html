@@ -747,20 +747,21 @@ function playVoyage(){
   const findOwn = name => { let r = null; const w = n => { if (n.name===name) r = own(n); (n.children||[]).forEach(w); }; w(f.root); return r; };
   const stops = v.stops, speed = 0.05, ease = p => p<0.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2;
   let total = 0, t = 400, caught = [];
-  const quotaOf = code => { let qn=null; const w=x=>{ if(x.name.split(' / ')[1]===code && ('quota' in x) && !qn) qn=x; (x.children||[]).forEach(w); }; w(f.root); return qn; };
+  const nodeOf = name => { let r=null; const w=x=>{ if(x.name===name && !r) r=x; (x.children||[]).forEach(w); }; w(f.root); return r; };
   const ledger = () => {
-    const cell = (t,extra='') => `<span class="num" style="text-align:right;${extra}">${t}</span>`;
-    let html = `<div class="row" style="display:grid;grid-template-columns:1fr 4.5rem 4.5rem 4rem;gap:.4rem;font-size:.8rem;color:var(--ink-soft)"><span>code</span>${cell('catch')}${cell('adapted')}${cell('uptake')}</div>`;
-    caught.forEach(c=>{ const code = c.member.split(' / ')[1], qn = quotaOf(code), q = qn && qn.quota ? qn.quota : 0, star = code.startsWith('*');
-      const up = q ? total_(qn)/q : null;
-      html += `<div class="row in" style="display:grid;grid-template-columns:1fr 4.5rem 4.5rem 4rem;gap:.4rem;align-items:baseline;${star?'background:#FFF6C7;border-radius:6px;padding:.2rem .3rem;':''}">
-        <span><span style="font-weight:500">${c.member}</span><br><span style="font-size:.8rem;color:var(--ink-soft)">${STOCK_GEO[code]?STOCK_GEO[code].d:''}</span></span>
-        ${cell(fmt(c.t))}${cell(q?fmt(q):'—')}${cell(up===null?'N/A':(up*100).toFixed(2)+' %', up!==null&&up>1?'color:var(--moved);font-weight:500':'')}</div>`; });
+    const G = 'display:grid;grid-template-columns:1fr 4.6rem 4.6rem;gap:.3rem .5rem;align-items:baseline';
+    const R = (a,b,c,extra='') => `<div class="row" style="${G};${extra}"><span>${a}</span><span class="num" style="text-align:right">${b}</span><span class="num" style="text-align:right">${c}</span></div>`;
+    let html = R('<span style="font-size:.8rem;color:var(--ink-soft)">haul</span>','<span style="font-size:.8rem;color:var(--ink-soft)">catch</span>','<span style="font-size:.8rem;color:var(--ink-soft)">cumulative</span>');
+    let cum = 0;
+    caught.forEach(c=>{ cum += c.t; const code = c.member.split(' / ')[1], star = code.startsWith('*');
+      html += R(`<span style="font-weight:500">${c.member}</span> <span style="font-size:.8rem;color:var(--ink-soft)">${c.area}</span>`, fmt(c.t), fmt(cum), star?'background:#FFF6C7;border-radius:6px;padding:.15rem .3rem;':'');
+      const qn = nodeOf(c.member); if (qn && qn.quota){ const up = total_snap(qn)/qn.quota;
+        html += R(`<span style="font-size:.8rem;color:var(--ink-soft);padding-left:.6rem">own quota ${fmt(qn.quota)} t</span>`, '', `<span style="font-size:.8rem;${up>1?'color:var(--moved);':''}">${(up*100).toFixed(2)} %</span>`); } });
     const rq = f.root.quota || 0;
-    html += `<div class="row tot" style="display:grid;grid-template-columns:1fr 4.5rem 4.5rem 4rem;gap:.4rem"><span>${f.root.name}<br><span style="font-size:.8rem;font-weight:400;color:var(--ink-soft)">${STOCK_GEO[f.root.name.split(' / ')[1]]?.d||''}</span></span>${cell(fmt(total))}${cell(rq?fmt(rq):'—')}${cell(rq?(total/rq*100).toFixed(2)+' %':'N/A', rq&&total/rq>1?'color:var(--moved)':'')}</div>`;
+    html += `<div class="row tot" style="${G};margin-top:.4rem"><span>${f.root.name} total</span><span class="num" style="text-align:right">${fmt(total)}</span><span></span></div>`;
+    if (rq) html += R(`<span style="font-size:.85rem;color:var(--ink-soft)">adapted quota ${fmt(rq)} t · uptake</span>`, '', `<span style="font-weight:500;${total/rq>1?'color:var(--moved);':''}">${(total/rq*100).toFixed(2)} %</span>`);
     document.getElementById('ledger').innerHTML = html;
   };
-  const total_ = n => total_snap(n);
   const [px0,py0] = P(stops[0]);
   const trail = document.createElementNS('http://www.w3.org/2000/svg','path');
   trail.setAttribute('d', `M ${px0} ${py0}`); trail.setAttribute('fill','none'); trail.setAttribute('stroke','var(--parent)'); trail.setAttribute('stroke-width','1.5'); trail.setAttribute('stroke-dasharray','4 4'); trail.setAttribute('opacity','0.7');
