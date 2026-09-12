@@ -15,11 +15,11 @@ Fetch `index.html` first; fetch a data file only when editing that data.
 ## Repos and sites
 | what | where | notes |
 |---|---|---|
-| Presentation (HTML/JS) | `enricocamerin/regulated-stock-snapshot` (public) → Netlify site **regulatedstocksnapshot** | pushes deploy automatically |
+| Presentation (HTML/JS) | `enricocamerin/regulated-stock-snapshot` (public) → Netlify site **regulated-stock-snapshot** (WITH hyphens, id 36ce7e10) = https://regulated-stock-snapshot.netlify.app | linked to the repo, every push to main deploys. The other project `regulatedstocksnapshot` (no hyphens) is an old manual upload behind SSO — NOT the site, ignore it or delete it |
 | Qlik scripts | `enricocamerin/dgmare-ecr-snapshot-analysis` (private) | `apps/V-FAM.qvs`, `reference/stock_area_geo.csv`, `CHANGELOG.md` |
 | GitHub push | needs a personal access token pasted in the chat (repo scope); Claude redacts it in logs |
 
-## Presentation — state at 5b76194
+## Presentation — state at ff67a79
 Slides (Enter = next; header menu Home · Species · Map · Families; Explorer exists but is hidden from the menu):
 1. **Home** — vessel at the quay; parent codes block (Parent Stock Area 2AC4-C, Parent Species SRX, NLD, 2025); space = family boards, quota clouds over the parent (654.400 t) and the child with a ceiling (*07D2. 72.400 t).
 2. **Species** — cards with photos in `img/` (thornback CC0 Ecomare Texel; blonde/spotted from Commons, author+licence still to confirm; ling = 1896 Goode & Bean plate). SRX keeps a drawing.
@@ -31,7 +31,7 @@ Data is hand-typed in `FAMILIES` (index.html). `STOCK_GEO` (865 codes decoded) a
 - **V-FAM 2.5.12** validated 2026-09-11, tag `vfam-2.5.12`: discards (DISC) + scientific (SCIENT_NUQ) excluded via L1 hash map; member-level change fields (9b). NLD SRX/2AC4-C 13 Aug = 647.932.
 - **V-FAM 2.5.13** committed, pending validation: `quota_adapted_qt` from L1 per quota key; pivot measures Adapted quota / Uptake (see CHANGELOG). Tag after validation.
 - **V-BKP 3.7** deployed on the server, script NOT yet in the repo — paste it to add `apps/V-BKP.qvs`.
-- **ECR L3 V29.17** (2026-09-12, file `ECR_L3_V29.17.qvs`, NOT yet in the repo — add as `apps/ECR-L3.qvs`): Section 5 bridge filtered like Section 4 (DISC/SCIENT_NUQ) — fixes the phantom 0.000 row (DNK 2022 Cat 70 GRL_2021); Section 5b dangling-hash sentinel; FishingCategory leaf on %CatKey (P2b, WHERE Exists, uniqueness sentinel); NOT COUNTABLE trace and MIXED alarms inverted (all 0 by design). First reload pending: checklist items 0 / 0b / 7 in the script tail.
+- **ECR L3 V29.17a** (2026-09-12, file `ECR_L3_V29.17a.qvs`; P2b Exists tests `_reqk`, a copy of the request keys, NOT yet in the repo — add as `apps/ECR-L3.qvs`): Section 5 bridge filtered like Section 4 (DISC/SCIENT_NUQ) — fixes the phantom 0.000 row (DNK 2022 Cat 70 GRL_2021); Section 5b dangling-hash sentinel; FishingCategory leaf on %CatKey (P2b, WHERE Exists, uniqueness sentinel); NOT COUNTABLE trace and MIXED alarms inverted (all 0 by design). First reload pending: checklist items 0 / 0b / 7 in the script tail.
 - Snapshot folder: 15 files 20260212–20260813 + 20260907 (first wide file) + 20260908 (accidental, to delete).
 
 ## Rules established (do not re-derive)
@@ -42,6 +42,8 @@ Data is hand-typed in `FAMILIES` (index.html). `STOCK_GEO` (865 codes decoded) a
 - Asterisk in a code = the line is written as a special condition; its catches are booked as "special condition catches". NOT a parent/child marker: RJH/RJC/RJM are children without asterisk. Parent/child = `msl_parent_quota_*` (portal "Parent Stock" columns). Adapted quotas of child lines are independent, not shares of the parent.
 - No apostrophes and NO SEMICOLONS inside Qlik TRACE text — Qlik ends the statement at the first `;` and the rest becomes an Unknown statement.
 - Bridge/fact rule (L3): whatever filter Section 4 applies to fact_ecr, Section 5 applies to the bridge. A bridge hash with no fact row is a phantom 0.000 row in every table.
+- In the voyage code the local counter `total` shadows the global `total()` — use `total_snap()` inside playVoyage.
+- Exists() must never test the field the same load is writing (value is in the symbol table before WHERE runs) — copy the reference keys under another name first (`_reqk`, `_catk`, `_fhash`).
 - Claude reads scripts from the repo, not from pastes: a pasted script may be older than the last fix and the fixed bug comes back.
 - web_fetch on raw.githubusercontent.com serves a stale cache: Claude reads the repo with curl in the sandbox instead.
 
@@ -57,6 +59,8 @@ Data is hand-typed in `FAMILIES` (index.html). `STOCK_GEO` (865 codes decoded) a
 
 ## Commit history (presentation repo) — each id is a full copy of index.html at that point
 
+- `ff67a79` 2026-09-12 — Voyage ledger: quota and uptake on one line under the haul and under the parent
+- `afe5dd7` 2026-09-12 — Voyage ledger: quota row only on condition lines (parent excluded from the same-code fallback); fix total() shadowed by the voyage counter so the *07D2. catch card renders
 - `5b76194` 2026-09-12 — Voyage ledger: cumulative only on the parent row; adapted quota and uptake under each haul on a line that has one
 - `c6b866d` 2026-09-12 — Split embedded data into data/*.js so index.html (74 KB) is readable whole
 - `0df1990` 2026-09-12 — HANDOFF: full commit history appended
