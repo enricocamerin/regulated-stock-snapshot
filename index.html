@@ -40,6 +40,7 @@
     .seg button, .btn { padding:.45rem .6rem; font-size:.85rem; }
     .lbl { font-size:.75rem; margin-right:.25rem; }
     .hint { display:none; }
+    .build { margin-left:auto; }
     #exInput { font-size:16px; }
   }
   .stage svg { width:100%; height:auto; max-height:72vh; display:block; }
@@ -65,6 +66,7 @@
   .tabs button:hover { color:var(--ink); }
   .tabs button:focus-visible { outline:2px solid var(--parent); outline-offset:2px; }
   .hint { margin-left:auto; font-size:.85rem; color:var(--ink-soft); }
+  .build { font-size:.75rem; color:var(--ink-soft); opacity:.7; white-space:nowrap; }
   .flowline { stroke:var(--flow); stroke-width:2; fill:none; stroke-dasharray:6 6; opacity:0; transition:opacity .3s; }
   .pending { opacity:.35; }
   .cover-lbl { opacity:0; transition:opacity .5s; }
@@ -103,6 +105,7 @@
   <button class="btn" id="reset" type="button">Reset</button>
   <div id="exBlock"><span class="lbl">Stock area</span><input id="exInput" list="exList" class="btn" style="width:11rem" value="2AC4-C" spellcheck="false"><datalist id="exList"></datalist></div>
   <div class="hint" id="hint">space play · enter next</div>
+  <div class="build" id="build">build 2026-09-12 14:40</div>
 </footer>
 
 <script src="data/land.js"></script>
