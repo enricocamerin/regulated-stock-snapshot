@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <title>Regulated stock families — how a child's catch reaches the parent</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
@@ -25,8 +25,8 @@
   @media (max-width:900px){ main { grid-template-columns:1fr; } }
   /* phones: one column, compact header and footer, nothing wider than the screen */
   @media (max-width:700px){
-    html { -webkit-text-size-adjust:100%; }
-    body { overflow-x:hidden; }
+    html { -webkit-text-size-adjust:100%; touch-action:pan-x pan-y; }   /* no pinch / double-tap zoom: the page can never be enlarged past the screen */
+    body { overflow-x:hidden; touch-action:pan-x pan-y; }
     header { padding:.75rem 1rem 0; }
     header > div { flex-direction:column; align-items:stretch; gap:.5rem; }
     h1 { font-size:1.15rem; }
@@ -105,7 +105,7 @@
   <button class="btn" id="reset" type="button">Reset</button>
   <div id="exBlock"><span class="lbl">Stock area</span><input id="exInput" list="exList" class="btn" style="width:11rem" value="2AC4-C" spellcheck="false"><datalist id="exList"></datalist></div>
   <div class="hint" id="hint">space play · enter next</div>
-  <div class="build" id="build">build 2026-09-12 14:40</div>
+  <div class="build" id="build">build 2026-09-12 19:05</div>
 </footer>
 
 <script src="data/land.js"></script>
