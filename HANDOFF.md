@@ -59,7 +59,7 @@ Data is hand-typed in `FAMILIES` (index.html). `STOCK_GEO` (865 codes decoded) a
 
 ## Commit history (presentation repo) — each id is a full copy of index.html at that point
 
-- (next) 2026-09-13 — Species: expandable tree (one card per quota line, + / − badge on nodes with children; root open by default, deeper levels folded; state in `spOpen`, reset when the family changes; `spToggle(id)`); build 10:15
+- `170151a` 2026-09-13 — Species: expandable tree (one card per quota line, + / − badge on nodes with children; root open by default, deeper levels folded; state in `spOpen`, reset when the family changes; `spToggle(id)`); build 10:15
 - `0445cf1` 2026-09-13 — Home: PARENT COMPOSITION card replaces the loose label/value block (the '=' collided with the labels); build 09:40
 
 - `ff67a79` 2026-09-12 — Voyage ledger: quota and uptake on one line under the haul and under the parent
