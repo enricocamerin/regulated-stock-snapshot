@@ -105,7 +105,7 @@
   <button class="btn" id="reset" type="button">Reset</button>
   <div id="exBlock"><span class="lbl">Stock area</span><input id="exInput" list="exList" class="btn" style="width:11rem" value="2AC4-C" spellcheck="false"><datalist id="exList"></datalist></div>
   <div class="hint" id="hint">space play · enter next</div>
-  <div class="build" id="build">build 2026-09-13 09:40</div>
+  <div class="build" id="build">build 2026-09-13 10:15</div>
 </footer>
 
 <script src="data/land.js"></script>
@@ -492,41 +492,53 @@ function playBoarding(){
   }, t + 200));
 }
 
+let spOpen = null, spOpenFam = -1;
+function spToggle(id){ if (spOpen.has(id)) spOpen.delete(id); else spOpen.add(id); renderSpecies(); }
 function renderSpecies(){
   timers.forEach(clearTimeout); timers = []; playing = false;
   document.body.dataset.view = 'species';
   const f = FAMILIES[fam];
-  const members = []; const walkM = (n, depth) => { members.push({name:n.name, sp:speciesOf(n.name), code:n.name.split(' / ')[1], depth}); (n.children||[]).forEach(k=>walkM(k, depth+1)); };
-  walkM(f.root, 0);
-  const seen = new Set(); const uniq = members.filter(m=>{ if (seen.has(m.sp)) return false; seen.add(m.sp); return true; });
-  const cols = Math.min(uniq.length, 3), rows = Math.ceil(uniq.length/cols), CW = 220, CH = 250;
-  const W = cols*CW + 40, H = rows*CH + 40;
+  if (spOpenFam !== fam){ spOpen = new Set(['r']); spOpenFam = fam; }   // root open, deeper levels folded
+  // ---- expandable tree: each quota line is a node; a node with children carries a toggle ----
+  const CW = 176, CH = 206, GX = 22, GY = 46;
+  const nodes = []; const walk = (n, id, depth, parent) => { const nd = {id, name:n.name, sp:speciesOf(n.name), depth, parent, kids:(n.children||[]).length, open:spOpen.has(id), children:[]}; nodes.push(nd); if (nd.open) (n.children||[]).forEach((k,i)=>nd.children.push(walk(k, id+'.'+i, depth+1, nd))); return nd; };
+  const root = walk(f.root, 'r', 0, null);
+  const width = n => { n.w = n.children.length ? n.children.reduce((a,c)=>a+width(c),0) + GX*(n.children.length-1) : CW; return n.w; };
+  width(root);
+  const place = (n, x0, depth) => { n.y = 20 + depth*(CH+GY); if (!n.children.length){ n.x = x0; return; } let x = x0 + (n.w - (n.children.reduce((a,c)=>a+c.w,0) + GX*(n.children.length-1)))/2; n.children.forEach(c=>{ place(c, x, depth+1); x += c.w + GX; }); n.x = (n.children[0].x + n.children[n.children.length-1].x)/2; };
+  place(root, 20, 0);
+  const maxDepth = Math.max(...nodes.map(n=>n.depth));
+  const W = root.w + 40, H = 20 + (maxDepth+1)*CH + maxDepth*GY + 20;
   const svg = document.getElementById('tree');
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
   document.getElementById('tt').textContent = `The species of ${f.name}`;
-  document.getElementById('td').textContent = uniq.map(m=>SPECIES[m.sp]?.name||m.sp).join(', ');
-  const cards = uniq.map((m,i)=>{ const sp = SPECIES[m.sp], g = GEN[Math.min(m.depth,2)], x = 20 + (i%cols)*CW, y = 20 + Math.floor(i/cols)*CH;
-    const codes = members.filter(z=>z.sp===m.sp).map(z=>z.code);
-    return `<g transform="translate(${x},${y})">
-      <rect x="0" y="0" width="${CW-16}" height="${CH-16}" rx="10" fill="var(--paper)" stroke="${g.stroke}" stroke-width="1.5"/>
-      ${SPECIES_PHOTO[m.sp]
-          ? `<clipPath id="ph_${m.sp}"><rect x="10" y="10" width="${CW-36}" height="${CH-100}" rx="8"/></clipPath><image href="${SPECIES_PHOTO[m.sp].url}" x="10" y="10" width="${CW-36}" height="${CH-100}" preserveAspectRatio="xMidYMid ${SPECIES_PHOTO[m.sp].wide?'meet':'slice'}" clip-path="url(#ph_${m.sp})"><title>${SPECIES_PHOTO[m.sp].credit}</title></image>`
-          : (sp ? sp.svg.replace('translate(110,95)','translate(102,88)').replace('translate(110,92)','translate(102,88)') : '')}
-      <text x="${(CW-16)/2}" y="${CH-64}" text-anchor="middle" font-size="14" font-weight="500" fill="var(--ink)">${sp?sp.name:m.sp}</text>
-      <text x="${(CW-16)/2}" y="${CH-48}" text-anchor="middle" font-size="11" font-style="italic" fill="var(--ink-soft)">${sp?sp.latin:''}</text>
-      <text x="${(CW-16)/2}" y="${CH-30}" text-anchor="middle" font-size="11" fill="${g.stroke}">${m.sp}</text>
+  const uniqSp = [...new Set(nodes.map(n=>n.sp))];
+  document.getElementById('td').textContent = uniqSp.map(c=>SPECIES[c]?.name||c).join(', ');
+  const links = nodes.filter(n=>n.parent).map(n=>{ const p = n.parent, x1 = p.x + CW/2, y1 = p.y + CH, x2 = n.x + CW/2, y2 = n.y, ym = y1 + GY/2; return `<path d="M${x1},${y1} V${ym} H${x2} V${y2}" fill="none" stroke="var(--rule)" stroke-width="1.2"/>`; }).join('');
+  const cards = nodes.map(n=>{ const sp = SPECIES[n.sp], g = GEN[Math.min(n.depth,2)], ph = SPECIES_PHOTO[n.sp], PW = CW-20, PH = 96;
+    const toggle = n.kids ? `<g class="sp-toggle" onclick="spToggle('${n.id}')" style="cursor:pointer"><title>${n.open?'collapse':'expand'} — ${n.kids} ${n.kids===1?'child':'children'}</title><circle cx="${CW/2}" cy="${CH}" r="11" fill="${g.fill}" stroke="${g.stroke}" stroke-width="1.5"/><text x="${CW/2}" y="${CH}" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="${g.ink}">${n.open?'−':'+'+n.kids}</text></g>` : '';
+    return `<g transform="translate(${n.x},${n.y})">
+      <rect x="0" y="0" width="${CW}" height="${CH}" rx="10" fill="var(--paper)" stroke="${g.stroke}" stroke-width="1.5"/>
+      ${ph
+          ? `<clipPath id="ph_${n.id}"><rect x="10" y="10" width="${PW}" height="${PH}" rx="8"/></clipPath><image href="${ph.url}" x="10" y="10" width="${PW}" height="${PH}" preserveAspectRatio="xMidYMid ${ph.wide?'meet':'slice'}" clip-path="url(#ph_${n.id})"><title>${ph.credit}</title></image>`
+          : (sp ? `<g transform="translate(${CW/2-110},${PH/2-95+10}) scale(.85)">${sp.svg}</g>` : '')}
+      <text x="${CW/2}" y="${PH+34}" text-anchor="middle" font-size="13" font-weight="500" fill="var(--ink)">${sp?sp.name:n.sp}</text>
+      <text x="${CW/2}" y="${PH+50}" text-anchor="middle" font-size="10.5" font-style="italic" fill="var(--ink-soft)">${sp?sp.latin:''}</text>
+      <rect x="${CW/2-56}" y="${PH+62}" width="112" height="20" rx="10" fill="${g.fill}"/>
+      <text x="${CW/2}" y="${PH+72}" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="500" fill="${g.ink}">${n.name}</text>
+      ${toggle}
     </g>`; }).join('');
-  svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + cards;
+  svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + links + cards;
   document.getElementById('subtitle').textContent = `${f.country} · ${f.year} · ${f.name}`;
   document.getElementById('ah').textContent = 'Who is on board';
   document.getElementById('ap').textContent = f.id==='srx'
-    ? 'The parent quota is for skates and rays as a group. Three of its children are single species — thornback, blonde and spotted ray — fished in the same water; the fourth is the group again, in the Channel.'
-    : 'One species throughout: ling. The parent covers the western waters; the child is the same fish, allowed into the North Sea.';
-  document.getElementById('ledger').innerHTML = uniq.map(m=>{ const sp = SPECIES[m.sp]; return `<div class="row in" style="display:block"><span style="font-weight:500">${sp?sp.name:m.sp}</span> <span style="font-size:.85rem;color:var(--ink-soft)">${sp?sp.text:''}</span></div>`; }).join('');
-  const credits = uniq.filter(m=>SPECIES_PHOTO[m.sp]).map(m=>SPECIES_PHOTO[m.sp].credit);
+    ? 'The parent quota is for skates and rays as a group. Three of its children are single species — thornback, blonde and spotted ray — fished in the same water; the fourth is the group again, in the Channel. Click a + badge to open a branch.'
+    : 'One species throughout: ling. The parent covers the western waters; the child is the same fish, allowed into the North Sea. Click a + badge to open a branch.';
+  document.getElementById('ledger').innerHTML = uniqSp.map(c=>{ const sp = SPECIES[c]; return `<div class="row in" style="display:block"><span style="font-weight:500">${sp?sp.name:c}</span> <span style="font-size:.85rem;color:var(--ink-soft)">${sp?sp.text:''}</span></div>`; }).join('');
+  const credits = uniqSp.filter(c=>SPECIES_PHOTO[c]).map(c=>SPECIES_PHOTO[c].credit);
   document.getElementById('note').textContent = (credits.length ? credits.join(' · ') + ' · ' : '') + 'Other species are original drawings for this presentation.';
   document.getElementById('play').disabled = true;
-  document.getElementById('hint').textContent = 'enter next · ↑ ↓ family';
+  document.getElementById('hint').textContent = 'enter next · ↑ ↓ family · click + to expand';
   document.querySelectorAll('#famSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===fam));
 }
 function showSpecies(){ view = 'species'; renderSpecies(); }
