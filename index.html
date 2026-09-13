@@ -105,7 +105,7 @@
   <button class="btn" id="reset" type="button">Reset</button>
   <div id="exBlock"><span class="lbl">Stock area</span><input id="exInput" list="exList" class="btn" style="width:11rem" value="2AC4-C" spellcheck="false"><datalist id="exList"></datalist></div>
   <div class="hint" id="hint">space play · enter next</div>
-  <div class="build" id="build">build 2026-09-13 10:15</div>
+  <div class="build" id="build">build 2026-09-13 10:30</div>
 </footer>
 
 <script src="data/land.js"></script>
@@ -501,7 +501,10 @@ function renderSpecies(){
   if (spOpenFam !== fam){ spOpen = new Set(['r']); spOpenFam = fam; }   // root open, deeper levels folded
   // ---- expandable tree: each quota line is a node; a node with children carries a toggle ----
   const CW = 176, CH = 206, GX = 22, GY = 46;
-  const nodes = []; const walk = (n, id, depth, parent) => { const nd = {id, name:n.name, sp:speciesOf(n.name), depth, parent, kids:(n.children||[]).length, open:spOpen.has(id), children:[]}; nodes.push(nd); if (nd.open) (n.children||[]).forEach((k,i)=>nd.children.push(walk(k, id+'.'+i, depth+1, nd))); return nd; };
+  // species only: area conditions (area:true) are skipped and a species already shown higher up is not repeated
+  const seenSp = new Set();
+  const specKids = (n) => { const out = []; (n.children||[]).forEach(k=>{ if (k.area) { specKids(k).forEach(x=>out.push(x)); return; } const c = speciesOf(k.name); if (seenSp.has(c)) { specKids(k).forEach(x=>out.push(x)); return; } seenSp.add(c); out.push(k); }); return out; };
+  const nodes = []; const walk = (n, id, depth, parent) => { seenSp.add(speciesOf(n.name)); const ks = specKids(n); const nd = {id, name:n.name, sp:speciesOf(n.name), depth, parent, kids:ks.length, open:spOpen.has(id), children:[]}; nodes.push(nd); if (nd.open) ks.forEach((k,i)=>nd.children.push(walk(k, id+'.'+i, depth+1, nd))); return nd; };
   const root = walk(f.root, 'r', 0, null);
   const width = n => { n.w = n.children.length ? n.children.reduce((a,c)=>a+width(c),0) + GX*(n.children.length-1) : CW; return n.w; };
   width(root);
@@ -525,7 +528,7 @@ function renderSpecies(){
       <text x="${CW/2}" y="${PH+34}" text-anchor="middle" font-size="13" font-weight="500" fill="var(--ink)">${sp?sp.name:n.sp}</text>
       <text x="${CW/2}" y="${PH+50}" text-anchor="middle" font-size="10.5" font-style="italic" fill="var(--ink-soft)">${sp?sp.latin:''}</text>
       <rect x="${CW/2-56}" y="${PH+62}" width="112" height="20" rx="10" fill="${g.fill}"/>
-      <text x="${CW/2}" y="${PH+72}" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="500" fill="${g.ink}">${n.name}</text>
+      <text x="${CW/2}" y="${PH+72}" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="500" fill="${g.ink}">${n.sp}</text>
       ${toggle}
     </g>`; }).join('');
   svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + links + cards;
