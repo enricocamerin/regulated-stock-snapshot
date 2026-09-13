@@ -1,7 +1,7 @@
 # HANDOFF — DG MARE regulated-stock work
 
 > Read this first in every new chat: `https://raw.githubusercontent.com/enricocamerin/regulated-stock-snapshot/main/HANDOFF.md`
-> Update it at the end of every session. Last update: 2026-09-12 (session 2).
+> Update it at the end of every session. Last update: 2026-09-13 (session 3).
 
 ## How to load the code in a new chat
 `index.html` is now ~74 KB and fetches whole. The big data blocks live in `data/` and are only needed if that data changes:
@@ -21,7 +21,7 @@ Fetch `index.html` first; fetch a data file only when editing that data.
 
 ## Presentation — state at ff67a79
 Slides (Enter = next; header menu Home · Species · Map · Families; Explorer exists but is hidden from the menu):
-1. **Home** — vessel at the quay; parent codes block (Parent Stock Area 2AC4-C, Parent Species SRX, NLD, 2025); space = family boards, quota clouds over the parent (654.400 t) and the child with a ceiling (*07D2. 72.400 t).
+1. **Home** — vessel at the quay; PARENT COMPOSITION card (`#codes-card`, SVG 20–248 × 40–204: Parent Area Code 2AC4-C, Parent Species Code SRX, Member State NLD, Quota Year 2025, each with a one-line description, values right-aligned); space = family boards, quota clouds over the parent (654.400 t) and the child with a ceiling (*07D2. 72.400 t).
 2. **Species** — cards with photos in `img/` (thornback CC0 Ecomare Texel; blonde/spotted from Commons, author+licence still to confirm; ling = 1896 Goode & Bean plate). SRX keeps a drawing.
 3. **Map** — parent frame (green) over 2a + 4; `04-C.` blue inset (code only); `*07D2.` yellow with "Adapted quota 72.400 t · uptake 99.17 %". Legend: parent / asterisk code. Space = voyage: start north (2a) → one stop in 4b hauling RJH, RJC, RJM → 7d → fast straight home. Ledger (5b76194): haul rows show catch only; a haul on a line with an adapted quota gets a row under it with adapted quota + uptake (lookup: member first, then the line carrying the same code, so RJC/*07D2. shows SRX/*07D2. 72.400 / 99.17 %); the parent row at the bottom carries the cumulative once, then adapted quota + uptake.
 4. **Families** — trees with build animation; every block shows Quota and Uptake. Snapshots: 12 Feb (671.748) and 13 Aug (= portal figures, 647.932, 99.01 %). Deltas vs February shown in red on the August view.
@@ -49,7 +49,7 @@ Data is hand-typed in `FAMILIES` (index.html). `STOCK_GEO` (865 codes decoded) a
 
 ## Open items
 - Reload L3 V29.17: BRIDGE/FACT dangling = 0, FISHING CATEGORY rows = keys, one row for DNK 2022 Cat 70, NLD SRX/2AC4-C still 647.932 / 99.01 %; then commit to the Qlik repo.
-- GitHub token: the one used on 2026-09-12 is readable in the chat transcript — revoke and regenerate.
+- GitHub token: the ones used on 2026-09-12 and 2026-09-13 are readable in the chat transcripts — revoke and regenerate. Chats outside the Claude project cannot search the project's chats, so the token must be pasted again each time.
 - Validate 2.5.13 (pivot: parent 654.400 / 99.01 %; *07D2. 72.400 / 99.17 %; species lines 0 / N/A) → tag.
 - DB queries to settle the asterisk criterion (is there a special-condition flag? values of `fishing_cat_code`?).
 - Pivot label wording for children (last proposal: [own quota · also counted against the parent] / [no own quota · counted against the parent]).
@@ -58,6 +58,8 @@ Data is hand-typed in `FAMILIES` (index.html). `STOCK_GEO` (865 codes decoded) a
 - Restate the validation set in the V-FAM header after 2.5.13.
 
 ## Commit history (presentation repo) — each id is a full copy of index.html at that point
+
+- (next) 2026-09-13 — Home: PARENT COMPOSITION card replaces the loose label/value block (the '=' collided with the labels); build 09:40
 
 - `ff67a79` 2026-09-12 — Voyage ledger: quota and uptake on one line under the haul and under the parent
 - `afe5dd7` 2026-09-12 — Voyage ledger: quota row only on condition lines (parent excluded from the same-code fallback); fix total() shadowed by the voyage counter so the *07D2. catch card renders

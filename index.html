@@ -105,7 +105,7 @@
   <button class="btn" id="reset" type="button">Reset</button>
   <div id="exBlock"><span class="lbl">Stock area</span><input id="exInput" list="exList" class="btn" style="width:11rem" value="2AC4-C" spellcheck="false"><datalist id="exList"></datalist></div>
   <div class="hint" id="hint">space play · enter next</div>
-  <div class="build" id="build">build 2026-09-12 19:05</div>
+  <div class="build" id="build">build 2026-09-13 09:40</div>
 </footer>
 
 <script src="data/land.js"></script>
@@ -425,14 +425,28 @@ function renderCover(){
     ${crew}
     <!-- walking figures -->
     ${walkers}
-    <text x="24" y="60" font-size="12" fill="var(--ink-soft)">Parent Area Code</text><text x="130" y="60" font-size="12" font-weight="500" fill="var(--parent-ink)">= 2AC4-C</text>
-    <text x="24" y="74" font-size="10" fill="var(--ink-soft)">Union and UK waters of 4, UK waters of 2a</text>
-    <text x="24" y="94" font-size="12" fill="var(--ink-soft)">Parent Species Code</text><text x="130" y="94" font-size="12" font-weight="500" fill="var(--parent-ink)">= SRX</text>
-    <text x="24" y="108" font-size="10" fill="var(--ink-soft)">Skates and rays (Rajidae)</text>
-    <text x="24" y="128" font-size="12" fill="var(--ink-soft)">Member State</text><text x="130" y="128" font-size="12" font-weight="500" fill="var(--parent-ink)">= NLD</text>
-    <text x="24" y="142" font-size="10" fill="var(--ink-soft)">Netherlands</text>
-    <text x="24" y="162" font-size="12" fill="var(--ink-soft)">Year</text><text x="130" y="162" font-size="12" font-weight="500" fill="var(--parent-ink)">= 2025</text>
-    <text x="24" y="176" font-size="10" fill="var(--ink-soft)">quota year of the family shown</text>
+    <!-- parent codes card -->
+    <g id="codes-card">
+      <rect x="20" y="40" width="228" height="164" rx="8" fill="var(--paper)" stroke="var(--parent)" stroke-width="1"/>
+      <rect x="20" y="40" width="228" height="22" rx="8" fill="var(--parent-fill)"/>
+      <rect x="20" y="54" width="228" height="8" fill="var(--parent-fill)"/>
+      <text x="32" y="55" font-size="10" font-weight="500" letter-spacing=".08em" fill="var(--parent-ink)">PARENT COMPOSITION</text>
+      <text x="32" y="82" font-size="10" fill="var(--ink-soft)">Parent Area Code</text>
+      <text x="236" y="82" font-size="13" font-weight="600" text-anchor="end" fill="var(--parent-ink)">2AC4-C</text>
+      <text x="32" y="94" font-size="8.5" fill="var(--ink-soft)">Union and UK waters of 4, UK waters of 2a</text>
+      <line x1="32" y1="101" x2="236" y2="101" stroke="var(--rule)" stroke-width=".6"/>
+      <text x="32" y="116" font-size="10" fill="var(--ink-soft)">Parent Species Code</text>
+      <text x="236" y="116" font-size="13" font-weight="600" text-anchor="end" fill="var(--parent-ink)">SRX</text>
+      <text x="32" y="128" font-size="8.5" fill="var(--ink-soft)">Skates and rays (Rajidae)</text>
+      <line x1="32" y1="135" x2="236" y2="135" stroke="var(--rule)" stroke-width=".6"/>
+      <text x="32" y="150" font-size="10" fill="var(--ink-soft)">Member State</text>
+      <text x="236" y="150" font-size="13" font-weight="600" text-anchor="end" fill="var(--parent-ink)">NLD</text>
+      <text x="32" y="162" font-size="8.5" fill="var(--ink-soft)">Netherlands</text>
+      <line x1="32" y1="169" x2="236" y2="169" stroke="var(--rule)" stroke-width=".6"/>
+      <text x="32" y="184" font-size="10" fill="var(--ink-soft)">Quota Year</text>
+      <text x="236" y="184" font-size="13" font-weight="600" text-anchor="end" fill="var(--parent-ink)">2025</text>
+      <text x="32" y="196" font-size="8.5" fill="var(--ink-soft)">year of the family shown</text>
+    </g>
   `;
   document.getElementById('subtitle').textContent = 'NLD · 2025 · SRX / 2AC4-C';
   document.getElementById('ah').textContent = 'Everyone who fishes on the same quota';
