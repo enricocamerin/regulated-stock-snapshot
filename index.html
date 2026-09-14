@@ -581,6 +581,16 @@ const AREA_NOTES = {
 };
 let arOpen = new Set(['r']), arOpenFam = -1;
 function arToggle(id){ if (arOpen.has(id)) arOpen.delete(id); else arOpen.add(id); renderAreas(); }
+const FAO_NAME = {'27.2.a':'division 2a, the Norwegian Sea strip','27.4':'subarea 4, the North Sea','27.4.a':'division 4a, the northern North Sea','27.4.b':'division 4b, the central North Sea','27.4.c':'division 4c, the southern North Sea','27.7.d':'division 7d, the eastern English Channel','27.7.e':'division 7e, the western Channel','27.6':'subarea 6, west of Scotland','27.6.a':'division 6a, west of Scotland','27.7':'subarea 7, the Irish and Celtic Seas and the Channel','27.3.a':'division 3a, the Skagerrak and Kattegat'};
+const areaText = code => { const e = STOCK_GEO[code]; if (!e) return '';
+  const d = (e.d||'').trim();
+  const faos = e.g.filter(z=>z[0]==='F');
+  const named = faos.map(z=>FAO_NAME[z[1]] || ('FAO ' + z[1]));
+  const jur = [...new Set(faos.map(z=>z[2]).filter(Boolean).flatMap(j=>j.split('+')))].map(j=>({EU:'Union',GBR:'United Kingdom',NOR:'Norwegian',INT:'international',FRO:'Faroese',GRL:'Greenland'}[j]||j));
+  // if the regulation wording already names the waters, keep it; otherwise build a sentence
+  if (d.length > 12) return d;
+  return (jur.length ? jur.join(' and ') + ' waters of ' : '') + named.join(' and ');
+};
 const wrap = (t, n) => { const out=[]; let line=''; (t||'').split(/\s+/).forEach(w=>{ if ((line+' '+w).trim().length > n){ out.push(line.trim()); line = w; } else line += ' '+w; }); if (line.trim()) out.push(line.trim()); return out; };
 function renderAreas(){
   timers.forEach(clearTimeout); timers = []; playing = false;
@@ -634,7 +644,7 @@ function renderAreas(){
       </g>
       <text x="${CW/2}" y="${PH+32}" text-anchor="middle" font-size="15" font-weight="500" fill="${g.stroke}">${n.code}</text>
       <text x="${CW/2}" y="${PH+48}" text-anchor="middle" font-size="10" fill="var(--ink-soft)">FAO ${fao}</text>
-      ${wrap(STOCK_GEO[n.code]?STOCK_GEO[n.code].d:'', 30).slice(0,4).map((ln,li)=>`<text x="${CW/2}" y="${PH+68+li*13}" text-anchor="middle" font-size="10" fill="var(--ink)">${ln}</text>`).join('')}
+      ${wrap(areaText(n.code), 30).slice(0,4).map((ln,li)=>`<text x="${CW/2}" y="${PH+68+li*13}" text-anchor="middle" font-size="10" fill="var(--ink)">${ln}</text>`).join('')}
       ${toggle}
     </g>`; }).join('');
   svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + links + cards;
@@ -644,7 +654,7 @@ function renderAreas(){
   document.getElementById('ledger').innerHTML = Object.keys(allMembers).map(code=>{ const star = code.startsWith('*');
     const nd = nodes.find(n=>n.code===code), g = star ? {stroke:'#8A6A00'} : GEN[Math.min(nd?nd.depth:1,2)];
     return `<div class="row in" style="display:block;padding:.4rem 0;${star?'background:#FFF6C7;border-radius:6px;padding:.4rem .5rem;':''}">
-      <span style="font-weight:500;color:${g.stroke}">${code}</span> <span style="font-size:.95rem">— ${STOCK_GEO[code]?STOCK_GEO[code].d:''}</span>
+      <span style="font-weight:500;color:${g.stroke}">${code}</span> <span style="font-size:.95rem">— ${areaText(code)}</span>
       <div style="font-size:.85rem;color:var(--ink-soft);margin-top:.15rem">${AREA_NOTES[code]||''}</div>
     </div>`; }).join('');
   document.getElementById('note').textContent = '';
