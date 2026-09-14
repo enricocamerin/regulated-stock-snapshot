@@ -579,54 +579,79 @@ const AREA_NOTES = {
   '6X14.':  'Union and international waters of subareas 6 to 14 — west of Scotland, the Irish and Celtic Seas, the Channel, and south and west beyond this map.',
   '*04-C.': 'United Kingdom and Union waters of subarea 4 — the North Sea. Outside the western parent area: an asterisk code, reported separately.'
 };
+let arOpen = new Set(['r']), arOpenFam = -1;
+function arToggle(id){ if (arOpen.has(id)) arOpen.delete(id); else arOpen.add(id); renderAreas(); }
 function renderAreas(){
   timers.forEach(clearTimeout); timers = []; playing = false;
   document.body.dataset.view = 'areas';
   const f = FAMILIES[fam];
+  if (arOpenFam !== fam){ arOpen = new Set(['r']); arOpenFam = fam; }
   const setFor = code => (STOCK_GEO[code] ? boxesFor(code).boxes : (AREA_SETS[code]||[]));
-  // distinct area codes in the family, parent first, in tree order
-  const codes = []; const walkA = (n, depth) => { const c = n.name.split(' / ')[1];
-    let e = codes.find(x=>x.code===c); if (!e){ e = {code:c, depth, members:[]}; codes.push(e); }
-    e.members.push(n.name); (n.children||[]).forEach(k=>walkA(k, depth+1)); };
-  walkA(f.root, 0);
-  const cols = Math.min(codes.length, 3), rows = Math.ceil(codes.length/cols), CW = 230, CH = 260;
-  const W = cols*CW + 40, H = rows*CH + 40;
+  // one node per distinct area code, in tree order; a code already shown higher up is not repeated
+  const seen = new Set();
+  const areaKids = (n) => { const out = []; (n.children||[]).forEach(k=>{ const c = k.name.split(' / ')[1];
+      if (seen.has(c)) { areaKids(k).forEach(x=>out.push(x)); return; } seen.add(c); out.push(k); }); return out; };
+  const CW = 196, CH = 218, GX = 22, GY = 46, PH = 112;
+  const nodes = []; const walk = (n, id, depth, parent) => { const code = n.name.split(' / ')[1]; seen.add(code);
+    const ks = areaKids(n); const nd = {id, code, members:[n.name], depth, parent, kids:ks.length, open:arOpen.has(id), children:[]};
+    nodes.push(nd); if (nd.open) ks.forEach((k,i)=>nd.children.push(walk(k, id+'.'+i, depth+1, nd))); return nd; };
+  const root = walk(f.root, 'r', 0, null);
+  // every member that fishes under each code, for the card footer
+  const allMembers = {}; const wm = n => { const c = n.name.split(' / ')[1]; (allMembers[c] = allMembers[c]||[]).push(n.name); (n.children||[]).forEach(wm); }; wm(f.root);
+  const width = n => { n.w = n.children.length ? n.children.reduce((a,c)=>a+width(c),0) + GX*(n.children.length-1) : CW; return n.w; };
+  width(root);
+  const place = (n, x0, depth) => { n.y = 20 + depth*(CH+GY); if (!n.children.length){ n.x = x0; return; }
+    let x = x0 + (n.w - (n.children.reduce((a,c)=>a+c.w,0) + GX*(n.children.length-1)))/2;
+    n.children.forEach(c=>{ place(c, x, depth+1); x += c.w + GX; });
+    n.x = (n.children[0].x + n.children[n.children.length-1].x)/2; };
+  place(root, 20, 0);
+  const maxDepth = Math.max(...nodes.map(n=>n.depth));
+  const W = root.w + 40, H = 20 + (maxDepth+1)*CH + maxDepth*GY + 20;
   const svg = document.getElementById('tree');
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
   document.getElementById('tt').textContent = `The stock areas of ${f.name}`;
-  document.getElementById('td').textContent = codes.map(c=>c.code).join(', ');
-  // thumbnail map per code: the family's whole extent in grey, this code's shape filled
-  const allBoxes = new Set(); codes.forEach(c=>setFor(c.code).forEach(b=>allBoxes.add(b)));
+  document.getElementById('td').textContent = nodes.map(n=>n.code).join(', ');
+  // common extent for the thumbnails
+  const allBoxes = new Set(); Object.keys(allMembers).forEach(c=>setFor(c).forEach(b=>allBoxes.add(b)));
   const ext = [...allBoxes].map(id=>{ const [,,a,b,cc,d] = ICES.find(x=>x[0]===id); return [+mx(a), +my(d), +mx(cc), +my(b)]; });
   const EX0 = Math.min(...ext.map(r=>r[0]))-30, EY0 = Math.min(...ext.map(r=>r[1]))-30,
         EX1 = Math.max(...ext.map(r=>r[2]))+30, EY1 = Math.max(...ext.map(r=>r[3]))+30;
-  const cards = codes.map((c,i)=>{ const star = c.code.startsWith('*'), g = star ? {fill:'#FFF1A6',stroke:'#C99A06',ink:'#6B5200'} : GEN[Math.min(c.depth,2)];
-    const x = 20 + (i%cols)*CW, y = 20 + Math.floor(i/cols)*CH, TW = CW-16, TH = 120;
-    const o = outlineFor(new Set(setFor(c.code)));
-    const sc = Math.min(TW/(EX1-EX0), TH/(EY1-EY0));
-    return `<g transform="translate(${x},${y})">
-      <rect x="0" y="0" width="${TW}" height="${CH-16}" rx="10" fill="var(--paper)" stroke="${g.stroke}" stroke-width="1.5"/>
-      <g transform="translate(${(TW-(EX1-EX0)*sc)/2},8) scale(${sc}) translate(${-EX0},${-EY0})">
+  const links = nodes.filter(n=>n.parent).map(n=>{ const p = n.parent, x1 = p.x + CW/2, y1 = p.y + CH, x2 = n.x + CW/2, y2 = n.y, ym = y1 + GY/2;
+    return `<path d="M${x1},${y1} V${ym} H${x2} V${y2}" fill="none" stroke="var(--rule)" stroke-width="1.2"/>`; }).join('');
+  const cards = nodes.map(n=>{ const star = n.code.startsWith('*');
+    const g = star ? {fill:'#FFF1A6',stroke:'#C99A06',ink:'#6B5200'} : GEN[Math.min(n.depth,2)];
+    const o = outlineFor(new Set(setFor(n.code))), PW = CW-20;
+    const sc = Math.min(PW/(EX1-EX0), PH/(EY1-EY0));
+    const fao = STOCK_GEO[n.code] ? STOCK_GEO[n.code].g.filter(z=>z[0]==='F').map(z=>z[1]).join(', ') : '';
+    const toggle = n.kids ? `<g onclick="arToggle('${n.id}')" style="cursor:pointer"><title>${n.open?'collapse':'expand'} — ${n.kids} ${n.kids===1?'area':'areas'} below</title><circle cx="${CW/2}" cy="${CH}" r="11" fill="${g.fill}" stroke="${g.stroke}" stroke-width="1.5"/><text x="${CW/2}" y="${CH}" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="${g.ink}">${n.open?'−':'+'+n.kids}</text></g>` : '';
+    return `<g transform="translate(${n.x},${n.y})">
+      <rect x="0" y="0" width="${CW}" height="${CH}" rx="10" fill="var(--paper)" stroke="${g.stroke}" stroke-width="1.5"/>
+      <g transform="translate(${(CW-(EX1-EX0)*sc)/2},10) scale(${sc}) translate(${-EX0},${-EY0})">
         <rect x="${EX0}" y="${EY0}" width="${EX1-EX0}" height="${EY1-EY0}" fill="#D3E1E7"/>
         <path d="${LAND_PATH}" fill="#F1EFE8" stroke="#B9AF9B" stroke-width="${0.8/sc}" fill-rule="evenodd"/>
         ${o ? `<path d="${o['0']}" fill="${g.fill}" fill-opacity="0.9" stroke="${g.stroke}" stroke-width="${1.8/sc}" fill-rule="evenodd"/>` : ''}
       </g>
-      <text x="${TW/2}" y="${TH+26}" text-anchor="middle" font-size="15" font-weight="500" fill="${g.stroke}">${c.code}</text>
-      <text x="${TW/2}" y="${TH+44}" text-anchor="middle" font-size="10" fill="var(--ink-soft)">${(STOCK_GEO[c.code]?STOCK_GEO[c.code].g.filter(z=>z[0]==='F').map(z=>z[1]).join(', '):'')}</text>
-      <text x="${TW/2}" y="${TH+62}" text-anchor="middle" font-size="11" fill="${g.ink}">${c.depth===0?'parent area':(star?'asterisk code':'condition area')}</text>
+      <text x="${CW/2}" y="${PH+34}" text-anchor="middle" font-size="15" font-weight="500" fill="${g.stroke}">${n.code}</text>
+      <text x="${CW/2}" y="${PH+50}" text-anchor="middle" font-size="10" fill="var(--ink-soft)">FAO ${fao}</text>
+      <rect x="${CW/2-62}" y="${PH+60}" width="124" height="20" rx="10" fill="${g.fill}"/>
+      <text x="${CW/2}" y="${PH+70}" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="500" fill="${g.ink}">${n.depth===0?'parent area':(star?'asterisk code':'condition area')}</text>
+      <text x="${CW/2}" y="${PH+92}" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">${(allMembers[n.code]||[]).map(m=>m.split(' / ')[0]).join(', ')}</text>
+      ${toggle}
     </g>`; }).join('');
-  svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + cards;
+  svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + links + cards;
   document.getElementById('subtitle').textContent = `${f.country} · ${f.year} · ${f.name}`;
-  document.getElementById('ah').textContent = '';
-  document.getElementById('ap').textContent = '';
-  document.getElementById('ledger').innerHTML = codes.map(c=>{ const star = c.code.startsWith('*'), g = star ? {stroke:'#8A6A00'} : GEN[Math.min(c.depth,2)];
+  document.getElementById('ah').textContent = 'Where the quota may be fished';
+  document.getElementById('ap').textContent = 'The parent area is the water the quota covers. A condition area below it is part of that same water; an asterisk code is a different water, where part of the quota may be taken and is reported separately. Click a + badge to open a branch.';
+  document.getElementById('ledger').innerHTML = Object.keys(allMembers).map(code=>{ const star = code.startsWith('*');
+    const nd = nodes.find(n=>n.code===code), g = star ? {stroke:'#8A6A00'} : GEN[Math.min(nd?nd.depth:1,2)];
     return `<div class="row in" style="display:block;padding:.4rem 0;${star?'background:#FFF6C7;border-radius:6px;padding:.4rem .5rem;':''}">
-      <span style="font-weight:500;color:${g.stroke}">${c.code}</span> <span style="font-size:.95rem">— ${STOCK_GEO[c.code]?STOCK_GEO[c.code].d:''}</span>
-      <div style="font-size:.85rem;color:var(--ink-soft);margin-top:.15rem">${AREA_NOTES[c.code]||''}</div>
-      <div style="font-size:.8rem;color:var(--ink-soft)">${c.members.join(', ')}</div>
+      <span style="font-weight:500;color:${g.stroke}">${code}</span> <span style="font-size:.95rem">— ${STOCK_GEO[code]?STOCK_GEO[code].d:''}</span>
+      <div style="font-size:.85rem;color:var(--ink-soft);margin-top:.15rem">${AREA_NOTES[code]||''}</div>
+      <div style="font-size:.8rem;color:var(--ink-soft)">${allMembers[code].join(', ')}</div>
     </div>`; }).join('');
   document.getElementById('note').textContent = '';
   document.getElementById('play').disabled = true;
+  document.getElementById('hint').textContent = 'enter next · ↑ ↓ family · click + to expand';
   document.querySelectorAll('#famSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===fam));
 }
 function showAreas(){ view = 'areas'; renderAreas(); }

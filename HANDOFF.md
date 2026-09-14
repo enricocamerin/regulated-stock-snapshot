@@ -1,7 +1,7 @@
 # HANDOFF — DG MARE regulated-stock work
 
 > Read this first in every new chat: `https://raw.githubusercontent.com/enricocamerin/regulated-stock-snapshot/main/HANDOFF.md`
-> Update it at the end of every session. Last update: 2026-09-13 (session 3).
+> Update it at the end of every session. Last update: 2026-09-14 (session 4).
 
 ## How to load the code in a new chat
 `index.html` is now ~74 KB and fetches whole. The big data blocks live in `data/` and are only needed if that data changes:
@@ -19,10 +19,12 @@ Fetch `index.html` first; fetch a data file only when editing that data.
 | Qlik scripts | `enricocamerin/dgmare-ecr-snapshot-analysis` (private) | `apps/V-FAM.qvs`, `reference/stock_area_geo.csv`, `CHANGELOG.md` |
 | GitHub push | needs a personal access token pasted in the chat (repo scope); Claude redacts it in logs |
 
-## Presentation — state at ff67a79
-Slides (Enter = next; header menu Home · Species · Map · Families; Explorer exists but is hidden from the menu):
+## Presentation — state at the head of main
+Slides (Enter = next; header menu Home · Species · Areas · Map · Families; Explorer exists but is hidden):
 1. **Home** — vessel at the quay; PARENT COMPOSITION card (`#codes-card`, SVG 20–248 × 40–204: Parent Area Code 2AC4-C, Parent Species Code SRX, Member State NLD, Quota Year 2025, each with a one-line description, values right-aligned); space = family boards, quota clouds over the parent (654.400 t) and the child with a ceiling (*07D2. 72.400 t).
-2. **Species** — cards with photos in `img/` (thornback CC0 Ecomare Texel; blonde/spotted from Commons, author+licence still to confirm; ling = 1896 Goode & Bean plate). SRX keeps a drawing.
+2. **Species** — expandable tree of the quota lines (+/- badges), species only: area nodes skipped, a species not repeated among children. Cards carry photo, common name, latin name, species code.
+2b. **Areas** — expandable tree of the STOCK AREA codes, same shape as Species: one card per distinct code with a thumbnail map (family extent grey, this code's shape filled), FAO codes, role badge (parent area / condition area / asterisk code) and the members fishing under it. Panel: code, regulation wording, plain note (`AREA_NOTES`), members. Asterisk codes yellow throughout.
+2c. (old) **Species cards** — cards with photos in `img/` (thornback CC0 Ecomare Texel; blonde/spotted from Commons, author+licence still to confirm; ling = 1896 Goode & Bean plate). SRX keeps a drawing.
 3. **Map** — parent frame (green) over 2a + 4; `04-C.` blue inset (code only); `*07D2.` yellow with "Adapted quota 72.400 t · uptake 99.17 %". Legend: parent / asterisk code. Space = voyage: start north (2a) → one stop in 4b hauling RJH, RJC, RJM → 7d → fast straight home. Ledger (5b76194): haul rows show catch only; a haul on a line with an adapted quota gets a row under it with adapted quota + uptake (lookup: member first, then the line carrying the same code, so RJC/*07D2. shows SRX/*07D2. 72.400 / 99.17 %); the parent row at the bottom carries the cumulative once, then adapted quota + uptake.
 4. **Families** — trees with build animation; every block shows Quota and Uptake. Snapshots: 12 Feb (671.748) and 13 Aug (= portal figures, 647.932, 99.01 %). Deltas vs February shown in red on the August view.
 Data is hand-typed in `FAMILIES` (index.html). `STOCK_GEO` (865 codes decoded) and `OUTLINES` (merged division shapes) are embedded.
