@@ -1,7 +1,7 @@
 # HANDOFF — DG MARE regulated-stock work
 
 > Read this first in every new chat: `https://raw.githubusercontent.com/enricocamerin/regulated-stock-snapshot/main/HANDOFF.md`
-> Update it at the end of every session. Last update: 2026-09-14 (session 4).
+> Update it at the end of every session. Last update: 2026-09-14 (session 5, head c1b4749).
 
 ## How to load the code in a new chat
 `index.html` is now ~74 KB and fetches whole. The big data blocks live in `data/` and are only needed if that data changes:
@@ -19,7 +19,7 @@ Fetch `index.html` first; fetch a data file only when editing that data.
 | Qlik scripts | `enricocamerin/dgmare-ecr-snapshot-analysis` (private) | `apps/V-FAM.qvs`, `reference/stock_area_geo.csv`, `CHANGELOG.md` |
 | GitHub push | needs a personal access token pasted in the chat (repo scope); Claude redacts it in logs |
 
-## Presentation — state at the head of main
+## Presentation — state at c1b4749
 Slides (Enter = next; header menu Home · Species · Areas · Map · Families; Explorer exists but is hidden):
 1. **Home** — vessel at the quay; PARENT COMPOSITION card (`#codes-card`, SVG 20–248 × 40–204: Parent Area Code 2AC4-C, Parent Species Code SRX, Member State NLD, Quota Year 2025, each with a one-line description, values right-aligned); space = family boards, quota clouds over the parent (654.400 t) and the child with a ceiling (*07D2. 72.400 t).
 2. **Species** — expandable tree of the quota lines (+/- badges), species only: area nodes skipped, a species not repeated among children. Cards carry photo, common name, latin name, species code.
@@ -28,6 +28,15 @@ Slides (Enter = next; header menu Home · Species · Areas · Map · Families; E
 3. **Map** — parent frame (green) over 2a + 4; `04-C.` blue inset (code only); `*07D2.` yellow with "Adapted quota 72.400 t · uptake 99.17 %". Legend: parent / asterisk code. Space = voyage: start north (2a) → one stop in 4b hauling RJH, RJC, RJM → 7d → fast straight home. Ledger (5b76194): haul rows show catch only; a haul on a line with an adapted quota gets a row under it with adapted quota + uptake (lookup: member first, then the line carrying the same code, so RJC/*07D2. shows SRX/*07D2. 72.400 / 99.17 %); the parent row at the bottom carries the cumulative once, then adapted quota + uptake.
 4. **Families** — trees with build animation; every block shows Quota and Uptake. Snapshots: 12 Feb (671.748) and 13 Aug (= portal figures, 647.932, 99.01 %). Deltas vs February shown in red on the August view.
 Data is hand-typed in `FAMILIES` (index.html). `STOCK_GEO` (865 codes decoded) and `OUTLINES` (merged division shapes) are embedded.
+
+### Session 5 changes (2026-09-14)
+- **Areas slide** added between Species and Map: expandable tree of the STOCK AREA codes (`renderAreas`, `arOpen`/`arToggle`), one card per distinct code with a thumbnail map (family extent grey, this code's shape filled), FAO codes and the area description. No species, no role badge. Panel: code + description only.
+- `areaText(code)` completes terse Quota Follow wording from the decoded FAO areas (`*07D2.` was literally "7d" → "division 7d, the eastern English Channel"); `FAO_NAME` holds the division names.
+- Reset button visible on every animated slide (Home, Map); `r` resets the current slide.
+- Voyage ledger: no "haul" header.
+- Home: quota boxes moved to the right of each figure, clear of the PARENT COMPOSITION card.
+- LESSON: my local copy was 4 days stale and I nearly force-pushed over 14 commits. ALWAYS `git fetch` + read the repo before editing.
+- CORRECTION: the live site is **regulated-stock-snapshot** (hyphens). `regulatedstocksnapshot` is dead — I sent the wrong URL repeatedly.
 
 ## Qlik — state
 - **V-FAM 2.5.12** validated 2026-09-11, tag `vfam-2.5.12`: discards (DISC) + scientific (SCIENT_NUQ) excluded via L1 hash map; member-level change fields (9b). NLD SRX/2AC4-C 13 Aug = 647.932.
@@ -50,6 +59,7 @@ Data is hand-typed in `FAMILIES` (index.html). `STOCK_GEO` (865 codes decoded) a
 - web_fetch on raw.githubusercontent.com serves a stale cache: Claude reads the repo with curl in the sandbox instead.
 
 ## Open items
+- SRX family has SIX species in the data (`RJC RJH RJM RJN RJR SRX`) — RJN (cuckoo ray, Leucoraja naevus) and RJR (starry ray, Amblyraja radiata) are NOT yet in the presentation. Need their stock area codes, adapted quota and catches; photos to be fetched from Commons by Enrico (Claude cannot reach wikimedia).
 - Reload L3 V29.17: BRIDGE/FACT dangling = 0, FISHING CATEGORY rows = keys, one row for DNK 2022 Cat 70, NLD SRX/2AC4-C still 647.932 / 99.01 %; then commit to the Qlik repo.
 - GitHub token: the ones used on 2026-09-12 and 2026-09-13 are readable in the chat transcripts — revoke and regenerate. Chats outside the Claude project cannot search the project's chats, so the token must be pasted again each time.
 - Validate 2.5.13 (pivot: parent 654.400 / 99.01 %; *07D2. 72.400 / 99.17 %; species lines 0 / N/A) → tag.
