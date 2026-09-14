@@ -75,6 +75,7 @@
   body[data-view="cover"] #famBlock, body[data-view="cover"] #snapBlock, body[data-view="cover"] #reset { display:none; }
   body[data-view="map"] #snapBlock, body[data-view="map"] #reset { display:none; }
   body[data-view="species"] #snapBlock, body[data-view="species"] #reset, body[data-view="species"] #play { display:none; }
+  body[data-view="areas"] #snapBlock, body[data-view="areas"] #reset, body[data-view="areas"] #play { display:none; }
   #exBlock { display:none; } body[data-view="explorer"] #exBlock { display:block; }
   body[data-view="explorer"] #famBlock, body[data-view="explorer"] #snapBlock, body[data-view="explorer"] #reset, body[data-view="explorer"] #play { display:none; }
 </style>
@@ -552,6 +553,7 @@ function showExplorer(){ view = 'explorer'; renderExplorer(); }
 const SLIDES = [
   { id:'cover',    label:'Home',     go: showCover },
   { id:'species',  label:'Species',  go: showSpecies },
+  { id:'areas',    label:'Areas',    go: showAreas },
   { id:'map',      label:'Map',      go: showMap },
   { id:'families', label:'Families', go: showFamilies }
 ];
@@ -567,6 +569,67 @@ function nextView(){ const i = SLIDES.findIndex(x=>x.id===view); SLIDES[(i+1)%SL
 
 // ===================== STOCK AREA -> GEOGRAPHY (decoded from Quota Follow descriptions, 2026-09-10) =====================
 // STOCK_GEO: loaded from data/stock_geo.js
+
+
+// ===================== AREAS: the stock area codes of the family =====================
+const AREA_NOTES = {
+  '2AC4-C': 'The parent area. United Kingdom and Union waters of subarea 4 (the North Sea) and United Kingdom waters of division 2a (the Norwegian Sea strip).',
+  '04-C.':  'United Kingdom and Union waters of subarea 4 only — the North Sea, without the 2a strip. Inside the parent area.',
+  '*07D2.': 'Division 7d, the eastern English Channel. Outside the parent area: an asterisk code, so part of the quota may be taken there and is reported separately.',
+  '6X14.':  'Union and international waters of subareas 6 to 14 — west of Scotland, the Irish and Celtic Seas, the Channel, and south and west beyond this map.',
+  '*04-C.': 'United Kingdom and Union waters of subarea 4 — the North Sea. Outside the western parent area: an asterisk code, reported separately.'
+};
+function renderAreas(){
+  timers.forEach(clearTimeout); timers = []; playing = false;
+  document.body.dataset.view = 'areas';
+  const f = FAMILIES[fam];
+  const setFor = code => (STOCK_GEO[code] ? boxesFor(code).boxes : (AREA_SETS[code]||[]));
+  // distinct area codes in the family, parent first, in tree order
+  const codes = []; const walkA = (n, depth) => { const c = n.name.split(' / ')[1];
+    let e = codes.find(x=>x.code===c); if (!e){ e = {code:c, depth, members:[]}; codes.push(e); }
+    e.members.push(n.name); (n.children||[]).forEach(k=>walkA(k, depth+1)); };
+  walkA(f.root, 0);
+  const cols = Math.min(codes.length, 3), rows = Math.ceil(codes.length/cols), CW = 230, CH = 260;
+  const W = cols*CW + 40, H = rows*CH + 40;
+  const svg = document.getElementById('tree');
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  document.getElementById('tt').textContent = `The stock areas of ${f.name}`;
+  document.getElementById('td').textContent = codes.map(c=>c.code).join(', ');
+  // thumbnail map per code: the family's whole extent in grey, this code's shape filled
+  const allBoxes = new Set(); codes.forEach(c=>setFor(c.code).forEach(b=>allBoxes.add(b)));
+  const ext = [...allBoxes].map(id=>{ const [,,a,b,cc,d] = ICES.find(x=>x[0]===id); return [+mx(a), +my(d), +mx(cc), +my(b)]; });
+  const EX0 = Math.min(...ext.map(r=>r[0]))-30, EY0 = Math.min(...ext.map(r=>r[1]))-30,
+        EX1 = Math.max(...ext.map(r=>r[2]))+30, EY1 = Math.max(...ext.map(r=>r[3]))+30;
+  const cards = codes.map((c,i)=>{ const star = c.code.startsWith('*'), g = star ? {fill:'#FFF1A6',stroke:'#C99A06',ink:'#6B5200'} : GEN[Math.min(c.depth,2)];
+    const x = 20 + (i%cols)*CW, y = 20 + Math.floor(i/cols)*CH, TW = CW-16, TH = 120;
+    const o = outlineFor(new Set(setFor(c.code)));
+    const sc = Math.min(TW/(EX1-EX0), TH/(EY1-EY0));
+    return `<g transform="translate(${x},${y})">
+      <rect x="0" y="0" width="${TW}" height="${CH-16}" rx="10" fill="var(--paper)" stroke="${g.stroke}" stroke-width="1.5"/>
+      <g transform="translate(${(TW-(EX1-EX0)*sc)/2},8) scale(${sc}) translate(${-EX0},${-EY0})">
+        <rect x="${EX0}" y="${EY0}" width="${EX1-EX0}" height="${EY1-EY0}" fill="#D3E1E7"/>
+        <path d="${LAND_PATH}" fill="#F1EFE8" stroke="#B9AF9B" stroke-width="${0.8/sc}" fill-rule="evenodd"/>
+        ${o ? `<path d="${o['0']}" fill="${g.fill}" fill-opacity="0.9" stroke="${g.stroke}" stroke-width="${1.8/sc}" fill-rule="evenodd"/>` : ''}
+      </g>
+      <text x="${TW/2}" y="${TH+26}" text-anchor="middle" font-size="15" font-weight="500" fill="${g.stroke}">${c.code}</text>
+      <text x="${TW/2}" y="${TH+44}" text-anchor="middle" font-size="10" fill="var(--ink-soft)">${(STOCK_GEO[c.code]?STOCK_GEO[c.code].g.filter(z=>z[0]==='F').map(z=>z[1]).join(', '):'')}</text>
+      <text x="${TW/2}" y="${TH+62}" text-anchor="middle" font-size="11" fill="${g.ink}">${c.depth===0?'parent area':(star?'asterisk code':'condition area')}</text>
+    </g>`; }).join('');
+  svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + cards;
+  document.getElementById('subtitle').textContent = `${f.country} · ${f.year} · ${f.name}`;
+  document.getElementById('ah').textContent = '';
+  document.getElementById('ap').textContent = '';
+  document.getElementById('ledger').innerHTML = codes.map(c=>{ const star = c.code.startsWith('*'), g = star ? {stroke:'#8A6A00'} : GEN[Math.min(c.depth,2)];
+    return `<div class="row in" style="display:block;padding:.4rem 0;${star?'background:#FFF6C7;border-radius:6px;padding:.4rem .5rem;':''}">
+      <span style="font-weight:500;color:${g.stroke}">${c.code}</span> <span style="font-size:.95rem">— ${STOCK_GEO[c.code]?STOCK_GEO[c.code].d:''}</span>
+      <div style="font-size:.85rem;color:var(--ink-soft);margin-top:.15rem">${AREA_NOTES[c.code]||''}</div>
+      <div style="font-size:.8rem;color:var(--ink-soft)">${c.members.join(', ')}</div>
+    </div>`; }).join('');
+  document.getElementById('note').textContent = '';
+  document.getElementById('play').disabled = true;
+  document.querySelectorAll('#famSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===fam));
+}
+function showAreas(){ view = 'areas'; renderAreas(); }
 
 // ===================== MAP: where the family fishes =====================
 // LAND_PATH: loaded from data/land.js
@@ -961,7 +1024,7 @@ function exStep(dir){ let i = EX_CODES.indexOf(exCode); i = (i + dir + EX_CODES.
 function seg(id, items, get, set){
   const el = document.getElementById(id);
   el.innerHTML = items.map((it,i)=>`<button type="button" aria-pressed="${i===get()}">${it}</button>`).join('');
-  el.querySelectorAll('button').forEach((b,i)=>b.addEventListener('click',()=>{ set(i); if (view==='map') renderMap(); else if (view==='species') renderSpecies(); else render(false); }));
+  el.querySelectorAll('button').forEach((b,i)=>b.addEventListener('click',()=>{ set(i); if (view==='map') renderMap(); else if (view==='species') renderSpecies(); else if (view==='areas') renderAreas(); else render(false); }));
 }
 seg('famSeg', FAMILIES.map(f=>`${f.country} ${f.name}`), ()=>fam, i=>fam=i);
 seg('snapSeg', SNAPS.map(x=>x.label), ()=>snap, i=>snap=i);
@@ -974,6 +1037,7 @@ document.addEventListener('keydown', e=>{
   if (e.key==='Enter'){ e.preventDefault(); nextView(); return; }
   if (view==='cover'){ if (e.key===' '){ e.preventDefault(); playBoarding(); } return; }
   if (view==='species'){ if (e.key==='ArrowDown'){ fam=(fam+1)%FAMILIES.length; renderSpecies(); } else if (e.key==='ArrowUp'){ fam=(fam-1+FAMILIES.length)%FAMILIES.length; renderSpecies(); } return; }
+  if (view==='areas'){ if (e.key==='ArrowDown'){ fam=(fam+1)%FAMILIES.length; renderAreas(); } else if (e.key==='ArrowUp'){ fam=(fam-1+FAMILIES.length)%FAMILIES.length; renderAreas(); } return; }
   if (view==='map'){ if (e.key===' '){ e.preventDefault(); playVoyage(); } else if (e.key==='ArrowDown'){ fam=(fam+1)%FAMILIES.length; renderMap(); } else if (e.key==='ArrowUp'){ fam=(fam-1+FAMILIES.length)%FAMILIES.length; renderMap(); } return; }
   if (view==='explorer'){ if (document.activeElement && document.activeElement.id==='exInput') return; if (e.key==='ArrowDown') exStep(1); else if (e.key==='ArrowUp') exStep(-1); return; }
   if (e.key===' '){ e.preventDefault(); play(); }
