@@ -581,6 +581,7 @@ const AREA_NOTES = {
 };
 let arOpen = new Set(['r']), arOpenFam = -1;
 function arToggle(id){ if (arOpen.has(id)) arOpen.delete(id); else arOpen.add(id); renderAreas(); }
+const wrap = (t, n) => { const out=[]; let line=''; (t||'').split(/\s+/).forEach(w=>{ if ((line+' '+w).trim().length > n){ out.push(line.trim()); line = w; } else line += ' '+w; }); if (line.trim()) out.push(line.trim()); return out; };
 function renderAreas(){
   timers.forEach(clearTimeout); timers = []; playing = false;
   document.body.dataset.view = 'areas';
@@ -591,7 +592,7 @@ function renderAreas(){
   const seen = new Set();
   const areaKids = (n) => { const out = []; (n.children||[]).forEach(k=>{ const c = k.name.split(' / ')[1];
       if (seen.has(c)) { areaKids(k).forEach(x=>out.push(x)); return; } seen.add(c); out.push(k); }); return out; };
-  const CW = 196, CH = 218, GX = 22, GY = 46, PH = 112;
+  const CW = 208, CH = 246, GX = 22, GY = 46, PH = 112;
   const nodes = []; const walk = (n, id, depth, parent) => { const code = n.name.split(' / ')[1]; seen.add(code);
     const ks = areaKids(n); const nd = {id, code, members:[n.name], depth, parent, kids:ks.length, open:arOpen.has(id), children:[]};
     nodes.push(nd); if (nd.open) ks.forEach((k,i)=>nd.children.push(walk(k, id+'.'+i, depth+1, nd))); return nd; };
@@ -631,11 +632,9 @@ function renderAreas(){
         <path d="${LAND_PATH}" fill="#F1EFE8" stroke="#B9AF9B" stroke-width="${0.8/sc}" fill-rule="evenodd"/>
         ${o ? `<path d="${o['0']}" fill="${g.fill}" fill-opacity="0.9" stroke="${g.stroke}" stroke-width="${1.8/sc}" fill-rule="evenodd"/>` : ''}
       </g>
-      <text x="${CW/2}" y="${PH+34}" text-anchor="middle" font-size="15" font-weight="500" fill="${g.stroke}">${n.code}</text>
-      <text x="${CW/2}" y="${PH+50}" text-anchor="middle" font-size="10" fill="var(--ink-soft)">FAO ${fao}</text>
-      <rect x="${CW/2-62}" y="${PH+60}" width="124" height="20" rx="10" fill="${g.fill}"/>
-      <text x="${CW/2}" y="${PH+70}" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="500" fill="${g.ink}">${n.depth===0?'parent area':(star?'asterisk code':'condition area')}</text>
-      <text x="${CW/2}" y="${PH+92}" text-anchor="middle" font-size="9.5" fill="var(--ink-soft)">${(allMembers[n.code]||[]).map(m=>m.split(' / ')[0]).join(', ')}</text>
+      <text x="${CW/2}" y="${PH+32}" text-anchor="middle" font-size="15" font-weight="500" fill="${g.stroke}">${n.code}</text>
+      <text x="${CW/2}" y="${PH+48}" text-anchor="middle" font-size="10" fill="var(--ink-soft)">FAO ${fao}</text>
+      ${wrap(STOCK_GEO[n.code]?STOCK_GEO[n.code].d:'', 30).slice(0,4).map((ln,li)=>`<text x="${CW/2}" y="${PH+68+li*13}" text-anchor="middle" font-size="10" fill="var(--ink)">${ln}</text>`).join('')}
       ${toggle}
     </g>`; }).join('');
   svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + links + cards;
@@ -647,7 +646,6 @@ function renderAreas(){
     return `<div class="row in" style="display:block;padding:.4rem 0;${star?'background:#FFF6C7;border-radius:6px;padding:.4rem .5rem;':''}">
       <span style="font-weight:500;color:${g.stroke}">${code}</span> <span style="font-size:.95rem">— ${STOCK_GEO[code]?STOCK_GEO[code].d:''}</span>
       <div style="font-size:.85rem;color:var(--ink-soft);margin-top:.15rem">${AREA_NOTES[code]||''}</div>
-      <div style="font-size:.8rem;color:var(--ink-soft)">${allMembers[code].join(', ')}</div>
     </div>`; }).join('');
   document.getElementById('note').textContent = '';
   document.getElementById('play').disabled = true;
