@@ -52,6 +52,17 @@
   .ledger .row.in { color:var(--ink); }
   .ledger .row.tot { font-weight:500; color:var(--ink); padding-top:.35rem; border-top:1px solid var(--rule); }
   .num { font-variant-numeric:tabular-nums; white-space:nowrap; }
+  /* parent composition card (map view) — same layout as the cover card */
+  body[data-view="map"] .ledger { border:0; padding:0; }
+  .pcard { border:1px solid var(--parent); border-radius:8px; background:var(--paper); overflow:hidden; }
+  .pcard .hd { background:var(--parent-fill); color:var(--parent-ink); font-size:.7rem; font-weight:500;
+    letter-spacing:.08em; padding:.4rem .75rem; }
+  .pcard .r { padding:.5rem .75rem; border-top:1px solid var(--rule); }
+  .pcard .r:first-of-type { border-top:0; }
+  .pcard .t { display:flex; justify-content:space-between; align-items:baseline; gap:.75rem; }
+  .pcard .k { font-size:.8rem; color:var(--ink-soft); }
+  .pcard .v { font-size:1rem; font-weight:600; color:var(--parent-ink); white-space:nowrap; }
+  .pcard .s { font-size:.75rem; color:var(--ink-soft); line-height:1.35; margin-top:.15rem; }
   footer { padding:.75rem 2.5rem 1rem; display:flex; gap:2.5rem; align-items:center; flex-wrap:wrap; position:sticky; bottom:0; background:var(--paper); border-top:1px solid var(--rule); z-index:2; }
   .seg { display:inline-flex; border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
   .seg button, .btn { appearance:none; border:0; background:transparent; color:var(--ink-soft); font:inherit; font-size:.95rem; padding:.55rem 1rem; cursor:pointer; }
@@ -136,6 +147,9 @@ const FAMILIES = [
     root:{ name:'LIN / 6X14.', quota:3286.040, own:{feb:397.731, aug:398.843}, children:[ { name:'LIN / *04-C.', quota:1342.676, own:{feb:763.001, aug:789.002}, area:true } ] }
   }
 ];
+
+// ISO 3166-1 alpha-3 codes of the Member States used by the families above
+const MS_NAME = { NLD:'Netherlands', FRA:'France' };
 
 const total_snap = n => own(n) + (n.children||[]).reduce((a,c)=>a+total_snap(c),0);
 const fleetText = f => f.fleet ? `${f.fleet} vessels` : 'several vessels';
@@ -845,13 +859,18 @@ function renderMap(){
   document.getElementById('subtitle').textContent = `${f.country} · ${f.year} · ${f.name}`;
   document.getElementById('ah').textContent = '';
   document.getElementById('ap').textContent = '';
-  document.getElementById('ledger').innerHTML = nodes.map(n=>{ const star = n.code.startsWith('*'); const g = GEN[Math.min(n.depth,2)];
-    const col = star ? '#8A6A00' : g.stroke;
-    const sps = [...new Set(n.members.map(speciesOf))];
-    const spTxt = sps.map(x => SPECIES[x] ? `${x} — ${SPECIES[x].name} (${SPECIES[x].latin})` : x).join('; ');
-    return `<div class="row in" style="display:block;padding:.35rem 0;${star?'background:#FFF6C7;border-radius:6px;padding:.35rem .5rem;':''}">
-      <span style="font-weight:500;color:${col}">${n.code}</span> <span style="font-size:.95rem">— ${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''}</span>
-    </div>`; }).join('');
+  const pArea = f.root.name.split(' / ')[1], pSp = speciesOf(f.root.name), pS = SPECIES[pSp];
+  document.getElementById('ledger').innerHTML = `<div class="pcard">
+    <div class="hd">PARENT COMPOSITION</div>
+    <div class="r"><div class="t"><span class="k">Parent Area Code</span><span class="v">${pArea}</span></div>
+      <div class="s">${STOCK_GEO[pArea] ? STOCK_GEO[pArea].d : ''}</div></div>
+    <div class="r"><div class="t"><span class="k">Parent Species Code</span><span class="v">${pSp}</span></div>
+      <div class="s">${pS ? `${pS.name} (${pS.latin})` : ''}</div></div>
+    <div class="r"><div class="t"><span class="k">Member State</span><span class="v">${f.country}</span></div>
+      <div class="s">${MS_NAME[f.country] || ''}</div></div>
+    <div class="r"><div class="t"><span class="k">Quota Year</span><span class="v">${f.year}</span></div>
+      <div class="s">year of the family shown</div></div>
+  </div>`;
   document.getElementById('note').textContent = '';
   document.getElementById('play').disabled = !VOYAGES[f.id];
   document.getElementById('hint').textContent = 'space voyage · enter families · ↑ ↓ family';
