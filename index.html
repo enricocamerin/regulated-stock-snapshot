@@ -1034,7 +1034,7 @@ function playVoyage(){
       wq(f.root); return qn; };
     let html = R(hdr('haul'), `<span style="font-size:.7rem;line-height:1.1;display:inline-block;color:var(--ink-soft)">special<br>condition</span>`, hdr('catch'), hdr('cumulative'));
     caught.forEach(c=>{ const code = c.member.split(' / ')[1], star = code.startsWith('*');
-      html += R(`<span style="font-weight:500">${c.member}</span> <span style="font-size:.8rem;color:var(--ink-soft)">${c.area}</span>`, scMark(c.member !== f.root.name), fmt(c.t), '', star?yellow:'');
+      html += R(`<span style="font-weight:500">${c.member}</span>`, scMark(c.member !== f.root.name), fmt(c.t), '', star?yellow:'');
       const qn = quotaOf(c.member); if (qn){ const up = total_snap(qn)/qn.quota;
         html += Q(`adapted quota ${fmt(qn.quota)} t · uptake <span style="font-weight:500;${up>1?'color:var(--moved);':''}">${(up*100).toFixed(2)} %</span>`, star?yellow:''); } });
     // the parent: cumulative once, on its first row; adapted quota and uptake under it
