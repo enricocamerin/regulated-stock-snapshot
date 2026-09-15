@@ -910,15 +910,24 @@ function renderMap(){
     ${faoLabels}${labels.join('')}
     ${key}
     <g><rect x="${lx.toFixed(1)}" y="${lyb.toFixed(1)}" width="${sw.toFixed(1)}" height="${sw.toFixed(1)}" rx="${(2*K).toFixed(1)}" fill="${GEN[0].fill}" stroke="${GEN[0].stroke}" stroke-width="${(1.5*K).toFixed(2)}"/><text x="${(lx+18*K).toFixed(1)}" y="${(lyb+6*K).toFixed(1)}" dominant-baseline="central" font-size="${(11*K).toFixed(1)}" fill="var(--ink)">parent</text><rect x="${(lx+80*K).toFixed(1)}" y="${lyb.toFixed(1)}" width="${sw.toFixed(1)}" height="${sw.toFixed(1)}" rx="${(2*K).toFixed(1)}" fill="#FFF1A6" stroke="#C99A06" stroke-width="${(1.5*K).toFixed(2)}"/><text x="${(lx+98*K).toFixed(1)}" y="${(lyb+6*K).toFixed(1)}" dominant-baseline="central" font-size="${(11*K).toFixed(1)}" fill="var(--ink)">asterisk code</text></g>
-    <text x="${(vx0+vw-10*K).toFixed(1)}" y="${(vy0+vh-10*K).toFixed(1)}" text-anchor="end" font-size="${(10*K).toFixed(1)}" fill="#7A8C96">${mapOpen ? 'double-click the sea to close' : (openable.has(rootCode) ? 'double-click the parent area to open its conditions' : 'no conditions to open')} · FAO divisions drawn schematically · coastline and depths: Natural Earth</text>`;
+    <text x="${(vx0+vw-10*K).toFixed(1)}" y="${(vy0+vh-10*K).toFixed(1)}" text-anchor="end" font-size="${(10*K).toFixed(1)}" fill="#7A8C96">${mapOpen ? 'right-click to go back to the parent aggregation' : (openable.has(rootCode) ? 'double-click the parent area to open its conditions' : 'no conditions to open')} · FAO divisions drawn schematically · coastline and depths: Natural Earth</text>`;
+  // up one level: back to the aggregation this node hangs from
+  const closeOne = () => { mapOpen = (mapOpen && mapOpen !== rootCode)
+    ? ((nodes.find(n=>n.code===mapOpen)||{}).parentCode || null)
+    : null; };
   svg.ondblclick = e => {
     if (document.body.dataset.view !== 'map') return;
     const hit = e.target.closest('[data-code]'), code = hit && hit.dataset.code;
-    if (code && kidsOfCode(code).length) mapOpen = code;            // open this node's conditions
-    else if (!code) mapOpen = mapOpen && mapOpen!==rootCode
-      ? (nodes.find(n=>n.code===mapOpen)||{}).parentCode || null    // close one level
-      : null;
+    if (code && kidsOfCode(code).length) mapOpen = code;   // open this node's conditions
+    else if (!code) closeOne();                            // double-click the sea closes too
+    else return;
     renderMap();
+  };
+  svg.oncontextmenu = e => {                               // right-click anywhere goes back up
+    if (document.body.dataset.view !== 'map') return;
+    if (!mapOpen) return;          // nothing open: leave the browser menu alone
+    e.preventDefault();
+    closeOne(); renderMap();
   };
   // nesting diagram
   const kidsOf = code => nodes.filter(n=>n.parentCode===code && n.depth>0);
@@ -957,7 +966,7 @@ function renderMap(){
   </div>`;
   document.getElementById('note').textContent = '';
   document.getElementById('play').disabled = !VOYAGES[f.id];
-  document.getElementById('hint').textContent = 'double-click an area to open its conditions · space voyage · enter families · ↑ ↓ family';
+  document.getElementById('hint').textContent = 'double-click to open conditions · right-click to go back · space voyage · enter families · ↑ ↓ family';
   document.querySelectorAll('#famSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===fam));
 }
 
