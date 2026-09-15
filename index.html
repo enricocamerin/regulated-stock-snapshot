@@ -899,8 +899,8 @@ function renderMap(){
   }).join('');
   const lx = vx0 + 14*K, lyb = vy0 + vh - 30*K, sw = 12*K;
   const key = (typeof BATHY !== 'undefined' ? BATHY : []).map((b,i)=>
-    `<rect x="${(lx+i*78*K).toFixed(1)}" y="${(lyb-40*K).toFixed(1)}" width="${sw.toFixed(1)}" height="${(10*K).toFixed(1)}" fill="${b.fill}"/>`
-    + `<text x="${(lx+i*78*K+18*K).toFixed(1)}" y="${(lyb-31*K).toFixed(1)}" font-size="${(10*K).toFixed(1)}" fill="#4E5F72">${b.label}</text>`).join('');
+    `<rect x="${(lx+i*78*K).toFixed(1)}" y="${lyb.toFixed(1)}" width="${sw.toFixed(1)}" height="${(10*K).toFixed(1)}" fill="${b.fill}"/>`
+    + `<text x="${(lx+i*78*K+18*K).toFixed(1)}" y="${(lyb+9*K).toFixed(1)}" font-size="${(10*K).toFixed(1)}" fill="#4E5F72">${b.label}</text>`).join('');
   svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + `
     <rect x="0" y="0" width="${MAPW}" height="${MAPH}" fill="#D3E1E7" data-bg="1"/>
     ${bathy}
@@ -909,7 +909,6 @@ function renderMap(){
     ${ctry}
     ${faoLabels}${labels.join('')}
     ${key}
-    <g><rect x="${lx.toFixed(1)}" y="${lyb.toFixed(1)}" width="${sw.toFixed(1)}" height="${sw.toFixed(1)}" rx="${(2*K).toFixed(1)}" fill="${GEN[0].fill}" stroke="${GEN[0].stroke}" stroke-width="${(1.5*K).toFixed(2)}"/><text x="${(lx+18*K).toFixed(1)}" y="${(lyb+6*K).toFixed(1)}" dominant-baseline="central" font-size="${(11*K).toFixed(1)}" fill="var(--ink)">parent</text><rect x="${(lx+80*K).toFixed(1)}" y="${lyb.toFixed(1)}" width="${sw.toFixed(1)}" height="${sw.toFixed(1)}" rx="${(2*K).toFixed(1)}" fill="#FFF1A6" stroke="#C99A06" stroke-width="${(1.5*K).toFixed(2)}"/><text x="${(lx+98*K).toFixed(1)}" y="${(lyb+6*K).toFixed(1)}" dominant-baseline="central" font-size="${(11*K).toFixed(1)}" fill="var(--ink)">asterisk code</text></g>
     <text x="${(vx0+vw-10*K).toFixed(1)}" y="${(vy0+vh-10*K).toFixed(1)}" text-anchor="end" font-size="${(10*K).toFixed(1)}" fill="#7A8C96">${mapOpen ? 'right-click to go back to the parent aggregation' : (openable.has(rootCode) ? 'double-click the parent area to open its conditions' : 'no conditions to open')} · FAO divisions drawn schematically · coastline and depths: Natural Earth</text>`;
   // up one level: back to the aggregation this node hangs from
   const closeOne = () => { mapOpen = (mapOpen && mapOpen !== rootCode)
