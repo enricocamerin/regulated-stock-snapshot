@@ -124,6 +124,7 @@
 <script src="data/outlines.js"></script>
 <script src="data/stock_geo.js"></script>
 <script src="data/species.js"></script>
+<script src="data/bathymetry.js"></script>
 <script>
 const SNAPS = [
   { id:'feb', label:'12 Feb 2026', short:'12-02-2026' },
@@ -539,6 +540,7 @@ function playBoarding(){
   }, t + 200));
 }
 
+let mapZoom = null, mapZoomFam = -1;   // which stock area the map is zoomed into
 let spOpen = null, spOpenFam = -1;
 function spToggle(id){ if (spOpen.has(id)) spOpen.delete(id); else spOpen.add(id); renderSpecies(); }
 function renderSpecies(){
@@ -795,7 +797,7 @@ function renderMap(){
   document.body.dataset.view = 'map';
   const f = FAMILIES[fam], fa = FAMILY_AREAS[f.id];
   const svg = document.getElementById('tree');
-  svg.setAttribute('viewBox', `0 0 ${MAPW} ${MAPH}`);
+  if (mapZoomFam !== fam){ mapZoom = null; mapZoomFam = fam; }
   document.getElementById('tt').textContent = `Where ${f.name} fishes`;
   const setFor = code => (STOCK_GEO[code] ? boxesFor(code).boxes : (AREA_SETS[code]||[]));
   const nodes = []; const walkM = (n, depth, pcode) => { const code = n.name.split(' / ')[1];
@@ -806,26 +808,44 @@ function renderMap(){
   nodes.forEach(n=>{ const p = nodes.find(x=>x.code===n.parentCode); n.inside = p ? (subset(n.set, p.set) && n.set.size>0) : null; });
   // inset level = how many ancestors share this water
   nodes.forEach(n=>{ let lvl=0, p = nodes.find(x=>x.code===n.parentCode); while (p){ if (subset(n.set, p.set)) lvl++; p = nodes.find(x=>x.code===p.parentCode); } n.lvl = Math.min(lvl,2); });
+  nodes.forEach(n=>{ const o = outlineFor(n.set); n.bbox = o ? o.bbox : null; });
+  const boxed = nodes.filter(n=>n.bbox);
+  // default view covers every area the family touches, including children outside the parent perimeter
+  const famBox = boxed.length
+    ? [Math.min(...boxed.map(n=>n.bbox[0])), Math.min(...boxed.map(n=>n.bbox[1])),
+       Math.max(...boxed.map(n=>n.bbox[2])), Math.max(...boxed.map(n=>n.bbox[3]))]
+    : [0,0,MAPW,MAPH];
+  const zn = mapZoom ? boxed.find(n=>n.code===mapZoom) : null;
+  const [bx0,by0,bx1,by1] = zn ? zn.bbox : famBox;
+  const px = (bx1-bx0)*0.12 + 12, py = (by1-by0)*0.12 + 12;
+  let vx0 = Math.max(0, bx0-px), vy0 = Math.max(0, by0-py);
+  let vw = Math.min(MAPW, bx1+px) - vx0, vh = Math.min(MAPH, by1+py) - vy0;
+  const AR = MAPW/MAPH;                       // keep the frame's aspect so nothing squashes
+  if (vw/vh > AR){ const nh = vw/AR; vy0 = Math.max(0, Math.min(MAPH-nh, vy0-(nh-vh)/2)); vh = nh; }
+  else           { const nw = vh*AR; vx0 = Math.max(0, Math.min(MAPW-nw, vx0-(nw-vw)/2)); vw = nw; }
+  const K = vw/MAPW;                          // counter-scale for text and strokes
+  svg.setAttribute('viewBox', `${vx0.toFixed(1)} ${vy0.toFixed(1)} ${vw.toFixed(1)} ${vh.toFixed(1)}`);
+
   const parts=[], labels=[];
   nodes.slice().sort((a,b)=>a.depth-b.depth).forEach(n=>{ const g0 = GEN[Math.min(n.depth,2)], o = outlineFor(n.set); if (!o) return;
     const star = n.code.startsWith('*');
     const g = star ? {fill:'#FFF1A6', stroke:'#C99A06', ink:'#6B5200', name:g0.name} : g0;
     const d = o[String(n.lvl*10)] || o['0'];
-    parts.push(`<path d="${d}" fill="${g.fill}" fill-opacity="${n.depth===0?0.9:0.85}" stroke="${g.stroke}" stroke-width="${n.depth===0?2.5:1.6}" fill-rule="evenodd"><title>${n.code} — ${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''} · ${n.members.join(', ')}</title></path>`);
+    parts.push(`<path data-code="${n.code}" style="cursor:zoom-in" d="${d}" fill="${g.fill}" fill-opacity="${n.depth===0?0.72:0.8}" stroke="${g.stroke}" stroke-width="${((n.depth===0?2.5:1.6)*K).toFixed(2)}" fill-rule="evenodd"><title>${n.code} — ${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''} · ${n.members.join(', ')}</title></path>`);
     const gens = [...n.depths].sort().map(x=>GEN[Math.min(x,2)].name).join(' + ');
     const [x0,y0,x1,y1] = o.bbox, i = n.lvl*10;
-    const ly = Math.max(n.depth===0?28:16, y0+i+(n.depth===0?28:16));
+    const ly = Math.max((n.depth===0?28:16)*K, y0+i+(n.depth===0?28:16)*K);
     if (n.depth===0){
       const sp = f.root.name.split(' / ')[0];
-      labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${ly.toFixed(1)}" font-size="13" fill="${g.ink}">Parent Stock Area = <tspan font-size="24" font-weight="500" fill="${g.stroke}">${n.code}</tspan></text>`);
-      labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${(ly+20).toFixed(1)}" font-size="13" fill="${g.ink}">Parent Species = <tspan font-size="16" font-weight="500" fill="${g.stroke}">${sp}</tspan></text>`);
+      labels.push(`<text x="${(x0+i+10*K).toFixed(1)}" y="${ly.toFixed(1)}" font-size="${(13*K).toFixed(1)}" fill="${g.ink}">Parent Stock Area = <tspan font-size="${(24*K).toFixed(1)}" font-weight="500" fill="${g.stroke}">${n.code}</tspan></text>`);
+      labels.push(`<text x="${(x0+i+10*K).toFixed(1)}" y="${(ly+20*K).toFixed(1)}" font-size="${(13*K).toFixed(1)}" fill="${g.ink}">Parent Species = <tspan font-size="${(16*K).toFixed(1)}" font-weight="500" fill="${g.stroke}">${sp}</tspan></text>`);
     } else {
       const star = n.code.startsWith('*'), col = star ? '#8A6A00' : g.stroke, ink = star ? '#6B5200' : g.ink;
-      labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${ly.toFixed(1)}" font-size="13" font-weight="500" fill="${col}">${n.code}</text>`);
+      labels.push(`<text x="${(x0+i+10*K).toFixed(1)}" y="${ly.toFixed(1)}" font-size="${(13*K).toFixed(1)}" font-weight="500" fill="${col}">${n.code}</text>`);
       if (star){
         let qn = null; const wq = x => { if (x.name.split(' / ')[1]===n.code && ('quota' in x) && !qn) qn = x; (x.children||[]).forEach(wq); }; wq(f.root);
         if (qn && qn.quota){ const up = total(qn)/qn.quota;
-          labels.push(`<text x="${(x0+i+10).toFixed(1)}" y="${(ly+16).toFixed(1)}" font-size="11" fill="${ink}">Adapted quota <tspan font-weight="500">${fmt(qn.quota)} t</tspan> · uptake <tspan font-weight="500" fill="${up>1?'var(--moved)':ink}">${(up*100).toFixed(2)} %</tspan></text>`); }
+          labels.push(`<text x="${(x0+i+10*K).toFixed(1)}" y="${(ly+16*K).toFixed(1)}" font-size="${(11*K).toFixed(1)}" fill="${ink}">Adapted quota <tspan font-weight="500">${fmt(qn.quota)} t</tspan> · uptake <tspan font-weight="500" fill="${up>1?'var(--moved)':ink}">${(up*100).toFixed(2)} %</tspan></text>`); }
       }
     }
     });
@@ -857,14 +877,34 @@ function renderMap(){
   });
   const faoOf = id => ({'2a':'27.2.a','4a':'27.4.a','4b':'27.4.b','4c':'27.4.c','3a':'27.3.a','7d':'27.7.d','7e':'27.7.e','7a':'27.7.a','6a':'27.6.a','7f':'27.7.f','7bc':'27.7.b–c','7fk':'27.7.g–k'}[id]||'');
   const allBoxes = new Set(); nodes.forEach(n=>n.set.forEach(b=>allBoxes.add(b)));
-  const faoLabels = [...allBoxes].map(id=>{ const [,lab,a,b,c,d,lx,ly] = ICES.find(x=>x[0]===id); return `<text x="${mx(lx)}" y="${my(ly)}" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5F6E78" opacity="0.85">FAO ${faoOf(id)}</text>`; }).join('');
+  const faoLabels = [...allBoxes].map(id=>{ const [,lab,a,b,c,d,lx,ly] = ICES.find(x=>x[0]===id); return `<text x="${mx(lx)}" y="${my(ly)}" text-anchor="middle" dominant-baseline="central" font-size="${(11*K).toFixed(1)}" fill="#5F6E78" opacity="0.85">FAO ${faoOf(id)}</text>`; }).join('');
+  const bathy = (typeof BATHY !== 'undefined' ? BATHY : [])
+    .map(b=>`<path d="${b.d}" fill="${b.fill}"/>`).join('');
+  const ctry = (typeof COUNTRY_LABELS !== 'undefined' ? COUNTRY_LABELS : []).map(c=>{
+    const x = +mx(c.lon), y = +my(c.lat);
+    if (x < vx0 || x > vx0+vw || y < vy0 || y > vy0+vh) return '';
+    return `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" font-size="${(11*K).toFixed(1)}" letter-spacing=".06em" fill="#6E7A66" opacity="0.85">${c.n}</text>`;
+  }).join('');
+  const lx = vx0 + 14*K, lyb = vy0 + vh - 30*K, sw = 12*K;
+  const key = (typeof BATHY !== 'undefined' ? BATHY : []).map((b,i)=>
+    `<rect x="${(lx+i*78*K).toFixed(1)}" y="${(lyb-40*K).toFixed(1)}" width="${sw.toFixed(1)}" height="${(10*K).toFixed(1)}" fill="${b.fill}"/>`
+    + `<text x="${(lx+i*78*K+18*K).toFixed(1)}" y="${(lyb-31*K).toFixed(1)}" font-size="${(10*K).toFixed(1)}" fill="#4E5F72">${b.label}</text>`).join('');
   svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + `
-    <rect x="0" y="0" width="${MAPW}" height="${MAPH}" fill="#D3E1E7"/>
+    <rect x="0" y="0" width="${MAPW}" height="${MAPH}" fill="#D3E1E7" data-bg="1"/>
+    ${bathy}
     ${parts.join('')}
-    <path d="${LAND_PATH}" fill="#F1EFE8" stroke="#B9AF9B" stroke-width="0.8" fill-rule="evenodd"/>
+    <path d="${LAND_PATH}" fill="#F1EFE8" stroke="#B9AF9B" stroke-width="${(0.8*K).toFixed(2)}" fill-rule="evenodd"/>
+    ${ctry}
     ${faoLabels}${labels.join('')}
-    <g><rect x="14" y="${MAPH-30}" width="12" height="12" rx="2" fill="${GEN[0].fill}" stroke="${GEN[0].stroke}" stroke-width="1.5"/><text x="32" y="${MAPH-24}" dominant-baseline="central" font-size="11" fill="var(--ink)">parent</text><rect x="94" y="${MAPH-30}" width="12" height="12" rx="2" fill="#FFF1A6" stroke="#C99A06" stroke-width="1.5"/><text x="112" y="${MAPH-24}" dominant-baseline="central" font-size="11" fill="var(--ink)">asterisk code</text></g>
-    <text x="${MAPW-10}" y="${MAPH-10}" text-anchor="end" font-size="10" fill="#7A8C96">a shape drawn inside another fishes part of the same water · FAO divisions drawn schematically · coastline: Natural Earth</text>`;
+    ${key}
+    <g><rect x="${lx.toFixed(1)}" y="${lyb.toFixed(1)}" width="${sw.toFixed(1)}" height="${sw.toFixed(1)}" rx="${(2*K).toFixed(1)}" fill="${GEN[0].fill}" stroke="${GEN[0].stroke}" stroke-width="${(1.5*K).toFixed(2)}"/><text x="${(lx+18*K).toFixed(1)}" y="${(lyb+6*K).toFixed(1)}" dominant-baseline="central" font-size="${(11*K).toFixed(1)}" fill="var(--ink)">parent</text><rect x="${(lx+80*K).toFixed(1)}" y="${lyb.toFixed(1)}" width="${sw.toFixed(1)}" height="${sw.toFixed(1)}" rx="${(2*K).toFixed(1)}" fill="#FFF1A6" stroke="#C99A06" stroke-width="${(1.5*K).toFixed(2)}"/><text x="${(lx+98*K).toFixed(1)}" y="${(lyb+6*K).toFixed(1)}" dominant-baseline="central" font-size="${(11*K).toFixed(1)}" fill="var(--ink)">asterisk code</text></g>
+    <text x="${(vx0+vw-10*K).toFixed(1)}" y="${(vy0+vh-10*K).toFixed(1)}" text-anchor="end" font-size="${(10*K).toFixed(1)}" fill="#7A8C96">${mapZoom ? 'double-click the sea to zoom back out' : 'double-click an area to zoom into it'} · FAO divisions drawn schematically · coastline and depths: Natural Earth</text>`;
+  svg.ondblclick = e => {
+    if (document.body.dataset.view !== 'map') return;
+    const hit = e.target.closest('[data-code]');
+    mapZoom = (hit && hit.dataset.code !== mapZoom) ? hit.dataset.code : null;
+    renderMap();
+  };
   // nesting diagram
   const kidsOf = code => nodes.filter(n=>n.parentCode===code && n.depth>0);
   const box = (n, x, y, w, h) => { const g = GEN[Math.min(n.depth,2)]; const kids = kidsOf(n.code).filter(k=>k.inside);
@@ -902,7 +942,7 @@ function renderMap(){
   </div>`;
   document.getElementById('note').textContent = '';
   document.getElementById('play').disabled = !VOYAGES[f.id];
-  document.getElementById('hint').textContent = 'space voyage · enter families · ↑ ↓ family';
+  document.getElementById('hint').textContent = 'double-click an area to zoom · space voyage · enter families · ↑ ↓ family';
   document.querySelectorAll('#famSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===fam));
 }
 
