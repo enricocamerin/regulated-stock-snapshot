@@ -1206,8 +1206,10 @@ document.addEventListener('keydown', e=>{
   const h = new URLSearchParams((location.hash||'').replace(/^#/,''));
   const fq = (h.get('family')||'').toLowerCase();
   if (fq){ const i = FAMILIES.findIndex(x=>x.id===fq); if (i>=0) fam = i; }
-  const sq = (h.get('slide')||'').toLowerCase();
-  const sl = SLIDES.find(x=>x.id===sq);
+  // accept either the internal id or the visible tab label, so #slide=home works
+  // as well as #slide=cover — the Home tab's id is 'cover' for historical reasons
+  const sq = (h.get('slide')||'').toLowerCase().trim();
+  const sl = SLIDES.find(x=>x.id===sq) || SLIDES.find(x=>x.label.toLowerCase()===sq);
   if (sl) sl.go(); else showCover();
   renderTabs();
 })();
