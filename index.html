@@ -849,8 +849,11 @@ function renderMap(){
     const ly = Math.max((n.depth===0?28:16)*K, y0+i+(n.depth===0?28:16)*K);
     if (n.depth===0){
       const sp = f.root.name.split(' / ')[0];
-      labels.push(`<text x="${(x0+i+10*K).toFixed(1)}" y="${ly.toFixed(1)}" font-size="${(13*K).toFixed(1)}" fill="${g.ink}">Parent Stock Area = <tspan font-size="${(24*K).toFixed(1)}" font-weight="500" fill="${g.stroke}">${n.code}</tspan></text>`);
-      labels.push(`<text x="${(x0+i+10*K).toFixed(1)}" y="${(ly+20*K).toFixed(1)}" font-size="${(13*K).toFixed(1)}" fill="${g.ink}">Parent Species = <tspan font-size="${(16*K).toFixed(1)}" font-weight="500" fill="${g.stroke}">${sp}</tspan></text>`);
+      // pinned to the frame, not to the shape: the shape's top corner is often off-frame
+      // and is exactly where the voyage's vessel and its caption sit
+      const tx = vx0 + 14*K, ty = vy0 + 30*K;
+      labels.push(`<text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" font-size="${(13*K).toFixed(1)}" fill="${g.ink}">Parent Stock Area = <tspan font-size="${(24*K).toFixed(1)}" font-weight="500" fill="${g.stroke}">${n.code}</tspan></text>`);
+      labels.push(`<text x="${tx.toFixed(1)}" y="${(ty+20*K).toFixed(1)}" font-size="${(13*K).toFixed(1)}" fill="${g.ink}">Parent Species = <tspan font-size="${(16*K).toFixed(1)}" font-weight="500" fill="${g.stroke}">${sp}</tspan></text>`);
     } else {
       const star = n.code.startsWith('*'), col = star ? '#8A6A00' : g.stroke, ink = star ? '#6B5200' : g.ink;
       labels.push(`<text x="${(x0+i+10*K).toFixed(1)}" y="${ly.toFixed(1)}" font-size="${(13*K).toFixed(1)}" font-weight="500" fill="${col}">${n.code}</text>`);
