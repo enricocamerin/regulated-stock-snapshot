@@ -540,7 +540,7 @@ function playBoarding(){
   }, t + 200));
 }
 
-let mapZoom = null, mapZoomFam = -1;   // which stock area the map is zoomed into
+let mapOpen = null, mapOpenFam = -1;   // which stock area has its conditions drilled open
 let spOpen = null, spOpenFam = -1;
 function spToggle(id){ if (spOpen.has(id)) spOpen.delete(id); else spOpen.add(id); renderSpecies(); }
 function renderSpecies(){
@@ -797,7 +797,7 @@ function renderMap(){
   document.body.dataset.view = 'map';
   const f = FAMILIES[fam], fa = FAMILY_AREAS[f.id];
   const svg = document.getElementById('tree');
-  if (mapZoomFam !== fam){ mapZoom = null; mapZoomFam = fam; }
+  if (mapOpenFam !== fam){ mapOpen = null; mapOpenFam = fam; }
   document.getElementById('tt').textContent = `Where ${f.name} fishes`;
   const setFor = code => (STOCK_GEO[code] ? boxesFor(code).boxes : (AREA_SETS[code]||[]));
   const nodes = []; const walkM = (n, depth, pcode) => { const code = n.name.split(' / ')[1];
@@ -815,23 +815,26 @@ function renderMap(){
     ? [Math.min(...boxed.map(n=>n.bbox[0])), Math.min(...boxed.map(n=>n.bbox[1])),
        Math.max(...boxed.map(n=>n.bbox[2])), Math.max(...boxed.map(n=>n.bbox[3]))]
     : [0,0,MAPW,MAPH];
-  const zn = mapZoom ? boxed.find(n=>n.code===mapZoom) : null;
-  const [bx0,by0,bx1,by1] = zn ? zn.bbox : famBox;
-  const px = (bx1-bx0)*0.12 + 12, py = (by1-by0)*0.12 + 12;
-  let vx0 = Math.max(0, bx0-px), vy0 = Math.max(0, by0-py);
-  let vw = Math.min(MAPW, bx1+px) - vx0, vh = Math.min(MAPH, by1+py) - vy0;
-  const AR = MAPW/MAPH;                       // keep the frame's aspect so nothing squashes
-  if (vw/vh > AR){ const nh = vw/AR; vy0 = Math.max(0, Math.min(MAPH-nh, vy0-(nh-vh)/2)); vh = nh; }
-  else           { const nw = vh*AR; vx0 = Math.max(0, Math.min(MAPW-nw, vx0-(nw-vw)/2)); vw = nw; }
-  const K = vw/MAPW;                          // counter-scale for text and strokes
-  svg.setAttribute('viewBox', `${vx0.toFixed(1)} ${vy0.toFixed(1)} ${vw.toFixed(1)} ${vh.toFixed(1)}`);
-
+  // drill: only the open node and its direct children are drawn; everything else waits
+  const kidsOfCode = c => nodes.filter(n=>n.parentCode===c);
+  const rootCode = nodes[0].code;
+  if (mapOpen && !nodes.some(n=>n.code===mapOpen)) mapOpen = null;
+  const shown = mapOpen ? [nodes.find(n=>n.code===mapOpen), ...kidsOfCode(mapOpen)] : [nodes[0]];
+  const openable = new Set(nodes.filter(n=>kidsOfCode(n.code).length).map(n=>n.code));
+  const shownBoxed = shown.filter(n=>n.bbox);
+  // at the top level the frame still covers everything the family touches, so children
+  // appear inside a frame that does not jump — including children outside the parent
+  const fit = (!mapOpen || mapOpen===rootCode || !shownBoxed.length)
+    ? famBox
+    : [Math.min(...shownBoxed.map(n=>n.bbox[0])), Math.min(...shownBoxed.map(n=>n.bbox[1])),
+       Math.max(...shownBoxed.map(n=>n.bbox[2])), Math.max(...shownBoxed.map(n=>n.bbox[3]))];
+  const [bx0,by0,bx1,by1] = fit;
   const parts=[], labels=[];
-  nodes.slice().sort((a,b)=>a.depth-b.depth).forEach(n=>{ const g0 = GEN[Math.min(n.depth,2)], o = outlineFor(n.set); if (!o) return;
+  shown.slice().sort((a,b)=>a.depth-b.depth).forEach(n=>{ const g0 = GEN[Math.min(n.depth,2)], o = outlineFor(n.set); if (!o) return;
     const star = n.code.startsWith('*');
     const g = star ? {fill:'#FFF1A6', stroke:'#C99A06', ink:'#6B5200', name:g0.name} : g0;
     const d = o[String(n.lvl*10)] || o['0'];
-    parts.push(`<path data-code="${n.code}" style="cursor:zoom-in" d="${d}" fill="${g.fill}" fill-opacity="${n.depth===0?0.72:0.8}" stroke="${g.stroke}" stroke-width="${((n.depth===0?2.5:1.6)*K).toFixed(2)}" fill-rule="evenodd"><title>${n.code} — ${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''} · ${n.members.join(', ')}</title></path>`);
+    parts.push(`<path data-code="${n.code}" style="cursor:${openable.has(n.code)?'pointer':'default'}" d="${d}" fill="${g.fill}" fill-opacity="${n.depth===0?0.72:0.8}" stroke="${g.stroke}" stroke-width="${((n.depth===0?2.5:1.6)*K).toFixed(2)}" fill-rule="evenodd"><title>${n.code} — ${STOCK_GEO[n.code]?STOCK_GEO[n.code].d:''} · ${n.members.join(', ')}</title></path>`);
     const gens = [...n.depths].sort().map(x=>GEN[Math.min(x,2)].name).join(' + ');
     const [x0,y0,x1,y1] = o.bbox, i = n.lvl*10;
     const ly = Math.max((n.depth===0?28:16)*K, y0+i+(n.depth===0?28:16)*K);
@@ -876,7 +879,7 @@ function renderMap(){
       labels.push(fishAt(fz.sp, cx - rowW/2 + k*step + 55*sc, cy, sc, 'f'+(gi++), `${d.name} (${d.latin}) — ${fz.member} · ${fz.gen}`, ['parent','child','grandchild'].indexOf(fz.gen))); });
   });
   const faoOf = id => ({'2a':'27.2.a','4a':'27.4.a','4b':'27.4.b','4c':'27.4.c','3a':'27.3.a','7d':'27.7.d','7e':'27.7.e','7a':'27.7.a','6a':'27.6.a','7f':'27.7.f','7bc':'27.7.b–c','7fk':'27.7.g–k'}[id]||'');
-  const allBoxes = new Set(); nodes.forEach(n=>n.set.forEach(b=>allBoxes.add(b)));
+  const allBoxes = new Set(); shown.forEach(n=>n.set.forEach(b=>allBoxes.add(b)));
   const faoLabels = [...allBoxes].map(id=>{ const [,lab,a,b,c,d,lx,ly] = ICES.find(x=>x[0]===id); return `<text x="${mx(lx)}" y="${my(ly)}" text-anchor="middle" dominant-baseline="central" font-size="${(11*K).toFixed(1)}" fill="#5F6E78" opacity="0.85">FAO ${faoOf(id)}</text>`; }).join('');
   const bathy = (typeof BATHY !== 'undefined' ? BATHY : [])
     .map(b=>`<path d="${b.d}" fill="${b.fill}"/>`).join('');
@@ -898,11 +901,14 @@ function renderMap(){
     ${faoLabels}${labels.join('')}
     ${key}
     <g><rect x="${lx.toFixed(1)}" y="${lyb.toFixed(1)}" width="${sw.toFixed(1)}" height="${sw.toFixed(1)}" rx="${(2*K).toFixed(1)}" fill="${GEN[0].fill}" stroke="${GEN[0].stroke}" stroke-width="${(1.5*K).toFixed(2)}"/><text x="${(lx+18*K).toFixed(1)}" y="${(lyb+6*K).toFixed(1)}" dominant-baseline="central" font-size="${(11*K).toFixed(1)}" fill="var(--ink)">parent</text><rect x="${(lx+80*K).toFixed(1)}" y="${lyb.toFixed(1)}" width="${sw.toFixed(1)}" height="${sw.toFixed(1)}" rx="${(2*K).toFixed(1)}" fill="#FFF1A6" stroke="#C99A06" stroke-width="${(1.5*K).toFixed(2)}"/><text x="${(lx+98*K).toFixed(1)}" y="${(lyb+6*K).toFixed(1)}" dominant-baseline="central" font-size="${(11*K).toFixed(1)}" fill="var(--ink)">asterisk code</text></g>
-    <text x="${(vx0+vw-10*K).toFixed(1)}" y="${(vy0+vh-10*K).toFixed(1)}" text-anchor="end" font-size="${(10*K).toFixed(1)}" fill="#7A8C96">${mapZoom ? 'double-click the sea to zoom back out' : 'double-click an area to zoom into it'} · FAO divisions drawn schematically · coastline and depths: Natural Earth</text>`;
+    <text x="${(vx0+vw-10*K).toFixed(1)}" y="${(vy0+vh-10*K).toFixed(1)}" text-anchor="end" font-size="${(10*K).toFixed(1)}" fill="#7A8C96">${mapOpen ? 'double-click the sea to close' : (openable.has(rootCode) ? 'double-click the parent area to open its conditions' : 'no conditions to open')} · FAO divisions drawn schematically · coastline and depths: Natural Earth</text>`;
   svg.ondblclick = e => {
     if (document.body.dataset.view !== 'map') return;
-    const hit = e.target.closest('[data-code]');
-    mapZoom = (hit && hit.dataset.code !== mapZoom) ? hit.dataset.code : null;
+    const hit = e.target.closest('[data-code]'), code = hit && hit.dataset.code;
+    if (code && kidsOfCode(code).length) mapOpen = code;            // open this node's conditions
+    else if (!code) mapOpen = mapOpen && mapOpen!==rootCode
+      ? (nodes.find(n=>n.code===mapOpen)||{}).parentCode || null    // close one level
+      : null;
     renderMap();
   };
   // nesting diagram
@@ -942,7 +948,7 @@ function renderMap(){
   </div>`;
   document.getElementById('note').textContent = '';
   document.getElementById('play').disabled = !VOYAGES[f.id];
-  document.getElementById('hint').textContent = 'double-click an area to zoom · space voyage · enter families · ↑ ↓ family';
+  document.getElementById('hint').textContent = 'double-click an area to open its conditions · space voyage · enter families · ↑ ↓ family';
   document.querySelectorAll('#famSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===fam));
 }
 
