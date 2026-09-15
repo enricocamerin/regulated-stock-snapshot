@@ -1200,7 +1200,17 @@ document.addEventListener('keydown', e=>{
   else if (e.key==='ArrowDown'){ fam=(fam+1)%FAMILIES.length; render(false); }
   else if (e.key==='ArrowUp'){ fam=(fam-1+FAMILIES.length)%FAMILIES.length; render(false); }
 });
-showCover(); renderTabs();
+// deep link: #slide=map&family=lem — lets a host (a Qlik extension, a link in a
+// wiki) open straight at a slide and family instead of always at the cover
+(function start(){
+  const h = new URLSearchParams((location.hash||'').replace(/^#/,''));
+  const fq = (h.get('family')||'').toLowerCase();
+  if (fq){ const i = FAMILIES.findIndex(x=>x.id===fq); if (i>=0) fam = i; }
+  const sq = (h.get('slide')||'').toLowerCase();
+  const sl = SLIDES.find(x=>x.id===sq);
+  if (sl) sl.go(); else showCover();
+  renderTabs();
+})();
 </script>
 </body>
 </html>
