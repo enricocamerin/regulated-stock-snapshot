@@ -134,6 +134,7 @@ const FAMILIES = [
   {
     id:'srx', country:'NLD', year:2025, name:'SRX / 2AC4-C', fleet:null,
     intro:'Skates and rays in the North Sea. A parent with four children; one of them carries a child of its own.',
+    spNote:'The parent quota is for skates and rays as a group. Three of its children are single species — thornback, blonde and spotted ray — fished in the same water; the fourth is the group again, in the Channel. Click a + badge to open a branch.',
     root:{ name:'SRX / 2AC4-C', quota:654.400, own:{feb:0.056, aug:0.020}, children:[
       { name:'RJC / 2AC4-C', quota:0, own:{feb:385.788, aug:356.805} },
       { name:'RJH / 04-C.',  quota:0, own:{feb:144.252, aug:140.738} },
@@ -144,7 +145,15 @@ const FAMILIES = [
   {
     id:'lin', country:'FRA', year:2025, name:'LIN / 6X14.', fleet:null,
     intro:'Ling west of Scotland and beyond. The simplest shape: one parent, one child.',
+    spNote:'One species throughout: ling. The parent covers the western waters; the child is the same fish, allowed into the North Sea. Click a + badge to open a branch.',
     root:{ name:'LIN / 6X14.', quota:3286.040, own:{feb:397.731, aug:398.843}, children:[ { name:'LIN / *04-C.', quota:1342.676, own:{feb:763.001, aug:789.002}, area:true } ] }
+  },
+  {
+    id:'lem', country:'DEU', year:2025, name:'LEM / 03A-C.', fleet:null,
+    intro:'Lemon sole in the Skagerrak and Kattegat. A quota with no special conditions at all: one line, no children, and the catches over the ceiling.',
+    spNote:'One species, one area, nothing nested. There is no child to climb into the parent — what the parent fishes is the whole family.',
+    // only the 13 Aug 2026 snapshot carries this quota; there is no 12 Feb line for it
+    root:{ name:'LEM / 03A-C.', quota:1.200, own:{aug:1.503} }
   }
 ];
 
@@ -156,9 +165,9 @@ const fleetText = f => f.fleet ? `${f.fleet} vessels` : 'several vessels';
 const fmt = n => n.toLocaleString('en-GB',{minimumFractionDigits:3, maximumFractionDigits:3});
 let snap = 1;
 const S = () => SNAPS[snap].id;
-const own = n => n.own[S()];
+const own = n => n.own[S()] ?? 0;
 const total = n => own(n) + (n.children||[]).reduce((a,c)=>a+total(c),0);
-const ownAt = (n,i) => n.own[SNAPS[i].id];
+const ownAt = (n,i) => n.own[SNAPS[i].id] ?? 0;
 const totalAt = (n,i) => ownAt(n,i) + (n.children||[]).reduce((a,c)=>a+totalAt(c,i),0);
 const hasPrev = () => snap > 0;
 const dTotal = n => hasPrev() ? totalAt(n,snap) - totalAt(n,snap-1) : 0;
@@ -167,6 +176,9 @@ const moved = v => Math.abs(v) >= 0.0005;
 const sgn = v => (v>=0?'+':'−') + fmt(Math.abs(v));
 const prevLabel = () => hasPrev() ? SNAPS[snap-1].label.replace(/ \d{4}$/,'') : '';
 const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+// a family may not exist in every snapshot; absence is not a catch of zero
+const hasSnap = (f,i) => !f.root.own || (SNAPS[i].id in f.root.own);
+const firstSnap = f => SNAPS.find(x=>x.id in f.root.own);
 const idOf = n => n.name.replace(/[^A-Za-z0-9]/g,'_');
 const C = {
   parent:{fill:'var(--parent-fill)',stroke:'var(--parent)',ink:'var(--parent-ink)',soft:'var(--parent)'},
@@ -186,6 +198,24 @@ function layout(node, depth=0, parent=null){
   node.subW = Math.max(node.w, node.kids.length ? node.kids.reduce((a,k)=>a+k.subW,0) + gap*(node.kids.length-1) : 0);
   return node;
 }
+function renderAbsent(f){
+  const svg = document.getElementById('tree'), fs = firstSnap(f);
+  svg.setAttribute('viewBox', '0 0 680 200');
+  svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + `
+    <rect x="40" y="46" width="600" height="96" rx="8" fill="var(--stone-fill)" stroke="var(--rule)" stroke-width="1"/>
+    <text x="340" y="86" text-anchor="middle" font-size="14" fill="var(--ink)">${f.name} has no line in the ${SNAPS[snap].label} snapshot.</text>
+    <text x="340" y="110" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)">It appears in ${fs ? fs.label : 'a later snapshot'} — press → to move forward.</text>`;
+  document.getElementById('tt').textContent = `${f.name}, absent from snapshot ${SNAPS[snap].short}`;
+  document.getElementById('td').textContent = '';
+  document.getElementById('subtitle').textContent = `${f.country} · ${f.year} · ${f.name} · snapshot ${SNAPS[snap].short}`;
+  document.getElementById('ah').textContent = 'Not in this snapshot';
+  document.getElementById('ap').textContent = `This quota is not in the ${SNAPS[snap].label} extract, which is not the same as a catch of zero — there is simply no line to show. ${fs ? `The figures below start at ${fs.label}.` : ''}`;
+  document.getElementById('ledger').innerHTML = '';
+  document.getElementById('note').textContent = '';
+  document.getElementById('play').disabled = true;
+  document.querySelectorAll('#famSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===fam));
+  document.querySelectorAll('#snapSeg button').forEach((b,i)=>b.setAttribute('aria-pressed', i===snap));
+}
 function place(node, x, y){
   node.x = x + (node.subW - node.w)/2; node.y = y;
   const gap = 12, yy = y + node.h + 48;
@@ -200,6 +230,7 @@ let ROOT = null;
 function render(built){
   timers.forEach(clearTimeout); timers = []; playing = false;
   const f = FAMILIES[fam];
+  if (!hasSnap(f, snap)) return renderAbsent(f);
   const root = ROOT = layout(structuredClone(f.root));
   const W = Math.max(680, root.subW + 80);
   place(root, 40 + (W-80-root.subW)/2, 40);
@@ -550,9 +581,7 @@ function renderSpecies(){
   svg.innerHTML = svg.querySelector('title').outerHTML + svg.querySelector('desc').outerHTML + links + cards;
   document.getElementById('subtitle').textContent = `${f.country} · ${f.year} · ${f.name}`;
   document.getElementById('ah').textContent = 'Who is on board';
-  document.getElementById('ap').textContent = f.id==='srx'
-    ? 'The parent quota is for skates and rays as a group. Three of its children are single species — thornback, blonde and spotted ray — fished in the same water; the fourth is the group again, in the Channel. Click a + badge to open a branch.'
-    : 'One species throughout: ling. The parent covers the western waters; the child is the same fish, allowed into the North Sea. Click a + badge to open a branch.';
+  document.getElementById('ap').textContent = f.spNote || '';
   document.getElementById('ledger').innerHTML = uniqSp.map(c=>{ const sp = SPECIES[c]; return `<div class="row in" style="display:block"><span style="font-weight:500">${sp?sp.name:c}</span> <span style="font-size:.85rem;color:var(--ink-soft)">${sp?sp.text:''}</span></div>`; }).join('');
   const credits = uniqSp.filter(c=>SPECIES_PHOTO[c]).map(c=>SPECIES_PHOTO[c].credit);
   document.getElementById('note').textContent = (credits.length ? credits.join(' · ') + ' · ' : '') + 'Other species are original drawings for this presentation.';
